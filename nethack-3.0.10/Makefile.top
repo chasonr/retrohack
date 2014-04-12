@@ -14,7 +14,7 @@
 # MAKE = make
 
 # make NetHack
-GAME     = nethack
+GAME     = nethack30
 GAMEUID  = games
 GAMEGRP  = bin
 

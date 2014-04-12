@@ -171,7 +171,7 @@
  * If you define HACKDIR, then this will be the default playground;
  * otherwise it will be the current directory.
  */
-#define HACKDIR "/usr/games/lib/nethackdir" 	/* nethack directory */
+#define HACKDIR "/usr/games/lib/nethack30dir" 	/* nethack directory */
 
 /*
  * Some system administrators are stupid enough to make Hack suid root

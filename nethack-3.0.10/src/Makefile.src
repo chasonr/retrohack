@@ -92,7 +92,7 @@ LEX      = lex
 # LEX      = flex
 
 # make NetHack
-GAME     = nethack
+GAME     = nethack30
 
 # if you defined RANDOM in unixconf.h/pcconf.h since your system did not come
 # with a reasonable random number generator -- also remember to get random.c
