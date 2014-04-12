@@ -21,7 +21,7 @@
 /* define one of the following */
 /* #define BSD		/* define for 4.n BSD  */
 			/* also for relatives like SunOS and DG/UX */
-#define ULTRIX		/* define for Ultrix v3.0 or higher (but not lower) */
+/* #define ULTRIX */	/* define for Ultrix v3.0 or higher (but not lower) */
 			/* Use BSD for < v3.0 */
 			/* "ULTRIX" not to be confused with "ultrix" */
 /* #define SYSV		/* define for System V */
@@ -74,6 +74,14 @@
  * #define DEF_PAGER	".../mydir/mypager"
  */
 
+/* Two popular Unix-like systems */
+#ifdef __APPLE__
+/* Mac OS X */
+#   define BSD
+#endif
+#ifdef __LINUX__
+#   define SYSV
+#endif
 
 
 /*
