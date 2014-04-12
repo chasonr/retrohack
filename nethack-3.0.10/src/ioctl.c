@@ -31,6 +31,10 @@ struct termio termio;
 # endif /* AMIX */
 #endif
 
+#ifdef SUSPEND		/* implies BSD */
+#include	<signal.h>
+#endif
+
 void
 getioctls() {
 #if defined(BSD) || defined(ULTRIX) || defined(HPUX) || defined(AIX_31)
@@ -75,7 +79,6 @@ setioctls() {
 #ifdef SUSPEND		/* implies BSD */
 int
 dosuspend() {
-#include	<signal.h>
 #ifdef SIGTSTP
 	if(signal(SIGTSTP, SIG_IGN) == SIG_DFL) {
 		settty(NULL);
