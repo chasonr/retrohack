@@ -8,7 +8,7 @@
 #if defined(ALTARS) && defined(THEOLOGY)
 #include "epri.h"
 #endif
-#include "termcap.h"
+#include "termcaps.h"
 
 #ifdef OVL0
 static void FDECL(fillbot, (int,char *,char *));

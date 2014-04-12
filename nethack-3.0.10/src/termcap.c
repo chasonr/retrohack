@@ -7,8 +7,10 @@
 #include "hack.h"	/* for ROWNO, COLNO, *HI, *HE, *AS, *AE */
 
 #include <ctype.h>	/* for isdigit() */
+/* FIXME:  This is for OS X; check against other systems */
+#include <termcap.h>
 
-#include "termcap.h"
+#include "termcaps.h"
 
 #if (!defined(SYSV) && !defined(HPUX)) || defined(TOS) || defined(UNIXPC)
 # ifndef LINT

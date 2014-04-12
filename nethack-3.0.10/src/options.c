@@ -3,7 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
-#include "termcap.h"
+#include "termcaps.h"
 
 static boolean NEARDATA set_order;
 
