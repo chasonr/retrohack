@@ -5,6 +5,17 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+/* Headers defining these functions according to C90 */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+/* System specific headers */
+#ifdef UNIX
+# include <fcntl.h>
+# include <unistd.h>
+#endif
+
+#if 0 /* The old version follows here */
 #define E extern
 
 /* some old <sys/types.h> may not define off_t and size_t; if your system is
@@ -41,6 +52,7 @@ typedef unsigned int	size_t;
 #if defined(AZTEC) || defined(THINKC4) || (defined(MSDOS) && defined(__TURBOC__))
 typedef long	off_t;
 #endif
+#endif /* 0 */
 
 
 /* You may want to change this to fit your system, as this is almost
@@ -55,6 +67,7 @@ typedef long	off_t;
 # define SIG_RET_TYPE int (*)()
 #endif
 
+#if 0
 #if defined(BSD) || defined(ULTRIX) || defined(RANDOM)
 E long random();
 E void FDECL(srandom, (unsigned int));
@@ -230,6 +243,7 @@ E int FDECL(vprintf, (const char *, va_list));
 #  define vpline	pline
 # endif
 #endif /* NEED_VARARGS */
+#endif /* 0 */
 
 #define Sprintf	(void) sprintf
 #define Strcat	(void) strcat
@@ -254,6 +268,7 @@ E int FDECL(vprintf, (const char *, va_list));
 # define Vsprintf (void) vsprintf
 #endif
 
+#if 0
 #ifdef MSDOS
 E int FDECL(tgetent, (const char *,const char *));
 E int FDECL(tgetnum, (const char *));
@@ -297,5 +312,6 @@ E int FDECL(atoi, (const char *));
 #endif
 
 #undef E
+#endif /* 0 */
 
 #endif /* SYSTEM_H */
