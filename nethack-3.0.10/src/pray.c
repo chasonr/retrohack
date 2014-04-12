@@ -20,26 +20,26 @@ struct ghods {
 	const char *law, *balance, *chaos;
 }  gods[] = {
 
-'A', /* Central American */	"Quetzalcotl", "Camaxtli", "Huhetotl",
-'B', /* Celtic */		"Nuada", "Dagda", "Morrigan",
-'C', /* Babylonian */		"Anu", "Ishtar", "Anshar",
-'E', /* Elven */		"Solonor Thelandira",
-				"Aerdrie Faenya", "Erevan Ilesere",
-'H', /* Greek */		"Athena", "Hermes", "Poseidon",
-'K', /* Celtic */		"Lugh", "Brigit", "Macannan Mac Lir",
+{ 'A', /* Central American */	"Quetzalcotl", "Camaxtli", "Huhetotl" },
+{ 'B', /* Celtic */		"Nuada", "Dagda", "Morrigan" },
+{ 'C', /* Babylonian */		"Anu", "Ishtar", "Anshar" },
+{ 'E', /* Elven */		"Solonor Thelandira",
+				"Aerdrie Faenya", "Erevan Ilesere" },
+{ 'H', /* Greek */		"Athena", "Hermes", "Poseidon" },
+{ 'K', /* Celtic */		"Lugh", "Brigit", "Macannan Mac Lir" },
 #ifdef NAMED_ITEMS
 /* It'd look funny if someone got a sword to steal souls for Arioch but Arioch
  * goes with the wrong character class...
  */
-'P', /* Hyborian */		"Mitra", "Crom", "Set",
+{ 'P', /* Hyborian */		"Mitra", "Crom", "Set" },
 #else
-'P', /* Melnibonean */		"Donblas", "Grome", "Arioch",
+{ 'P', /* Melnibonean */	"Donblas", "Grome", "Arioch" },
 #endif
-'R', /* Nehwon */		"Votishal", "Death", "Rat God",
-'S', /* Japanese */		"Amaterasu Omikami", "Raiden", "Susanowo",
-'T', /* Chinese */		"Shan Lai Ching", "Chih Sung-tzu", "Huan Ti",
-'V', /* Norse */		"Tyr", "Balder", "Loki",
-'W', /* Egyptian */		"Ptah", "Thoth", "Anhur",
+{ 'R', /* Nehwon */		"Votishal", "Death", "Rat God" },
+{ 'S', /* Japanese */		"Amaterasu Omikami", "Raiden", "Susanowo" },
+{ 'T', /* Chinese */		"Shan Lai Ching", "Chih Sung-tzu", "Huan Ti" },
+{ 'V', /* Norse */		"Tyr", "Balder", "Loki" },
+{ 'W', /* Egyptian */		"Ptah", "Thoth", "Anhur" },
 0,0,0,0
 };
 

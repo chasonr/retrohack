@@ -647,28 +647,28 @@ const struct func_tab cmdlist[]={
 #undef M
 
 const struct ext_func_tab extcmdlist[] = {
-	"chat", "talk to someone", dotalk,	/* converse? */
-	"dip", "dip an object into something", dodip,
-	"force", "force a lock", doforce,
-	"jump", "jump to a location", dojump,
-	"loot", "loot a box on the floor", doloot,
+	{ "chat", "talk to someone", dotalk },	/* converse? */
+	{ "dip", "dip an object into something", dodip },
+	{ "force", "force a lock", doforce },
+	{ "jump", "jump to a location", dojump },
+	{ "loot", "loot a box on the floor", doloot },
 #ifdef POLYSELF
-	"monster", "use a monster's special ability", domonability,
+	{ "monster", "use a monster's special ability", domonability },
 #endif
-	"name", "name an item or type of object", ddocall,
+	{ "name", "name an item or type of object", ddocall },
 #ifdef THEOLOGY
-	"offer", "offer a sacrifice to the gods", dosacrifice,
-	"pray", "pray to the gods for help", dopray,
+	{ "offer", "offer a sacrifice to the gods", dosacrifice },
+	{ "pray", "pray to the gods for help", dopray },
 #endif
-	"rub", "rub a lamp", dorub,
-	"sit", "sit down", dosit,
-	"turn", "turn undead", doturn,
-	"untrap", "untrap something", dountrap,
-	"version", "print compile time options for this version of NetHack",
-		doextversion,
-	"wipe", "wipe off your face", dowipe,
-	"?", "get this list of extended commands", doextlist,
-	NULL, NULL, donull
+	{ "rub", "rub a lamp", dorub },
+	{ "sit", "sit down", dosit },
+	{ "turn", "turn undead", doturn },
+	{ "untrap", "untrap something", dountrap },
+	{ "version", "print compile time options for this version of NetHack",
+		doextversion },
+	{ "wipe", "wipe off your face", dowipe },
+	{ "?", "get this list of extended commands", doextlist },
+	{ NULL, NULL, donull }
 };
 
 #ifdef STUPID_CPP

@@ -20,11 +20,11 @@ const char	*minusattr[] = { /* part of the output on loss of attribute */
 
 struct attribs	attrmax = {	/* max values for the attributes */
 
-	118, 18, 18, 18, 18, 18
+	{ 118, 18, 18, 18, 18, 18 }
 },
 		attrmin = {	/* min values for the attributes */
 
-	3, 3, 3, 3, 3, 3
+	{ 3, 3, 3, 3, 3, 3 }
 };
 
 const struct innate {
@@ -97,59 +97,59 @@ const struct clattr {
  * spells. --KAA
  */
 	const struct	innate *abil;
-}	a_attr = { {	 7, 10, 10,  7,  7,  7 },  /* Archeologist */
-		   {	20, 20, 20, 10, 20, 10 },
+}	a_attr = { { {	 7, 10, 10,  7,  7,  7 } },  /* Archeologist */
+		   { {	20, 20, 20, 10, 20, 10 } },
 		    10,  1, 13, 10, 14,  2, a_abil },
 
-	b_attr = { {	16,  7,  7, 15, 16,  6 },  /* Barbarian */
-		   {	30,  6,  7, 20, 30,  7 },
+	b_attr = { { {	16,  7,  7, 15, 16,  6 } },  /* Barbarian */
+		   { {	30,  6,  7, 20, 30,  7 } },
 		    10, -1, 16, 12, 10,  3, b_abil },
 
-	c_attr = { {	10,  7,  7,  7,  8,  6 },  /* Caveman (fighter) */
-		   {	30,  6,  7, 20, 30,  7 },
+	c_attr = { { {	10,  7,  7,  7,  8,  6 } },  /* Caveman (fighter) */
+		   { {	30,  6,  7, 20, 30,  7 } },
 		     0,  1, 16, 10, 10,  3, c_abil },
 
 /*
-	e_attr = { {	13, 13, 14,  6, 14,  6 },
+	e_attr = { { {	13, 13, 14,  6, 14,  6 } },
  */
-	e_attr = { {	13, 13, 13,  9, 13,  7 },  /* Elf (ranger) */
-		   {	30, 10, 10, 20, 20, 10 },
+	e_attr = { { {	13, 13, 13,  9, 13,  7 } },  /* Elf (ranger) */
+		   { {	30, 10, 10, 20, 20, 10 } },
 		    10,  1, 15, 10, 11,  2, e_abil },
 
-	h_attr = { {	 7,  7, 13,  7, 11, 16 },  /* Healer (druid) */
-		   {	15, 20, 20, 15, 25, 10 },
+	h_attr = { { {	 7,  7, 13,  7, 11, 16 } },  /* Healer (druid) */
+		   { {	15, 20, 20, 15, 25, 10 } },
 		    10,  1, 13, 10, 20,  2, h_abil },
 
-	k_attr = { {	13,  7, 14,  8, 10, 17 },  /* Knight (paladin) */
-		   {	20, 15, 15, 10, 20, 10 },
+	k_attr = { { {	13,  7, 14,  8, 10, 17 } },  /* Knight (paladin) */
+		   { {	20, 15, 15, 10, 20, 10 } },
 		    10,  1, 16, 10, 10,  3, k_abil },
 
-	p_attr = { {	 7,  7, 10,  7,  7,  7 },  /* Priest (cleric) */
-		   {	15, 10, 30, 15, 20, 10 },
+	p_attr = { { {	 7,  7, 10,  7,  7,  7 } },  /* Priest (cleric) */
+		   { {	15, 10, 30, 15, 20, 10 } },
 		     0,  0, 14, 10, 10,  2, p_abil },
 
-	r_attr = { {	 7,  7,  7, 10,  7,  6 },  /* Rogue (thief) */
-		   {	20, 10, 10, 30, 20, 10 },
+	r_attr = { { {	 7,  7,  7, 10,  7,  6 } },  /* Rogue (thief) */
+		   { {	20, 10, 10, 30, 20, 10 } },
 		    10, -1, 12, 10, 11,  2, r_abil },
 
-	s_attr = { {	10,  8,  7, 10, 17,  6 },  /* Samurai (fighter/thief) */
-		   {	30, 10, 10, 30, 14, 10 },
+	s_attr = { { {	10,  8,  7, 10, 17,  6 } },  /* Samurai (fighter/thief) */
+		   { {	30, 10, 10, 30, 14, 10 } },
 		    10,  1, 15, 10, 11,  2, s_abil },
 
-	t_attr = { {	 7, 10,  6,  7,  7, 10 },  /* Tourist */
-		   {	15, 10, 10, 15, 30, 20 },
+	t_attr = { { {	 7, 10,  6,  7,  7, 10 } },  /* Tourist */
+		   { {	15, 10, 10, 15, 30, 20 } },
 		     0,  0, 10, 10, 14,  1, t_abil },
 
-	v_attr = { {	10,  7,  7,  7, 10,  7 },  /* Valkyrie (fighter) */
-		   {	30,  6,  7, 20, 30,  7 },
+	v_attr = { { {	10,  7,  7,  7, 10,  7 } },  /* Valkyrie (fighter) */
+		   { {	30,  6,  7, 20, 30,  7 } },
 		     0, -1, 16, 10, 10,  3, v_abil },
 
-	w_attr = { {	 7, 10,  7,  7,  7,  7 },  /* Wizard (magic-user) */
-		   {	10, 30, 10, 20, 20, 10 },
+	w_attr = { { {	 7, 10,  7,  7,  7,  7 } },  /* Wizard (magic-user) */
+		   { {	10, 30, 10, 20, 20, 10 } },
 		     0,  0, 12, 10, 12,  1, w_abil },
 
-	X_attr = { {	 3,  3,  3,  3,  3,  3 },
-		   {	20, 15, 15, 15, 20, 15 },
+	X_attr = { { {	 3,  3,  3,  3,  3,  3 } },
+		   { {	20, 15, 15, 15, 20, 15 } },
 		     0,  0, 12, 10, 14,  1,  0 };
 
 static const struct clattr NEARDATA *NDECL(clx);

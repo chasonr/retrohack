@@ -467,7 +467,10 @@ struct {
     unsigned	pm;
     unsigned	prob;
 }   squadprob[NSTYPES] = {
-    PM_SOLDIER, 80, PM_SERGEANT, 15, PM_LIEUTENANT, 4, PM_CAPTAIN, 1
+    { PM_SOLDIER, 80 },
+    { PM_SERGEANT, 15 },
+    { PM_LIEUTENANT, 4 },
+    { PM_CAPTAIN, 1 }
 };
 
 static struct permonst *

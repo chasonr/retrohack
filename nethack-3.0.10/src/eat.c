@@ -140,12 +140,12 @@ init_uhunger(){
 }
 
 const struct { const char *txt; int nut; } tintxts[] = {
-	"deep fried",	60,
-	"pickled",	40,
-	"soup made from", 20,
-	"pureed", 500,
-	"rotten", -50,
-	"",	0
+	{ "deep fried",	60 },
+	{ "pickled",	40 },
+	{ "soup made from", 20 },
+	{ "pureed", 500 },
+	{ "rotten", -50 },
+	{ "",	0 }
 };
 #define	TTSZ	SIZE(tintxts)
 

@@ -151,9 +151,9 @@ boolean NEARDATA allow_kops = TRUE;
 #endif
 
 coord NEARDATA bhitpos = DUMMY;
-coord NEARDATA doors[DOORMAX] = DUMMY;
+coord NEARDATA doors[DOORMAX] = { DUMMY };
 
-struct mkroom NEARDATA rooms[MAXNROFROOMS+1] = DUMMY;
+struct mkroom NEARDATA rooms[MAXNROFROOMS+1] = { DUMMY };
 dlevel_t level;		/* level map */
 struct trap *ftrap = 0;
 struct gold *fgold = 0;
@@ -254,7 +254,7 @@ const char *explainsyms[MAXPCHARS] = {
 };
 
 #ifdef SPELLS
-struct spell NEARDATA spl_book[MAXSPELL + 1] = DUMMY;
+struct spell NEARDATA spl_book[MAXSPELL + 1] = { DUMMY };
 #endif
 
 long NEARDATA moves = 1, NEARDATA monstermoves = 1;

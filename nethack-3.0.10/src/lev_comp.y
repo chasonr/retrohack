@@ -77,29 +77,29 @@ struct {
 	char *name;
 	short type;
 } trap_types[TRAPNUM-1] = {
-	"monster",	MONST_TRAP,
-	"statue",	STATUE_TRAP,
-	"bear",		BEAR_TRAP,
-	"arrow",	ARROW_TRAP,
-	"dart",		DART_TRAP,
-	"trapdoor",	TRAPDOOR,
-	"teleport",	TELEP_TRAP,
-	"pit",		PIT,
-	"sleep gas",	SLP_GAS_TRAP,
-	"magic",	MGTRP,
-	"board",	SQBRD,
-	"web",		WEB,
-	"spiked pit",	SPIKED_PIT,
-	"level teleport",LEVEL_TELEP,
+	{ "monster",	MONST_TRAP },
+	{ "statue",	STATUE_TRAP },
+	{ "bear",	BEAR_TRAP },
+	{ "arrow",	ARROW_TRAP },
+	{ "dart",	DART_TRAP },
+	{ "trapdoor",	TRAPDOOR },
+	{ "teleport",	TELEP_TRAP },
+	{ "pit",	PIT },
+	{ "sleep gas",	SLP_GAS_TRAP },
+	{ "magic",	MGTRP },
+	{ "board",	SQBRD },
+	{ "web",	WEB },
+	{ "spiked pit",	SPIKED_PIT },
+	{ "level teleport",LEVEL_TELEP },
 #ifdef SPELLS
-	"anti magic",	ANTI_MAGIC,
+	{ "anti magic",	ANTI_MAGIC },
 #endif
-	"rust",		RUST_TRAP
+	{ "rust",	RUST_TRAP },
 #ifdef POLYSELF
-	, "polymorph",	POLY_TRAP
+	{ "polymorph",	POLY_TRAP },
 #endif
 #ifdef ARMY
-	, "land mine",	LANDMINE
+	{ "land mine",	LANDMINE },
 #endif
   };
 
@@ -109,20 +109,20 @@ struct {
 } room_types[SHOPBASE-1] = {
 	/* for historical reasons, room types are not contiguous numbers */
 	/* (type 1 is skipped) */
-	"ordinary",	OROOM,
+	{ "ordinary",	OROOM },
 #ifdef THRONES
-	"throne",	COURT,
+	{ "throne",	COURT },
 #endif
-	"swamp",	SWAMP,
-	"vault",	VAULT,
-	"beehive",	BEEHIVE,
-	"morgue",	MORGUE,
+	{ "swamp",	SWAMP },
+	{ "vault",	VAULT },
+	{ "beehive",	BEEHIVE },
+	{ "morgue",	MORGUE },
 #ifdef ARMY
-	"barracks",	BARRACKS,
+	{ "barracks",	BARRACKS },
 #endif
-	"zoo",		ZOO,
-	"temple",	TEMPLE,
-	"shop",		SHOPBASE,
+	{ "zoo",	ZOO },
+	{ "temple",	TEMPLE },
+	{ "shop",	SHOPBASE },
 };
 
 short db_dirs[4] = {
