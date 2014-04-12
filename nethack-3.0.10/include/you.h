@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)you.h	3.0	88/04/25
+/*	SCCS Id: @(#)you.h	3.0	88/04/25 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -146,4 +146,4 @@ struct you {
 	int nr_killed[NUMMONS]; 	/* used for experience bookkeeping */
 };
 
-#endif /* YOU_H /**/
+#endif /* YOU_H */

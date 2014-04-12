@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mondata.h	3.0	89/11/21
+/*	SCCS Id: @(#)mondata.h	3.0	89/11/21 */
 /* NetHack may be freely redistributed.  See license for details. */
 /* Copyright (c) 1989 Mike Threepoint */
 

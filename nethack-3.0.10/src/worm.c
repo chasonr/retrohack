@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)worm.c	3.0	88/11/11
+/*	SCCS Id: @(#)worm.c	3.0	88/11/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -261,4 +261,4 @@ unsigned weptyp;		/* uwep->otyp or 0 */
 	panic("Cannot find worm segment");
 }
 
-#endif /* WORM /**/
+#endif /* WORM */

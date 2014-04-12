@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)prop.h	3.0	89/06/24
+/*	SCCS Id: @(#)prop.h	3.0	89/06/24 */
 /* NetHack may be freely redistributed.  See license for details. */
 /* Copyright (c) 1989 Mike Threepoint */
 
@@ -51,4 +51,4 @@
 #define VOMITING		44
 #define LAST_PROP		(VOMITING)		/* the last property */
 
-#endif /* PROP_H /**/
+#endif /* PROP_H */

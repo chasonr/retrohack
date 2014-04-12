@@ -34,4 +34,4 @@ struct	attribs {
 	schar	a[A_MAX];
 };
 
-#endif /* ATTRIB_H /* */
+#endif /* ATTRIB_H */

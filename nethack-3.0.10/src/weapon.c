@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)weapon.c	3.0	89/11/19
+/*	SCCS Id: @(#)weapon.c	3.0	89/11/19 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 

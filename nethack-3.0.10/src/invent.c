@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)invent.c	3.0	88/10/22
+/*	SCCS Id: @(#)invent.c	3.0	88/10/22 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -1156,7 +1156,7 @@ dolook() {
 		fd++;
 		pline("There is a lowered drawbridge here.");
     	}
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 
     	if(Blind)  {
 		You("try to feel what is lying here on the floor.");

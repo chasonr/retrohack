@@ -1,5 +1,5 @@
 %{ 
-/*	SCCS Id: @(#)lev_comp.c	3.0	90/01/03
+/*	SCCS Id: @(#)lev_comp.c	3.0	90/01/03 */
 /*	Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -134,7 +134,7 @@ short db_dirs[4] = {
 
 #ifdef ALTARS
 static altar *tmpaltar[256];
-#endif /* ALTARS /**/
+#endif /* ALTARS */
 static lad *tmplad[256];
 static digpos *tmpdig[256];
 static char *tmpmap[ROWNO];
@@ -949,7 +949,7 @@ store_part()
 		    tmppart[npart]->altars[i] = tmpaltar[i];
 	}
 	naltar = 0;
-#endif /* ALTARS /**/
+#endif /* ALTARS */
 	npart++;
 	n_plist = n_mlist = n_olist = 0;
 }
@@ -1094,7 +1094,7 @@ specialmaze *maze;
 	    }
 	    if (pt->naltar > 0)
 		free(pt->altars);
-#endif /* ALTARS /**/
+#endif /* ALTARS */
 	    free(pt);
 	}
 }

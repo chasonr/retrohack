@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)vmsconf.h	3.0	88/07/21
+/*	SCCS Id: @(#)vmsconf.h	3.0	88/07/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -152,4 +152,4 @@ sys$share:vaxcrtl/shareable
 #define An vms_an
 
 #endif
-#endif /* VMS /* */
+#endif /* VMS */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)trap.h	3.0	88/06/19
+/*	SCCS Id: @(#)trap.h	3.0	88/06/19 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -45,4 +45,4 @@ extern struct trap *ftrap;
 
 #define	TRAPNUM	19
 
-#endif /* TRAP_H /**/
+#endif /* TRAP_H */

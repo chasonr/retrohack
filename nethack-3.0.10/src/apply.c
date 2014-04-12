@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)apply.c	3.0	88/10/24
+/*	SCCS Id: @(#)apply.c	3.0	88/10/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -9,7 +9,7 @@
 
 #ifdef MUSIC
 #define IS_INSTRUMENT(typ)	((typ) >= FLUTE && (typ) <= DRUM_OF_EARTHQUAKE)
-#endif /* MUSIC /**/
+#endif /* MUSIC */
 
 #ifdef OVLB
 
@@ -1304,7 +1304,7 @@ doapply() {
 		res = do_play_instrument(obj);
 		return (res);
 	}
-#endif /* MUSIC /**/
+#endif /* MUSIC */
 
 	switch(obj->otyp){
 	case EXPENSIVE_CAMERA:

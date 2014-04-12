@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)global.h	3.0	89/11/08
+/*	SCCS Id: @(#)global.h	3.0	89/11/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 
-/* #define BETA		/* if a beta-test copy  [MRS] */
+/* #define BETA */	/* if a beta-test copy  [MRS] */
 #define VERSION "3.0j"  /* version number. */
 
 /*
@@ -180,4 +180,4 @@ typedef	xchar	boolean;		/* 0 or 1 */
 #define	MAXMONNO	120	/* geno monst after this number killed */
 #define MHPMAX		500	/* maximum monster hp */
 
-#endif /* GLOBAL_H /**/
+#endif /* GLOBAL_H */

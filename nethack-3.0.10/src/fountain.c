@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)fountain.c	3.0	88/12/22
+/*	SCCS Id: @(#)fountain.c	3.0	88/12/22 */
 /* Code for drinking from fountains.   */
 /* Scott R. Turner, srt@ucla, 10/27/86 */
 /* NetHack may be freely redistributed.  See license for details. */
@@ -439,4 +439,4 @@ drinksink()
 			rn2(3) ? (rn2(2) ? "cold" : "warm") : "hot");
 	}
 }
-#endif /* SINKS /**/
+#endif /* SINKS */

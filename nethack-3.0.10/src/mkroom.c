@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mkroom.c	3.0	88/11/24
+/*	SCCS Id: @(#)mkroom.c	3.0	88/11/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -458,7 +458,7 @@ courtmon()
 	else if (i > 15)	return(mkclass(S_GNOME));
 	else			return(mkclass(S_KOBOLD));
 }
-#endif /* THRONES /**/
+#endif /* THRONES */
 
 #ifdef ARMY
 #define	    NSTYPES	(PM_CAPTAIN-PM_SOLDIER+1)
@@ -487,6 +487,6 @@ gotone:
 	if(!(ptr->geno & G_GENOD))  return(ptr);
 	else			    return((struct permonst *) 0);
 }
-#endif /* ARMY /* */
+#endif /* ARMY */
 
 #endif /* OVLB */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)decl.h	3.0	88/10/24
+/*	SCCS Id: @(#)decl.h	3.0	88/10/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -216,4 +216,4 @@ E boolean artiexist[];
 
 #undef E
 
-#endif /* DECL_H /**/
+#endif /* DECL_H */

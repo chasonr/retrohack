@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mkmaze.c	3.0	88/10/25
+/*	SCCS Id: @(#)mkmaze.c	3.0	88/10/25 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -93,7 +93,7 @@ boolean see;
 		if (see) room->seen = 0;
 	    }
 }
-#endif /* WALLIFIED_MAZE /**/
+#endif /* WALLIFIED_MAZE */
 
 static boolean
 okay(x,y,dir)

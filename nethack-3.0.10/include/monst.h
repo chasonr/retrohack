@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)monst.h	3.0	88/04/15
+/*	SCCS Id: @(#)monst.h	3.0	88/04/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -86,4 +86,4 @@ extern struct monst *mydogs, *fallen_down;
 
 #define	NAME(mtmp)	(((char *) mtmp->mextra) + mtmp->mxlth)
 
-#endif /* MONST_H /**/
+#endif /* MONST_H */

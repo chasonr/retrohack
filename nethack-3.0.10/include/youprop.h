@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)youprop.h	3.0	89/06/24
+/*	SCCS Id: @(#)youprop.h	3.0	89/06/24 */
 /* NetHack may be freely redistributed.  See license for details. */
 /* Copyright (c) 1989 Mike Threepoint */
 
@@ -165,4 +165,4 @@
 #define Clairvoyant		u.uprops[CLAIRVOYANT].p_flgs
 #define Vomiting		u.uprops[VOMITING].p_flgs
 
-#endif /* YOUPROP_H /**/
+#endif /* YOUPROP_H */

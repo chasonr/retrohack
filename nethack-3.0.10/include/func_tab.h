@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)func_tab.h	3.0	88/10/15
+/*	SCCS Id: @(#)func_tab.h	3.0	88/10/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 /* func_tab.h - version 1.0.2 */
@@ -21,4 +21,4 @@ struct ext_func_tab {
 
 extern const struct ext_func_tab extcmdlist[];
 
-#endif /* FUNC_TAB_H /**/
+#endif /* FUNC_TAB_H */

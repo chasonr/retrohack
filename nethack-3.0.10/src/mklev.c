@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mklev.c	3.0	89/12/06
+/*	SCCS Id: @(#)mklev.c	3.0	89/12/06 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -742,7 +742,7 @@ init_levels()
 	while (wiz_level >= tower_level && wiz_level <= tower_level + 2);
 #else
 	wiz_level	 = rntwixt(medusa_level, MAXLEVEL)+1;
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 #ifdef WIZARD
 	if (!rn2(15) || wizard)
 #else
@@ -1220,7 +1220,7 @@ register int mazeflag;
 
 	fountsound++;
 }
-#endif /* FOUNTAINS /**/
+#endif /* FOUNTAINS */
 
 #ifdef SINKS
 static void
@@ -1242,7 +1242,7 @@ register struct mkroom *croom;
 
 	sinksound++;
 }
-#endif /* SINKS /**/
+#endif /* SINKS */
 
 
 #ifdef ALTARS
@@ -1267,4 +1267,4 @@ register struct mkroom *croom;
 	/* 0 - A_CHAOS, 1 - A_NEUTRAL, 2 - A_LAW */
 	levl[mx][my].altarmask = rn2((int)A_LAW+1);
 }
-#endif /* ALTARS /**/
+#endif /* ALTARS */

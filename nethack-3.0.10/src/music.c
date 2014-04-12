@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)music.c	3.0	88/10/22
+/*	SCCS Id: @(#)music.c	3.0	88/10/22 */
 /* 	Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -139,7 +139,7 @@ awaken_soldiers() {
 		}
 		mtmp = mtmp->nmon;
 	}
-#endif /* ARMY /**/
+#endif /* ARMY */
 }
 
 /* Charm monsters in range.  Note that they may resist the spell. */
@@ -448,8 +448,8 @@ struct obj *instr;
 	    }
 	return 1;
     } else
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 	    return do_improvisation(instr);
 }
 
-#endif /* MUSIC /**/
+#endif /* MUSIC */

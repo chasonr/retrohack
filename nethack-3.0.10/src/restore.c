@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)restore.c	3.0	88/10/25
+/*	SCCS Id: @(#)restore.c	3.0	88/10/25 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -598,7 +598,7 @@ boolean ghostly;
 				case ROOM:
 #ifdef STRONGHOLD
 				case DRAWBRIDGE_DOWN:
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 					if (osym == osymbol[S_room])
 						nsym = showsyms[S_room];
 					break;
@@ -687,12 +687,12 @@ boolean ghostly;
 					else if (osym == osymbol[S_dnladder])
 						nsym = showsyms[S_dnladder];
 					break;
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 				case POOL:
 				case MOAT:
 #ifdef STRONGHOLD
 				case DRAWBRIDGE_UP:
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 					if (osym == osymbol[S_pool])
 						nsym = showsyms[S_pool];
 					break;
@@ -701,25 +701,25 @@ boolean ghostly;
 					if (osym == osymbol[S_fountain])
 						nsym = showsyms[S_fountain];
 					break;
-#endif /* FOUNTAINS /**/
+#endif /* FOUNTAINS */
 #ifdef THRONES
 				case THRONE:
 					if (osym == osymbol[S_throne])
 						nsym = showsyms[S_throne];
 					break;
-#endif /* THRONES /**/
+#endif /* THRONES */
 #ifdef SINKS
 				case SINK:
 					if (osym == osymbol[S_sink])
 						nsym = showsyms[S_sink];
 					break;
-#endif /* SINKS /**/
+#endif /* SINKS */
 #ifdef ALTARS
 				case ALTAR:
 					if (osym == osymbol[S_altar])
 						nsym = showsyms[S_altar];
 					break;
-#endif /* ALTARS /**/
+#endif /* ALTARS */
 				default:
 					break;
 				}

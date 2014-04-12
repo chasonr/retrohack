@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)def_os2.h	3.0	89/08/13
+/*	SCCS Id: @(#)def_os2.h	3.0	89/08/13 */
 
 /*  OS/2 defines based on MSC 5.1 OS/2 include files.
     Only a small portion of all OS/2 defines are needed,

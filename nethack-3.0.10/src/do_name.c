@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)do_name.c	3.0	89/11/08
+/*	SCCS Id: @(#)do_name.c	3.0	89/11/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -307,7 +307,7 @@ register int ininv;
 		for(contents=fcobj; contents; contents=contents->nobj)
 			if(contents->cobj==obj) contents->cobj = otmp2;
 	}
-	/* obfree(obj, otmp2);	/* now unnecessary: no pointers on bill */
+	/* obfree(obj, otmp2); */	/* now unnecessary: no pointers on bill */
 	free((genericptr_t) obj);	/* let us hope nobody else saved a pointer */
 	return otmp2;
 }

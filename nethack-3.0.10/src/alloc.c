@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)alloc.c	3.0	89/11/15
+/*	SCCS Id: @(#)alloc.c	3.0	89/11/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -41,4 +41,4 @@ register unsigned int lth;
 #endif
 
 
-#endif /* LINT /**/
+#endif /* LINT */

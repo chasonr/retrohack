@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)wseg.h	3.0	88/10/15
+/*	SCCS Id: @(#)wseg.h	3.0	88/10/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 /* wseg.h - version 1.0.2 */
@@ -21,4 +21,4 @@ extern long wgrowtime[32];
 
 # endif
 
-#endif /* WSEG_H /**/
+#endif /* WSEG_H */

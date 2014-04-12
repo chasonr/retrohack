@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)flag.h	3.0	89/02/02
+/*	SCCS Id: @(#)flag.h	3.0	89/02/02 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -72,4 +72,4 @@ struct flag {
 
 extern struct flag flags;
 
-#endif /* FLAG_H /**/
+#endif /* FLAG_H */

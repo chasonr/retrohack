@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)timeout.c	3.0	89/11/20
+/*	SCCS Id: @(#)timeout.c	3.0	89/11/20 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -278,7 +278,7 @@ register struct obj *otmp;
 void
 hatch_eggs()	    /* hatch any eggs that have been too long in pack */
 {
-	register struct obj *otmp,/* *ctmp, /* use of ctmp commented out below*/
+	register struct obj *otmp,/* *ctmp, */ /* use of ctmp commented out below*/
 		*otmp2;
 
 	for(otmp = invent; otmp; otmp = otmp2) {

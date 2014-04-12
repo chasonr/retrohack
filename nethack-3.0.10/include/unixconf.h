@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)unixconf.h	3.0	88/07/21
+/*	SCCS Id: @(#)unixconf.h	3.0	88/07/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -19,39 +19,39 @@
  */
 
 /* define one of the following */
-/* #define BSD		/* define for 4.n BSD  */
+/* #define BSD */	/* define for 4.n BSD  */
 			/* also for relatives like SunOS and DG/UX */
 /* #define ULTRIX */	/* define for Ultrix v3.0 or higher (but not lower) */
 			/* Use BSD for < v3.0 */
 			/* "ULTRIX" not to be confused with "ultrix" */
-/* #define SYSV		/* define for System V */
-/* #define HPUX		/* Hewlett-Packard's Unix, version 6.5 or higher */
+/* #define SYSV */	/* define for System V */
+/* #define HPUX */	/* Hewlett-Packard's Unix, version 6.5 or higher */
 			/* use SYSV for < v6.5 */
 
 
 /* define any of the following that are appropriate */
-/* #define NETWORK	/* if running on a networked system */
+/* #define NETWORK */	/* if running on a networked system */
 			/* e.g. Suns sharing a playground through NFS */
-/* #define GENIX	/* Yet Another Unix Clone */
-/* #define HISX		/* Bull Unix for XPS Machines */
-/* #define UNIXPC	/* use in addition to SYSV for AT&T 7300/3B1 */
+/* #define GENIX */	/* Yet Another Unix Clone */
+/* #define HISX */	/* Bull Unix for XPS Machines */
+/* #define UNIXPC */	/* use in addition to SYSV for AT&T 7300/3B1 */
 			/* also note that the stock cpp qualifies as a
 			   STUPID_CPP for config.h */
-/* #define AIX_31	/* In AIX 3.1 (IBM RS/6000) use BSD ioctl's to gain
+/* #define AIX_31 */	/* In AIX 3.1 (IBM RS/6000) use BSD ioctl's to gain
 			   job control (note that AIX is SYSV otherwise) */
 
-/* #define PYRAMID_BUG 	/* avoid a bug on the Pyramid */
-/* #define APOLLO	/* same for the Apollo */
-/* #define BSD_43_BUG	/* for real 4.3BSD cc's without schain botch fix */
-/* #define MICROPORT_BUG /* problems with large arrays in structs */
-/* #define MICROPORT_286_BUG /* Changes needed in termcap.c to get it to
+/* #define PYRAMID_BUG */ /* avoid a bug on the Pyramid */
+/* #define APOLLO */	/* same for the Apollo */
+/* #define BSD_43_BUG */ /* for real 4.3BSD cc's without schain botch fix */
+/* #define MICROPORT_BUG */ /* problems with large arrays in structs */
+/* #define MICROPORT_286_BUG */ /* Changes needed in termcap.c to get it to
 			   run with Microport Sys V/AT version 2.4.
 			   By Jay Maynard */
-/* #define AIXPS_2BUG	/* avoid a problem with little_to_big() optimization */
+/* #define AIXPS_2BUG */ /* avoid a problem with little_to_big() optimization */
 
-/* #define RANDOM	/* if neither random/srandom nor lrand48/srand48
+/* #define RANDOM */	/* if neither random/srandom nor lrand48/srand48
 			   is available from your system */
-/* #define TEXTCOLOR	/* Use System V r3.2 terminfo color support */
+/* #define TEXTCOLOR */	/* Use System V r3.2 terminfo color support */
 
 
 /*
@@ -62,8 +62,8 @@
  *		Ralf Brown, 7/26/89 (from v2.3 hack of 10/10/88)
  */
 
-/* #define NO_FILE_LINKS	/* if no hard links */
-/* #define LOCKDIR "/usr/games/lib/nethackdir"	/* where to put locks */
+/* #define NO_FILE_LINKS */	/* if no hard links */
+/* #define LOCKDIR "/usr/games/lib/nethackdir" */ /* where to put locks */
 
 
 /*
@@ -104,7 +104,7 @@
  *		dl2n+@andrew.cmu.edu (dec 19 1989)
  */
 
-/* #define AMS			/* use Andrew message system for mail */
+/* #define AMS */		/* use Andrew message system for mail */
 
 /* NO_MAILREADER is for kerberos authentcating filesystems where it is
  * essentially impossible to securely exec child proccesses, like mail
@@ -113,7 +113,7 @@
  *             dan
  */
 
-/* #define NO_MAILREADER 	/* have mail daemon just tell player of mail */
+/* #define NO_MAILREADER */ 	/* have mail daemon just tell player of mail */
 
 #ifdef	MAIL
 # if defined(BSD) || defined(ULTRIX)
@@ -145,7 +145,7 @@
  * You can also include any other strange options your compress needs.
  * If you have a normal compress, just leave it commented out.
  */
-/* #define COMPRESS_OPTIONS	"-q"	/* */
+/* #define COMPRESS_OPTIONS	"-q" */	/* */
 #endif
 
 #define	FCMASK	0660	/* file creation mask */
@@ -213,5 +213,5 @@
 # undef hc
 #endif
 
-#endif /* UNIXCONF_H /* */
-#endif /* UNIX /* */
+#endif /* UNIXCONF_H */
+#endif /* UNIX */

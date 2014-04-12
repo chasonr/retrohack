@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)attrib.c	3.0	90/2/15
+/*	SCCS Id: @(#)attrib.c	3.0	90/2/15 */
 /*	Copyright 1988, 1989, 1990, M. Stephenson		  */
 /* NetHack may be freely redistributed.  See license for details. */
 

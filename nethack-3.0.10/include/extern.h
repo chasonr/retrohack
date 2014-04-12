@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)extern.h	3.0	89/11/22
+/*	SCCS Id: @(#)extern.h	3.0	89/11/22 */
 /* 	Copyright (c)   Steve Creps, 1988. 		 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -156,7 +156,7 @@ E boolean FDECL(create_drawbridge, (int, int, int, BOOLEAN_P));
 E void FDECL(open_drawbridge, (int, int));
 E void FDECL(close_drawbridge, (int, int));
 E void FDECL(destroy_drawbridge, (int, int));
-#endif	/* STRONGHOLD /**/
+#endif	/* STRONGHOLD */
 
 /* ### decl.c ### */
 
@@ -791,7 +791,7 @@ E void FDECL(m_useup, (struct monst *,struct obj *));
 
 #ifdef MUSIC
 E int FDECL(do_play_instrument, (struct obj *));
-#endif /* MUSIC /**/
+#endif /* MUSIC */
 
 /* ### o_init.c ### */
 
@@ -1206,7 +1206,7 @@ E int NDECL(dotalk);
 
 #ifdef STRONGHOLD
 E boolean FDECL(load_special, (const char *));
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 
 /* ### spell.c ### */
 #ifdef SPELLS
@@ -1551,4 +1551,4 @@ E void NDECL(makewish);
 
 #undef E
 
-#endif /* EXTERN_H /**/
+#endif /* EXTERN_H */

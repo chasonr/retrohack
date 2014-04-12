@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)sp_lev.h	3.0	88/18/12
+/*	SCCS Id: @(#)sp_lev.h	3.0	88/18/12 */
 /* 	Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -86,7 +86,7 @@ typedef struct {
 #ifdef ALTARS
 	char naltar;
 	altar **altars;
-#endif /* ALTARS /**/
+#endif /* ALTARS */
 } mazepart;
     
 typedef struct {
@@ -108,7 +108,7 @@ typedef struct {
 #ifdef ALTARS
 	char naltar;
 	altar **altars;
-#endif /* ALTARS /**/
+#endif /* ALTARS */
 } room;
 
 typedef struct {

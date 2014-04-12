@@ -1,4 +1,4 @@
-/*     SCCS Id: @(#)dbridge.c  3.0     88/18/12
+/*     SCCS Id: @(#)dbridge.c  3.0     88/18/12 */
 /*     Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -934,4 +934,4 @@ int x,y;
 
 #endif /* OVLB */
 
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */

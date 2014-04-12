@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)read.c	3.0	89/11/15
+/*	SCCS Id: @(#)read.c	3.0	89/11/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -546,7 +546,7 @@ register struct obj	*sobj;
 		}
 		break;
 	    }
-/*	    break;	/*NOTREACHED*/
+/*	    break; */	/*NOTREACHED*/
 	case SCR_ENCHANT_WEAPON:
 		if(uwep && (uwep->olet == WEAPON_SYM || uwep->otyp == PICK_AXE
 			|| uwep->otyp == UNICORN_HORN) && confused) {

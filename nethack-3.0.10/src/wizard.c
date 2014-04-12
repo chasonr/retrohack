@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)wizard.c	3.0	90/01/09
+/*	SCCS Id: @(#)wizard.c	3.0	90/01/09 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -245,7 +245,7 @@ register struct monst	*mtmp;
 	} else  
 		mtmp->data->mlevel++;
 }
-#endif /* HARD /**/
+#endif /* HARD */
 
 const char *random_insult[] = {
 	"antic",

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)epri.h	3.0	88/04/25
+/*	SCCS Id: @(#)epri.h	3.0	88/04/25 */
 /* 	Copyright (c) 	Izchak Miller, 1989. 		*/
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -18,4 +18,4 @@ struct epri {
 #define	EPRI(mon)	((struct epri *)(&(mon->mextra[0])))
 #endif
 
-#endif /* EPRI_H /**/
+#endif /* EPRI_H */

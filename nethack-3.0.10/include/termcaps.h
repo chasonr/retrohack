@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)termcap.h	3.0	89/10/27
+/*	SCCS Id: @(#)termcap.h	3.0	89/10/27 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1989. */
 /* NetHack may be freely redistributed.  See license for details. */
 

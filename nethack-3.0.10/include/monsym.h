@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)monsym.h	3.0	89/11/08
+/*	SCCS Id: @(#)monsym.h	3.0	89/11/08 */
 /*	Monster symbols and creation information rev 1.0 */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -77,4 +77,4 @@
 #define G_GENOD		0x010		/* have been genocided */
 #define G_FREQ		0x007		/* creation frequency mask */
 
-#endif /* MONSYM_H /* */
+#endif /* MONSYM_H */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)unixmain.c	3.0	89/01/13
+/*	SCCS Id: @(#)unixmain.c	3.0	89/01/13 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 /* main.c - Unix NetHack */
@@ -87,7 +87,7 @@ char *argv[];
 		if(!*dir)
 		    error("Flag -d must be followed by a directory name.");
 	    } else
-#endif /* CHDIR /**/
+#endif /* CHDIR */
 
 	/*
 	 * Now we know the directory containing 'record' and
@@ -245,7 +245,7 @@ char *argv[];
 #ifdef WIZARD
 	} else
 		Sprintf(lock, "%d%s", getuid(), plname);
-#endif /* WIZARD /**/
+#endif /* WIZARD */
 	setftty();
 
 	/*
@@ -442,7 +442,7 @@ boolean wr;
 		(void) close(fd);
 	}
 }
-#endif /* CHDIR /**/
+#endif /* CHDIR */
 
 static void
 whoami() {

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)vault.h	3.0	88/04/25
+/*	SCCS Id: @(#)vault.h	3.0	88/04/25 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -23,4 +23,4 @@ struct egd {
 
 #define	EGD(mon)	((struct egd *)(&(mon->mextra[0])))
 
-#endif /* VAULT_H /* */
+#endif /* VAULT_H */

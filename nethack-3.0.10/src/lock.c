@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)lock.c	3.0	88/10/22
+/*	SCCS Id: @(#)lock.c	3.0	88/10/22 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -578,7 +578,7 @@ doorlock(otmp,x,y)	/* door was hit with spell effect otmp */
 	    if(otmp->otyp == WAN_OPENING
 #ifdef SPELLS
 	       || otmp->otyp == SPE_KNOCK
-#endif /* SPELLS /**/
+#endif /* SPELLS */
 	      ) {
 		door->typ = DOOR;
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
@@ -595,7 +595,7 @@ doorlock(otmp,x,y)	/* door was hit with spell effect otmp */
 	    if(otmp->otyp == WAN_OPENING
 #ifdef SPELLS
 	       || otmp->otyp == SPE_KNOCK
-#endif /* SPELLS /**/
+#endif /* SPELLS */
 	      )
 		    (void) open_drawbridge(x,y);
 	    else

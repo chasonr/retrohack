@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)getline.c	3.0	89/06/16
+/*	SCCS Id: @(#)getline.c	3.0	89/06/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -287,7 +287,7 @@ readchar() {
 	}
 # else
 		end_of_input();
-# endif /* NR_OF_EOFS /**/
+# endif /* NR_OF_EOFS */
 #else
 	sym = Getchar();
 #endif /* UNIX */

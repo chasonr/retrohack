@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)pcconf.h	3.0	88/07/21
+/*	SCCS Id: @(#)pcconf.h	3.0	88/07/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -48,7 +48,7 @@ extern const char *configfile;
 # define FROMPERM	 1	/* for ramdisk use */
 # define TOPERM 	 2	/* for ramdisk use */
 
-#endif /* DGK /**/
+#endif /* DGK */
 
 /*
  *  The remaining code shouldn't need modification.
@@ -100,5 +100,5 @@ extern const char *configfile;
 #  define TEXTCOLOR /* */
 #endif
 
-#endif /* PCCONF_H /* */
-#endif /* MSDOS /* */
+#endif /* PCCONF_H */
+#endif /* MSDOS */

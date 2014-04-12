@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)potion.c	3.0	88/11/11
+/*	SCCS Id: @(#)potion.c	3.0	88/11/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -585,7 +585,7 @@ peffects(otmp)
 	   (!xupladder || u.ux != xupladder || u.uy != yupladder)) {
 #else
 	if(u.ux != xupstair || u.uy != yupstair) {
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 					You("hit your %s on the ceiling.",
 						body_part(HEAD));
 					losehp(uarmh ? 1 : rnd(10),

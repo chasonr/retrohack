@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)color.h	3.0	89/09/30
+/*	SCCS Id: @(#)color.h	3.0	89/09/30 */
 /* Copyright (c) Steve Linhart, Eric Raymond, 1989. */
 /* NetHack may be freely redistributed.  See license for details. */
 

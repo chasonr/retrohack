@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)edog.h	3.0	88/10/08
+/*	SCCS Id: @(#)edog.h	3.0	88/10/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -25,4 +25,4 @@ struct edog {
 };
 #define	EDOG(mp)	((struct edog *)(&(mp->mextra[0])))
 
-#endif /* EDOG_H /**/
+#endif /* EDOG_H */

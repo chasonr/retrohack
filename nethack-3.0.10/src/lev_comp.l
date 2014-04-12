@@ -1,5 +1,5 @@
 %{
-/*	SCCS Id: @(#)lev_lex.c	3.0	90/01/04
+/*	SCCS Id: @(#)lev_lex.c	3.0	90/01/04 */
 /*	Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 

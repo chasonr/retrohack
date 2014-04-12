@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)tradstdc.h	3.0	89/07/12
+/*	SCCS Id: @(#)tradstdc.h	3.0	89/07/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -29,8 +29,8 @@
  * others.
  */
 
-/* #define USE_VARARGS		/* use <varargs.h> instead of <stdarg.h> */
-/* #define USE_OLDARGS		/* don't use any variable argument facilites */
+/* #define USE_VARARGS */	/* use <varargs.h> instead of <stdarg.h> */
+/* #define USE_OLDARGS */	/* don't use any variable argument facilites */
 
 #ifdef __STDC__
 # if defined(__GNUC__) && defined(VMS)
@@ -140,4 +140,4 @@ typedef char *		genericptr_t;
 # undef signed
 #endif
 
-#endif /* TRADSTDC_H /**/
+#endif /* TRADSTDC_H */

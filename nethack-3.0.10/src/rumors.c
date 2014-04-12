@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)rumors.c	3.0	89/02/08
+/*	SCCS Id: @(#)rumors.c	3.0	89/02/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 /* hack.rumors.c - version 1.0.3 */

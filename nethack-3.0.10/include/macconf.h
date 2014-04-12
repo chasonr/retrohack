@@ -224,5 +224,5 @@ extern long segments;	/* defined in mac.c */
 #  include "MacAlert.h"
 # endif
 
-#endif /* MACCONF_H /* */
+#endif /* MACCONF_H */
 #endif /* MACOS / */

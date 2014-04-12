@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)sp_lev.c	3.0	89/01/11
+/*	SCCS Id: @(#)sp_lev.c	3.0	89/01/11 */
 /*	Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -488,7 +488,7 @@ FILE *fd;
 		levl[x][y].typ = ALTAR;
 		levl[x][y].altarmask = typ;
 	}
-#endif /* ALTARS /**/
+#endif /* ALTARS */
     }
 
     while(nwalk--) {
@@ -624,4 +624,4 @@ const char *name;
 	(void)fclose(fd);
 	return result;
 }
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)eshk.h	3.0	88/04/25
+/*	SCCS Id: @(#)eshk.h	3.0	88/04/25 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -32,4 +32,4 @@ struct eshk {
 };
 
 #define	ESHK(mon)	((struct eshk *)(&(mon->mextra[0])))
-#endif /* ESHK_H /**/
+#endif /* ESHK_H */

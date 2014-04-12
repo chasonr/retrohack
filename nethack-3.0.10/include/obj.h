@@ -1,18 +1,18 @@
-/*	SCCS Id: @(#)obj.h	3.0	89/11/10
+/*	SCCS Id: @(#)obj.h	3.0	89/11/10 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef OBJ_H
 #define OBJ_H
 
-/* #define obj obj_nh	/* uncomment for SCO UNIX, which has a conflicting
-			 * typedef for "obj" in <sys/types.h> */
+/* #define obj obj_nh */ /* uncomment for SCO UNIX, which has a conflicting
+			  * typedef for "obj" in <sys/types.h> */
 
 struct obj {
 	struct obj *nobj;
 	struct obj *nexthere;		/* for location lists */
 	struct obj *cobj;		/* id of container object is in */
-/*	unsigned o_cwt;			/* container weight capacity */
+/*	unsigned o_cwt; */		/* container weight capacity */
 	unsigned o_id;
 	xchar ox,oy;
 	xchar odx,ody;
@@ -101,4 +101,4 @@ struct obj {
 #define is_corrodeable(otmp)	(objects[otmp->otyp].oc_material == COPPER)
 # endif /* STUPID_CPP */
 
-#endif /* OBJ_H /**/
+#endif /* OBJ_H */

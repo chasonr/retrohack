@@ -280,7 +280,7 @@ do_traps() {
 #endif
 	Printf("#define\tLANDMINE\t%d\n", ntrap++);
 	Printf("\n#define\tTRAPNUM\t%d\n", ntrap);
-	Printf("\n#endif /* TRAP_H /**/\n");
+	Printf("\n#endif /* TRAP_H */\n");
 	(void) fclose(stdin);
 	(void) fclose(stdout);
 #if defined(MSDOS) || defined(MACOS)
@@ -491,7 +491,7 @@ do_permonst()
 		Printf("%s\t%d", nam, i);
 	}
 	Printf("\n\n#define\tNUMMONS\t%d\n", i);
-	Printf("\n#endif /* PM_H /**/\n");
+	Printf("\n#endif /* PM_H */\n");
 	(void) fclose(stdout);
 	return;
 }
@@ -591,7 +591,7 @@ do_objs()
 	Printf("#define\tMAXSPELL\t%d\n", nspell+1);
 #endif
 	Printf("#define\tNROFOBJECTS\t%d\n", i-1);
-	Printf("\n#endif /* ONAMES_H /**/\n");
+	Printf("\n#endif /* ONAMES_H */\n");
 	(void) fclose(stdout);
 	if (sumerr) exit(1);
 	return;

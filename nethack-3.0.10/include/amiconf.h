@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)amiconf.h  3.0     89/09/04
+/*	SCCS Id: @(#)amiconf.h  3.0     89/09/04 */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #ifndef AMICONF_H

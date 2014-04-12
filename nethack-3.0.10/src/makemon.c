@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)makemon.c	3.0	89/11/22
+/*	SCCS Id: @(#)makemon.c	3.0	89/11/22 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -533,7 +533,7 @@ register int	x, y;
 	}
 	/* if it's unique, don't ever make it again */
 	if (ptr->geno & G_UNIQ) ptr->geno |= G_GENOD;
-/* gotmon:	/* label not referenced */
+/* gotmon: */	/* label not referenced */
 	mtmp = newmonst(ptr->pxlth);
 	*mtmp = zeromonst;		/* clear all entries in structure */
 	for(ct = 0; ct < ptr->pxlth; ct++)

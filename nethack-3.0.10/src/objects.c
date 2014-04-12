@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)objects.c	3.0	89/04/14
+/*	SCCS Id: @(#)objects.c	3.0	89/04/14 */
 /* NetHack may be freely redistributed.  See license for details. */
 /* Copyright (c) Mike Threepoint, 1989 (890110) */
 
@@ -751,7 +751,7 @@ SPELL(NULL,		 "dull",	 0,  0, 0, 0,		HI_PAPER),
 SPELL(NULL,		 "thin",	 0,  0, 0, 0,		HI_PAPER),
 SPELL(NULL,		 "thick",	 0,  0, 0, 0,		HI_PAPER),
 #undef SPELL
-#endif /* SPELLS /**/
+#endif /* SPELLS */
 
 #if defined(MACOS) && !defined(MAKEDEFS_C)
 #define RING(name,stone,power,cost,spec,metal,color) \

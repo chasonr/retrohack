@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)pager.c	3.0	89/11/19
+/*	SCCS Id: @(#)pager.c	3.0	89/11/19 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -677,7 +677,7 @@ int strip;	/* nr of chars to be stripped from each line (0 or 1) */
 				*bufrp++ = *bufp++;
 		}
 		*bufrp = '\0';
-#else /* MSDOS /**/
+#else /* MSDOS */
 	set_pager(0);
 	bufr = (char *) alloc((unsigned) COLNO);
 	bufr[COLNO-1] = 0;
@@ -685,7 +685,7 @@ int strip;	/* nr of chars to be stripped from each line (0 or 1) */
 		ep = index(bufr, '\n');
 		if(ep)
 			*ep = 0;
-#endif /* MSDOS /**/
+#endif /* MSDOS */
 		if(got_intrup || page_line(bufr+strip)) {
 			set_pager(2);
 			goto ret;
@@ -1202,7 +1202,7 @@ boolean silent;
 	}
 	page_more(f, 0);
       }
-#endif /* DEF_PAGER /**/
+#endif /* DEF_PAGER */
 
 	return(1);
 }
@@ -1222,7 +1222,7 @@ register char *str;
 	}
 	return 0;
 }
-#endif /* SHELL /**/
+#endif /* SHELL */
 
 #if defined(SHELL) || defined(DEF_PAGER) || defined(DEF_MAILREADER)
 int
@@ -1272,6 +1272,6 @@ register int f = fork();
 	return(0);
 }
 #endif
-#endif /* UNIX /**/
+#endif /* UNIX */
 
 #endif /* OVLB */

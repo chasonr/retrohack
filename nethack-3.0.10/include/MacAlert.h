@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)MacAlert.h		3.0	90/01/06
+/*	SCCS Id: @(#)MacAlert.h		3.0	90/01/06 */
 /*      Copyright (c) Jon Watte  1989		*/ 
 /* NetHack may be freely redistributed.  See license for details. */
 

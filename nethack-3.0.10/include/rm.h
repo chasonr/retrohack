@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)rm.h	3.0	88/10/25
+/*	SCCS Id: @(#)rm.h	3.0	88/10/25 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -338,4 +338,4 @@ extern struct finfo fileinfo[];
 #define ZFINFO	{ 0, 0L, 0L }
 #endif
 
-#endif /* RM_H /**/
+#endif /* RM_H */

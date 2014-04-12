@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)exper.c	3.0	89/11/08
+/*	SCCS Id: @(#)exper.c	3.0	89/11/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -85,7 +85,7 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	}
 	/* note: ul is not necessarily the future value of u.ulevel */
 	/* ------- end of recent valuation change ------- */
-#endif /* NEW_SCORING /**/
+#endif /* NEW_SCORING */
 
 #ifdef MAIL
 	/* Mail daemons put up no fight. */

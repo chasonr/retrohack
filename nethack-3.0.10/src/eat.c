@@ -1,9 +1,9 @@
-/*      SCCS Id: @(#)eat.c      3.0     89/11/21
+/*      SCCS Id: @(#)eat.c      3.0     89/11/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include	"hack.h"
-/*#define DEBUG 	/* uncomment to enable new eat code debugging */
+/*#define DEBUG*/ 	/* uncomment to enable new eat code debugging */
 
 #ifdef DEBUG
 # ifdef WIZARD

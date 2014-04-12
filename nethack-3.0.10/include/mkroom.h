@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mkroom.h	3.0	89/01/07
+/*	SCCS Id: @(#)mkroom.h	3.0	89/01/07 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -63,4 +63,4 @@ extern coord doors[DOORMAX];
 
 #define IS_SHOP(x)	((x).rtype >= SHOPBASE)
 
-#endif /* MKROOM_H /**/
+#endif /* MKROOM_H */

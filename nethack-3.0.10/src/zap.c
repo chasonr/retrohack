@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)zap.c	3.0	89/11/08
+/*	SCCS Id: @(#)zap.c	3.0	89/11/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -268,7 +268,7 @@ register struct obj *obj;
 				flags.botl = 1;
 			}
 			break;
-		/* case RIN_PROTECTION: /* not needed */
+		/* case RIN_PROTECTION: */ /* not needed */
 	}
 	if(obj->spe &&
 	  !(obj->otyp == AMULET_OF_YENDOR ||
@@ -1115,7 +1115,7 @@ struct obj *obj;			/* 2nd arg to fhitm/fhito */
 			   	DRAWBRIDGE_UP)
 			        destroy_drawbridge(x,y);
 		    }
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 		if(MON_AT(bhitpos.x, bhitpos.y)){
 			mtmp = m_at(bhitpos.x,bhitpos.y);
 			if(sym) {

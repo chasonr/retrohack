@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)msdos.h	3.0	88/07/21
+/*	SCCS Id: @(#)msdos.h	3.0	88/07/21 */
 /* msdos.h - function declarations for msdos.c */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -24,4 +24,4 @@ extern int count_only;
 #define COUNT 0x1
 #define WRITE 0x2
 
-#endif /* MSDOS_H /* */
+#endif /* MSDOS_H */

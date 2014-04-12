@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)end.c	3.0	88/05/03
+/*	SCCS Id: @(#)end.c	3.0	88/05/03 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -109,7 +109,7 @@ done_intr(){
 # if defined(UNIX) || defined(VMS)
 	(void) signal(SIGQUIT, SIG_IGN);
 # endif
-#endif /* NO_SIGNAL /* */
+#endif /* NO_SIGNAL */
 	return 0;
 }
 
@@ -404,7 +404,7 @@ die:
 	(void) signal(SIGQUIT, (SIG_RET_TYPE) done_intr);
 	(void) signal(SIGHUP, (SIG_RET_TYPE) done_hangup);
 # endif
-#endif /* NO_SIGNAL /* */
+#endif /* NO_SIGNAL */
 	upmon = player_mon();
 	if(u.ugrave_arise > -1) /* create no corpse */ ;
 	else if(how == STONED)

@@ -483,4 +483,4 @@ dovspell() {
 }
 
 
-#endif /* SPELLS /**/
+#endif /* SPELLS */

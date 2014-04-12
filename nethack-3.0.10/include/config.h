@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)config.h	3.0	89/06/23
+/*	SCCS Id: @(#)config.h	3.0	89/06/23 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -19,7 +19,7 @@
 #ifdef __MSDOS__	/* Turbo C auto-defines __MSDOS__, MSC defines MSDOS */
 #define MSDOS		/* define for MS-DOS (in case compiler doesn't) */
 #else
-/* #define MSDOS	/* define for MS-DOS and most other micros */
+/* #define MSDOS */	/* define for MS-DOS and most other micros */
 			/* DO NOT define for AMIGA - MSDOS will be
 			 * automatically defined at the right place. */
 # ifdef AZTEC_C 	/* Manx auto-defines this */
@@ -27,7 +27,7 @@
 #   ifndef AMIGA
 #define AMIGA		/* define for Commodore-Amiga */
 #   endif		/* (Lattice auto-defines AMIGA) */
-/* #define AZTEC_36	/* define for version 3.6 of manx */
+/* #define AZTEC_36 */	/* define for version 3.6 of manx */
 #define AZTEC_50	/* define for version 5.0 of manx */
 #  endif
 # endif
@@ -38,21 +38,21 @@
 #else
 # define NEARDATA
 #endif
-/* #define TOS		/* define for Atari 1040ST */
+/* #define TOS */	/* define for Atari 1040ST */
 
-/* #define STUPID	/* avoid some complicated expressions if
+/* #define STUPID */	/* avoid some complicated expressions if
 			   your C compiler chokes on them */
-/* #define STUPID_CPP	/* use many small functions instead of macros to
+/* #define STUPID_CPP */ /* use many small functions instead of macros to
 			   avoid overloading limited preprocessors */
-/* #define TERMINFO	/* uses terminfo rather than termcap */
+/* #define TERMINFO */	/* uses terminfo rather than termcap */
 			/* should be defined for HPUX and most, but not all,
 			   SYSV */
 			/* in particular, it should NOT be defined for the
 			 * UNIXPC unless you remove the use of the shared
 			 * library in the makefile */
-/* #define MINIMAL_TERM	/* if a terminal handles highlighting or tabs poorly,
+/* #define MINIMAL_TERM */ /* if a terminal handles highlighting or tabs poorly,
 			   try this define, used in pager.c and termcap.c */
-/* #define MACOS 	/* define for Apple Macintosh */
+/* #define MACOS */ 	/* define for Apple Macintosh */
 #endif
 
 #ifdef AMIGA
@@ -67,11 +67,11 @@
 
 #ifdef MACOS
 #define THINKC4		/* for the Think C 4.0 compiler */
-/* #define LSC		/* for the Lightspeed C 3.01p4 compiler */
-/* #define AZTEC	/* for the Manx Aztec C 3.6c compiler */
+/* #define LSC */	/* for the Lightspeed C 3.01p4 compiler */
+/* #define AZTEC */	/* for the Manx Aztec C 3.6c compiler */
 #define SMALLDATA	/* for Mac compilers with 32K global data limit */
 #define CUSTOM_IO	/* uncomment only while compiling Nethack */
-/* #define MAKEDEFS_C	/* uncomment only while compiling makedefs */
+/* #define MAKEDEFS_C */ /* uncomment only while compiling makedefs */
 # ifndef MAKEDEFS_C
 #  ifndef NEED_VARARGS
 #define NEED_VARARGS	/* if you're using precompiled headers */
@@ -180,14 +180,14 @@
  * since the user might create files in a directory of his choice.
  * Of course SECURE is meaningful only if HACKDIR is defined.
  */
-/* #define SECURE	/* do setuid(getuid()) after chdir() */
+/* #define SECURE */	/* do setuid(getuid()) after chdir() */
 
 /*
  * If it is desirable to limit the number of people that can play Hack
  * simultaneously, define HACKDIR, SECURE and MAX_NR_OF_PLAYERS.
  * #define MAX_NR_OF_PLAYERS 6
  */
-#endif /* CHDIR /**/
+#endif /* CHDIR */
 
 
 
@@ -202,7 +202,7 @@
  * 'void' type (and thus would give all sorts of compile errors without
  * this definition).
  */
-/* #define void int			/* define if no "void" data type. */
+/* #define void int */			/* define if no "void" data type. */
 
 #include "tradstdc.h"
 
@@ -301,10 +301,10 @@ typedef unsigned char	uchar;
 #endif
 
 #define EXP_ON_BOTL	/* Show experience on bottom line */
-/* #define SCORE_ON_BOTL	/* added by Gary Erickson (erickson@ucivax) */
+/* #define SCORE_ON_BOTL */	/* added by Gary Erickson (erickson@ucivax) */
 
 
 
 #include "global.h"	/* Define everything else according to choices above */
 
-#endif /* CONFIG_H /**/
+#endif /* CONFIG_H */

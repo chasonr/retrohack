@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)priest.c	3.0	89/06/26
+/*	SCCS Id: @(#)priest.c	3.0	89/06/26 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* Copyright (c) Izchak Miller, Steve Linhart, 1989. */
 /* NetHack may be freely redistributed.  See license for details. */

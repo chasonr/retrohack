@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mfndpos.h	3.0	89/11/22
+/*	SCCS Id: @(#)mfndpos.h	3.0	89/11/22 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 /* mfndpos.h - version 1.0.2 */
@@ -22,4 +22,4 @@
 #define ALLOW_SSM	0x40000000L	/* ignores scare monster */
 #define NOGARLIC	0x80000000L	/* hates garlic */
 
-#endif /* MFNDPOS_H /**/
+#endif /* MFNDPOS_H */

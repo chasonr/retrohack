@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)do.c	3.0	89/11/20
+/*	SCCS Id: @(#)do.c	3.0	89/11/20 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -669,7 +669,7 @@ register boolean at_stairs, falling;
 		return;
 	    }
 	}
-#endif /* HARD /* */
+#endif /* HARD */
 	if(newlevel == dlevel) return;	      /* this can happen */
 #ifdef STRONGHOLD
 	/* In Nethack 3.0, Hell starts after the stronghold.  Moreover,
@@ -683,7 +683,7 @@ register boolean at_stairs, falling;
 	) {
 #else
 	if(!Inhell && newlevel >= HELLLEVEL && !up) {
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 	    You("arrive at the center of the earth...");
 	    pline("Unfortunately, it is here that hell is located.");
 #ifdef MSDOS

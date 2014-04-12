@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)polyself.c 3.0	89/11/21
+/*	SCCS Id: @(#)polyself.c 3.0	89/11/21 */
 /* Polymorph self routine.  Copyright (C) 1987, 1988, 1989 by Ken Arromdee */
 /* NetHack may be freely redistributed.  See license for details. */
 

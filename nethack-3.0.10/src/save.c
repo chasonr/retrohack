@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)save.c	3.0	89/04/13
+/*	SCCS Id: @(#)save.c	3.0	89/04/13 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -513,7 +513,7 @@ xchar lev;
 			wsegs[tmp] = 0;
 	}
 	bwrite(fd,(genericptr_t) wgrowtime,sizeof(wgrowtime));
-#endif /* WORM /**/
+#endif /* WORM */
 #ifdef DGK
 	if (count_only)	return;
 #endif

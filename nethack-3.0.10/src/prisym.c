@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)prisym.c	3.0	89/11/15
+/*	SCCS Id: @(#)prisym.c	3.0	89/11/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -379,7 +379,7 @@ register xchar x,y;
 		else tmp = ROOM_SYM;
 		break;
 	case DRAWBRIDGE_DOWN:
-#endif /* STRONGHOLD /**/
+#endif /* STRONGHOLD */
 	case ROOM:
 		if(room->lit || cansee(x,y) || Blind) tmp = ROOM_SYM;
 		else tmp = STONE_SYM;
@@ -564,7 +564,7 @@ register struct obj *obj;
 		obj->ody = obj->oy;
 	}
 }
-#endif /* NEWSCR /**/
+#endif /* NEWSCR */
 
 void
 unpobj(obj)

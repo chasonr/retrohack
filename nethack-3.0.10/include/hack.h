@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)hack.h	3.0	88/07/19
+/*	SCCS Id: @(#)hack.h	3.0	88/07/19 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -154,4 +154,4 @@ extern coord bhitpos;	/* place where thrown weapon falls to the ground */
 # define OVLB  /* The base overlay segment */
 #endif
 
-#endif /* HACK_H /**/
+#endif /* HACK_H */

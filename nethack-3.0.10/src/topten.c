@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)topten.c	3.0	91/01/20
+/*	SCCS Id: @(#)topten.c	3.0	91/01/20 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -739,7 +739,7 @@ char **argv;
 		if(!pl_character[0]) pl_character[0] = pl_classes[i];
 		break;
 	}
-#endif /* nonsense /**/
+#endif /* nonsense */
 #ifdef MACOS
 	more();
 #endif

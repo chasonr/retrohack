@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)shk.c	3.0	89/11/27
+/*	SCCS Id: @(#)shk.c	3.0	89/11/27 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -24,7 +24,7 @@ static void NDECL(kops_gone);
 STATIC_VAR struct monst NEARDATA *shopkeeper;
 STATIC_VAR struct bill_x NEARDATA *bill;
 STATIC_VAR int NEARDATA shlevel; /* level of this shopkeeper */
-/* struct obj *billobjs;	/* objects on bill with bp->useup */
+/* struct obj *billobjs; */	/* objects on bill with bp->useup */
 				/* only accessed here and by save & restore */
 STATIC_VAR long int NEARDATA total; 	/* filled by addupbill() */
 STATIC_VAR long int NEARDATA followmsg;	/* last time of follow message */
@@ -635,7 +635,7 @@ dopay()
 		    *bp = bill[--ESHK(shopkeeper)->billct];
 #else
 		    bill[tmp] = bill[--ESHK(shopkeeper)->billct];
-#endif /* MSDOS /**/
+#endif /* MSDOS */
 		}
 	}
 	if(!ANGRY(shopkeeper))

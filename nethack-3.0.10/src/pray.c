@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)pray.c	3.0	89/11/20
+/*	SCCS Id: @(#)pray.c	3.0	89/11/20 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* Copyright (c) Benson I. Margulies, Mike Stephenson, Steve Linhart, 1989. */
 /* NetHack may be freely redistributed.  See license for details. */
@@ -723,7 +723,7 @@ dosacrifice()
 		You("are not standing on an altar.");
 		return 0;
 	}
-#endif /* ALTARS /**/
+#endif /* ALTARS */
 
 #ifdef ENDGAME
 	if (dlevel == ENDLEVEL) {

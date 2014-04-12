@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)gold.h	3.0	88/08/08
+/*	SCCS Id: @(#)gold.h	3.0	88/08/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -14,4 +14,4 @@ struct gold {
 extern struct gold *fgold;
 #define newgold()	(struct gold *) alloc(sizeof(struct gold))
 
-#endif /* GOLD_H /**/
+#endif /* GOLD_H */

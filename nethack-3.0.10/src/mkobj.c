@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mkobj.c	3.0	89/11/08
+/*	SCCS Id: @(#)mkobj.c	3.0	89/11/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -328,7 +328,7 @@ boolean artif;
 		case DRUM_OF_EARTHQUAKE:
 					otmp->spe = rn1(5,4);
 					break;
-#endif /* MUSIC /**/
+#endif /* MUSIC */
 	    }
 	    break;
 	case AMULET_SYM:
