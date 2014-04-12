@@ -158,7 +158,7 @@ clonewiz()
 {
 	register struct monst *mtmp2;
 
-	if(mtmp2 = makemon(&mons[PM_WIZARD_OF_YENDOR], u.ux, u.uy)) {
+	if((mtmp2 = makemon(&mons[PM_WIZARD_OF_YENDOR], u.ux, u.uy)) != NULL) {
 		mtmp2->msleep = mtmp2->mtame = mtmp2->mpeaceful = 0;
 		if (!u.uhave_amulet && rn2(2)) {  /* give clone a fake */
 			mtmp2->minvent = mksobj(AMULET_OF_YENDOR,FALSE);
@@ -197,7 +197,7 @@ resurrect()
 {
 	register struct monst	*mtmp;
 
-	if(mtmp = makemon(&mons[PM_WIZARD_OF_YENDOR], u.ux, u.uy)) {
+	if((mtmp = makemon(&mons[PM_WIZARD_OF_YENDOR], u.ux, u.uy)) != NULL) {
 		mtmp->msleep = mtmp->mtame = mtmp->mpeaceful = 0;
 		pline("A voice booms out...");
 		pline("\"So thou thought thou couldst kill me, fool.\"");

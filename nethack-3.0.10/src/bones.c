@@ -470,7 +470,7 @@ int lev;
 {
 	char *tf;
 
-	if (tf = rindex(file, '.'))
+	if ((tf = rindex(file, '.')) != NULL)
 #ifdef VMS
 	    Sprintf(tf+1, "%d;1", lev);
 #else

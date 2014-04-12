@@ -107,7 +107,7 @@ moverock() {
 #ifdef POLYSELF
 	if (passes_walls(uasmon)) return 0;
 #endif
-	while(otmp = sobj_at(BOULDER, u.ux+u.dx, u.uy+u.dy)) {
+	while((otmp = sobj_at(BOULDER, u.ux+u.dx, u.uy+u.dy)) != NULL) {
 		rx = u.ux+2*u.dx;
 		ry = u.uy+2*u.dy;
 		nomul(0);
@@ -135,7 +135,7 @@ moverock() {
 				pline("Perhaps that's why you cannot move it.");
 			    goto cannot_push;
 			}
-			if(ttmp = t_at(rx,ry))
+			if((ttmp = t_at(rx,ry)) != NULL)
 			    switch(ttmp->ttyp) {
 			    case SPIKED_PIT:
 			    case PIT:
@@ -741,7 +741,7 @@ spoteffects()
 		   (OBJ_AT(u.ux, u.uy) || levl[u.ux][u.uy].gmask))
 			pickup(1);
 		else read_engr_at(u.ux,u.uy);
-		if(trap = t_at(u.ux,u.uy))
+		if((trap = t_at(u.ux,u.uy)) != NULL)
 			dotrap(trap);	/* fall into pit, arrow trap, etc. */
 	}
 

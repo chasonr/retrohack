@@ -345,13 +345,13 @@ break_armor() {
      struct obj *otmp;
 
      if (breakarm(uasmon)) {
-	if (otmp = uarm) {
+	if ((otmp = uarm) != NULL) {
 		if (donning(otmp)) cancel_don();
 		You("break out of your armor!");
 		(void) Armor_gone();
 		useup(otmp);
 	}
-	if (otmp = uarmc) {
+	if ((otmp = uarmc) != NULL) {
 		Your("cloak tears apart!");
 		(void) Cloak_off();
 		useup(otmp);
@@ -363,19 +363,19 @@ break_armor() {
 	}
 #endif
      } else if (sliparm(uasmon)) {
-	if (otmp = uarm) {
+	if ((otmp = uarm) != NULL) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");
 		(void) Armor_gone();
 		dropx(otmp);
 	}
-	if (otmp = uarmc) {
+	if ((otmp = uarmc) != NULL) {
 		You("shrink out of your cloak!");
 		(void) Cloak_off();
 		dropx(otmp);
 	}
 #ifdef SHIRT
-	if (otmp = uarmu) {
+	if ((otmp = uarmu) != NULL) {
 		You("become much too small for your shirt!");
 		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
 		dropx(otmp);
@@ -383,7 +383,7 @@ break_armor() {
 #endif
      }
      if (nohands(uasmon) || verysmall(uasmon)) {
-	  if (otmp = uarmg) {
+	  if ((otmp = uarmg) != NULL) {
 	       if (donning(otmp)) cancel_don();
 	       /* Drop weapon along with gloves */
 	       You("drop your gloves%s!", uwep ? " and weapon" : "");
@@ -391,18 +391,18 @@ break_armor() {
 	       (void) Gloves_off();
 	       dropx(otmp);
 	  }
-	  if (otmp = uarms) {
+	  if ((otmp = uarms) != NULL) {
 	       You("can no longer hold your shield!");
 	       (void) Shield_off();
 	       dropx(otmp);
 	  }
-	  if (otmp = uarmh) {
+	  if ((otmp = uarmh) != NULL) {
 	       if (donning(otmp)) cancel_don();
 	       Your("helmet falls to the floor!");
 	       (void) Helmet_off();
 	       dropx(otmp);
 	  }
-	  if (otmp = uarmf) {
+	  if ((otmp = uarmf) != NULL) {
 	       if (donning(otmp)) cancel_don();
 	       Your("boots %s off your feet!",
 			verysmall(uasmon) ? "slide" : "are pushed");
@@ -417,7 +417,7 @@ drop_weapon(alone)
 int alone;
 {
      struct obj *otmp;
-     if (otmp = uwep) {
+     if ((otmp = uwep) != NULL) {
 	  /* !alone check below is currently superfluous but in the
 	   * future it might not be so if there are monsters which cannot
 	   * wear gloves but can wield weapons

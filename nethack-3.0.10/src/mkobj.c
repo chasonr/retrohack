@@ -557,7 +557,7 @@ register int x, y;
 {
 	register struct obj *otmp;
 
-	if(otmp = mksobj_at(objtype,x,y)) {
+	if((otmp = mksobj_at(objtype,x,y)) != NULL) {
 		if((otmp = tt_oname(otmp)) && objtype == STATUE)
 			/* player statues never contain books */
 			otmp->spe = 0;

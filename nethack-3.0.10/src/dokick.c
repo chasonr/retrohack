@@ -351,7 +351,7 @@ int x, y;
 		    return(0);
 		freegold(gold);
 		newsym(x, y);
-		if(mon = ghit(u.dx, u.dy, range)) {
+		if((mon = ghit(u.dx, u.dy, range)) != NULL) {
 			setmangry(mon); /* not a means for payment to shk */
 			if(ghitm(mon, zm)) /* was it caught? */
 			    return(1);

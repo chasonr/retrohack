@@ -1029,7 +1029,7 @@ deadmeat:
 		struct monst *mmon = makemon(ptr, u.ux, u.uy);
 		struct obj *otmp;
 
-		while(otmp = (mmon->minvent)) {
+		while((otmp = (mmon->minvent)) != NULL) {
 			mmon->minvent = otmp->nobj;
 			free((genericptr_t)otmp);
 		}

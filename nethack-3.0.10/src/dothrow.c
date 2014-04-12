@@ -461,7 +461,7 @@ struct obj *obj;
 		bhitpos.x = u.ux;
 		bhitpos.y = u.uy;
 	} else {
-		if (mon = ghit(u.dx, u.dy, range))
+		if ((mon = ghit(u.dx, u.dy, range)) != NULL)
 		    if (ghitm(mon, zorks))	/* was it caught? */
 			zorks = 0;
 	}

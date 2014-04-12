@@ -234,7 +234,7 @@ startup()
 		flags.nonull = 1;	/* this should be a termcap flag */
 	if(tgetent(tptr, term) < 1)
 		error("Unknown terminal type: %s.", term);
-	if(pc = Tgetstr("pc"))
+	if((pc = Tgetstr("pc")) != NULL)
 		PC = *pc;
 
 	if(!(BC = Tgetstr("le")))	/* both termcap and terminfo use le */	

@@ -62,13 +62,13 @@ find_lev_obj()
 	/* Reverse the entire fobj chain, which is necessary so that we can
 	 * place the objects in the proper order.
 	 */
-	while(otmp = fobj) {
+	while((otmp = fobj) != NULL) {
 		fobj = otmp->nobj;
 		otmp->nobj = fobjtmp;
 		fobjtmp = otmp;
 	}
 	/* Set level.objects (as well as reversing the chain back again) */
-	while(otmp = fobjtmp) {
+	while((otmp = fobjtmp) != NULL) {
 		place_object(otmp, otmp->ox, otmp->oy);
 		fobjtmp = otmp->nobj;
 		otmp->nobj = fobj;

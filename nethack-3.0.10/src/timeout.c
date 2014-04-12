@@ -247,10 +247,10 @@ register struct obj *otmp;
 
 		    pline("Its cries sound like \"%s.\"",
 			flags.female ? "mommy" : "daddy");
-		    if (mtmp2 = tamedog(mtmp, (struct obj *)0))
+		    if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != NULL)
 			mtmp = mtmp2;
 		    mtmp->mtame = 20;
-		    while(otmp = (mtmp->minvent)) {
+		    while((otmp = (mtmp->minvent)) != NULL) {
 			mtmp->minvent = otmp->nobj;
 			free((genericptr_t)otmp);
 		    }
@@ -261,9 +261,9 @@ register struct obj *otmp;
 		    struct monst *mtmp2;
 
 		    verbalize("Gleep!");		/* Mything eggs :-) */
-		    if (mtmp2 = tamedog(mtmp, (struct obj *)0))
+		    if ((mtmp2 = tamedog(mtmp, (struct obj *)0)) != NULL)
 			mtmp = mtmp2;
-		    while(otmp = (mtmp->minvent)) {
+		    while((otmp = (mtmp->minvent)) != NULL) {
 			mtmp->minvent = otmp->nobj;
 			free((genericptr_t)otmp);
 		    }

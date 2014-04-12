@@ -295,7 +295,7 @@ register struct obj *otmp;
 {
 	register const struct artifact *weap;
 
-	if(weap = get_artifact(otmp))
+	if((weap = get_artifact(otmp)) != NULL)
 		return(weap->defn.adtyp == adtyp);
 	return(0);
 }

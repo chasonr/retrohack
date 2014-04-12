@@ -239,7 +239,7 @@ char pc;
 {
 	register const char *cp;
 
-	if(cp = index(pl_classes, pc))
+	if((cp = index(pl_classes, pc)) != NULL)
 		return(cp - pl_classes);
 	return(-1);
 }
@@ -261,7 +261,7 @@ u_init()
 		roles[6] = "Priestess";
 	}
 
-	if(pc = pl_character[0]) {
+	if((pc = pl_character[0]) != '\0') {
 		if('a' <= pc && pc <= 'z') pc += 'A'-'a';
 		if((i = role_index(pc)) >= 0)
 			goto got_suffix;
@@ -303,7 +303,7 @@ u_init()
 	for(i = 0; i < SIZE(roles); i++) Printf("%c,", pl_classes[i]);
 	Printf(" or Q] ");
 
-	while(pc = readchar()) {
+	while((pc = readchar()) != '\0') {
 		if('a' <= pc && pc <= 'z') pc += 'A'-'a';
 		if (pc == 'Q') {
 			clearlocks();
@@ -684,7 +684,7 @@ register struct trobj *trop;
 void
 plnamesuffix() {
 	register char *p;
-	if(p = rindex(plname, '-')) {
+	if((p = rindex(plname, '-')) != NULL) {
 		*p = 0;
 		pl_character[0] = p[1];
 		pl_character[1] = 0;

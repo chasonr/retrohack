@@ -212,7 +212,7 @@ boolean ininv;
 				if (obj->onamelth)
 					mtmp = christen_monst(mtmp, ONAME(obj));
 				/* No inventory for newly revived monsters */
-				while(otmp = (mtmp->minvent)) {
+				while((otmp = (mtmp->minvent)) != NULL) {
 					mtmp->minvent = otmp->nobj;
 					free((genericptr_t)otmp);
 				}
@@ -1902,7 +1902,7 @@ register struct obj *obj;
 {
 	struct trap *trap;
 
-	if(trap = t_at(obj->ox,obj->oy))
+	if((trap = t_at(obj->ox,obj->oy)) != NULL)
 	    if(obj->corpsenm == trap->pm)
 		if(makemon(&mons[trap->pm], obj->ox, obj->oy)) {
 		    pline("Instead of shattering, the statue suddenly comes alive!");

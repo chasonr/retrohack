@@ -1000,7 +1000,7 @@ const char *oldstr;
 	    if(!strncmp(p, "s of ", 5)){
 		/* but don't singularize "gauntlets" */
 		if(strncmp(p-8, "gauntlet", 8))
-			while(*p = p[1]) p++;
+			while((*p = p[1]) != '\0') p++;
 		return bp;
 	    }
 

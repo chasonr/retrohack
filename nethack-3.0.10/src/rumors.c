@@ -51,7 +51,7 @@ init_rumors()
 		fp = openFile(RUMORFILE, "r");
 	if (fp) {
 # else
-	if(fp = fopen(RUMORFILE, "r")) {
+	if((fp = fopen(RUMORFILE, "r")) != NULL) {
 # endif
 #endif
 	    (void) fread((genericptr_t)&true_rumor_size,sizeof(long),1,fp);
@@ -81,7 +81,7 @@ init_rumors()
 		fp = openFile(ORACLEFILE, "r");
 	if (fp) {
 # else
-	if(fp = fopen(ORACLEFILE, "r")) {
+	if((fp = fopen(ORACLEFILE, "r")) != NULL) {
 # endif
 #endif
 	    (void) fseek(fp, 0L, 2);
@@ -131,7 +131,7 @@ boolean cookie;
 		rumors = openFile(RUMORFILE, "r");
 	if (rumors) {
 # else
-	if(rumors = fopen(RUMORFILE, "r")) {
+	if((rumors = fopen(RUMORFILE, "r")) != NULL) {
 # endif
 #endif
 		if (!end_rumor_file) {	/* if this is the first outrumor() */
@@ -159,7 +159,7 @@ boolean cookie;
 			(void) fseek(rumors, beginning, 0);
 			(void) fgets(line, COLNO, rumors);
 		}
-		if (endp = index(line, '\n')) *endp = 0;
+		if ((endp = index(line, '\n')) != NULL) *endp = 0;
 		if (cookie) {
 			pline(fortune_msg);
 			pline("It reads:");
@@ -199,7 +199,7 @@ outoracle()
 		oracles = openFile(ORACLEFILE, "r");
 	if (oracles) {
 # else
-	if(oracles = fopen(ORACLEFILE, "r")) {
+	if((oracles = fopen(ORACLEFILE, "r")) != NULL) {
 # endif
 #endif
 		if (!oracle_size) {	/* if this is the first outrumor() */
@@ -219,7 +219,7 @@ outoracle()
 		pline("The Oracle meditates for a moment and then intones: ");
 		cornline(0,NULL);
 		while (fgets(line, COLNO, oracles) && strncmp(line,"-----",5)) {
-			if (endp = index(line, '\n')) *endp = 0;
+			if ((endp = index(line, '\n')) != NULL) *endp = 0;
 			cornline(1,line);
 		}
 		cornline(2,"");

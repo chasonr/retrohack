@@ -111,7 +111,7 @@ void
 losedogs(){
 	register struct monst *mtmp,*mtmp0,*mtmp2;
 
-	while(mtmp = mydogs){
+	while((mtmp = mydogs) != NULL){
 		mydogs = mtmp->nmon;
 		mtmp->nmon = fmon;
 		fmon = mtmp;

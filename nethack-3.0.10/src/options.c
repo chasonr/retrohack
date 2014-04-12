@@ -64,7 +64,7 @@ initoptions()
 	if (keepname[0] != '\0') Strcpy(plname, keepname);
 	flags.standout = TRUE;	
 #endif
-	if(opts = getenv("NETHACKOPTIONS"))
+	if((opts = getenv("NETHACKOPTIONS")) != NULL)
 		parseoptions(opts,TRUE);
 #ifdef TUTTI_FRUTTI
 	(void)fruitadd(pl_fruit);
@@ -242,7 +242,7 @@ boolean from_env;
 	unsigned num;
 	boolean negated;
 
-	if(op = index(opts, ',')) {
+	if((op = index(opts, ',')) != NULL) {
 		*op++ = 0;
 		parseoptions(op, from_env);
 	}

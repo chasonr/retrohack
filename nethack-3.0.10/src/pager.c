@@ -227,7 +227,7 @@ uchar ch;
 		/* strip leading garbage */
 			for (s = answer; *s && *s != ' '; s++) ;
 			if (*s) ++s;
-			for (t = answer; *t++ = *s++; ) ;
+			for (t = answer; (*t++ = *s++) != '\0'; ) ;
 		}
 	}
 	else if (ch == UP_SYM && x == xupstair && y == yupstair)
@@ -953,7 +953,7 @@ const char *text;
 #ifdef MACOS
 			macflags = tmpflags;
 #endif
-			while(tl = texthead) {
+			while((tl = texthead) != NULL) {
 			    texthead = tl->next_line;
 			    free((genericptr_t) tl);
 			}
@@ -971,7 +971,7 @@ const char *text;
 	    }
 	}
 
-	while(tl = texthead) {
+	while((tl = texthead) != NULL) {
 		texthead = tl->next_line;
 		free((genericptr_t) tl);
 	}
@@ -1213,7 +1213,7 @@ int
 dosh(){
 register char *str;
 	if(child(0)) {
-		if(str = getenv("SHELL"))
+		if((str = getenv("SHELL")) != NULL)
 			(void) execl(str, str, NULL);
 		else
 			(void) execl("/bin/sh", "sh", NULL);

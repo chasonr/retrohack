@@ -92,7 +92,7 @@ blindu:
 		}
 		return;
 	}
-	if(mtmp = bchit(u.dx, u.dy, COLNO, '!')) {
+	if((mtmp = bchit(u.dx, u.dy, COLNO, '!')) != NULL) {
 		if(mtmp->msleep){
 			mtmp->msleep = 0;
 			pline("The flash awakens %s.", mon_nam(mtmp)); /* a3 */
@@ -520,7 +520,7 @@ dig() {
 		register const char *digtxt;
 		register struct obj *obj;
 
-		if(obj = sobj_at(STATUE, dpx, dpy)) {
+		if((obj = sobj_at(STATUE, dpx, dpy)) != NULL) {
 			if (break_statue(obj))
 				digtxt = "The statue shatters.";
 			else
@@ -528,7 +528,7 @@ dig() {
 				 * printed a message and updated the screen
 				 */
 				digtxt = NULL;
-		} else if(obj = sobj_at(BOULDER, dpx, dpy)) {
+		} else if((obj = sobj_at(BOULDER, dpx, dpy)) != NULL) {
 			fracture_rock(obj);
 			digtxt = "The boulder falls apart.";
 		} else if(!lev->typ || lev->typ == SCORR) {
@@ -1181,7 +1181,7 @@ pline("Tinning a cockatrice corpse without gloves was not a very wise move...");
 		You("can't tin something that insubstantial!");
 		return;
 	}
-	if(can = mksobj(TIN,FALSE)) {
+	if((can = mksobj(TIN,FALSE)) != NULL) {
 	    int savequan;
 
 	    can->corpsenm = corpse->corpsenm;

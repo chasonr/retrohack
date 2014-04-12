@@ -75,7 +75,7 @@ struct monst *mon;
 	     * must be made non-tame to get initialized properly.
 	     */
 	    m2->mtame = 0;
-	    if (m3 = tamedog(m2, (struct obj *)0))
+	    if ((m3 = tamedog(m2, (struct obj *)0)) != NULL)
 		m2 = m3;
 	}
 	return m2;
@@ -119,7 +119,7 @@ register struct monst *mtmp;
 
 		    if(Blind) pline("Wait!  There's a hidden monster there!");
 		    else if(OBJ_AT(mtmp->mx, mtmp->my)) {
-			if(obj = level.objects[mtmp->mx][mtmp->my])
+			if((obj = level.objects[mtmp->mx][mtmp->my]) != NULL)
 				pline("Wait!  There's %s hiding under %s!",
 					defmonnam(mtmp), doname(obj));
 		    } else if (levl[mtmp->mx][mtmp->my].gmask == 1)
@@ -1020,7 +1020,7 @@ register struct attack *mattk;
 			xkilled(mdef,2);
 			Sprintf(msgbuf, "You totally digest %s.",
 					Blind ? "it" : mon_nam(mdef));
-			if (tmp = 3 + (mdef->data->cwt >> 2)) {
+			if ((tmp = 3 + (mdef->data->cwt >> 2)) != 0) {
 			    kludge("You digest %s.", mon_nam(mdef));
 			    nomul(-tmp);
 			    nomovemsg = msgbuf;
@@ -1173,7 +1173,7 @@ use_weapon:
 		case AT_TUCH:
 		case AT_BUTT:
 			if (i==0 && uwep && (u.usym==S_LICH)) goto use_weapon;
-			if(dhit = (tmp > rnd(20) || u.uswallow)) {
+			if((dhit = (tmp > rnd(20) || u.uswallow))) {
 				int compat;
 
 				if (!u.uswallow &&
@@ -1406,7 +1406,7 @@ boolean kicked;
 		    if(mon->mhpmax > ((mon->m_lev+1) * 8)) {
 			register struct monst *mtmp;
 
-			if(mtmp = clone_mon(mon)) {
+			if((mtmp = clone_mon(mon)) != NULL) {
 			    mtmp->mhpmax = mon->mhpmax /= 2;
 			    if(!Blind)
 				pline("%s multiplies from your heat!",

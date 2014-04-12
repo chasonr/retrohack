@@ -58,7 +58,7 @@ extern void FDECL(exit, (int));
 # define Printf printf
 #endif
 
-#undef NULL
+//#undef NULL
 
 #define MAX_REGISTERS	10
 #define ERR		(-1)
@@ -862,7 +862,7 @@ store_part()
 	
 	/* The Regions */
 
-	if(tmppart[npart]->nreg = nreg) {
+	if((tmppart[npart]->nreg = nreg) != 0) {
 		tmppart[npart]->regions = (region**)alloc(sizeof(region*) * nreg);
 		for(i=0;i<nreg;i++)
 		    tmppart[npart]->regions[i] = tmpreg[i];
@@ -871,7 +871,7 @@ store_part()
 
 	/* the doors */
 
-	if(tmppart[npart]->ndoor = ndoor) {
+	if((tmppart[npart]->ndoor = ndoor) != 0) {
 		tmppart[npart]->doors = (door **)alloc(sizeof(door *) * ndoor);
 		for(i=0;i<ndoor;i++)
 		    tmppart[npart]->doors[i] = tmpdoor[i];
@@ -880,7 +880,7 @@ store_part()
 
 	/* the traps */
 
-	if(tmppart[npart]->ntraps = ntrap) {
+	if((tmppart[npart]->ntraps = ntrap) != 0) {
 		tmppart[npart]->traps = (trap **)alloc(sizeof(trap*) * ntrap);
 		for(i=0;i<ntrap;i++)
 		    tmppart[npart]->traps[i] = tmptrap[i];
@@ -889,7 +889,7 @@ store_part()
 
 	/* the monsters */
 
-	if(tmppart[npart]->nmonster = nmons) {
+	if((tmppart[npart]->nmonster = nmons) != 0) {
 		tmppart[npart]->monsters = (monster**)alloc(sizeof(monster*)*nmons);
 		for(i=0;i<nmons;i++)
 		    tmppart[npart]->monsters[i] = tmpmonst[i];
@@ -898,7 +898,7 @@ store_part()
 
 	/* the objects */
 
-	if(tmppart[npart]->nobjects = nobj) {
+	if((tmppart[npart]->nobjects = nobj) != 0) {
 		tmppart[npart]->objects = (object**)alloc(sizeof(object*)*nobj);
 		for(i=0;i<nobj;i++)
 		    tmppart[npart]->objects[i] = tmpobj[i];
@@ -907,7 +907,7 @@ store_part()
 
 	/* the drawbridges */
 
-	if(tmppart[npart]->ndrawbridge = ndb) {
+	if((tmppart[npart]->ndrawbridge = ndb) != 0) {
 		tmppart[npart]->drawbridges = (drawbridge**)alloc(sizeof(drawbridge*)*ndb);
 		for(i=0;i<ndb;i++)
 		    tmppart[npart]->drawbridges[i] = tmpdb[i];
@@ -916,7 +916,7 @@ store_part()
 
 	/* The walkmaze directives */
 
-	if(tmppart[npart]->nwalk = nwalk) {
+	if((tmppart[npart]->nwalk = nwalk) != 0) {
 		tmppart[npart]->walks = (walk**)alloc(sizeof(walk*)*nwalk);
 		for(i=0;i<nwalk;i++)
 		    tmppart[npart]->walks[i] = tmpwalk[i];
@@ -925,7 +925,7 @@ store_part()
 
 	/* The non_diggable directives */
 
-	if(tmppart[npart]->ndig = ndig) {
+	if((tmppart[npart]->ndig = ndig) != 0) {
 		tmppart[npart]->digs = (digpos **) alloc(sizeof(digpos*) * ndig);
 		for(i=0;i<ndig;i++)
 		    tmppart[npart]->digs[i] = tmpdig[i];
@@ -934,7 +934,7 @@ store_part()
 
 	/* The ladders */
 
-	if(tmppart[npart]->nlad = nlad) {
+	if((tmppart[npart]->nlad = nlad) != 0) {
 		tmppart[npart]->lads = (lad **) alloc(sizeof(lad*) * nlad);
 		for(i=0;i<nlad;i++)
 		    tmppart[npart]->lads[i] = tmplad[i];
@@ -943,7 +943,7 @@ store_part()
 #ifdef ALTARS
 	/* The altars */
 
-	if(tmppart[npart]->naltar = naltar) {
+	if((tmppart[npart]->naltar = naltar) != 0) {
 		tmppart[npart]->altars = (altar**)alloc(sizeof(altar*) * naltar);
 		for(i=0;i<naltar;i++)
 		    tmppart[npart]->altars[i] = tmpaltar[i];

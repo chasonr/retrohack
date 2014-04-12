@@ -123,7 +123,7 @@ int all;
 		}
 		ip = buf;
 		olets[0] = 0;
-		while(sym = *ip++){
+		while((sym = *ip++) != '\0'){
 			/* new A function (selective all) added by
 			 * GAN 01/09/87
 			 */

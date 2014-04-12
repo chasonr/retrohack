@@ -29,7 +29,7 @@ int *num;
 		levl[zx][zy].seen = 0;
 		prl(zx, zy);
 		(*num)++;
-	} else if(ttmp = t_at(zx, zy)) {
+	} else if((ttmp = t_at(zx, zy)) != NULL) {
 		if(ttmp->ttyp == MONST_TRAP) {
 			(void) makemon(&mons[ttmp->pm], zx, zy);
 			(*num)++;

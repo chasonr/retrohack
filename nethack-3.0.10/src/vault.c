@@ -30,7 +30,7 @@ register boolean forceshow;
 			forceshow = TRUE;
 		if((u.ux == fcx && u.uy == fcy) || 
 		   (!forceshow && cansee(fcx,fcy))) return(FALSE);
-		if(mtmp = m_at(fcx,fcy)) {
+		if((mtmp = m_at(fcx,fcy)) != NULL) {
 			if(mtmp->isgd) return(FALSE);
 			else if(!in_fcorridor(grd, u.ux, u.uy)) {
 			    rloc(mtmp);

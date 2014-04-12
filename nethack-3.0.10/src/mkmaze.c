@@ -222,21 +222,21 @@ makemaz()
 		for(x = zx-3; x <= zx+3; x++)
 		    levl[x][y].typ = tower[i++];
 	    walkfrom(zx+4, zy);
-	    if(mtmp = makemon(&mons[PM_HELL_HOUND], zx+1, zy))
+	    if((mtmp = makemon(&mons[PM_HELL_HOUND], zx+1, zy)) != NULL)
 		mtmp->msleep = 1;
 	    (void) makemon(&mons[PM_KRAKEN], zx+2, zy+2);
-	    if (mtmp = makemon(&mons[PM_VAMPIRE_LORD], zx-1, zy))
+	    if ((mtmp = makemon(&mons[PM_VAMPIRE_LORD], zx-1, zy)) != NULL)
 		mtmp->msleep = 1;
 	    if (dlevel == wiz_level) {
 
 		(void) mksobj_at(AMULET_OF_YENDOR, zx, zy);
 		flags.made_amulet = 1;
-		if(mtmp = makemon(&mons[PM_WIZARD_OF_YENDOR], zx, zy))
+		if((mtmp = makemon(&mons[PM_WIZARD_OF_YENDOR], zx, zy)) != NULL)
 			mtmp->msleep = 1;
 	    } else {
 		struct obj *ot;
 	    	/* make a cheap plastic imitation */
-		if (ot = mksobj_at(AMULET_OF_YENDOR, zx, zy))
+		if ((ot = mksobj_at(AMULET_OF_YENDOR, zx, zy)) != NULL)
 		    ot-> spe = -1;
 		(void) makemon(&mons[dprince()], zx, zy);
 	    }

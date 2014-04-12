@@ -458,7 +458,7 @@ pleased() {
 	    switch(min(action,5)) {
 		case 5: pat_on_head = 1;
 		case 4: do fix_worst_trouble(trouble);
-			while(trouble = in_trouble());
+			while((trouble = in_trouble()) != 0);
 			break;
 
 		case 3: fix_worst_trouble(trouble);
@@ -786,7 +786,7 @@ dosacrifice()
 # endif
 			change_luck(2);
 			if(Invisible) newsym(u.ux, u.uy);
-			if(dmon = makemon(&mons[dlord()], u.ux, u.uy)) {
+			if((dmon = makemon(&mons[dlord()], u.ux, u.uy)) != NULL) {
 				You("have summoned a demon lord!");
 				if (u.ualigntyp == U_CHAOTIC) 
 					dmon->mpeaceful = 1;

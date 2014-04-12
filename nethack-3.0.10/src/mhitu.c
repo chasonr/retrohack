@@ -611,7 +611,7 @@ hitmu(mtmp, mattk)
 		register struct obj *obj;
 
 		if(OBJ_AT(mtmp->mx, mtmp->my)) {
-		    if(obj = level.objects[mtmp->mx][mtmp->my])
+		    if((obj = level.objects[mtmp->mx][mtmp->my]) != NULL)
 			pline("%s was hidden under %s!",
 				  Xmonnam(mtmp), doname(obj));
 		} else if (levl[mtmp->mx][mtmp->my].gmask == 1)
@@ -1841,7 +1841,7 @@ register struct attack *mattk;
 		if (u.mhmax > ((uasmon->mlevel+1) * 8)) {
 			register struct monst *mon;
 
-			if (mon = cloneu()) {
+			if ((mon = cloneu()) != NULL) {
 			    mon->mhpmax = u.mhmax /= 2;
 			    if (Blind)
 				You("multiply from its heat!");

@@ -207,8 +207,8 @@ register int lvl, sx, sy, align;
 #endif
 	if(MON_AT(sx+1, sy)) rloc(m_at(sx+1, sy)); /* insurance */
 
-	if(priest = makemon(&mons[!rn2(2) ? PM_TEMPLE_PRIEST : 
-			PM_TEMPLE_PRIESTESS], sx+1, sy)) {
+	if((priest = makemon(&mons[!rn2(2) ? PM_TEMPLE_PRIEST : 
+			PM_TEMPLE_PRIESTESS], sx+1, sy)) != NULL) {
 		EPRI(priest)->shroom = inroom(sx, sy);
 		EPRI(priest)->shralign = align;
 		EPRI(priest)->shrpos.x = sx;
@@ -353,7 +353,7 @@ void
 intemple() {
 	register struct mkroom *troom;
 
-	if(troom = in_temple(u.ux, u.uy)) {
+	if((troom = in_temple(u.ux, u.uy)) != NULL) {
 	    boolean shrined = is_shrined(troom);
 	    boolean tended = p_inhistemple(troom);
 

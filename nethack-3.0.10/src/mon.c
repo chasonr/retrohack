@@ -180,7 +180,7 @@ register struct monst *mtmp;
 STATIC_OVL void
 dmonsfree(){
 register struct monst *mtmp;
-	while(mtmp = fdmon){
+	while((mtmp = fdmon) != NULL){
 		fdmon = mtmp->nmon;
 		free((genericptr_t) mtmp);
 	}
@@ -371,7 +371,7 @@ meatgold(mtmp)
 	register struct obj *otmp;
 
 	/* Eats gold if it is there */
-	if(gold = g_at(mtmp->mx, mtmp->my)){
+	if((gold = g_at(mtmp->mx, mtmp->my)) != NULL){
 		if (cansee(mtmp->mx, mtmp->my) && flags.verbose)
 			pline("%s eats some gold!", Monnam(mtmp));
 		mtmp->meating = (int)((gold->amount + 500L)/1000L);
@@ -454,7 +454,7 @@ mpickgold(mtmp)
 {
 	register struct gold *gold;
 
-	if(gold = g_at(mtmp->mx, mtmp->my)){
+	if((gold = g_at(mtmp->mx, mtmp->my)) != NULL){
 		mtmp->mgold += gold->amount;
 		if (cansee(mtmp->mx, mtmp->my) && flags.verbose)
 			pline("%s picks up some gold.", Monnam(mtmp));

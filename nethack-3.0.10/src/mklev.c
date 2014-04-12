@@ -826,7 +826,7 @@ makelevel() {
 		struct monst *mtmp;
 		struct obj *otmp;
 
-		if (mtmp = makemon(&mons[PM_MEDUSA], xdnstair, ydnstair))
+		if ((mtmp = makemon(&mons[PM_MEDUSA], xdnstair, ydnstair)) != NULL)
 			mtmp->msleep = 1;
 		for (tryct = rn1(1,3); tryct; tryct--) {
 			x = somex(croom); y = somey(croom);

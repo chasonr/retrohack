@@ -102,7 +102,7 @@ register int x, y, typ;
 	register struct permonst *ptr;
 	register boolean oldplace;
 
-	if (ttmp = t_at(x,y)) {
+	if ((ttmp = t_at(x,y)) != NULL) {
 	    oldplace = TRUE;
 	    if (u.utrap && (x == u.ux) && (y == u.uy) && 
 	      ((u.utraptype == TT_BEARTRAP && typ != BEAR_TRAP) ||
@@ -318,7 +318,7 @@ register struct trap *trap;
 		    for(otmp=level.objects[u.ux][u.uy];
 						otmp; otmp = otmp->nexthere)
 			if(otmp->otyp == STATUE && otmp->corpsenm == pm)
-			    if(mtmp=makemon(&mons[pm],u.ux,u.uy)) {
+			    if((mtmp=makemon(&mons[pm],u.ux,u.uy)) != NULL) {
 				pline("The statue comes to life!");
 				delobj(otmp);
 				break;
@@ -326,7 +326,7 @@ register struct trap *trap;
 		    break;
 		case MONST_TRAP:
 		    deltrap(trap);
-		    if(mtmp=makemon(&mons[pm],u.ux,u.uy)) {
+		    if((mtmp=makemon(&mons[pm],u.ux,u.uy)) != NULL) {
 		      mtmp->mpeaceful = FALSE;
 		      switch(mtmp->data->mlet) {
 			case S_PIERCER:
@@ -430,7 +430,7 @@ register struct trap *trap;
 # endif /* GOLEMS */
 		    if (u.umonnum == PM_GREMLIN && rn2(3)) {
 			pline("A gush of water hits you!");
-			if(mtmp = cloneu()) {
+			if((mtmp = cloneu()) != NULL) {
 			    mtmp->mhpmax = (u.mhmax /= 2);
 			    You("multiply.");
 			}
@@ -1044,7 +1044,7 @@ float_down() {
 		drown();
 
 	You("float gently to the ground.");
-	if(trap = t_at(u.ux,u.uy))
+	if((trap = t_at(u.ux,u.uy)) != NULL)
 		switch(trap->ttyp) {
 		case MONST_TRAP:
 		case STATUE_TRAP:
@@ -1517,7 +1517,7 @@ drown() {
 #ifdef POLYSELF
 	if(u.umonnum == PM_GREMLIN && rn2(3)) {
 		struct monst *mtmp;
-		if(mtmp = cloneu()) {
+		if((mtmp = cloneu()) != NULL) {
 			mtmp->mhpmax = (u.mhmax /= 2);
 			You("multiply.");
 		}
