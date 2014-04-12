@@ -37,7 +37,7 @@ static void NDECL(init_hilite);
 # endif
 #endif
 
-STATIC_VAR char *HO, *CL, *CE, *UP, *CM, *ND, *XD, *BC, *SO, *SE, *TI, *TE;
+STATIC_VAR char *HO, *CL, *CE, /* *UP,*/ *CM, *ND, *XD, /* *BC,*/ *SO, *SE, *TI, *TE;
 STATIC_VAR char *VS, *VE, *US, *UE;
 STATIC_VAR char *MR, *ME;
 #if 0
@@ -49,11 +49,13 @@ STATIC_VAR char *MD;     /* may already be in use below */
 STATIC_VAR char *MD;
 # endif
 STATIC_VAR int SG;
+#if 0
 #ifdef OVLB
 STATIC_OVL char PC = '\0';
 #else /* OVLB */
 STATIC_DCL char PC;
 #endif /* OVLB */
+#endif
 STATIC_VAR char tbuf[512];
 #endif
 
