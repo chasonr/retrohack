@@ -73,7 +73,8 @@ LFLAGS =
 #
 # TERMLIB = -ltermcap
 # TERMLIB = -lcurses
-TERMLIB = -ltermlib
+# TERMLIB = -ltermlib
+TERMLIB = -lncurses
 
 # any other strange libraries your system needs (for Sysunix only -- the more
 # specialized targets should already be right)
