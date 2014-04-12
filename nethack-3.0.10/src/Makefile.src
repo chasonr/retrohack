@@ -131,7 +131,7 @@ HACKINCL = amiconf.h artifact.h attrib.h color.h config.h coord.h decl.h\
 	   def_os2.h edog.h epri.h eshk.h extern.h flag.h func_tab.h global.h\
 	   gold.h hack.h lev.h macconf.h mfndpos.h mkroom.h monattk.h mondata.h\
 	   monflag.h monst.h monsym.h msdos.h obj.h objclass.h patchlevel.h\
-	   pcconf.h permonst.h prop.h rm.h sp_lev.h spell.h system.h termcap.h\
+	   pcconf.h permonst.h prop.h rm.h sp_lev.h spell.h system.h termcaps.h\
 	   tosconf.h tradstdc.h unixconf.h vault.h vmsconf.h wseg.h you.h\
 	   youprop.h
 
@@ -411,7 +411,7 @@ pickup.o:  ../include/hack.h
 polyself.o:  ../include/hack.h
 potion.o:  ../include/hack.h
 pray.o:  ../include/hack.h
-pri.o:  ../include/hack.h ../include/epri.h ../include/termcap.h
+pri.o:  ../include/hack.h ../include/epri.h ../include/termcaps.h
 priest.o:  ../include/hack.h ../include/mfndpos.h ../include/eshk.h ../include/epri.h
 prisym.o:  ../include/hack.h ../include/wseg.h ../include/lev.h
 read.o:  ../include/hack.h
@@ -428,7 +428,7 @@ sounds.o:  ../include/hack.h ../include/edog.h ../include/eshk.h
 sp_lev.o:  ../include/hack.h ../include/sp_lev.h
 spell.o:  ../include/hack.h
 steal.o:  ../include/hack.h
-termcap.o:  ../include/hack.h ../include/termcap.h
+termcap.o:  ../include/hack.h ../include/termcaps.h
 timeout.o:  ../include/hack.h
 topl.o:  ../include/hack.h
 topten.o:  ../include/hack.h
