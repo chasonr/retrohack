@@ -48,4 +48,4 @@ spec_levs: castle.des endgame.des tower.des ../src/lev_comp
 	touch spec_levs
 
 spotless:
-	-rm -f Guidebook Guidebook.ps Guidebook.dvi Guidebook.aux Guidebook.log data rumors castle endgame tower1 tower2 tower3
+	-rm -f Guidebook Guidebook.ps Guidebook.dvi Guidebook.aux Guidebook.log data rumors castle endgame tower1 tower2 tower3 spec_levs

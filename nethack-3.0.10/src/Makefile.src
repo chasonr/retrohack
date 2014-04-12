@@ -306,8 +306,9 @@ clean:
 	rm -f *.o
 
 spotless: clean
-	rm -f a.out core $(GAME) lev_comp makedefs
-	rm -f ../include/onames.h ../include/pm.h
+	rm -f a.out core $(GAME) lev_comp makedefs Sysunix
+	rm -f ../include/onames.h ../include/pm.h ../include/date.h
+	rm -f lev_comp.c lev_lex.c ../include/lev_comp.h
 
 
 depend:
