@@ -79,7 +79,7 @@ extern const char *configfile;
 #define signal	ssignal
 # endif
 /* rename the next two functions - they clash with the Turbo C library */
-#define getdate getdate_
+#define get_date getdate_
 #define itoa itoa_
 #endif
 

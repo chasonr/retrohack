@@ -880,7 +880,7 @@ E void VDECL(error, (const char *,...));
 # ifndef OLD_TOS
 E void NDECL(setrandom);
 E int NDECL(getyear);
-E char *NDECL(getdate);
+E char *NDECL(get_date);
 E int NDECL(phase_of_the_moon);
 E int NDECL(night);
 E int NDECL(midnight);
@@ -1374,7 +1374,7 @@ E void VDECL(error, (const char *,...));
 #ifdef UNIX
 E void NDECL(setrandom);
 E int NDECL(getyear);
-E char *NDECL(getdate);
+E char *NDECL(get_date);
 E int NDECL(phase_of_the_moon);
 E int NDECL(night);
 E int NDECL(midnight);
@@ -1435,7 +1435,7 @@ E void VDECL(error, (char *,...));
 #ifdef VMS
 E void NDECL(setrandom);
 E int NDECL(getyear);
-E char *NDECL(getdate);
+E char *NDECL(get_date);
 E int NDECL(phase_of_the_moon);
 E int NDECL(night);
 E int NDECL(midnight);

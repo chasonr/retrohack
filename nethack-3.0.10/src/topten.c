@@ -45,7 +45,7 @@ struct toptenentry {
 	char sex;
 	char name[NAMSZ+1];
 	char death[DTHSZ+1];
-	char date[7];		/* yymmdd */
+	char date[9];		/* yyyymmdd */
 } *tt_head;
 
 static char *FDECL(itoa, (int));
@@ -204,7 +204,7 @@ int how;
 			(void) strncat(t0->death, killer, DTHSZ);
 			break;
 	}
-	Strcpy(t0->date, getdate());
+	Strcpy(t0->date, get_date());
 
 #ifdef LOGFILE		/* used for debugging (who dies of what, where) */
 # if defined(UNIX) || defined(VMS)

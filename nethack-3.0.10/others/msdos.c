@@ -15,7 +15,7 @@
 #  endif
 # else
 #  ifdef __TURBOC__	/* avoid incompatible redeclaration */
-#   undef getdate
+#   undef get_date
 #  endif
 #  include <dos.h>
 # endif
