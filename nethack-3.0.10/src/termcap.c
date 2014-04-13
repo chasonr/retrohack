@@ -766,7 +766,10 @@ const int ti_map[8] = {
 static void
 init_hilite()
 {
-	register int c;
+#  ifdef __APPLE__
+	static const uchar reverse[] = { 0, 4, 2, 6, 1, 5, 3, 7 };
+#  endif
+	register int c0, c;
 #  ifdef TERMINFO
 	char *setf, *scratch;
 	extern char *tparm();
@@ -781,8 +784,13 @@ init_hilite()
 	    &&  (setf = tgetstr("Sf", 0)) == NULL))
 		return;
 
-	for (c = 0; c < MAXCOLORS / 2; c++) {
-  		scratch = tparm(setf, ti_map[c]);
+	for (c0 = 0; c0 < MAXCOLORS / 2; c0++) {
+#  ifdef __APPLE__
+		c = reverse[c0];
+#  else
+		c = c0;
+#  endif
+		scratch = tparm(setf, ti_map[c0]);
 		hilites[c] = (char *) alloc(strlen(scratch) + 1);
 		hilites[c+BRIGHT] = (char*) alloc(strlen(scratch)+strlen(MD)+1);
 		Strcpy(hilites[c], scratch);
