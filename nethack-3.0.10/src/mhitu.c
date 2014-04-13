@@ -170,7 +170,7 @@ register struct monst *mtmp;
 register struct permonst *mdat; /* if mtmp is polymorphed, mdat != mtmp->data */
 boolean message;
 {
-	if (message) 
+	if (message) {
 		if (is_animal(mdat)) 
 			You("get regurgitated!");
 		else {
@@ -201,6 +201,7 @@ boolean message;
 				    mon_nam(mtmp), blast);
 			}
 		}
+	}
 	unstuck(mtmp);
 	mnexto(mtmp);
 	prme();
@@ -822,9 +823,10 @@ dopois:
 			    You("hear a cough from %s!", Blind ? "it"
 				: mon_nam(mtmp));
 		    } else {
-			if (flags.soundok)
+			if (flags.soundok) {
 			    if (Blind) You("hear its hissing!");
 			    else You("hear %s's hissing!", mon_nam(mtmp));
+			}
 			if((!rn2(10) ||
 			    (flags.moonphase == NEW_MOON && !have_lizard()))
 #ifdef POLYSELF
@@ -1017,9 +1019,10 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if(!night() && mdat == &mons[PM_GREMLIN]) break;
 		if(!mtmp->mcan && !rn2(10)) {
-		    if (flags.soundok)
+		    if (flags.soundok) {
 			if (Blind) You("hear laughter.");
 			else       pline("%s chuckles.", Monnam(mtmp));
+		    }
 #ifdef POLYSELF
 #ifdef GOLEMS
 		    if (u.umonnum == PM_CLAY_GOLEM) {

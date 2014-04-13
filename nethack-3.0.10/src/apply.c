@@ -688,9 +688,10 @@ struct obj *obj;
 	register int rx, ry, res = 0;
 	register boolean isclosedoor = FALSE;
 
-	if(obj != uwep)
+	if(obj != uwep) {
 	    if (!wield_tool(obj)) return(0);
 	    else res = 1;
+	}
 
 	while(*sdp) {
 		(void) movecmd(*sdp);	/* sets u.dx and u.dy and u.dz */
@@ -1068,10 +1069,11 @@ use_crystal_ball(obj)
 			else ret = monster_detect((struct obj *)0);
 			break;
 		}
-		if (ret)
+		if (ret) {
 		    if (!rn2(100))  /* make them nervous */
 			You("see the Wizard of Yendor gazing out at you.");
 		    else pline("The vision is unclear.");
+		}
 	}
 	return;
 }

@@ -721,10 +721,11 @@ struct permonst *mdat;
 		return 0;
 	if (x == u.ux && y == u.uy) return 0;
 	if (mdat) {
-	    if (IS_POOL(levl[x][y].typ))
+	    if (IS_POOL(levl[x][y].typ)) {
 		if (mdat == &playermon && (HLevitation || Wwalking))
 			return 1;
 		else	return (is_flyer(mdat) || is_swimmer(mdat));
+	    }
 	    if (passes_walls(mdat)) return 1;
 	}
 	if (!ACCESSIBLE(levl[x][y].typ)) return 0;

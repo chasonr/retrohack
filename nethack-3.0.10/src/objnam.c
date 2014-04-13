@@ -652,7 +652,7 @@ register const char *str;
 
 	buf[0] = '\0';
 
-	if (strncmp(str, "the ", 4))
+	if (strncmp(str, "the ", 4)) {
 	    if (index(vowels, *str) &&
 		strncmp(str, "useful", 6) &&
 		strncmp(str, "unicorn", 7) &&
@@ -660,6 +660,7 @@ register const char *str;
 		    Strcpy(buf, "an ");
 	    else
 		    Strcpy(buf, "a ");
+	}
 
 	Strcat(buf, str);
 	return buf;
@@ -820,11 +821,12 @@ const char *oldstr;
 	/* knife/knives, etc... */
 	if (!strcmp(spot-1, "fe"))
 		*(spot-1) = 'v';
-	else if (*spot == 'f')
+	else if (*spot == 'f') {
 		if (index("lr", *(spot-1)) || index(vowels, *(spot-1)))
 			*spot = 'v';
 		else if (!strncmp(spot-4, "staf", 4))
 			Strcpy(spot-1, "ve");
+	}
 
 	/* foot/feet (body part) */
 	if (len >= 4 && !strcmp(spot-3, "foot")) {

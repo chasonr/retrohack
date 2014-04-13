@@ -194,7 +194,7 @@ register struct monst *mtmp;
 
 	if(unweapon) {
 	    unweapon=FALSE;
-	    if(flags.verbose)
+	    if(flags.verbose) {
 		if(uwep)
 		    You("begin bashing monsters with your %s.",
 			aobjnam(uwep, NULL));
@@ -204,6 +204,7 @@ register struct monst *mtmp;
 #endif
 		    You("begin bashing monsters with your %s hands.",
 			uarmg ? "gloved" : "bare");		/* Del Lamb */
+	    }
 	}
 	/* andrew@orca: prevent unlimited pick-axe attacks */
 	u_wipe_engr(3);
@@ -1204,7 +1205,7 @@ use_weapon:
 			 * already grabbed in a previous attack
 			 */
 			dhit = 1;
-			if (!sticks(mon->data))
+			if (!sticks(mon->data)) {
 			    if (mon==u.ustuck) {
 				kludge("%s is being %s.", Monnam(mon),
 # ifdef GOLEMS
@@ -1217,6 +1218,7 @@ use_weapon:
 				u.ustuck = mon;
 				sum[i] = damageum(mon, mattk);
 			    }
+			}
 			break;
 
 		case AT_EXPL:	/* automatic hit if next to */
@@ -1325,12 +1327,13 @@ boolean kicked;
 		}
 	    break;
 	  case AD_RUST:
-	    if(mhit)
+	    if(mhit) {
 	      if (kicked) {
 		if (uarmf)
 		    (void) rust_dmg(uarmf, xname(uarmf), 1, TRUE);
 	      } else
 		corrode_weapon();
+	    }
 	    break;
 	  case AD_MAGM:
 	    /* wrath of gods for attacking Oracle */

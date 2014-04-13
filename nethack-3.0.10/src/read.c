@@ -54,7 +54,7 @@ doread() {
 			return(0);
 		}
 
-	if(Blind)
+	if(Blind) {
 #ifdef SPELLS
 	    if (scroll->olet == SPBOOK_SYM) {
 		pline("Being blind, you cannot read the mystic runes.");
@@ -65,6 +65,7 @@ doread() {
 		pline("Being blind, you cannot read the formula on the scroll.");
 		return(0);
 	    }
+	}
 #ifndef NO_SIGNAL
 	scroll->in_use = TRUE;		/* now being read */
 #endif
@@ -838,14 +839,16 @@ do_it:
 	for(zy = seely; zy <= seehy; zy++)
 		for(zx = seelx; zx <= seehx; zx++) {
 			levl[zx][zy].lit = on;
-			if(!Blind && dist(zx,zy) > 2)
+			if(!Blind && dist(zx,zy) > 2) {
 				if(on) prl(zx,zy); else nosee(zx,zy);
+			}
 		}
 	for(zy = seely2; zy <= seehy2; zy++)
 		for(zx = seelx2; zx <= seehx2; zx++) {
 			levl[zx][zy].lit = on;
-			if(!Blind && dist(zx,zy) > 2)
+			if(!Blind && dist(zx,zy) > 2) {
 				if(on) prl(zx,zy); else nosee(zx,zy);
+			}
 		}
 	if(!on) seehx = 0;
 }

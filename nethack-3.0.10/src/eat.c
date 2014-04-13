@@ -1282,13 +1282,14 @@ register int num;
 #endif
 	u.uhunger += num;
 	if(u.uhunger >= 2000) {
-	    if (!victual.eating || victual.canchoke)
+	    if (!victual.eating || victual.canchoke) {
 		if (victual.eating) {
 			choke(victual.piece);
 			reset_eat();
 		} else
 			choke((struct obj *) 0);
 			/* no reset_eat(); it was a non-food such as juice */
+	    }
 	} else {
 	    /* Have lesshungry() report when you're nearly full so all eating
 	     * warns when you're about to choke.

@@ -95,9 +95,10 @@ register struct obj *otmp;
 		}
 		break;
 	case WAN_SPEED_MONSTER:
-		if (!resist(mtmp, otmp->olet, 0, NOTELL))
+		if (!resist(mtmp, otmp->olet, 0, NOTELL)) {
 			if (mtmp->mspeed == MSLOW) mtmp->mspeed = 0;
 			else mtmp->mspeed = MFAST;
+		}
 		break;
 	case WAN_UNDEAD_TURNING:
 #ifdef SPELLS
@@ -906,12 +907,13 @@ register struct	obj	*obj;
 				register struct monst *mtmp = u.ustuck;
 
 				if (!is_whirly(mtmp->data)) {
-					if (is_animal(mtmp->data)) 
+					if (is_animal(mtmp->data)) {
 						if (Blind) 
 						You("pierce its stomach wall!");
 						else 
 						You("pierce %s's stomach wall!",
 				  	 	    mon_nam(mtmp));
+					}
 					mtmp->mhp = 1;	/* almost dead */
 					expels(mtmp, mtmp->data,
 					       !is_animal(mtmp->data));

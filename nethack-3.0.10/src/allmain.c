@@ -64,9 +64,9 @@ moveloop()
 #endif
 			if(flags.time) flags.botl = 1;
 #ifdef POLYSELF
-			if(u.mtimedone)
+			if(u.mtimedone) {
 			    if(u.mh < 1) rehumanize();
-			else
+			} else
 #endif
 			    if(u.uhp < 1) {
 				You("die...");

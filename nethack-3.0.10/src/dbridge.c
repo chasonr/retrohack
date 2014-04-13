@@ -593,7 +593,7 @@ struct entity *etmp;
 		}                 /* not at an opened drawbridge, since all   */
 		must_jump = TRUE; /* *missable* creatures survive on the      */
 	}			  /* square, and all the unmissed ones die.   */
-	if (must_jump) 
+	if (must_jump) {
 		if (at_portcullis) {
 			if (e_jumps(etmp)) {
 				relocates = TRUE;
@@ -617,6 +617,7 @@ struct entity *etmp;
 			pline("Jump %s!", (relocates)? "fails" : "succeeds");
 #endif
 		}
+	}
 
 /*
  * Here's where we try to do relocation.  Assumes that etmp is not arriving
@@ -700,7 +701,7 @@ struct entity *etmp;
 		pline("%s in portcullis chamber", E_phrase(etmp, "are"));
 		fflush(stdout);
 #endif
-		if (e_inview)
+		if (e_inview) {
 			if (is_u(etmp)) {
 				You("tumble towards the closed portcullis!"); 
 				if (automiss(etmp))
@@ -710,6 +711,7 @@ struct entity *etmp;
 			} else
 				pline("%s behind the drawbridge.",
 		      	      	      E_phrase(etmp, "disappear"));
+		}
 		if (!e_survives_at(etmp, etmp->ex, etmp->ey)) {
 			killer_format = KILLED_BY_AN;
 			killer = "closing drawbridge";
@@ -738,13 +740,14 @@ struct entity *etmp;
 #endif
 		if (is_pool(etmp->ex, etmp->ey))
 			if (e_inview && 
-			    !is_u(etmp))  /* drown() will supply msgs if nec. */
+			    !is_u(etmp)) { /* drown() will supply msgs if nec. */
 				if (Hallucination)
 				      pline("%s the moat and disappears.",
 					    E_phrase(etmp, "drink"));
 				else
 				      pline("%s into the moat.",
 			      	            E_phrase(etmp, "fall"));
+			}
 		killer_format = NO_KILLER_PREFIX;
 		killer = "fell from a drawbridge";
 		e_died(etmp, e_inview? 1 : 0,        /* CRUSHING is arbitrary */

@@ -635,13 +635,14 @@ register boolean at_stairs, falling;
 	if(dlevel == ENDLEVEL) return;	/* To be on the safe side.. */
 #endif
 	if(newlevel > MAXLEVEL) newlevel = MAXLEVEL;
-	if(newlevel <= 0)
+	if(newlevel <= 0) {
 #ifdef ENDGAME
 	    if(u.uhave_amulet)
 		newlevel = ENDLEVEL;	/* Endgame Level !!! */
 	    else
 #endif
 		done(ESCAPED);		/* in fact < 0 is impossible */
+	}
 
 #ifdef MACOS
 	freeSegs(&segments);
@@ -853,7 +854,7 @@ register boolean at_stairs, falling;
 	}
 #endif
 #ifdef ENDGAME
-	if(dlevel != ENDLEVEL)
+	if(dlevel != ENDLEVEL) {
 #endif
 	if(at_stairs) {
 	    if(up) {
@@ -965,6 +966,9 @@ register boolean at_stairs, falling;
 	    if(falling)
 		selftouch("Falling, you");
 	}
+#ifdef ENDGAME
+	}
+#endif
 	(void) inshop();
 	initrack();
 

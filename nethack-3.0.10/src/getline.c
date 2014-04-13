@@ -361,11 +361,12 @@ register char *bufp;
 
 			while(extcmdlist[oindex].ef_txt != NULL){
 				if(!strncmp(obufp, extcmdlist[oindex].ef_txt,
-				    strlen(obufp)))
+				    strlen(obufp))) {
 					if(com_index == -1) /* No matches yet*/
 					    com_index = oindex;
 					else /* More than 1 match */
 					    com_index = -2;
+				}
 				oindex++;
 			}
 			if(com_index >= 0){

@@ -511,11 +511,12 @@ FILE *fd;
 	     * walkfrom() is odd.  But we must also take into account
 	     * what direction was chosen.
 	     */
-	    if(!(x % 2))
+	    if(!(x % 2)) {
 		if (dir == W_EAST)
 		    x++;
 		else
 		    x--;
+	    }
 
 #ifndef WALLIFIED_MAZE
 	    levl[x][y].typ = CORR;
@@ -523,11 +524,12 @@ FILE *fd;
 	    levl[x][y].typ = ROOM;
 #endif
 
-	    if (!(y % 2))
+	    if (!(y % 2)) {
 		if (dir == W_SOUTH)
 		    y++;
 		else
 		    y--;
+	    }
 
 	    walkfrom(x, y);
     }

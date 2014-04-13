@@ -450,12 +450,13 @@ register int chance;
 {
 	if(otmp->blessed || otmp->cursed) return;
 
-	if(!rn2(chance))
+	if(!rn2(chance)) {
 	    if(!rn2(2) || Inhell) { /* in hell, don't usually bless items */
 		curse(otmp);
 	    } else {
 		bless(otmp);
 	    }
+	}
 	return;
 }
 

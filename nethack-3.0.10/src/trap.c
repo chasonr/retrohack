@@ -1234,7 +1234,7 @@ dotele()
 	}
 
 #ifdef SPELLS
-	if (castit)
+	if (castit) {
 		if (spelleffects(++sp_no, TRUE))
 			return(1);
 		else
@@ -1242,6 +1242,7 @@ dotele()
 		    if (!wizard)
 # endif
 			return(0);
+	}
 #endif
 
 #ifdef WALKIES
@@ -1325,8 +1326,9 @@ level_tele() {
 #else
 	    newlevel = rn2(5) || !Fire_resistance ? rnd(dlevel + 3) : HELLLEVEL;
 #endif
-	    if(dlevel == newlevel)
+	    if(dlevel == newlevel) {
 		if(is_maze_lev) newlevel--; else newlevel++;
+	    }
 	}
 
 #ifdef WALKIES
@@ -1751,11 +1753,12 @@ register int bodypart;
 		case 0:
 			pline("A cloud of %s gas billows from the %s",
 			      hcolor(), xname(obj));
-			if(!Stunned)
+			if(!Stunned) {
 			    if (Hallucination)
 				pline("What a groovy feeling!");
 			    else
 				You("stagger and your vision blurs...");
+			}
 			make_stunned(HStun + rn1(7, 16),FALSE);
 			make_hallucinated(Hallucination + rn1(5, 16),FALSE);
 			break;

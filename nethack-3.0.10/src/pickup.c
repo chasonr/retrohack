@@ -548,7 +548,7 @@ register int held;
 	}
 	for(otmp = fcobj, backobj = (struct obj *) 0; otmp;
 	    backobj = otmp, otmp = otmp->nobj)
-		if(otmp->cobj == obj)
+		if(otmp->cobj == obj) {
 		    if(Is_mbag(obj) && obj->cursed && !rn2(13)) {
 			if (otmp->known)
 				pline("The %s to have vanished!",
@@ -570,6 +570,7 @@ register int held;
 			if (!otmp) break;
 			if(otmp->cobj == obj) cnt++;
 		    } else cnt++;
+		}
 	if(!cnt)
 	    pline("%s %s is empty.", (held) ? "Your" : "The", xname(obj));
 	else if (inv_cnt() < 52) {

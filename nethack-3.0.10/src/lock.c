@@ -647,22 +647,24 @@ doorlock(otmp,x,y)	/* door was hit with spell effect otmp */
 		    if(door->doormask & D_TRAPPED) {
 			if (MON_AT(x, y))
 			    (void) mb_trapped(m_at(x,y));
-			else if (flags.verbose)
+			else if (flags.verbose) {
 			    if (cansee(x,y))
 			       pline("KABOOM!!	You see a door explode.");
 			    else if (flags.soundok)
 			       You("hear a distant explosion.");
+			}
 			door->doormask = D_NODOOR;
 			mnewsym(x,y);
 			if (cansee(x,y)) prl(x,y);
 			break;
 		    }
 		    door->doormask = D_BROKEN;
-		    if (flags.verbose)
+		    if (flags.verbose) {
 			if (cansee(x,y))
 			    pline("The door crashes open!");
 			else if (flags.soundok)
 			    You("hear a crashing sound.");
+		    }
 		    mnewsym(x,y);
 		    if (cansee(x,y)) prl(x,y);
 		} else res = 0;

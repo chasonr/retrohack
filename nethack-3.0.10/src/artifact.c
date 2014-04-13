@@ -262,11 +262,12 @@ unsigned align;
 	register int n = 0, m;
 
 	for(artif = artilist,m = 0; artif->otyp; artif++,m++)
-	    if(align == artif->align && !(artif->spfx & SPFX_NOGEN) && !artiexist[m])
+	    if(align == artif->align && !(artif->spfx & SPFX_NOGEN) && !artiexist[m]) {
 		if (pl_character[0] == artif->class) {
 		    n = 0;
 		    break;
 		} else n++;
+	    }
 	if (n) {
 		n = rnd(n);
 		for(artif = artilist,m = 0; artif->otyp && n > 0; ) {

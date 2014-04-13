@@ -75,7 +75,7 @@ wiz_get_amulet(mtmp)
 register struct monst *mtmp;
 {
 	/* if he doesn't have the amulet */
-	if(!mon_has_amulet(mtmp))
+	if(!mon_has_amulet(mtmp)) {
 	    if(u.uhave_amulet) {
 
 		/* player has it, dog them til he gets it or dies */
@@ -109,6 +109,7 @@ register struct monst *mtmp;
 		    }
 		/* we don't know where it is */
 	    }
+	}
 
 	/* he has it or can't find it */
 	/* secondary goal - stayin' alive */
@@ -120,7 +121,7 @@ register struct monst *mtmp;
 		mnearto(mtmp,xupstair,yupstair,TRUE);
 
 	/* if you're not around, cast healing spells */
-	if(dist(mtmp->mx,mtmp->my) > (BOLT_LIM * BOLT_LIM))
+	if(dist(mtmp->mx,mtmp->my) > (BOLT_LIM * BOLT_LIM)) {
 	    if(mtmp->mhp <= mtmp->mhpmax - 8) {
 		mtmp->mhp += rnd(8);
 		return(1);
@@ -128,6 +129,7 @@ register struct monst *mtmp;
 	    /* healthy wiz with nothing to do */
 	    else if(!rn2(5))
 		mnexto(mtmp);
+	}
 
 	/* the effect is that below 30 hp, wily wiz teleports
 	   again and again, unless/until he blocks the stairs.

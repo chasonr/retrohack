@@ -386,7 +386,7 @@ struct obj *instr;
 	/* Check if there was the Stronghold drawbridge near
 	 * and if the tune conforms to what we're waiting for.
 	 */
-	if (dlevel == stronghold_level)
+	if (dlevel == stronghold_level) {
 	    if (!strcmp(buf,tune)) {
 		/* Search for the drawbridge */
 		for(y=u.uy-1; y<=u.uy+1; y++)
@@ -446,6 +446,7 @@ struct obj *instr;
 			    gears, plur((long)gears));
 		}
 	    }
+	}
 	return 1;
     } else
 #endif /* STRONGHOLD */

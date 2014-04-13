@@ -180,7 +180,7 @@ boolean away;
 	register int uroom = inroom(u.ux, u.uy);/* room you're in */
 
 	/* if mail daemon is in same room as you */
-	if(uroom >= 0 && inroom(md->mx,md->my) == uroom && (!Blind || Telepat))
+	if(uroom >= 0 && inroom(md->mx,md->my) == uroom && (!Blind || Telepat)) {
 		if(away) {
 			unpmon(md);
 			remove_monster(tx, ty);
@@ -221,6 +221,7 @@ boolean away;
 			/* rush from origin */
 			mdrush(md,fx,fy);
 		}
+	}
 
 	pmon(md);
 }
