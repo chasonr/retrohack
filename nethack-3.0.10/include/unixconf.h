@@ -78,9 +78,11 @@
 #ifdef __APPLE__
 /* Mac OS X */
 #   define BSD
+#   define TEXTCOLOR
 #endif
 #ifdef __LINUX__
 #   define SYSV
+#   define TEXTCOLOR
 #endif
 
 

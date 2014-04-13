@@ -1356,7 +1356,7 @@ uchar let, typ;
 		        default:
 			    if (u.ux == x && u.uy == y && u.usym == let)
 				typ = uasmon->mcolor;
-			    else if (mtmp = m_at(x, y))
+			    else if ((mtmp = m_at(x, y)) != NULL)
 			        typ = mtmp->m_ap_type ?
 					mimic_color(mtmp) :
 					mtmp->data->mcolor;
