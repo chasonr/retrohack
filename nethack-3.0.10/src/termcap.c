@@ -776,7 +776,9 @@ init_hilite()
 		hilites[c] = HI;
 
 #  ifdef TERMINFO
-	if (tgetnum("Co") < 8 || (setf = tgetstr("Sf", 0)) == NULL)
+	if (tgetnum("Co") < 8
+	    || ((setf = tgetstr("AF", 0)) == NULL
+	    &&  (setf = tgetstr("Sf", 0)) == NULL))
 		return;
 
 	for (c = 0; c < MAXCOLORS / 2; c++) {
