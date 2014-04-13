@@ -79,10 +79,12 @@
 /* Mac OS X */
 #   define BSD
 #   define TEXTCOLOR
+#   define TERMINFO
 #endif
 #ifdef __LINUX__
 #   define SYSV
 #   define TEXTCOLOR
+#   define TERMINFO
 #endif
 
 
