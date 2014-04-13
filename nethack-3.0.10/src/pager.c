@@ -1247,7 +1247,7 @@ register int f = fork();
 	(void) signal(SIGINT,SIG_IGN);
 	(void) signal(SIGQUIT,SIG_IGN);
 	(void) wait(
-#if defined(BSD) || defined(ULTRIX)
+#if (defined(BSD) || defined(ULTRIX)) && !defined(__APPLE__)
 		(union wait *)
 #else
 		(int *)

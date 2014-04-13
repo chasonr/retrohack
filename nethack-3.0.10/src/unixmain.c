@@ -10,6 +10,9 @@
 #ifndef O_RDONLY
 #include <fcntl.h>
 #endif
+#ifdef UNIX
+#include <sys/stat.h>
+#endif
 
 char SAVEF[PL_NSIZ + 11] = "save/";	/* save/99999player */
 

@@ -935,8 +935,8 @@ register boolean at_stairs, falling;
 #endif
 		u.ux = rnd(COLNO-1);
 		u.uy = rn2(ROWNO);
-	    } while(tryct++ < 100 && (levl[u.ux][u.uy].typ != ROOM &&
-		     levl[u.ux][u.uy].typ != CORR) || MON_AT(u.ux, u.uy));
+	    } while(tryct++ < 100 && ((levl[u.ux][u.uy].typ != ROOM &&
+		     levl[u.ux][u.uy].typ != CORR) || MON_AT(u.ux, u.uy)));
 	    if(tryct >= 100)
 		panic("goto_level: could not relocate player!");
 	    if(Punished) {

@@ -40,7 +40,7 @@ struct ghods {
 { 'T', /* Chinese */		"Shan Lai Ching", "Chih Sung-tzu", "Huan Ti" },
 { 'V', /* Norse */		"Tyr", "Balder", "Loki" },
 { 'W', /* Egyptian */		"Ptah", "Thoth", "Anhur" },
-0,0,0,0
+{ 0,0,0,0 }
 };
 
 #define TROUBLE_STONED 9
@@ -814,9 +814,7 @@ dosacrifice()
 		if (mtmp == &mons[PM_BLACK_UNICORN]) unicalign = -1;
 		else if (mtmp == &mons[PM_GRAY_UNICORN]) unicalign = 0;
 		else if (mtmp == &mons[PM_WHITE_UNICORN]) unicalign = 1;
-#ifdef __GNULINT__
 		else { impossible("Bad unicorn type??"); unicalign = 0; }
-#endif
 #ifdef ALTARS
 		/* If same as altar, always a very bad action. */
 		if (unicalign == altaralign) {

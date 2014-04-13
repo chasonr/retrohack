@@ -1050,11 +1050,11 @@ float_down() {
 		case STATUE_TRAP:
 			break;
 		case TRAPDOOR:
-			if(is_maze_lev
+			if((is_maze_lev
 #ifdef STRONGHOLD
 			   && (dlevel >= stronghold_level || dlevel < MAXLEVEL)
 #endif
-			   || u.ustuck) break;
+			   ) || u.ustuck) break;
 			/* fall into next case */
 		default:
 			dotrap(trap);
@@ -1593,7 +1593,7 @@ dountrap() {	/* disarm a trapped object */
 
 		    if((otmp->otrapped && !confused 
 				&& rn2(MAXLEVEL+2-dlevel) < 10)
-		       || confused && !rn2(3)) {
+		       || (confused && !rn2(3))) {
 			You("find a trap on the %s!  Disarm it? ", xname(otmp));
 
 			switch (ynq()) {
@@ -1602,8 +1602,8 @@ dountrap() {	/* disarm a trapped object */
 			}
 
 			if(otmp->otrapped) {
-			    ch = 15 + (pl_character[0] == 'R') ? u.ulevel*3
-								: u.ulevel;
+			    ch = 15 + ((pl_character[0] == 'R') ? u.ulevel*3
+								: u.ulevel);
 			    if(confused || Fumbling || rnd(75+dlevel/2) > ch) {
 				You("set it off!");
 				(void) chest_trap(otmp, FINGER);
@@ -1647,13 +1647,13 @@ dountrap() {	/* disarm a trapped object */
 
 	if ((levl[x][y].doormask & D_TRAPPED && !confused &&
 	     rn2(MAXLEVEL+2-dlevel) < 10)
-	    || confused && !rn2(3)) {
+	    || (confused && !rn2(3))) {
 		You("find a trap on the door!  Disarm it? ");
 		if (ynq() != 'y') return(1);
 		if (levl[x][y].doormask & D_TRAPPED) {
 		    ch = 15 +
-			 (pl_character[0] == 'R') ? u.ulevel*3 :
-			 u.ulevel;
+			 ((pl_character[0] == 'R') ? u.ulevel*3 :
+			 u.ulevel);
 		    if(confused || Fumbling || rnd(75+dlevel/2) > ch) {
 			    You("set it off!");
 			    b_trapped("door");

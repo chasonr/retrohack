@@ -91,7 +91,6 @@ OSErr macErr;
 
 
 char	in_line[256];
-extern char *FDECL(gets, (char *));
 
 int FDECL(main, (int, char **));
 void NDECL(do_objs);
@@ -260,8 +259,8 @@ do_traps() {
 		exit(1);
 	}
 
-	while(gets(in_line) != NULL) {
-	    (void) puts(in_line);
+	while(fgets(in_line, sizeof(in_line), stdin) != NULL) {
+	    (void) fputs(in_line, stdout);
 	    if(!strncmp(in_line, "/* DO NOT REMOVE THIS LINE */", 29)) break;
 	}
 	ntrap = 10;
@@ -316,13 +315,15 @@ do_rumors(){
 	   might be in record format, count the acutal data bytes instead.
 	 */
 	true_rumor_size = 0;
-	while (gets(in_line) != NULL)  true_rumor_size += strlen(in_line) + 1;
+	while (fgets(in_line, sizeof(in_line), stdin) != NULL)
+		true_rumor_size += strlen(in_line);
 #endif /* VMS */
 	(void) fwrite((genericptr_t)&true_rumor_size,sizeof(long),1,stdout);
 	(void) fseek(stdin, 0L, 0);
 
 	/* copy true rumors */
-	while(gets(in_line) != NULL)	 (void) puts(in_line);
+	while(fgets(in_line, sizeof(in_line), stdin) != NULL)
+		(void) fputs(in_line, stdout);
 
 	Sprintf(infile, "%s.fal", RUMOR_FILE);
 	if(freopen(infile, RDMODE, stdin) == (FILE *)0) {
@@ -331,7 +332,8 @@ do_rumors(){
 	}
 
 	/* copy false rumors */
-	while(gets(in_line) != NULL)	 (void) puts(in_line);
+	while(fgets(in_line, sizeof(in_line), stdin) != NULL)
+		(void) fputs(in_line, stdout);
 
 	(void) fclose(stdin);
 	(void) fclose(stdout);
@@ -403,38 +405,38 @@ do_data(){
 		exit(1);
 	}
 
-	while(gets(in_line) != NULL) {
+	while(fgets(in_line, sizeof(in_line), stdin) != NULL) {
 #ifndef INFERNO
 	    if(skipping_demons)
-		while(gets(in_line) != NULL && strcmp(in_line, "*centaur"))
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && strcmp(in_line, "*centaur"))
 		    ; /* do nothing */
 	    skipping_demons = FALSE;
 #endif
 #ifndef ARMY
 	    if(!strcmp(in_line, "*soldier")) {
-		while(gets(in_line) != NULL && in_line[0] != '\t') ;
-		while(gets(in_line) != NULL && in_line[0] == '\t')
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] != '\t') ;
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] == '\t')
 		    ; /* do nothing */
 	    }
 	    else
 #endif
 #ifndef WORM
 	    if(!strcmp(in_line, "*long worm")) {
-		while(gets(in_line) != NULL && in_line[0] != '\t') ;
-		while(gets(in_line) != NULL && in_line[0] == '\t')
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] != '\t') ;
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] == '\t')
 		    ; /* do nothing */
 	    }
 	    else
 #endif
 #ifndef GOLEMS
 	    if(!strcmp(in_line, "*golem"))
-		while(gets(in_line) != NULL && in_line[0] == '\t')
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] == '\t')
 		    ; /* do nothing */
 	    else
 #endif
 #ifndef MEDUSA
 	    if(!strcmp(in_line, "medusa"))
-		while(gets(in_line) != NULL && in_line[0] == '\t')
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] == '\t')
 		    ; /* do nothing */
 	    else
 #endif
@@ -442,17 +444,17 @@ do_data(){
 	    if(!strcmp(in_line, "snickersnee")
 		|| !strcmp(in_line, "orcrist")
 	      )
-		while(gets(in_line) != NULL && in_line[0] == '\t')
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] == '\t')
 		    ; /* do nothing */
 	    else
 #endif
 #ifndef TOLKIEN
 	    if(!strcmp(in_line, "hobbit"))
-		while(gets(in_line) != NULL && in_line[0] == '\t')
+		while(fgets(in_line, sizeof(in_line), stdin) != NULL && in_line[0] == '\t')
 		    ; /* do nothing */
 	    else
 #endif
-		(void) puts(in_line);
+		(void) fputs(in_line, stdout);
 	}
 	(void) fclose(stdin);
 	(void) fclose(stdout);

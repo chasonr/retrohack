@@ -843,7 +843,7 @@ struct obj *obj;
 				(poly_gender()==1 ? "beautiful" : "handsome") :
 				"ugly");
 		} else {
-		if (Luck <= 10 && rn2(4-Luck/3) || !HTelepat ||
+		if ((Luck <= 10 && rn2(4-Luck/3)) || !HTelepat ||
 		    (u.ukilled_medusa
 #ifdef HARD
 			&& u.udemigod

@@ -43,7 +43,7 @@ void FDECL (init_yyout, (FILE *));
 #ifdef LSC
 # define main _main
 #endif
-main(argc, argv)
+int main(argc, argv)
 int argc;
 char **argv;
 {
@@ -156,7 +156,7 @@ char *s;
 	fprintf(stderr,"%s : line %d : WARNING : %s\n",fname,line_number,s);
 }
 
-yywrap()
+int yywrap()
 {
        return 1;
 }

@@ -58,7 +58,7 @@ extern void FDECL(exit, (int));
 # define Printf printf
 #endif
 
-//#undef NULL
+#undef NULL
 
 #define MAX_REGISTERS	10
 #define ERR		(-1)
@@ -146,7 +146,7 @@ static object *tmpobj[256];
 static drawbridge *tmpdb[256];
 static walk *tmpwalk[256];
 static mazepart *tmppart[10];
-static room *tmproom[MAXNROFROOMS];
+/*static room *tmproom[MAXNROFROOMS];*/
 static specialmaze maze;
 
 static char olist[MAX_REGISTERS], mlist[MAX_REGISTERS];

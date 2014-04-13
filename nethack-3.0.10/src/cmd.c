@@ -751,7 +751,7 @@ register char *cmd;
 		flags.run = 3;
 		goto rush;
 	}
-	if((*cmd == 'm' || (flags.num_pad & *cmd == '-')) &&
+	if((*cmd == 'm' || (flags.num_pad && *cmd == '-')) &&
 	    movecmd(cmd[1])) {
 		flags.run = 0;
 		flags.nopick = 1;

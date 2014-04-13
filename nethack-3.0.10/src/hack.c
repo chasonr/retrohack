@@ -230,9 +230,9 @@ nopushmsg:
 			break;
 		    }
 #endif
-		    if((!invent || inv_weight()+90 <= 0) &&
+		    if(((!invent || inv_weight()+90 <= 0) &&
 			(!u.dx || !u.dy || (IS_ROCK(levl[u.ux][u.uy+u.dy].typ)
-					&& IS_ROCK(levl[u.ux+u.dx][u.uy].typ)))
+					&& IS_ROCK(levl[u.ux+u.dx][u.uy].typ))))
 #ifdef POLYSELF
 			|| verysmall(uasmon)
 #endif

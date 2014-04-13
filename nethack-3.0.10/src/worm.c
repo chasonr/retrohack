@@ -186,7 +186,7 @@ unsigned weptyp;		/* uwep->otyp or 0 */
 
 	/* cutting goes best with axe or sword */
 	tmp = rnd(20);
-	if(weptyp >= SHORT_SWORD && weptyp <= KATANA ||
+	if((weptyp >= SHORT_SWORD && weptyp <= KATANA) ||
 	   weptyp == AXE)
 		tmp += 5;
 

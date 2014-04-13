@@ -19,6 +19,7 @@
 #include "hack.h"	/* mainly for index() which depends on BSD */
 
 #include <errno.h>
+#include <signal.h>
 #include <sys/stat.h>
 #ifdef NO_FILE_LINKS
 #include <fcntl.h>

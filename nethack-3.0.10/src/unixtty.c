@@ -122,7 +122,7 @@ const char *s;
 {
 	clear_screen();
 	end_screen();
-	if(s) Printf(s);
+	if(s) Printf("%s", s);
 	(void) fflush(stdout);
 	if(STTY(&inittyb) < 0 || STTY2(&inittyb2) < 0)
 		perror("NetHack (settty)");

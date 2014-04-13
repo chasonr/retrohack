@@ -239,7 +239,7 @@ uchar ch,typ;
 		 * will still hilite the doorway symbol.  -3.
 		 */
 		if (!vism_at(x,y) &&
-		    (!OBJ_AT(x, y) && !levl[x][y].gmask || is_pool(x,y)))
+		    ((!OBJ_AT(x, y) && !levl[x][y].gmask) || is_pool(x,y)))
 		    typ = AT_MAP;
 
 #ifdef CLIPPING
@@ -1083,9 +1083,9 @@ bot1()
 			mbot[k] += 'A' - 'a';
 		    k++;
 		}
-		Sprintf(eos(newbot1), mbot);
+		Sprintf(eos(newbot1), "%s", mbot);
 	} else
-		Sprintf(eos(newbot1), rank());
+		Sprintf(eos(newbot1), "%s", rank());
 #else
 	Sprintf(eos(newbot1), rank());
 #endif

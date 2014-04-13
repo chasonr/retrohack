@@ -350,7 +350,8 @@ E_phrase(etmp, verb)
 struct entity *etmp;
 const char *verb;
 {
-	char wholebuf[80], verbbuf[30];
+	static char wholebuf[80];
+	char verbbuf[30];
 
 	if (is_u(etmp)) 
 		Strcpy(wholebuf, "You");

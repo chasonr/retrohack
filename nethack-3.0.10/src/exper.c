@@ -31,7 +31,7 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	tmp = 1 + mtmp->m_lev * mtmp->m_lev;
 
 /*	For higher ac values, give extra experience */
-	if(ptr->ac < 3) tmp += (7 - ptr->ac) * (ptr->ac < 0) ? 2 : 1;
+	if(ptr->ac < 3) tmp += (7 - ptr->ac) * ((ptr->ac < 0) ? 2 : 1);
 
 /*	For very fast monsters, give extra experience */
 	if(ptr->mmove >= 12) tmp += (ptr->mmove >= 18) ? 5 : 3;
