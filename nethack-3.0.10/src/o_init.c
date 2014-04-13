@@ -4,9 +4,10 @@
 
 #include	"hack.h"		/* for typedefs */
 
-#if defined(LATTICE) 				/* This is NOT */
-# define MACOS					/* a typo! */
-#endif
+/* This symbol was formerly MACOS (as in prior to OS X).  When enabled, the
+   shuffled object names are saved by index.  This seems to be necessary on
+   OS X and is probably a good idea on all platforms. */
+#define SAVE_NAMES_BY_NUM
 
 static void NDECL(setgemprobs);
 static void FDECL(shuffle,(int,int,BOOLEAN_P));
@@ -17,8 +18,8 @@ static boolean FDECL(interesting_to_discover,(int));
  * in the objects array
  */
 #define TOTAL_OBJS	(NROFOBJECTS+2)
-#ifdef MACOS
-short *switches;    /* used to allow position independent loads of app */
+#ifdef SAVE_NAMES_BY_NUM
+short switches[TOTAL_OBJS]; /* used to allow position independent loads of app */
 		    /* by storing the number of the description string */
 		    /* [at startup of the game] not the pointer to the string */
 #endif
@@ -83,7 +84,7 @@ shuffle(o_low, o_high, domaterial)
 	int color;
 #endif /* TEXTCOLOR */
 	int tmp;
-#ifdef MACOS
+#ifdef SAVE_NAMES_BY_NUM
 	short	sw;
 #endif
 
@@ -107,7 +108,7 @@ shuffle(o_low, o_high, domaterial)
 			objects[j].oc_material = objects[i].oc_material;
 			objects[i].oc_material = tmp;
 		}
-#ifdef MACOS
+#ifdef SAVE_NAMES_BY_NUM
 		/* keep track of shuffling of object descriptions */
 		sw=switches[j];
 		switches[j]=switches[i];
@@ -128,6 +129,10 @@ register char let;
 		bases[i] = 0;
 	for(i = 0; i != TOTAL_OBJS; i++)
 		disco[i] = i;
+#ifdef SAVE_NAMES_BY_NUM
+	for(i = 0; i != TOTAL_OBJS; i++)
+		switches[i] = i;
+#endif
 #ifdef NAMED_ITEMS
 	init_exists();	/* zero out the "artifact exists" list */
 #endif
@@ -238,17 +243,17 @@ register int fd;
 {
 	register int i;
 	unsigned int len;
-#ifdef MACOS
-	char	*descr[TOTAL_OBJS];
+#ifdef SAVE_NAMES_BY_NUM
+	const char *descr[TOTAL_OBJS];
 #endif
 	const char *now = objects[0].oc_name; /* location of "strange object" */
 	bwrite(fd, (genericptr_t)&now, sizeof now);
 	bwrite(fd, (genericptr_t)bases, sizeof bases);
 	bwrite(fd, (genericptr_t)disco, sizeof disco);
-#ifdef MACOS
+#ifdef SAVE_NAMES_BY_NUM
 	for (i = 0 ; i < TOTAL_OBJS; i++) {
 		descr[i] = objects[i].oc_descr;
-		objects[i].oc_descr = (const char *)switches[i];
+		objects[i].oc_descr = (const char *)(long)switches[i];
 	}
 #endif
 	bwrite(fd, (genericptr_t)objects, sizeof(struct objclass) * TOTAL_OBJS);
@@ -256,7 +261,7 @@ register int fd;
 	   need not save oc_name and oc_descr, but we must save
 	   oc_uname for all objects */
 	for(i=0; i < TOTAL_OBJS; i++) {
-#ifdef MACOS
+#ifdef SAVE_NAMES_BY_NUM
 		objects[i].oc_descr = descr[i];
 #endif
 		if(objects[i].oc_uname) {
@@ -274,8 +279,10 @@ register int fd;
 	register int i;
 	unsigned int len;
 	char *then;	/* old location of "strange object" */
+#ifndef SAVE_NAMES_BY_NUM
 	register int differ;	/*(ptrdiff_t)*/
-#ifdef MACOS
+#endif
+#ifdef SAVE_NAMES_BY_NUM
 	/* provides position-independent save & restore */
 	/* by giving each object a number, keep track of it */
 	/* when shuffled and save the numbers instead of the */
@@ -284,8 +291,8 @@ register int fd;
 	/* On restore, the retrieved numbers are matched with the */
 	/* numbers and object descriptions in the program */
 	struct descr {
-		char	*name,
-				*descr;
+		const char *name,
+			   *descr;
 	} d[TOTAL_OBJS];
 
 	/* save the current object descriptions */
@@ -298,7 +305,7 @@ register int fd;
 	mread(fd, (genericptr_t) bases, sizeof bases);
 	mread(fd, (genericptr_t) disco, sizeof disco);
 	mread(fd, (genericptr_t) objects, sizeof(struct objclass) * TOTAL_OBJS);
-#ifdef MACOS
+#ifdef SAVE_NAMES_BY_NUM
 	for (i = 0; i < TOTAL_OBJS; i++) {
 		objects[i].oc_name = d[i].name;
 		switches[i] = (short)objects[i].oc_descr;
@@ -306,14 +313,14 @@ register int fd;
 	}
 #else
 	differ = objects[0].oc_name - then;	/* note: expected to be 0 */
-#endif	/* MACOS */
+#endif	/* SAVE_NAMES_BY_NUM */
 	for(i=0; i < TOTAL_OBJS; i++) {
-#ifndef MACOS
+#ifndef SAVE_NAMES_BY_NUM
 		if (differ && objects[i].oc_name)
 			objects[i].oc_name += differ;
 		if (differ && objects[i].oc_descr)
 			objects[i].oc_descr += differ;
-#endif /* MACOS */
+#endif /* SAVE_NAMES_BY_NUM */
 		if (objects[i].oc_uname) {
 			mread(fd, (genericptr_t) &len, sizeof len);
 			objects[i].oc_uname = (char *) alloc(len);
