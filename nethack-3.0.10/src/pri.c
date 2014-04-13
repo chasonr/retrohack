@@ -1416,7 +1416,7 @@ uchar let, typ;
 	g_putch(let);
 
 #ifdef TEXTCOLOR
-	if (typ && colorit) xputs(HE); else
+	if (typ && colorit) m_end(); else
 #endif
 #ifdef REINCARNATION
 	if (typ == AT_MON && dlevel != rogue_level) m_end();
