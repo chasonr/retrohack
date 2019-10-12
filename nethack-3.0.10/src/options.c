@@ -1150,11 +1150,7 @@ char *str;
 {
 	register int i,j;
 	register struct fruit *f;
-#ifdef __GNULINT__
 	struct fruit *lastf = 0;
-#else
-	struct fruit *lastf;
-#endif
 	int highest_fruit_id = 0;
 	char buf[PL_FSIZ];
 	boolean user_specified = (str == pl_fruit);

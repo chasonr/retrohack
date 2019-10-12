@@ -604,7 +604,7 @@ prscore(argc,argv)
 int argc;
 char **argv;
 {
-	const char **players;
+	const char **players = NULL;
 	int playerct;
 	int rank;
 	register struct toptenentry *t1, *t2;

@@ -1410,11 +1410,7 @@ register int dx,dy;
 	register const char *fltxt = fl[abs(type)];
 	struct rm *lev;
 	register xchar lsx, lsy;
-#ifdef __GNULINT__
 	xchar range, olx=0, oly=0;
-#else
-	xchar range, olx, oly;
-#endif
 	struct monst *mon;
 	register boolean bodyhit = FALSE;
 	register boolean shopdoor = FALSE;
@@ -1949,9 +1945,7 @@ register int osym, dmgtyp;
 	    obj2 = obj->nobj;
 	    if(obj->olet != osym) continue; /* test only objs of type osym */
 	    xresist = skip = 0;
-#ifdef __GNULINT__
 	    quan = dmg = dindx = 0;
-#endif
 	    switch(dmgtyp) {
 		case AD_COLD:
 		    if(osym == POTION_SYM) {
@@ -2056,9 +2050,7 @@ register int osym, dmgtyp;
 	    obj2 = obj->nobj;
 	    if(obj->olet != osym) continue; /* test only objs of type osym */
 	    skip = 0;
-#ifdef __GNULINT__
 	    quan = dindx = 0;
-#endif
 	    switch(dmgtyp) {
 		case AD_COLD:
 		    if(osym == POTION_SYM) {

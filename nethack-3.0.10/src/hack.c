@@ -784,10 +784,8 @@ void
 lookaround() {
 	register int x, y, i, x0, y0, m0, i0 = 9, corrct = 0, noturn = 0;
 	register struct monst *mtmp;
-#if defined(LINT) || defined(__GNULINT__)
 	/* suppress "used before set" message */
 	x0 = y0 = m0 = 0;
-#endif
 #ifdef POLYSELF
 	/* Grid bugs stop if trying to move diagonal, even if blind.  Maybe */
 	/* they polymorphed while in the middle of a long move. */

@@ -493,9 +493,7 @@ register int	x, y;
 	if(x == 0 && y == 0) {
 		int uroom;
 		int tryct = 0;	/* careful with bigrooms */
-#ifdef __GNULINT__
 		uroom = 0;	/* supress used before set warning */
-#endif
 		if(!in_mklev) uroom = inroom(u.ux, u.uy);
 
 		do {
@@ -914,9 +912,7 @@ rndmonst()		/* select a random monster */
 	upper = (dlevel == rogue_level);
 #endif
 
-#ifdef __GNULINT__
 	ptr = (struct permonst *)0; /* suppress "used uninitialized" warning */
-#endif
 	if(oldmoves != moves) {		/* must recalculate accept */
 	    oldmoves = moves;
 	    zlevel = u.uhave_amulet ? MAXLEVEL : dlevel;

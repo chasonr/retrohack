@@ -249,9 +249,7 @@ u_init()
 {
 	register int i;
 	char pick, pc;
-#ifdef __GNULINT__
 	pick = i = 0;	/* prevent "used before set" warnings */
-#endif
 	Printf("\nNetHack, Copyright 1985, 1986, 1987, 1988, 1989, 1990.");
 	Printf("\n         By Stichting Mathematisch Centrum and M. Stephenson.");
 	Printf("\n         See license for details.\n\n");

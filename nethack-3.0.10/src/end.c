@@ -494,9 +494,7 @@ die:
 		struct obj *jewels = (struct obj *)0;
 		long i;
 		register unsigned int worthlessct = 0;
-#if defined(LINT) || defined(__GNULINT__)
 		prevobj = (struct obj *)0;
-#endif
 
 		/* put items that count into jewels chain
 		 * rewriting the fcobj and invent chains here is safe,

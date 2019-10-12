@@ -167,9 +167,7 @@ pick_lock(pick) /* pick a lock with a given object */
 	register struct rm	*door;
 	register struct obj	*otmp;
 
-#ifdef __GNULINT__
 	ch = 0;		/* GCC myopia */
-#endif
 	picktyp = pick->otyp;
 	if(xlock.usedtime && picktyp == xlock.picktyp) {
 

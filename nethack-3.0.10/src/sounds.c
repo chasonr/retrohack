@@ -35,9 +35,7 @@ dosounds()
     boolean gold_in_vault, u_in_room;
     register int vx, vy;
 
-#ifdef __GNULINT__
     gold_in_vault = u_in_room = FALSE;
-#endif
 
     hallu = Hallucination ? 1 : 0;
 

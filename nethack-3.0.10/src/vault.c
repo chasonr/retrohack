@@ -229,9 +229,7 @@ register struct monst *grd;
 	register struct gold *gold;
 	register boolean goldincorridor = FALSE;
 
-#ifdef __GNULINT__
 	m = n = 0;
-#endif
 	if(EGD(grd)->gdlevel != dlevel) return(-1);
 	if(!grd->mpeaceful) {
 	    if((in_vault(grd->mx, grd->my) && !in_vault(u.ux, u.uy)) ||

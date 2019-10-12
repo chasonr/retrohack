@@ -849,9 +849,7 @@ register struct obj *cobj;
 {
 	register struct obj *otmp, *otmp2, *probj;
 
-#if defined(LINT) || defined(__GNULINT__)
 	probj = (struct obj *)0;    /* suppress "used before set" error */
-#endif
 	for(otmp = fcobj; otmp; otmp = otmp2) {
 
 	    otmp2 = otmp->nobj;

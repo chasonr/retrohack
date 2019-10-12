@@ -1099,9 +1099,7 @@ register struct mkroom *croom;
 
 	xchar mx,my;
 
-#ifdef __GNULINT__
 	kind = nomimic = 0;
-#endif
 	if(!num || num >= TRAPNUM) {
 		nomonst = (dlevel < 4) ? 1 : 0;
 		nolevltp = (dlevel < 5) ? 1 : 0;

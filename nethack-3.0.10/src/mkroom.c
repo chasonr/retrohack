@@ -78,11 +78,7 @@ mkshop()
 	register struct mkroom *sroom;
 	int i = -1;
 #ifdef WIZARD
-# ifdef __GNULINT__
 	register char *ep = (char *)0;
-# else
-	register char *ep;
-# endif
 
 	/* first determine shoptype */
 	if(wizard){
@@ -209,10 +205,8 @@ int type;
 	sroom->rtype = type;
 	sh = sroom->fdoor;
 	switch(type) {
-#ifdef __GNULINT__
 	    default:
 		/* make sure tx and ty are initialized */
-#endif
 	    case COURT:
 		tx = somex(sroom); ty = somey(sroom); break;
 		/* TODO: try to ensure the enthroned monster is an M2_PRINCE */

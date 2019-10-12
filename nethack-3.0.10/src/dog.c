@@ -117,9 +117,7 @@ losedogs(){
 		fmon = mtmp;
 		mnexto(mtmp);
 	}
-#if defined(LINT) || defined(__GNULINT__)
 	mtmp0 = (struct monst *)0;
-#endif
 	for(mtmp = fallen_down; mtmp; mtmp = mtmp2) {
 		mtmp2 = mtmp->nmon;
 		if(mtmp->mx == dlevel) {

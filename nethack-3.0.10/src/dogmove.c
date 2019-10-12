@@ -87,9 +87,7 @@ long allowflags;
 #define GDIST(x,y) (dist2(x,y,gx,gy))
 #define DDIST(x,y) (dist2(x,y,omx,omy))
 
-#ifdef __GNULINT__
 	chi = -1;	/* gcc warning from 'goto newdogpos' */
-#endif
 	omx = mtmp->mx;
 	omy = mtmp->my;
 	whappr = (moves - edog->whistletime < 5);
