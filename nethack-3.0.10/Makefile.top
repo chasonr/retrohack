@@ -27,7 +27,7 @@ GAMEGRP  = bin
 # instructions)
 GAMEDIR  = /usr/games/lib/$(GAME)dir
 SHELLDIR = /usr/games
-MANDIR   = /usr/man/man6
+MANDIR   = /usr/share/man/man6
 MANEXT   = 6
 
 # manual installation for most BSD-style systems
