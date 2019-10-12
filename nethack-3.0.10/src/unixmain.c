@@ -270,7 +270,7 @@ char *argv[];
 	regularize(SAVEF+5);		/* avoid . or / in name */
 #ifdef COMPRESS
 	Strcpy(old,SAVEF);
-	Strcat(SAVEF,".Z");
+	Strcat(SAVEF,COMPRESS_EXTENSION);
 	if((fd = open(SAVEF,O_RDONLY)) >= 0) {
  	    (void) close(fd);
 	    Strcpy(cmd, COMPRESS);

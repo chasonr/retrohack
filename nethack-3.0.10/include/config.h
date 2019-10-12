@@ -158,6 +158,7 @@
 #ifndef MACOS
 /*#define COMPRESS "/usr/local/compress"*/  /* path name for 'compress' */
 #define COMPRESS "/bin/gzip"
+#define COMPRESS_EXTENSION ".gz"		/* normal gzip extension */
 # ifndef COMPRESS
 #define ZEROCOMP	/* Use only if COMPRESS is not used -- Olaf Seibert */
 # endif

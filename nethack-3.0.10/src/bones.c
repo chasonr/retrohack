@@ -153,7 +153,7 @@ savebones(){
 	name_file(bones, dlevel);
 #ifdef COMPRESS
 	Strcpy(proxy, bones);
-	Strcat(proxy, ".Z");
+	Strcat(proxy, COMPRESS_EXTENSION);
 
 	if((fd = open(proxy, OMASK)) >= 0) {
 #else
@@ -374,7 +374,7 @@ getbones() {
 #ifdef COMPRESS
 	if((fd = open(bones, OMASK)) >= 0) goto gotbones;
 	Strcpy(proxy, bones);
-	Strcat(proxy, ".Z");
+	Strcat(proxy, COMPRESS_EXTENSION);
 	if((fd = open(proxy, OMASK)) < 0) return(0);
 	else {
 	    (void) close(fd);
