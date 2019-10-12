@@ -6,7 +6,7 @@
 
 STATIC_DCL int FDECL(movedist,(int,int,int,int));
 STATIC_DCL void FDECL(drop_throw,(struct obj *,BOOLEAN_P,int,int));
-STATIC_DCL void FDECL(m_throw,(struct monst *,int,int,int,int,int,struct obj *));
+STATIC_DCL void FDECL(m_throw,(struct monst *,int,int,int,int,int,struct obj **));
 
 #define URETREATING(x,y) (movedist(u.ux,u.uy,x,y) > movedist(u.ux0,u.uy0,x,y))
 
@@ -102,35 +102,36 @@ STATIC_OVL void
 m_throw(mon, x, y, dx, dy, range, obj)
 	register struct monst *mon;
 	register int x,y,dx,dy,range;		/* direction and range */
-	register struct obj *obj;
+	register struct obj **obj;
 {
 	register struct monst *mtmp;
 	struct obj *singleobj;
-	char sym = obj->olet;
+	char sym = (*obj)->olet;
 	int damage;
 	int hitu, blindinc=0;
 
 	bhitpos.x = x;
 	bhitpos.y = y;
 
-	singleobj = splitobj(obj, (int)obj->quan-1);
+	singleobj = splitobj((*obj), (int)(*obj)->quan-1);
 	/* splitobj leaves the new object in the chain (i.e. the monster's
 	 * inventory).  Remove it.  We can do this in 1 line, but it's highly
 	 * dependent on the fact that we know splitobj() places it immediately
 	 * after obj.
 	 */
-	obj->nobj = singleobj->nobj;
+	(*obj)->nobj = singleobj->nobj;
 	/* Get rid of object.  This cannot be done later on; what if the
 	 * player dies before then, leaving the monster with 0 daggers?
 	 * (This caused the infamous 2^32-1 orcish dagger bug).
 	 */
-	if (!obj->quan) {
-		if(obj->olet == VENOM_SYM) {
+	if (!(*obj)->quan) {
+		if((*obj)->olet == VENOM_SYM) {
 			/* venom is not in the monster's inventory chain */
-			free((genericptr_t) obj);
+			free((genericptr_t) (*obj));
 		} else {
-			m_useup(mon, obj);
+			m_useup(mon, (*obj));
 		}
+        *obj = NULL;
 	}
 
 	/* Note: drop_throw may destroy singleobj.  Since obj must be destroyed
@@ -361,8 +362,8 @@ register struct monst *mtmp;
 			pline("%s %s %s!", Monnam(mtmp), verb, an(xname(otmp)));
 		    otmp->quan = savequan;
 		    m_throw(mtmp, mtmp->mx, mtmp->my, sgn(tbx), sgn(tby), 
-			movedist(mtmp->mx,mtmp->mux,mtmp->my,mtmp->muy), otmp);
-		    if (!otmp->quan) m_useup(mtmp, otmp);
+			movedist(mtmp->mx,mtmp->mux,mtmp->my,mtmp->muy), &otmp);
+		    if (otmp && !otmp->quan) m_useup(mtmp, otmp);
 		    nomul(0);
 		    return 0;
 		}
@@ -379,7 +380,7 @@ spitmu(mtmp, mattk)		/* monster spits substance at you */
 register struct monst *mtmp;
 register struct attack *mattk;
 {
-	register struct obj *otmp;
+	struct obj *otmp;
 
 	if(mtmp->mcan) {
 
@@ -404,7 +405,7 @@ register struct attack *mattk;
 		    if (canseemon(mtmp))
 			pline("%s spits venom!", Monnam(mtmp));
 		    m_throw(mtmp, mtmp->mx, mtmp->my, sgn(tbx), sgn(tby), 
-			movedist(mtmp->mx,mtmp->mux,mtmp->my,mtmp->muy), otmp);
+			movedist(mtmp->mx,mtmp->mux,mtmp->my,mtmp->muy), &otmp);
 		    nomul(0);
 		    return 0;
 		}
