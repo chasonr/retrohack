@@ -766,7 +766,7 @@ const int ti_map[8] = {
 static void
 init_hilite()
 {
-#  ifdef __APPLE__
+#  if defined(__APPLE__) || defined(__linux__)
 	static const uchar reverse[] = { 0, 4, 2, 6, 1, 5, 3, 7 };
 #  endif
 	register int c0, c;
@@ -785,7 +785,7 @@ init_hilite()
 		return;
 
 	for (c0 = 0; c0 < MAXCOLORS / 2; c0++) {
-#  ifdef __APPLE__
+#  if defined(__APPLE__) || defined(__linux__)
 		c = reverse[c0];
 #  else
 		c = c0;

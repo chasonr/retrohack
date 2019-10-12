@@ -81,7 +81,7 @@
 #   define TEXTCOLOR
 #   define TERMINFO
 #endif
-#ifdef __LINUX__
+#ifdef __linux__
 #   define SYSV
 #   define TEXTCOLOR
 #   define TERMINFO
