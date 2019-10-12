@@ -1179,12 +1179,12 @@ char *str;
 			}
 		}
 		if (found ||
-		    (!strncmp(buf, "tin of ", 7) && name_to_mon(buf+7) > -1) ||
-		    !strcmp(buf, "empty tin") ||
-		    !strcmp(buf, "tin of spinach") ||
-		    ((!strncmp(eos(buf)-6," corpse",7) ||
-						!strncmp(eos(buf)-3, " egg",4))
-			&& name_to_mon(buf) > -1))
+		    (!strncmp(pl_fruit, "tin of ", 7) && name_to_mon(pl_fruit+7) > -1) ||
+		    !strcmp(pl_fruit, "empty tin") ||
+		    !strcmp(pl_fruit, "tin of spinach") ||
+		    ((!strncmp(eos(pl_fruit)-6," corpse",7) ||
+						!strncmp(eos(pl_fruit)-3, " egg",4))
+			&& name_to_mon(pl_fruit) > -1))
 			{
 				Strcpy(buf, pl_fruit);
 				Strcpy(pl_fruit, "candied ");
