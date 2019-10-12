@@ -36,6 +36,7 @@ register unsigned int lth;
 
 	if(!(ptr = malloc(lth)))
 		panic("Cannot get %d bytes", lth);
+	memset(ptr, 0, lth);
 	return((long *) ptr);
 }
 #endif
