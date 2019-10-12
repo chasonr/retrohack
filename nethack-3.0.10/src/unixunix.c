@@ -66,10 +66,10 @@ getyear()
 char *
 get_date()
 {
-#ifdef LINT	/* static char datestr[7]; */
-	char datestr[7];
+#ifdef LINT	/* static char datestr[9]; */
+	char datestr[9];
 #else
-	static char datestr[7];
+	static char datestr[9];
 #endif
 	register struct tm *lt = getlt();
 
