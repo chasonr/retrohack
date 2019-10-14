@@ -18,34 +18,34 @@ extern xchar dlevel;
 
 #ifdef SPELLS
 #include "spell.h"
-extern	struct spell spl_book[];	/* sized in decl.c */
+extern struct spell spl_book[]; /* sized in decl.c */
 #endif
 
 extern int occtime;
-extern char *occtxt;		/* defined when occupation != NULL */
+extern char *occtxt; /* defined when occupation != NULL */
 
 #ifdef REDO
 extern int in_doagain;
 #endif
 
-extern char *HI, *HE;		/* set up in termcap.c */
+extern char *HI, *HE; /* set up in termcap.c */
 #ifdef MSDOSCOLOR
-extern char *HI_MON, *HI_OBJ;	/* set up in termcap.c */
+extern char *HI_MON, *HI_OBJ; /* set up in termcap.c */
 #endif
 
 #include "obj.h"
-extern struct obj *invent, *uwep, *uarm, *uarm2, *uarmh, *uarms, *uarmg, 
+extern struct obj *invent, *uwep, *uarm, *uarm2, *uarmh, *uarms, *uarmg,
 #ifdef SHIRT
-	*uarmu, /* under-wear, so to speak */
+    *uarmu, /* under-wear, so to speak */
 #endif
-	*uleft, *uright, *fcobj;
-extern struct obj *uchain;	/* defined iff PUNISHED */
-extern struct obj *uball;	/* defined if PUNISHED */
+    *uleft, *uright, *fcobj;
+extern struct obj *uchain; /* defined iff PUNISHED */
+extern struct obj *uball;  /* defined if PUNISHED */
 struct obj *o_at(), *getobj(), *sobj_at();
 
 extern char *traps[];
-extern char *monnam(), *Monnam(), *amonnam(), *Amonnam(),
-	*doname(), *aobjnam();
+extern char *monnam(), *Monnam(), *amonnam(), *Amonnam(), *doname(),
+    *aobjnam();
 extern char readchar();
 extern char vowels[];
 
@@ -53,10 +53,10 @@ extern char vowels[];
 
 extern struct you u;
 
-extern xchar curx,cury;	/* cursor location on screen */
+extern xchar curx, cury; /* cursor location on screen */
 
-extern xchar seehx,seelx,seehy,seely; /* where to see*/
-extern char *save_cm,*killer;
+extern xchar seehx, seelx, seehy, seely; /* where to see*/
+extern char *save_cm, *killer;
 
 extern xchar dlevel, maxdlevel; /* dungeon level */
 
