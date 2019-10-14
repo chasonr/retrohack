@@ -21,6 +21,10 @@ int (*occupation)();
 int done1();
 int hangup();
 
+#ifdef CHDIR
+static void chdirx(/* char *dir, boolean wr */);
+#endif
+
 int hackpid; /* current pid */
 int locknum; /* max num of players */
 #ifdef DEF_PAGER
@@ -498,7 +502,8 @@ register char *s;
 }
 
 #ifdef CHDIR
-static chdirx(dir, wr)
+static void
+chdirx(dir, wr)
 char *dir;
 boolean wr;
 {

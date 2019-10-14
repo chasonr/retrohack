@@ -6,6 +6,7 @@
 extern char *nomovemsg;
 extern char quitchars[];
 extern char *Doname();
+static int marmoroff(/* struct obj *otmp */);
 
 off_msg(otmp)
 register struct obj *otmp;
@@ -474,7 +475,7 @@ register struct obj *obj;
     return (1);
 }
 
-static
+static int
 marmoroff(otmp)
 register struct obj *otmp;
 {

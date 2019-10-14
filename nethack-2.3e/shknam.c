@@ -3,8 +3,8 @@
 
 /* shknam.c -- initialize a shop */
 
-#include "eshk.h"
 #include "hack.h"
+#include "eshk.h"
 #include "mkroom.h"
 
 extern struct monst *makemon();

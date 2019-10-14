@@ -1,6 +1,9 @@
 /*	SCCS Id: @(#)eshk.h	2.1	87/09/28
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include "coord.h"
+#include "global.h"
+
 #define BILLSZ 200
 
 struct bill_x {

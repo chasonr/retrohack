@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)monst.c	2.3	87/12/16
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include "config.h"
 #include "edog.h"
 #include "eshk.h"
 #include "hack.h"

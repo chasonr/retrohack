@@ -258,7 +258,7 @@ static int last_multi;
 char *
 parse()
 {
-    static char inline[COLNO];
+    static char in_line[COLNO];
     register foo;
 
     multi = 0;
@@ -291,25 +291,25 @@ parse()
 #endif
     if (multi) {
         multi--;
-        save_cm = inline;
+        save_cm = in_line;
     }
-    inline[0] = foo;
-    inline[1] = 0;
+    in_line[0] = foo;
+    in_line[1] = 0;
     if (foo == 'g' || foo == 'G') {
-        inline[1] = getchar();
+        in_line[1] = getchar();
 #ifdef QUEST
-        if (inline[1] == foo)
-            inline[2] = getchar();
+        if (in_line[1] == foo)
+            in_line[2] = getchar();
         else
 #endif
-            inline[2] = 0;
+            in_line[2] = 0;
     }
     if (foo == 'm' || foo == 'M') {
-        inline[1] = getchar();
-        inline[2] = 0;
+        in_line[1] = getchar();
+        in_line[2] = 0;
     }
     clrlin();
-    return (inline);
+    return (in_line);
 }
 
 char

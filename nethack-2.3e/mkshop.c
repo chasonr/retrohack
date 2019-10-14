@@ -20,6 +20,11 @@ extern struct permonst pm_soldier;
 extern struct obj *mkobj_at(), *mksobj_at();
 extern void stock_room();
 extern int nroom;
+static void mkshop();
+static void mkzoo(/* int type */);
+static struct permonst *morguemon();
+static void mkswamp();
+static int sq(/* int a */);
 
 static boolean
 isbig(sroom)
@@ -34,8 +39,6 @@ void
 mkroom(roomtype)
 int roomtype;
 {
-    void mkshop(), mkzoo(), mkswamp();
-
     if (roomtype >= SHOPBASE)
         mkshop(); /* someday, we should be able to specify shop type */
     else
@@ -164,7 +167,6 @@ int type;
     register int sh, sx, sy, i;
     int goldlim = 500 * dlevel;
     int moct = 0;
-    struct permonst *morguemon();
 #ifdef NEWCLASS
     struct permonst *courtmon();
 #endif

@@ -16,7 +16,11 @@ extern char pl_character[];
 extern void set_occupation();
 #endif
 #ifdef KAA
+static use_stethoscope();
 extern boolean unweapon;
+#endif
+#ifdef WALKIES
+static int use_leash(/* struct obj *obj */);
 #endif
 static use_camera(), use_ice_box(), use_whistle();
 static use_magic_whistle(), use_pick_axe();
@@ -401,7 +405,7 @@ struct obj *obj;
 
 #ifdef WALKIES
 /* ARGSUSED */
-static
+static int
 use_leash(obj)
 struct obj *obj;
 {

@@ -46,9 +46,9 @@ outrip()
             ? ""
             : !strcmp(killer, "starvation")
                   ? ""
-                  : !strncmp(killer, "Mr.")
+                  : !strncmp(killer, "Mr.", 3)
                         ? ""
-                        : !strncmp(killer, "Ms.")
+                        : !strncmp(killer, "Ms.", 3)
                               ? ""
                               :
 #ifdef STOOGES

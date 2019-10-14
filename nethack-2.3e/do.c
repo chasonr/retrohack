@@ -15,6 +15,7 @@ int identify();
 #ifdef KAA
 extern char *xname();
 #endif
+static int drop(/* struct obj *obj */);
 
 dodrop()
 {
@@ -24,7 +25,7 @@ dodrop()
         return (drop(getobj("0#", "drop")));
 }
 
-static
+static int
 drop(obj)
 register struct obj *obj;
 {

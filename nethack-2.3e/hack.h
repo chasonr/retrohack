@@ -23,10 +23,7 @@
 #define Null(type) ((struct type *) 0)
 
 #include "objclass.h"
-
-typedef struct {
-    xchar x, y;
-} coord;
+#include "coord.h"
 
 extern coord bhitpos; /* place where thrown weapon falls to the ground */
 
@@ -34,12 +31,12 @@ extern coord bhitpos; /* place where thrown weapon falls to the ground */
 #include "gold.h"
 #include "monst.h" /* uses coord */
 #include "trap.h"
+#include "global.h"
 
 #define plur(x) (((x) == 1) ? "" : "s")
 #define min(x, y) ((x) < (y) ? (x) : (y))
 
 #define BUFSZ 256  /* for getlin buffers */
-#define PL_NSIZ 32 /* name of player, ghost, shopkeeper */
 
 #include "rm.h"
 

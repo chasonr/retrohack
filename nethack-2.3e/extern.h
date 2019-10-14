@@ -7,7 +7,7 @@
  *	I have been told, that in Sys V R3.1, this has to be commented out.
  */
 #ifndef MSDOS
-extern char *sprintf();
+/*extern char *sprintf();*/
 #endif
 
 extern long *alloc();

@@ -22,7 +22,7 @@
 #endif
 #define UNIX /* delete if no fork(), exec() available */
 /* #define	GENIX		/* Yet Another Unix Clone */
-#define BSD /* defind for 4.n BSD  */
+/* #define BSD */	/* defind for 4.n BSD  */
 /* #define SYSV		/* define for System V */
 /* #define NETWORK	/* if running on a networked system */
 
@@ -34,6 +34,19 @@
 /* #define STUPID		/* avoid some complicated expressions if
                            your C compiler chokes on them */
 /* #define TERMINFO		/* uses "curses" rather than termcap */
+
+/* Two popular Unix-like systems */
+#ifdef __APPLE__
+/* Mac OS X */
+#   define BSD
+#   define TEXTCOLOR
+#   define TERMINFO
+#endif
+#ifdef __linux__
+#   define SYSV
+#   define TEXTCOLOR
+#   define TERMINFO
+#endif
 
 #ifdef __TURBOC__
 #define alloc malloc

@@ -12,7 +12,9 @@ CFLAGS = -O
 LFLAGS =
 
 # on some systems the termcap library is in -ltermcap
-TERMLIB = -ltermlib
+#TERMLIB = -ltermlib
+#TERMLIB = -ltermcap
+TERMLIB = -lcurses
 
 # make NetHack
 GAME     = nethack
