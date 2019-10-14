@@ -27,6 +27,7 @@ static char SCCS_Id[] = "@(#)makedefs.c	2.3\t88/02/18";
 
 char in_line[256], outline[256];
 
+int
 main(argc, argv)
 int argc;
 char *argv[];
@@ -66,6 +67,7 @@ char *argv[];
     exit(1);
 }
 
+void
 do_traps()
 {
     int ntrap, getpid();
@@ -126,6 +128,7 @@ struct hline {
     char *line;
 } * f_line;
 
+void
 do_rumors()
 {
     struct hline *c_line;
@@ -170,6 +173,7 @@ do_rumors()
     fclose(stdout);
 }
 
+void
 do_date()
 {
     int getpid();
@@ -207,6 +211,7 @@ do_date()
     rename(tmpfile, DATE_FILE);
 }
 
+void
 do_data()
 {
     int getpid();
@@ -329,6 +334,7 @@ struct objdef {
     char string[STRSZ];
 } * more, *current;
 
+int
 do_objs()
 {
     register int index = 0;
@@ -423,6 +429,7 @@ char *name;
     return (temp);
 }
 
+void
 newobj()
 {
     extern long *alloc();
@@ -453,6 +460,7 @@ struct inherent {
                   "",
                   "" };
 
+int
 specprop(name, count)
 char *name;
 int count;
@@ -477,6 +485,7 @@ int count;
 char line[LINSZ], *lp = line, *lp0 = line, *lpe = line;
 int xeof;
 
+void
 readline()
 {
     register int n = read(fd, lp0, (line + LINSZ) - lp0);
@@ -499,6 +508,7 @@ nextchar()
     return ((lp == lpe) ? 0 : *lp++);
 }
 
+int
 skipuntil(s)
 char *s;
 {
@@ -535,6 +545,7 @@ loop:
     goto loop;
 }
 
+int
 getentry(skip)
 int *skip;
 {
@@ -648,6 +659,7 @@ int *skip;
     }
 }
 
+int
 duplicate()
 {
     char s[STRSZ];
@@ -665,6 +677,7 @@ duplicate()
     return (0);
 }
 
+void
 capitalize(sp)
 register char *sp;
 {
@@ -672,12 +685,14 @@ register char *sp;
         *sp += 'A' - 'a';
 }
 
+int
 letter(ch)
 register char ch;
 {
     return (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z'));
 }
 
+int
 digit(ch)
 register char ch;
 {
@@ -688,6 +703,7 @@ register char ch;
 
 boolean panicking = 0;
 
+int
 panic(str, a1, a2, a3, a4, a5, a6)
 char *str;
 {
@@ -709,11 +725,17 @@ int
 rename(oldname, newname)
 const char *oldname, *newname;
 {
+    int rc = 0;
     if (strcmp(oldname, newname)) {
-        unlink(newname);
-        link(oldname, newname);
-        unlink(oldname);
+        rc = unlink(newname);
+        if (rc == 0) {
+            rc = link(oldname, newname);
+        }
+        if (rc == 0) {
+            unlink(oldname);
+        }
     }
+    return rc;
 }
 #endif
 

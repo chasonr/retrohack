@@ -14,6 +14,7 @@ extern char *xname();
 #endif
 
 struct monst *bhit(), *boomhit();
+int
 dothrow()
 {
     register struct obj *obj;
@@ -53,6 +54,7 @@ dothrow()
     return (throwit(obj));
 }
 
+int
 throwit(obj)
 register struct obj *obj;
 {
@@ -150,6 +152,7 @@ register struct obj *obj;
     return (1);
 }
 
+void
 hitfloor(obj)
 register struct obj *obj;
 {
@@ -179,6 +182,7 @@ register struct obj *obj;
         dropy(obj);
 }
 
+int
 thitmonst(mon, obj)
 register struct monst *mon;
 register struct obj *obj;

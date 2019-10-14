@@ -11,6 +11,7 @@ xchar maxdlevel = 1;
 int done_stopprint;
 int done_hup;
 
+void
 done1()
 {
     (void) signal(SIGINT, SIG_IGN);
@@ -36,6 +37,7 @@ done1()
     /* NOTREACHED */
 }
 
+void
 done_intr()
 {
     done_stopprint++;
@@ -46,6 +48,7 @@ done_intr()
 }
 
 #ifdef UNIX
+void
 done_hangup()
 {
     done_hup++;
@@ -54,6 +57,7 @@ done_hangup()
 }
 #endif
 
+void
 done_in_by(mtmp)
 register struct monst *mtmp;
 {
@@ -86,6 +90,7 @@ register struct monst *mtmp;
 /*VARARGS1*/
 boolean panicking;
 
+void
 panic(str, a1, a2, a3, a4, a5, a6)
 char *str;
 {
@@ -116,6 +121,7 @@ char *str;
 /* called with arg "died", "drowned", "escaped", "quit", "choked", "panicked",
    "burned", "starved" or "tricked" */
 /* Be careful not to call panic from here! */
+void
 done(st1)
 register char *st1;
 {
@@ -333,6 +339,7 @@ die:
 #endif
     exit(0);
 }
+void
 clearlocks()
 {
 #ifdef DGK
@@ -361,6 +368,7 @@ hangup()
 #endif
 
 /* it is the callers responsibility to check that there is room for c */
+void
 charcat(s, c)
 register char *s, c;
 {
@@ -371,6 +379,7 @@ register char *s, c;
 }
 
 #ifdef KJSMODS
+int
 with_amulet()
 {
     register struct obj *otmp;

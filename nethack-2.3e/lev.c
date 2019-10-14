@@ -53,6 +53,7 @@ xchar lev;
 
 savelev0(fd, lev)
 #else
+void
 savelev(fd, lev)
 #endif
 int fd;
@@ -115,6 +116,7 @@ xchar lev;
     fobj = 0;
 }
 
+void
 bwrite(fd, loc, num)
 register fd;
 register char *loc;
@@ -130,6 +132,7 @@ register unsigned num;
             panic("cannot write %u bytes to file #%d", num, fd);
 }
 
+void
 saveobjchn(fd, otmp)
 register fd;
 register struct obj *otmp;
@@ -152,6 +155,7 @@ register struct obj *otmp;
     bwrite(fd, (char *) &minusone, sizeof(int));
 }
 
+void
 savemonchn(fd, mtmp)
 register fd;
 register struct monst *mtmp;
@@ -176,6 +180,7 @@ register struct monst *mtmp;
     bwrite(fd, (char *) &minusone, sizeof(int));
 }
 
+void
 savegoldchn(fd, gold)
 register fd;
 register struct gold *gold;
@@ -193,6 +198,7 @@ register struct gold *gold;
     bwrite(fd, nul, sizeof(struct gold));
 }
 
+void
 savetrapchn(fd, trap)
 register fd;
 register struct trap *trap;
@@ -210,6 +216,7 @@ register struct trap *trap;
     bwrite(fd, nul, sizeof(struct trap));
 }
 
+void
 getlev(fd, pid, lev)
 int fd, pid;
 xchar lev;
@@ -399,6 +406,7 @@ xchar lev;
 #endif
 }
 
+void
 mread(fd, buf, len)
 register fd;
 register char *buf;
@@ -418,6 +426,7 @@ register unsigned len;
     }
 }
 
+void
 mklev()
 {
     extern boolean in_mklev;

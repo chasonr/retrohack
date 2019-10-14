@@ -16,6 +16,7 @@ extern boolean hmon();
         2. when teleporting
         3. when walking out of a lit room
  */
+void
 unsee()
 {
     register x, y;
@@ -58,6 +59,7 @@ unsee()
         in trap.c:   seeoff(1)	- fall through trapdoor
         in wizard.c: seeoff(0)	- hit by a cream pie.
  */
+void
 seeoff(mode) /* 1 to redo @, 0 to leave them */
 {            /* 1 means misc movement, 0 means blindness */
     register x, y;
@@ -84,7 +86,8 @@ seeoff(mode) /* 1 to redo @, 0 to leave them */
     }
 }
 
-static moverock()
+static int
+moverock()
 {
     register xchar rx, ry;
     register struct obj *otmp;
@@ -173,6 +176,7 @@ static moverock()
     return (0);
 }
 
+void
 domove()
 {
     register struct monst *mtmp;
@@ -379,6 +383,7 @@ domove()
         read_engr_at(u.ux, u.uy);
 }
 
+void
 movobj(obj, ox, oy)
 register struct obj *obj;
 register int ox, oy;
@@ -392,6 +397,7 @@ register int ox, oy;
     obj->oy = oy;
 }
 
+int
 dopickup()
 {
     /* uswallow case added by GAN 01/29/87 */
@@ -412,6 +418,7 @@ dopickup()
     return (1);
 }
 
+void
 pickup(all)
 {
     register struct gold *gold;
@@ -700,6 +707,7 @@ pickup(all)
 /* stop running if we see something interesting */
 /* turn around a corner if that is the only way we can proceed */
 /* do not turn left or right twice */
+void
 lookaround()
 {
     register x, y, i, x0, y0, m0, i0 = 9;
@@ -813,6 +821,7 @@ lookaround()
 
 /* something like lookaround, but we are not running */
 /* react only to monsters that might hit us */
+int
 monster_nearby()
 {
     register int x, y;
@@ -884,6 +893,7 @@ register int x, y;
 
 #else
 
+int
 cansee(x, y)
 xchar x, y;
 {
@@ -898,6 +908,7 @@ xchar x, y;
 }
 #endif /* QUEST /**/
 
+int
 sgn(a)
 register int a;
 {
@@ -922,6 +933,7 @@ setsee()
 
 #else
 
+void
 setsee()
 {
     register x, y;
@@ -968,6 +980,7 @@ setsee()
 }
 #endif /* QUEST /**/
 
+void
 nomul(nval)
 register nval;
 {
@@ -982,6 +995,7 @@ register nval;
     flags.mv = flags.run = 0;
 }
 
+int
 abon()
 {
 #ifdef KAA
@@ -1004,6 +1018,7 @@ abon()
         return (3);
 }
 
+int
 dbon()
 {
     if (u.usym != '@')
@@ -1027,6 +1042,7 @@ dbon()
         return (6);
 }
 
+void
 losestr(num) /* may kill you; cause may be poison or monster like 'A' */
 register num;
 {
@@ -1039,6 +1055,7 @@ register num;
     flags.botl = 1;
 }
 
+void
 losehp(n, knam)
 register n;
 register char *knam;
@@ -1065,6 +1082,7 @@ register char *knam;
     }
 }
 
+void
 losehp_m(n, mtmp)
 register n;
 register struct monst *mtmp;
@@ -1084,6 +1102,7 @@ register struct monst *mtmp;
         done_in_by(mtmp);
 }
 
+void
 losexp() /* hit by V or W */
 {
     register num;
@@ -1112,6 +1131,7 @@ losexp() /* hit by V or W */
     flags.botl = 1;
 }
 
+int
 inv_weight()
 {
     register struct obj *otmp = invent;
@@ -1165,6 +1185,7 @@ inv_weight()
     return (wt - carrcap);
 }
 
+int
 inv_cnt()
 {
     register struct obj *otmp = invent;
@@ -1182,6 +1203,7 @@ newuexp()
     return (10 * (1L << (u.ulevel - 1)));
 }
 
+void
 change_luck(n)
 register schar n;
 {
@@ -1193,6 +1215,7 @@ register schar n;
 }
 
 #ifdef SINKS
+void
 dosinkfall()
 {
     register struct obj *obj;

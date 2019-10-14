@@ -8,12 +8,14 @@ extern char quitchars[];
 extern char *Doname();
 static int marmoroff(/* struct obj *otmp */);
 
+void
 off_msg(otmp)
 register struct obj *otmp;
 {
     pline("You were wearing %s.", doname(otmp));
 }
 
+int
 doremarm()
 {
     register struct obj *otmp;
@@ -61,6 +63,7 @@ doremarm()
     return (1);
 }
 
+void
 doremring()
 {
     if (!uleft && !uright) {
@@ -96,6 +99,7 @@ doremring()
 #endif
 }
 
+int
 dorr(otmp)
 register struct obj *otmp;
 {
@@ -106,6 +110,7 @@ register struct obj *otmp;
     return (1);
 }
 
+int
 cursed(otmp)
 register struct obj *otmp;
 {
@@ -116,6 +121,7 @@ register struct obj *otmp;
     return (0);
 }
 
+int
 armoroff(otmp)
 register struct obj *otmp;
 {
@@ -141,6 +147,7 @@ register struct obj *otmp;
     return (1);
 }
 
+int
 doweararm()
 {
     register struct obj *otmp;
@@ -236,6 +243,7 @@ doweararm()
     return (1);
 }
 
+int
 dowearring()
 {
     register struct obj *otmp;
@@ -313,6 +321,7 @@ dowearring()
     return (1);
 }
 
+void
 ringoff(obj)
 register struct obj *obj;
 {
@@ -359,6 +368,7 @@ register struct obj *obj;
     }
 }
 
+void
 find_ac()
 {
     register int uac = 10;
@@ -392,6 +402,7 @@ find_ac()
     }
 }
 
+void
 glibr()
 {
     register struct obj *otmp;
@@ -446,6 +457,7 @@ some_armor()
     return (otmph);
 }
 
+void
 corrode_armor()
 {
     register struct obj *otmph = some_armor();
@@ -465,7 +477,7 @@ corrode_armor()
     }
 }
 
-static
+static int
 remarm(obj)
 register struct obj *obj;
 {
@@ -490,6 +502,7 @@ register struct obj *otmp;
     return (1);
 }
 
+int
 doddoremarm()
 {
     return (ggetobj("take off", remarm, 0));

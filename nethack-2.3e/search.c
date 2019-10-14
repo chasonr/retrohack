@@ -6,6 +6,7 @@ char *rndmonnam(), *defmonnam();
 
 extern struct monst *makemon();
 
+int
 findit() /* returns number of things found */
 {
     int num;
@@ -55,6 +56,7 @@ findit() /* returns number of things found */
     return (num);
 }
 
+int
 dosearch()
 {
     register xchar x, y;
@@ -123,6 +125,7 @@ dosearch()
     return (1);
 }
 
+int
 doidtrap()
 {
     register struct trap *trap;
@@ -144,6 +147,7 @@ doidtrap()
     return (0);
 }
 
+void
 wakeup(mtmp)
 register struct monst *mtmp;
 {
@@ -154,6 +158,7 @@ register struct monst *mtmp;
 }
 
 /* NOTE: we must check if(mtmp->mimic) before calling this routine */
+void
 seemimic(mtmp)
 register struct monst *mtmp;
 {

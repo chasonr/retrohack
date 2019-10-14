@@ -8,6 +8,7 @@ int identify();
 extern struct monst *makemon();
 extern struct permonst *courtmon();
 
+int
 dosit()
 {
     extern struct obj *readobjnam(), *addinv();
@@ -143,6 +144,7 @@ dosit()
 #endif /* NEWCLASS /**/
 
 #if defined(NEWCLASS) || defined(PRAYERS) || defined(HARD)
+void
 rndcurse()
 { /* curse a few inventory items at random! */
 
@@ -162,6 +164,7 @@ rndcurse()
 }
 #endif
 
+void
 attrcurse()
 { /* remove a random INTRINSIC ability */
     switch (rnd(10)) {

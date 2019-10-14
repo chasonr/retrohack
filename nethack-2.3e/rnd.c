@@ -9,24 +9,28 @@
 #define RND(x) ((rand() >> 3) % (x))
 #endif
 
+int
 rn1(x, y) /* y <= rn1(x,y) < (y+x) */
 register x, y;
 {
     return (RND(x) + y);
 }
 
+int
 rn2(x) /* 0 <= rn2(x) < x */
 register x;
 {
     return (RND(x));
 }
 
+int
 rnd(x) /* 1 <= rnd(x) <= x */
 register x;
 {
     return (RND(x) + 1);
 }
 
+int
 d(n, x) /* n <= d(n,x) <= (n*x) */
 register n, x;
 {
@@ -37,6 +41,7 @@ register n, x;
     return (tmp);
 }
 
+int
 rne(x) /* by stewr 870807 */
 register x;
 {
@@ -46,6 +51,7 @@ register x;
     return (tmp);
 }
 
+int
 rnz(i)
 int i;
 {

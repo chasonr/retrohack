@@ -4,6 +4,7 @@
 #include "date.h"
 #include "hack.h"
 
+int
 doversion()
 {
 #ifdef BETA
@@ -34,6 +35,7 @@ doversion()
     if (page_line(x)) \
         goto quit;
 
+int
 doMSCversion()
 {
     char buf[BUFSZ];

@@ -18,6 +18,7 @@ extern int dipfountain();
 
 int nothing, unkn;
 
+int
 dodrink()
 {
     register struct obj *otmp;
@@ -68,6 +69,7 @@ use_it:
     return (1);
 }
 
+int
 peffects(otmp)
 register struct obj *otmp;
 {
@@ -313,6 +315,7 @@ register struct obj *otmp;
     return (-1);
 }
 
+void
 healup(nhp, nxtra, curesick, cureblind)
 int nhp, nxtra;
 register boolean curesick, cureblind;
@@ -337,6 +340,7 @@ register boolean curesick, cureblind;
     return;
 }
 
+void
 pluslvl()
 {
     register num;
@@ -359,6 +363,7 @@ pluslvl()
     flags.botl = 1;
 }
 
+void
 strange_feeling(obj, txt)
 register struct obj *obj;
 register char *txt;
@@ -376,6 +381,7 @@ register char *txt;
 char *bottlenames[] = { "bottle", "phial", "flagon", "carafe",
                         "flask",  "jar",   "vial" };
 
+void
 potionhit(mon, obj)
 register struct monst *mon;
 register struct obj *obj;
@@ -469,6 +475,7 @@ register struct obj *obj;
     obfree(obj, Null(obj));
 }
 
+void
 potionbreathe(obj)
 register struct obj *obj;
 {
@@ -539,6 +546,7 @@ register struct obj *obj;
  * -- If the flask is small, can one dip a large object? Does it magically
  * --   become a jug? Etc.
  */
+int
 dodip()
 {
     register struct obj *potion, *obj;
@@ -603,6 +611,7 @@ dodip()
     return (1);
 }
 
+void
 ghost_from_bottle()
 {
     extern struct permonst pm_ghost;
@@ -618,6 +627,7 @@ ghost_from_bottle()
     nomul(-3);
 }
 
+void
 djinni_from_bottle()
 {
     extern struct permonst pm_djinni;
@@ -663,6 +673,7 @@ djinni_from_bottle()
     }
 }
 
+void
 gainstr(inc)
 register int inc;
 {

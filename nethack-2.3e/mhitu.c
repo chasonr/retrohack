@@ -15,6 +15,7 @@ char *breathe[] = { "fragments", "fire",       "sleep gas",  "frost",
  * mhitu: monster hits you
  *	  returns 1 if monster dies (e.g. 'y', 'F'), 0 otherwise
  */
+int
 mhitu(mtmp)
 register struct monst *mtmp;
 {
@@ -458,6 +459,7 @@ register struct monst *mtmp;
     return (0);
 }
 
+int
 hitu(mtmp, dam)
 register struct monst *mtmp;
 register dam;
@@ -529,6 +531,7 @@ register dam;
 #define Athome (Inhell && !mtmp->cham)
 
 #ifdef HARD
+int
 demon_talk(mtmp) /* returns 1 if we pay him off. */
 register struct monst *mtmp;
 {
@@ -600,6 +603,7 @@ register struct monst *mtmp;
 }
 #endif
 
+int
 demon_hit(mtmp)
 register struct monst *mtmp;
 {

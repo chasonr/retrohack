@@ -8,6 +8,7 @@
 #include "mkroom.h"
 
 /* return 0 (no move), 1 (move) or 2 (dead) */
+int
 dog_move(mtmp, after)
 register struct monst *mtmp;
 {

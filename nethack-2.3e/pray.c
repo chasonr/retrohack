@@ -36,6 +36,7 @@ This could get as bizarre as noting surrounding opponents, (or hostile dogs),
 but that's really hard.
  */
 
+int
 in_trouble()
 {
     /* Borrowed from eat.c */
@@ -82,6 +83,7 @@ in_trouble()
     return (0);
 }
 
+void
 fix_worst_trouble()
 {
     char *tmp, *hcolor();
@@ -175,6 +177,7 @@ fix_worst_trouble()
 
 extern char POISONOUS[];
 
+int
 dosacrifice()
 {
     register struct obj *otmp;
@@ -295,6 +298,7 @@ dosacrifice()
 #endif
 #endif
 
+int
 dopray()
 { /* M. Stephenson (1.0.3b) */
 #ifdef PRAYERS
@@ -331,6 +335,7 @@ dopray()
 }
 
 #ifdef PRAYERS
+int
 angrygods()
 {
     register int tmp;
@@ -379,6 +384,7 @@ angrygods()
     return (0);
 }
 
+int
 pleased()
 {
     char *tmp, *hcolor();
@@ -536,6 +542,7 @@ pleased()
 }
 #endif /* PRAYERS /**/
 #ifdef NEWCLASS
+int
 doturn()
 { /* Knights & Priest(esse)s only please */
 

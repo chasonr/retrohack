@@ -79,6 +79,7 @@ struct termstruct inittyb, curttyb;
  * and switch off tab expansion if necessary.
  * Called by startup() in termcap.c and after returning from ! or ^Z
  */
+void
 gettty()
 {
     if (GTTY(&inittyb) < 0)
@@ -98,6 +99,7 @@ gettty()
 }
 
 /* reset terminal to original state */
+void
 settty(s)
 char *s;
 {
@@ -113,12 +115,14 @@ char *s;
     setioctls();
 }
 
+void
 setctty()
 {
     if (STTY(&curttyb) < 0)
         perror("Hack (setctty)");
 }
 
+void
 setftty()
 {
     register int ef = 0;                /* desired value of flags & ECHO */
@@ -150,6 +154,7 @@ setftty()
 
 /* fatal error */
 /*VARARGS1*/
+int
 error(s, x, y)
 char *s;
 {
@@ -166,6 +171,7 @@ char *s;
  * Reading can be interrupted by an escape ('\033') - now the
  * resulting string is "\033".
  */
+void
 getlin(bufp)
 register char *bufp;
 {
@@ -212,11 +218,13 @@ register char *bufp;
     }
 }
 
+void
 getret()
 {
     cgetret("");
 }
 
+void
 cgetret(s)
 register char *s;
 {
@@ -233,6 +241,7 @@ register char *s;
 
 char morc; /* tell the outside world what char he used */
 
+void
 xwaitforspace(s)
 register char *s; /* chars allowed besides space or return */
 {
@@ -342,6 +351,7 @@ readchar()
     return ((char) sym);
 }
 
+int
 end_of_input()
 {
     settty("End of input?\n");
@@ -354,6 +364,7 @@ end_of_input()
  * when enough character have been entered to make a unique command.
  * This is just a modified getlin().   -jsb
  */
+void
 get_ext_cmd(bufp)
 register char *bufp;
 {

@@ -3,6 +3,7 @@
 
 #include "hack.h"
 
+void
 timeout()
 {
     register struct prop *upp;
@@ -85,6 +86,7 @@ char *stoned_texts[] = {
     "You are a statue."                 /* 1 */
 };
 
+void
 stoned_dialogue()
 {
     register long i = (Stoned & TIMEOUT);

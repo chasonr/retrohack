@@ -15,6 +15,7 @@ extern long lseek();
 extern struct obj *restobjchn();
 extern struct monst *restmonchn();
 
+void
 dosave()
 {
     clear_screen();
@@ -29,6 +30,7 @@ dosave()
 }
 
 #ifndef NOSAVEONHANGUP
+int
 hangup()
 {
     (void) dosave0(1);
@@ -37,6 +39,7 @@ hangup()
 #endif
 
 /* returns 1 if save successful */
+int
 dosave0(hu)
 int hu;
 {
@@ -167,6 +170,7 @@ again:
     return (1);
 }
 
+int
 dorecover(fd)
 register fd;
 {

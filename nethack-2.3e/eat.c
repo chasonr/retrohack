@@ -25,6 +25,7 @@ extern struct obj *splitobj(), *addinv();
 char *hu_stat[] = { "Satiated", "        ", "Hungry  ", "Weak    ",
                     "Fainting", "Fainted ", "Starved " };
 
+void
 init_uhunger()
 {
     u.uhunger = 900;
@@ -53,6 +54,7 @@ static struct {
     int usedtime, reqtime;
 } tin;
 
+int
 opentin()
 {
     register int r;
@@ -91,12 +93,14 @@ opentin()
     return (0);
 }
 
+void
 Meatdone()
 {
     u.usym = '@';
     prme();
 }
 
+int
 doeat()
 {
     register struct obj *otmp;
@@ -324,6 +328,7 @@ eatx:
 }
 
 /* called in main.c */
+void
 gethungry()
 {
     --u.uhunger;
@@ -346,6 +351,7 @@ gethungry()
 }
 
 /* called after vomiting and after performing feats of magic */
+void
 morehungry(num)
 register num;
 {
@@ -354,6 +360,7 @@ register num;
 }
 
 /* called after eating something (and after drinking fruit juice) */
+void
 lesshungry(num)
 register num;
 {
@@ -375,12 +382,14 @@ register num;
     newuhs(FALSE);
 }
 
+void
 unfaint()
 {
     u.uhs = FAINTING;
     flags.botl = 1;
 }
 
+void
 newuhs(incr)
 boolean incr;
 {
@@ -452,6 +461,7 @@ boolean incr;
 #define CORPSE_I_TO_C(otyp)                                          \
     (char) ((otyp >= DEAD_ACID_BLOB) ? 'a' + (otyp - DEAD_ACID_BLOB) \
                                      : '@' + (otyp - DEAD_HUMAN))
+int
 poisonous(otmp)
 register struct obj *otmp;
 {
@@ -463,6 +473,7 @@ register struct obj *otmp;
 }
 
 /* returns 1 if some text was printed */
+int
 eatcorpse(otmp)
 register struct obj *otmp;
 {
@@ -616,6 +627,7 @@ register struct obj *otmp;
  * Note that if you have enough food, you can always stop being Sick!
  * choke() returns if you don't choke, kills you if you do.
  */
+void
 choke(food)
 register struct objclass *food;
 {

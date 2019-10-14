@@ -10,12 +10,14 @@ coord utrack[UTSZ];
 int utcnt = 0;
 int utpnt = 0;
 
+void
 initrack()
 {
     utcnt = utpnt = 0;
 }
 
 /* add to track */
+void
 settrack()
 {
     if (utcnt < UTSZ)

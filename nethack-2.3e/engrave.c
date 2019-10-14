@@ -59,6 +59,7 @@ register xchar x, y;
     return ((struct engr *) 0);
 }
 
+int
 sengr_at(s, x, y)
 register char *s;
 register xchar x, y;
@@ -81,6 +82,7 @@ register xchar x, y;
     return (0);
 }
 
+void
 u_wipe_engr(cnt)
 register int cnt;
 {
@@ -88,6 +90,7 @@ register int cnt;
         wipe_engr_at(u.ux, u.uy, cnt);
 }
 
+void
 wipe_engr_at(x, y, cnt)
 register xchar x, y, cnt;
 {
@@ -118,6 +121,7 @@ register xchar x, y, cnt;
     }
 }
 
+void
 read_engr_at(x, y)
 register int x, y;
 {
@@ -155,6 +159,7 @@ register int x, y;
     }
 }
 
+void
 make_engr_at(x, y, s)
 register int x, y;
 register char *s;
@@ -191,6 +196,7 @@ freehand()
                     return(1);*/
 }
 
+int
 doengrave()
 {
     register int len, tmp;
@@ -539,6 +545,7 @@ doengrave()
     return (1);
 }
 
+void
 save_engravings(fd)
 int fd;
 {
@@ -559,6 +566,7 @@ int fd;
         head_engr = 0;
 }
 
+void
 rest_engravings(fd)
 int fd;
 {
@@ -577,6 +585,7 @@ int fd;
     }
 }
 
+void
 del_engr(ep)
 register struct engr *ep;
 {

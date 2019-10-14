@@ -43,7 +43,7 @@ static struct monst *guard;
 static int gdlevel;
 #define EGD ((struct egd *) (&(guard->mextra[0])))
 
-static
+static void
 restfakecorr()
 {
     register fcx, fcy, fcbeg;
@@ -67,7 +67,7 @@ restfakecorr()
     guard = 0;
 }
 
-static
+static int
 goldincorridor()
 {
     register int fci;
@@ -78,6 +78,7 @@ goldincorridor()
     return (0);
 }
 
+void
 setgd()
 {
     register struct monst *mtmp;
@@ -90,6 +91,7 @@ setgd()
     guard = 0;
 }
 
+void
 invault()
 {
     register tmp = inroom(u.ux, u.uy);
@@ -182,6 +184,7 @@ invault()
     }
 }
 
+int
 gd_move()
 {
     register int x, y, dx, dy, gx, gy, nx, ny, typ;
@@ -285,11 +288,13 @@ newpos:
     return (1);
 }
 
+void
 gddead()
 {
     guard = 0;
 }
 
+void
 replgd(mtmp, mtmp2)
 register struct monst *mtmp, *mtmp2;
 {

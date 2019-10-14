@@ -45,6 +45,7 @@ extern char genocided[];
 #define somex() ((int) (rand() % (croom->hx - croom->lx + 1)) + croom->lx)
 #define somey() ((int) (rand() % (croom->hy - croom->ly + 1)) + croom->ly)
 
+void
 dowatersnakes() /* Fountain of snakes! */
 {
     register int num = rnd(6);
@@ -56,6 +57,7 @@ dowatersnakes() /* Fountain of snakes! */
         pline("The fountain bubbles furiously for a moment, then calms.");
 }
 
+void
 dowaterdemon() /* Water demon */
 {
     register struct monst *mtmp;
@@ -72,6 +74,7 @@ dowaterdemon() /* Water demon */
     }
 }
 
+void
 dowaternymph() /* Water Nymph */
 {
     register struct monst *mtmp;
@@ -84,6 +87,7 @@ dowaternymph() /* Water Nymph */
 
 #include "mkroom.h"
 
+void
 dogushforth() /* Gushing forth in this room */
 {
     register int num = rnd(10);
@@ -123,6 +127,7 @@ dogushforth() /* Gushing forth in this room */
     pline("Water gushes forth from the overflowing fountain!");
 }
 
+void
 dofindgem() /* Find a gem in the sparkling waters. */
 {
     if (!Blind)
@@ -130,6 +135,7 @@ dofindgem() /* Find a gem in the sparkling waters. */
     mkobj_at('*', u.ux, u.uy);
 }
 
+void
 dryup()
 {
     if (!rn2(3) && (levl[u.ux][u.uy].typ == FOUNTAIN)) {
@@ -140,6 +146,7 @@ dryup()
     }
 }
 
+void
 drinkfountain()
 {
     /* What happens when you drink from a fountain? */
@@ -243,6 +250,7 @@ drinkfountain()
     dryup();
 }
 
+int
 dipfountain(obj)
 register struct obj *obj;
 {

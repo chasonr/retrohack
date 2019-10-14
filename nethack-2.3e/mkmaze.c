@@ -8,6 +8,7 @@ extern struct permonst pm_wizard;
 extern struct obj *mkobj_at(), *mksobj_at();
 struct permonst hell_hound = { "hell hound", 'd', 12, 14, 2, 20, 3, 6, 0 };
 
+void
 makemaz()
 {
     int x, y;
@@ -153,6 +154,7 @@ int x, y;
 }
 #else
 
+void
 walkfrom(x, y)
 int x, y;
 {
@@ -175,6 +177,7 @@ int x, y;
 }
 #endif /* DGK /**/
 
+void
 move(x, y, dir)
 register int *x, *y;
 register int dir;
@@ -195,6 +198,7 @@ register int dir;
     }
 }
 
+int
 okay(x, y, dir)
 int x, y;
 register int dir;
@@ -208,6 +212,7 @@ register int dir;
         return (1);
 }
 
+int
 mazexy(cc)
 coord *cc;
 {

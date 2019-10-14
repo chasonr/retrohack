@@ -16,6 +16,7 @@ extern char *hu_stat[]; /* in eat.c */
 extern char *CD;
 extern struct monst *makemon();
 
+void
 swallowed()
 {
     char *ulook = "|@|";
@@ -36,6 +37,7 @@ swallowed()
     u.udisy = u.uy;
 }
 
+void
 setclipped()
 {
     error("Hack needs a screen of size at least %d by %d.\n", ROWNO + 2,
@@ -50,6 +52,7 @@ static int DECgraphics; /* The graphics mode toggle */
 #define DECgraphicsOFF() ((void) putchar('\17'), DECgraphics = FALSE)
 #endif
 
+void
 at(x, y, ch)
 register xchar x, y;
 char ch;
@@ -105,18 +108,21 @@ char ch;
     curx++;
 }
 
+void
 prme()
 {
     if (!Invisible)
         at(u.ux, u.uy, u.usym);
 }
 
+int
 doredraw()
 {
     docrt();
     return (0);
 }
 
+void
 docrt()
 {
     register x, y;
@@ -209,6 +215,7 @@ docrt()
     bot();
 }
 
+void
 docorner(xmin, ymax)
 register xmin, ymax;
 {
@@ -264,6 +271,7 @@ register xmin, ymax;
 
 /* Trolls now regenerate thanks to KAA */
 
+void
 seeobjs()
 {
     register struct obj *obj, *obj2;
@@ -296,6 +304,7 @@ seeobjs()
     }
 }
 
+void
 seemons()
 {
     register struct monst *mtmp;
@@ -311,6 +320,7 @@ seemons()
     }
 }
 
+void
 pmon(mon)
 register struct monst *mon;
 {
@@ -344,6 +354,7 @@ register struct monst *mon;
     }
 }
 
+void
 unpmon(mon)
 register struct monst *mon;
 {
@@ -353,6 +364,7 @@ register struct monst *mon;
     }
 }
 
+void
 nscr()
 {
     register x, y;
@@ -374,6 +386,7 @@ nscr()
 
 /* 100 suffices for bot(); no relation with COLNO */
 char oldbot[100], newbot[100];
+void
 cornbot(lth)
 register int lth;
 {
@@ -383,6 +396,7 @@ register int lth;
     }
 }
 
+void
 bot()
 {
     register char *ob = oldbot, *nb = newbot;
@@ -485,6 +499,7 @@ bot()
 }
 
 #if defined(WAN_PROBING) || defined(KAA)
+void
 mstatusline(mtmp)
 register struct monst *mtmp;
 {
@@ -497,6 +512,7 @@ register struct monst *mtmp;
 }
 
 extern char plname[];
+void
 ustatusline()
 {
     pline("Status of %s%s ", (Badged) ? "Officer " : "", plname);
@@ -510,6 +526,7 @@ ustatusline()
 }
 #endif
 
+void
 cls()
 {
     if (flags.toplin == 1)
@@ -521,6 +538,7 @@ cls()
     flags.botlx = 1;
 }
 
+int
 rndmonsym()
 {
     register int x;
@@ -548,6 +566,7 @@ rndmonsym()
         }
 }
 
+int
 rndobjsym()
 {
     char *rndsym = ")[!?%/=*($`";

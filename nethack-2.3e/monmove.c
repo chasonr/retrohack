@@ -8,6 +8,7 @@
 extern struct obj *mksobj_at();
 extern int warnlevel; /* defined in mon.c */
 
+int
 dochugw(mtmp)
 register struct monst *mtmp;
 {
@@ -27,6 +28,7 @@ register struct monst *mtmp;
 }
 
 /* returns 1 if monster died moving, 0 otherwise */
+int
 dochug(mtmp)
 register struct monst *mtmp;
 {
@@ -136,6 +138,7 @@ register struct monst *mtmp;
     return (tmp == 2);
 }
 
+int
 m_move(mtmp, after)
 register struct monst *mtmp;
 {

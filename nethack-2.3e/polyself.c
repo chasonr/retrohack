@@ -11,6 +11,7 @@ extern char plname[PL_NSIZ];
 
 extern long newuexp();
 
+void
 polyself()
 {
     char buf[BUFSZ];
@@ -147,6 +148,7 @@ gotone:
     }
 }
 
+void
 break_armor(turninto)
 char turninto;
 {
@@ -200,6 +202,7 @@ char turninto;
     }
 }
 
+void
 drop_weapon(turninto)
 char turninto;
 {
@@ -213,24 +216,28 @@ char turninto;
     }
 }
 
+int
 cantwield(c) /* creature type c cannot wield a weapon */
 char c;
 {
     return (!!index("abcdfgjklpqrsuvxyABEFJPRS',", c));
 }
 
+int
 cantweararm(c) /* creature type c cannot wear armor */
 char c;
 {
     return (!index("@nGHIKLNOTVWZ&',", c));
 }
 
+int
 humanoid(c) /* creature type c has hands */
 char c;
 {
     return (!!index("@ehintCGHIKLMNOQTVWZ&", c));
 }
 
+void
 rehumanize()
 {
     u.mh = u.mhmax = u.mtimedone = 0;
@@ -252,6 +259,7 @@ rehumanize()
     find_ac();
 }
 
+int
 dobreathe()
 {
     if (u.usym == 'D') {
@@ -267,6 +275,7 @@ dobreathe()
     return (1);
 }
 
+int
 doremove()
 {
     if (!Punished) {

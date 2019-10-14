@@ -10,6 +10,7 @@ struct wseg *wsegs[32]; /* linked list, tail first */
 struct wseg *wheads[32];
 long wgrowtime[32];
 
+int
 getwn(mtmp)
 struct monst *mtmp;
 {
@@ -23,6 +24,7 @@ struct monst *mtmp;
 }
 
 /* called to initialize a worm unless cut in half */
+void
 initworm(mtmp)
 struct monst *mtmp;
 {
@@ -38,6 +40,7 @@ struct monst *mtmp;
     wtmp->nseg = 0;
 }
 
+void
 worm_move(mtmp)
 struct monst *mtmp;
 {
@@ -70,6 +73,7 @@ struct monst *mtmp;
     remseg(whd);
 }
 
+void
 worm_nomove(mtmp)
 register struct monst *mtmp;
 {
@@ -86,6 +90,7 @@ register struct monst *mtmp;
     mtmp->mhp -= 3; /* mhpmax not changed ! */
 }
 
+void
 wormdead(mtmp)
 register struct monst *mtmp;
 {
@@ -101,6 +106,7 @@ register struct monst *mtmp;
     wsegs[tmp] = 0;
 }
 
+void
 wormhit(mtmp)
 register struct monst *mtmp;
 {
@@ -112,6 +118,7 @@ register struct monst *mtmp;
         (void) hitu(mtmp, 1);
 }
 
+void
 wormsee(tmp)
 register unsigned tmp;
 {
@@ -125,6 +132,7 @@ register unsigned tmp;
         }
 }
 
+void
 pwseg(wtmp)
 register struct wseg *wtmp;
 {
@@ -134,6 +142,7 @@ register struct wseg *wtmp;
     }
 }
 
+void
 cutworm(mtmp, x, y, weptyp)
 register struct monst *mtmp;
 register xchar x, y;
@@ -208,6 +217,7 @@ register uchar weptyp; /* uwep->otyp or 0 */
     panic("Cannot find worm segment");
 }
 
+void
 remseg(wtmp)
 register struct wseg *wtmp;
 {

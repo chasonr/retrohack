@@ -366,6 +366,7 @@ register struct obj *obj;
 }
 
 /* used only in fight.c (thitu) */
+void
 setan(str, buf)
 register char *str, *buf;
 {

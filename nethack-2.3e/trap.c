@@ -73,6 +73,7 @@ register x, y, typ;
     return (ttmp);
 }
 
+void
 dotrap(trap)
 register struct trap *trap;
 {
@@ -354,6 +355,7 @@ register struct trap *trap;
     }
 }
 
+int
 mintrap(mtmp)
 register struct monst *mtmp;
 {
@@ -531,6 +533,7 @@ register struct monst *mtmp;
     return (mtmp->mtrapped);
 }
 
+void
 selftouch(arg)
 char *arg;
 {
@@ -543,6 +546,7 @@ char *arg;
     }
 }
 
+void
 float_up()
 {
     if (u.utrap) {
@@ -558,6 +562,7 @@ float_up()
         pline("You start to float in the air!");
 }
 
+void
 float_down()
 {
     register struct trap *trap;
@@ -583,6 +588,7 @@ float_down()
 
 #include "mkroom.h"
 
+void
 vtele()
 {
     register struct mkroom *croom;
@@ -614,6 +620,7 @@ has_amulet()
 }
 #endif
 
+void
 tele()
 {
     coord cc;
@@ -656,6 +663,7 @@ tele()
     teleds(nux, nuy);
 }
 
+void
 teleds(nux, nuy)
 register int nux, nuy;
 {
@@ -681,6 +689,7 @@ register int nux, nuy;
     read_engr_at(u.ux, u.uy);
 }
 
+int
 teleok(x, y)
 register int x, y;
 { /* might throw him into a POOL
@@ -700,6 +709,7 @@ register int x, y;
     /* Note: gold is permitted (because of vaults) */
 }
 
+int
 dotele()
 {
     extern char pl_character[];
@@ -725,6 +735,7 @@ dotele()
     return (1);
 }
 
+void
 placebc(attach)
 int attach;
 {
@@ -744,6 +755,7 @@ int attach;
     }
 }
 
+void
 unplacebc()
 {
     if (!carried(uball)) {
@@ -754,6 +766,7 @@ unplacebc()
     unpobj(uchain);
 }
 
+void
 level_tele()
 {
     register int newlevel;
@@ -831,6 +844,7 @@ level_tele()
 
 #ifdef NEWTRAPS
 
+void
 domagictrap()
 {
     register int fate = rnd(20);
@@ -945,6 +959,7 @@ domagictrap()
 }
 #endif /* NEWTRAPS /**/
 
+void
 drown()
 {
     pline("You fall into a pool!");

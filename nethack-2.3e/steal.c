@@ -11,6 +11,7 @@ somegold()
                 : (u.ugold > 10000) ? rnd(10000) : rnd((int) u.ugold));
 }
 
+void
 stealgold(mtmp)
 register struct monst *mtmp;
 {
@@ -40,6 +41,7 @@ register struct monst *mtmp;
 /* steal armor after he finishes taking it off */
 unsigned stealoid; /* object to be stolen */
 unsigned stealmid; /* monster doing the stealing */
+void
 stealarm()
 {
     register struct monst *mtmp;
@@ -66,6 +68,7 @@ stealarm()
 /* returns 1 when something was stolen */
 /* (or at least, when N should flee now) */
 /* avoid stealing the object stealoid */
+int
 steal(mtmp)
 struct monst *mtmp;
 {
@@ -169,6 +172,7 @@ struct monst *mtmp;
     return ((multi < 0) ? 0 : 1);
 }
 
+void
 mpickobj(mtmp, otmp)
 register struct monst *mtmp;
 register struct obj *otmp;
@@ -177,6 +181,7 @@ register struct obj *otmp;
     mtmp->minvent = otmp;
 }
 
+int
 stealamulet(mtmp)
 register struct monst *mtmp;
 {
@@ -197,6 +202,7 @@ register struct monst *mtmp;
 }
 
 /* release the objects the killed animal has stolen */
+void
 relobj(mtmp, show)
 register struct monst *mtmp;
 register show;

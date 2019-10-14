@@ -20,6 +20,7 @@ long lastwarntime;
 int lastwarnlev;
 char *warnings[] = { "white", "pink", "red", "ruby", "purple", "black" };
 
+void
 movemon()
 {
     register struct monst *mtmp;
@@ -131,6 +132,7 @@ movemon()
     dmonsfree(); /* remove all dead monsters */
 }
 
+void
 justswld(mtmp, name)
 register struct monst *mtmp;
 char *name;
@@ -147,6 +149,7 @@ char *name;
     swallowed();
 }
 
+void
 youswld(mtmp, dam, die, name)
 register struct monst *mtmp;
 register dam, die;
@@ -166,6 +169,7 @@ char *name;
 }
 
 #ifdef ROCKMOLE
+void
 meatgold(mtmp)
 register struct monst *mtmp;
 {
@@ -198,6 +202,7 @@ register struct monst *mtmp;
 }
 #endif /* ROCKMOLE /**/
 
+void
 mpickgold(mtmp)
 register struct monst *mtmp;
 {
@@ -211,6 +216,7 @@ register struct monst *mtmp;
 }
 
 /* Now includes giants which pick up enormous rocks.  KAA */
+void
 mpickgems(mtmp)
 register struct monst *mtmp;
 {
@@ -236,6 +242,7 @@ register struct monst *mtmp;
 }
 
 /* return number of acceptable neighbour positions */
+int
 mfndpos(mon, poss, info, flag)
 register struct monst *mon;
 coord poss[9];
@@ -348,12 +355,14 @@ nexttry: /* eels prefer the water, but if there is no water nearby,
     return (cnt);
 }
 
+int
 dist(x, y)
 int x, y;
 {
     return ((x - u.ux) * (x - u.ux) + (y - u.uy) * (y - u.uy));
 }
 
+void
 poisoned(string, pname)
 register char *string, *pname;
 {
@@ -391,6 +400,7 @@ register char *string, *pname;
     }
 }
 
+void
 mondead(mtmp)
 register struct monst *mtmp;
 {
@@ -430,6 +440,7 @@ register struct monst *mtmp;
 }
 
 /* called when monster is moved to larger structure */
+void
 replmon(mtmp, mtmp2)
 register struct monst *mtmp, *mtmp2;
 {
@@ -445,6 +456,7 @@ register struct monst *mtmp, *mtmp2;
         replgd(mtmp, mtmp2);
 }
 
+void
 relmon(mon)
 register struct monst *mon;
 {
@@ -466,6 +478,7 @@ register struct monst *mon;
    available shortly after their demise */
 struct monst *fdmon; /* chain of dead monsters, need not to be saved */
 
+void
 monfree(mtmp)
 register struct monst *mtmp;
 {
@@ -473,6 +486,7 @@ register struct monst *mtmp;
     fdmon = mtmp;
 }
 
+void
 dmonsfree()
 {
     register struct monst *mtmp;
@@ -482,6 +496,7 @@ dmonsfree()
     }
 }
 
+void
 unstuck(mtmp)
 register struct monst *mtmp;
 {
@@ -497,12 +512,14 @@ register struct monst *mtmp;
     }
 }
 
+void
 killed(mtmp)
 register struct monst *mtmp;
 {
     xkilled(mtmp, 1);
 }
 
+void
 xkilled(mtmp, dest)
 register struct monst *mtmp;
 int dest;
@@ -742,6 +759,7 @@ int dest;
     }
 }
 
+void
 kludge(str, arg)
 register char *str, *arg;
 {
@@ -754,6 +772,7 @@ register char *str, *arg;
         pline(str, arg);
 }
 
+void
 rescham() /* force all chameleons to become normal */
 {
     register struct monst *mtmp;
@@ -767,6 +786,7 @@ rescham() /* force all chameleons to become normal */
 
 #ifdef DGKMOD
 /* Let the chameleons change again -dgk */
+void
 restartcham()
 {
     register struct monst *mtmp;
@@ -777,6 +797,7 @@ restartcham()
 }
 #endif
 
+int
 newcham(mtmp, mdat) /* make a chameleon look like a new monster */
                     /* returns 1 if the monster actually changed */
 register struct monst *mtmp;
@@ -844,6 +865,7 @@ register struct permonst *mdat;
     return (1);
 }
 
+void
 mnexto(mtmp) /* Make monster mtmp next to you (if possible) */
 struct monst *mtmp;
 {
@@ -854,12 +876,14 @@ struct monst *mtmp;
     pmon(mtmp);
 }
 
+int
 ishuman(mtmp)
 register struct monst *mtmp;
 {
     return (mtmp->data->mlet == '@');
 }
 
+void
 setmangry(mtmp)
 register struct monst *mtmp;
 {
@@ -874,6 +898,7 @@ register struct monst *mtmp;
 
 /* not one hundred procent correct: now a snake may hide under an
    invisible object */
+int
 canseemon(mtmp)
 register struct monst *mtmp;
 {
@@ -882,6 +907,7 @@ register struct monst *mtmp;
             && cansee(mtmp->mx, mtmp->my));
 }
 
+int
 disturb(mtmp) /* awaken monsters while in the same room.
                * return a 1 if they have been woken.
                */
@@ -908,6 +934,7 @@ register struct monst *mtmp;
 }
 
 #ifdef HARD
+int
 restrap(mtmp) /* unwatched mimics and piercers may hide again,
                * if so, a 1 is returned.
                */

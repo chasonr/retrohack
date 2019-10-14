@@ -15,6 +15,7 @@ extern char *getenv(), *getlogin();
 extern xchar curx;
 int done1();
 
+int
 dowhatis()
 {
     FILE *fp;
@@ -145,12 +146,14 @@ dowhatis()
 /* make the paging of a file interruptible */
 static int got_intrup;
 
+void
 intruph()
 {
     got_intrup++;
 }
 
 /* simple pager, also used from dohelp() */
+void
 page_more(fp, strip)
 FILE *fp;
 int strip; /* nr of chars to be stripped from each line (0 or 1) */
@@ -208,12 +211,14 @@ ret:
 static boolean whole_screen = TRUE;
 #define PAGMIN 12 /* minimum # of lines for page below level map */
 
+void
 set_whole_screen()
 { /* called in termcap as soon as LI is known */
     whole_screen = (LI - ROWNO - 2 <= PAGMIN || !CD);
 }
 
 #ifdef NEWS
+int
 readnews()
 {
     register int ret;
@@ -225,6 +230,7 @@ readnews()
 }
 #endif
 
+void
 set_pager(mode)
 register int mode; /* 0: open  1: wait+close  2: close */
 {
@@ -255,6 +261,7 @@ register int mode; /* 0: open  1: wait+close  2: close */
     }
 }
 
+int
 page_line(s) /* returns 1 if we should quit */
 register char *s;
 {
@@ -298,6 +305,7 @@ register char *s;
  *	cornline(3, 0)		: cleanup
  */
 
+void
 cornline(mode, text)
 int mode;
 char *text;
@@ -406,6 +414,7 @@ cleanup:
     }
 }
 
+int
 dohelp()
 {
     char c;
@@ -418,6 +427,7 @@ dohelp()
     return (0);
 }
 
+int
 page_file(fnam, silent) /* return: 0 - cannot open fnam; 1 - otherwise */
 register char *fnam;
 boolean silent;
@@ -474,6 +484,7 @@ boolean silent;
 
 #ifdef UNIX
 #ifdef SHELL
+int
 dosh()
 {
     register char *str;
@@ -489,6 +500,7 @@ dosh()
 }
 #endif /* SHELL /**/
 
+int
 child(wt)
 {
     register int f = fork();

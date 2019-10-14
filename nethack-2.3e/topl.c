@@ -19,6 +19,7 @@ struct topl {
 } * old_toplines, *last_redone_topl;
 #define OTLMAX 20 /* max nr of old toplines remembered */
 
+int
 doredotopl()
 {
     if (last_redone_topl)
@@ -32,6 +33,7 @@ doredotopl()
     return (0);
 }
 
+void
 redotoplin()
 {
     home();
@@ -46,6 +48,7 @@ redotoplin()
         more();
 }
 
+void
 remember_topl()
 {
     register struct topl *tl;
@@ -71,6 +74,7 @@ remember_topl()
     }
 }
 
+void
 addtopl(s)
 char *s;
 {
@@ -83,6 +87,7 @@ char *s;
     flags.toplin = 1;
 }
 
+void
 xmore(s)
 char *s; /* allowed chars besides space/return */
 {
@@ -107,17 +112,20 @@ char *s; /* allowed chars besides space/return */
     flags.toplin = 0;
 }
 
+void
 more()
 {
     xmore("");
 }
 
+void
 cmore(s)
 register char *s;
 {
     xmore(s);
 }
 
+void
 clrlin()
 {
     if (flags.toplin) {
@@ -132,6 +140,7 @@ clrlin()
 
 /*VARARGS1*/
 /* Because the modified mstatusline has 9 arguments KAA */
+void
 pline(line, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
 register char *line,
     *arg1, *arg2, *arg3, *arg4, *arg5, *arg6, *arg7, *arg8, *arg9;
@@ -196,6 +205,7 @@ register char *line,
     redotoplin();
 }
 
+void
 putsym(c)
 char c;
 {
@@ -218,6 +228,7 @@ char c;
     (void) putchar(c);
 }
 
+void
 putstr(s)
 register char *s;
 {

@@ -6,6 +6,7 @@
 
 extern xchar scrlx, scrhx, scrly, scrhy; /* corners from pri.c */
 
+void
 atl(x, y, ch)
 register x, y;
 {
@@ -22,6 +23,7 @@ register x, y;
     on_scr(x, y);
 }
 
+void
 on_scr(x, y)
 register x, y;
 {
@@ -42,6 +44,7 @@ register x, y;
         (-2,let)-change let
 */
 
+void
 tmp_at(x, y)
 int x, y;
 {
@@ -73,6 +76,7 @@ int x, y;
 }
 
 /* like the previous, but the symbols are first erased on completion */
+void
 Tmp_at(x, y)
 int x, y;
 {
@@ -113,11 +117,13 @@ int x, y;
     }
 }
 
+void
 curs_on_u()
 {
     curs(u.ux, u.uy + 2);
 }
 
+void
 pru()
 {
     if (u.udispl && (Invisible || u.udisx != u.ux || u.udisy != u.uy))
@@ -142,6 +148,7 @@ extern struct wseg *m_atseg;
 #endif
 
 /* print a position that is visible for @ */
+void
 prl(x, y)
 {
     register struct rm *room;
@@ -271,6 +278,7 @@ register xchar x, y;
     return (tmp);
 }
 
+void
 newsym(x, y)
 register x, y;
 {
@@ -279,6 +287,7 @@ register x, y;
 
 /* used with wand of digging (or pick-axe): fill scrsym and force display */
 /* also when a POOL evaporates */
+void
 mnewsym(x, y)
 register x, y;
 {
@@ -295,6 +304,7 @@ register x, y;
     }
 }
 
+void
 nosee(x, y)
 register x, y;
 {
@@ -311,6 +321,7 @@ register x, y;
 }
 
 #ifndef QUEST
+void
 prl1(x, y)
 register x, y;
 {
@@ -333,6 +344,7 @@ register x, y;
     }
 }
 
+void
 nose1(x, y)
 register x, y;
 {
@@ -356,6 +368,7 @@ register x, y;
 }
 #endif /* QUEST /**/
 
+int
 vism_at(x, y)
 register x, y;
 {
@@ -392,6 +405,7 @@ register struct obj *obj;
 }
 #endif /* NEWSCR /**/
 
+void
 unpobj(obj)
 register struct obj *obj;
 {

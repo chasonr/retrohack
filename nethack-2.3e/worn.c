@@ -11,6 +11,7 @@ struct worn {
              { W_RINGL, &uleft }, { W_RINGR, &uright }, { W_WEP, &uwep },
              { W_BALL, &uball },  { W_CHAIN, &uchain }, { 0, 0 } };
 
+void
 setworn(obj, mask)
 register struct obj *obj;
 long mask;
@@ -43,6 +44,7 @@ long mask;
 }
 
 /* called e.g. when obj is destroyed */
+void
 setnotworn(obj)
 register struct obj *obj;
 {

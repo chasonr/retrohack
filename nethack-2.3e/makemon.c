@@ -275,6 +275,7 @@ gotmon:
 
 #ifdef DGKMOD
 /* Give some monsters an initial inventory to use */
+void
 m_initinv(mtmp)
 struct monst *mtmp;
 {
@@ -359,6 +360,7 @@ struct monst *mtmp;
 }
 #endif
 
+int
 enexto(cc, xx, yy)
 coord *cc;
 register xchar xx, yy;
@@ -407,6 +409,7 @@ foofull:
     return (0);
 }
 
+int
 goodpos(x, y) /* used only in mnexto and rloc */
 {
     return (!(x < 1 || x > COLNO - 2 || y < 1 || y > ROWNO - 2 || m_at(x, y)
@@ -414,6 +417,7 @@ goodpos(x, y) /* used only in mnexto and rloc */
               || sobj_at(ENORMOUS_ROCK, x, y)));
 }
 
+void
 rloc(mtmp)
 struct monst *mtmp;
 {

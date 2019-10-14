@@ -60,6 +60,7 @@ char random_joke[][30] = { "Why I ought a ...",
 #endif
 
 /* hitmm returns 0 (miss), 1 (hit), or 2 (kill) */
+int
 hitmm(magr, mdef)
 register struct monst *magr, *mdef;
 {
@@ -190,6 +191,7 @@ register struct monst *magr, *mdef;
 }
 
 /* drop (perhaps) a cadaver and remove monster */
+void
 mondied(mdef)
 register struct monst *mdef;
 {
@@ -226,6 +228,7 @@ register struct monst *mdef;
 }
 
 /* drop a rock and remove monster */
+void
 monstone(mdef)
 register struct monst *mdef;
 {
@@ -241,6 +244,7 @@ register struct monst *mdef;
     mondead(mdef);
 }
 
+int
 fightm(mtmp)
 register struct monst *mtmp;
 {
@@ -256,6 +260,7 @@ register struct monst *mtmp;
 }
 
 /* u is hit by sth, but not a monster */
+int
 thitu(tlev, dam, name)
 register tlev, dam;
 register char *name;
@@ -569,6 +574,7 @@ register thrown;
 
 /* try to attack; return FALSE if monster evaded */
 /* u.dx and u.dy must be set */
+int
 attack(mtmp)
 register struct monst *mtmp;
 {
@@ -770,6 +776,7 @@ register struct monst *mtmp;
 }
 
 #ifdef STOOGES
+void
 stoogejoke()
 { /* have the stooges say something funny */
     pline("'%s'", random_joke[rn2(RAND_JOKE)]);

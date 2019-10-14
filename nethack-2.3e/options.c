@@ -8,6 +8,7 @@ extern char *eos();
 static boolean set_order;
 #endif
 
+void
 initoptions()
 {
     register char *opts;
@@ -39,6 +40,7 @@ initoptions()
 #endif
 }
 
+void
 parseoptions(opts, from_env)
 register char *opts;
 boolean from_env;
@@ -343,6 +345,7 @@ bad:
     getret();
 }
 
+int
 doset()
 {
     char buf[BUFSZ];
@@ -416,6 +419,7 @@ doset()
 }
 
 #ifdef DGKMOD
+int
 dotogglepickup()
 {
     flags.pickup = !flags.pickup;
@@ -424,6 +428,7 @@ dotogglepickup()
 }
 #endif
 
+void
 nmcpy(dest, source, maxlen)
 char *dest, *source;
 int maxlen;
@@ -453,6 +458,7 @@ char *packorder =
     if (page_line(x)) \
     goto quit
 
+void
 option_help()
 {
     char buf[BUFSZ];

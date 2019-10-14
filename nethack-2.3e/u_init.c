@@ -173,6 +173,7 @@ struct trobj Priest[] = { { CHAIN_MAIL, 0, ARMOR_SYM, 1, 1 },
                           { 0, 0, 0, 0, 0 } };
 #endif /* NEWCLASS /**/
 
+void
 u_init()
 {
     register int i;
@@ -473,6 +474,7 @@ got_suffix:
         u.ustr++, u.ustrmax++;
 }
 
+void
 ini_inv(trop)
 register struct trobj *trop;
 {
@@ -553,6 +555,7 @@ register struct trobj *trop;
 }
 
 #ifdef WIZARD
+void
 wiz_inv()
 {
     register struct trobj *trop = &Extra_objs[0];
@@ -577,6 +580,7 @@ wiz_inv()
 }
 #endif /* WIZARD /**/
 
+void
 plnamesuffix()
 {
     register char *p;
@@ -591,6 +595,7 @@ plnamesuffix()
     }
 }
 
+int
 role_index(pc)
 char pc;
 {   /* must be called only from u_init() */

@@ -29,6 +29,7 @@ char wizapp[] = "@&DNPTUVXcemntx";
     (movedist(u.ux, u.uy, x, y) > movedist(u.ux0, u.uy0, x, y))
 extern char mlarge[];
 
+int
 movedist(x0, x1, y0, y1)
 {
     register int absdx, absdy;
@@ -41,6 +42,7 @@ movedist(x0, x1, y0, y1)
 #endif
 
 /* If he has found the Amulet, make the wizard appear after some time */
+void
 amulet()
 {
     register struct obj *otmp;
@@ -61,6 +63,7 @@ amulet()
                 }
 }
 
+int
 wiz_hit(mtmp)
 register struct monst *mtmp;
 {
@@ -123,6 +126,7 @@ int type;
 
 /* Remove an item from the monster's inventory.
  */
+void
 m_useup(mon, obj)
 struct monst *mon;
 struct obj *obj;
@@ -143,6 +147,7 @@ struct obj *obj;
     }
 }
 
+void
 m_throw(x, y, dx, dy, range, obj)
 register int x, y, dx, dy, range; /* direction and range */
 register struct obj *obj;
@@ -257,6 +262,7 @@ register struct obj *obj;
 /* Return 1 if it's OK for the monster to move as well as (throw,
  * zap, etc).
  */
+int
 inrange(mtmp)
 register struct monst *mtmp;
 {
@@ -422,6 +428,7 @@ register struct monst *mtmp;
     return (1);
 }
 
+void
 aggravate()
 {
     register struct monst *mtmp;
@@ -433,6 +440,7 @@ aggravate()
     }
 }
 
+void
 clonewiz(mtmp)
 register struct monst *mtmp;
 {
@@ -447,6 +455,7 @@ register struct monst *mtmp;
     }
 }
 
+int
 nasty()
 {
 #ifdef HARD
@@ -471,6 +480,7 @@ nasty()
 #ifdef HARD
 /*	Here, we make trouble for the poor shmuck who actually	*/
 /*	managed to do in the Wizard.				*/
+void
 intervene()
 {
     switch (rn2(6)) {
@@ -494,6 +504,7 @@ intervene()
     }
 }
 
+void
 wizdead(mtmp)
 register struct monst *mtmp;
 {
@@ -510,6 +521,7 @@ register struct monst *mtmp;
 }
 
 /*	Let's resurrect the wizard, for some unexpected fun.	*/
+void
 resurrect()
 {
     register struct monst *mtmp;

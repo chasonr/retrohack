@@ -22,16 +22,18 @@ extern boolean unweapon;
 #ifdef WALKIES
 static int use_leash(/* struct obj *obj */);
 #endif
-static use_camera(), use_ice_box(), use_whistle();
-static use_magic_whistle(), use_pick_axe();
+static void use_camera(), use_ice_box(), use_whistle();
+static void use_magic_whistle();
+static int use_pick_axe();
 #ifdef MARKER
 extern int dowrite();
 #endif
 #ifdef RPH
-static use_mirror();
+static void use_mirror();
 #endif
-static use_lamp();
+static void use_lamp();
 
+int
 doapply()
 {
     register struct obj *obj;
@@ -137,7 +139,7 @@ doapply()
 }
 
 /* ARGSUSED */
-static
+static void
 use_camera(obj)
 /* register */ struct obj *obj;
 {
@@ -199,7 +201,7 @@ use_camera(obj)
 /* Strictly speaking it makes no sense for usage of a stethoscope to
    not take any time; however, unless it did, the stethoscope would be
    almost useless. */
-static
+static int
 use_stethoscope()
 {
     register struct monst *mtmp;
@@ -258,7 +260,7 @@ use_stethoscope()
 static struct obj
     *current_ice_box; /* a local variable of use_ice_box, to be
                       used by its local procedures in/ck_ice_box */
-static
+static int
 in_ice_box(obj)
 register struct obj *obj;
 {
@@ -291,14 +293,14 @@ register struct obj *obj;
     return (1);
 }
 
-static
+static int
 ck_ice_box(obj)
 register struct obj *obj;
 {
     return (obj->o_cnt_id == current_ice_box->o_id);
 }
 
-static
+static void
 out_ice_box(obj)
 register struct obj *obj;
 {
@@ -316,7 +318,7 @@ register struct obj *obj;
     (void) addinv(obj);
 }
 
-static
+static void
 use_ice_box(obj)
 register struct obj *obj;
 {
@@ -372,7 +374,7 @@ char sym;
 }
 
 /* ARGSUSED */
-static
+static void
 use_whistle(obj)
 struct obj *obj;
 {
@@ -390,7 +392,7 @@ struct obj *obj;
 }
 
 /* ARGSUSED */
-static
+static void
 use_magic_whistle(obj)
 struct obj *obj;
 {
@@ -449,6 +451,7 @@ struct obj *obj;
     return (0);
 }
 
+int
 next_to(mtmp)
 register struct monst *mtmp;
 {
@@ -461,7 +464,7 @@ static uchar dig_level;
 static coord dig_pos;
 static boolean dig_down;
 
-static
+static int
 dig()
 {
     register struct rm *lev;
@@ -532,11 +535,13 @@ dig()
 }
 
 /* When will hole be finished? Very rough indication used by shopkeeper. */
+int
 holetime()
 {
     return ((occupation == dig) ? (250 - dig_effort) / 20 : -1);
 }
 
+void
 dighole()
 {
     register struct trap *ttmp = t_at(u.ux, u.uy);
@@ -563,7 +568,7 @@ dighole()
     }
 }
 
-static
+static int
 use_pick_axe(obj)
 struct obj *obj;
 {
@@ -698,7 +703,7 @@ struct obj *obj;
 }
 
 #ifdef RPH
-static
+static void
 use_mirror(obj)
 struct obj *obj;
 {
@@ -801,7 +806,7 @@ struct obj *obj;
 
 #endif
 
-static
+static void
 use_lamp(obj)
 struct obj *obj;
 {
@@ -813,6 +818,7 @@ struct obj *obj;
     obj->spe -= 1;
 }
 
+void
 dorub()
 {
     if (!(carrying(LAMP) || carrying(MAGIC_LAMP))) {

@@ -27,6 +27,7 @@ static char *rip[] = {
     0
 };
 
+void
 outrip()
 {
     register char **dp = rip;
@@ -98,6 +99,7 @@ outrip()
     getret();
 }
 
+void
 center(line, text)
 int line;
 char *text;

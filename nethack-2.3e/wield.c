@@ -8,12 +8,14 @@ extern char *hcolor();
 extern boolean unweapon;
 #endif
 
+void
 setuwep(obj)
 register struct obj *obj;
 {
     setworn(obj, W_WEP);
 }
 
+int
 dowield()
 {
     register struct obj *wep;
@@ -69,6 +71,7 @@ dowield()
     return (res);
 }
 
+void
 corrode_weapon()
 {
     if (!uwep || uwep->olet != WEAPON_SYM)
@@ -82,6 +85,7 @@ corrode_weapon()
         pline("Your %s quite rusted now.", aobjnam(uwep, "look"));
 }
 
+int
 chwepon(otmp, amount)
 register struct obj *otmp;
 register amount;

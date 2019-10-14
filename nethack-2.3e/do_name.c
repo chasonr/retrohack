@@ -7,6 +7,7 @@ extern char plname[];
 extern char *rndmonnam();
 extern void savech();
 
+int
 getpos(cc, force, goal)
 coord *cc;
 int force;
@@ -49,6 +50,7 @@ char *goal;
     return (0);
 }
 
+int
 do_mname()
 {
     char buf[BUFSZ];
@@ -115,6 +117,7 @@ do_mname()
  * when there might be pointers around in unknown places. For now: only
  * when  obj  is in the inventory.
  */
+void
 do_oname(obj)
 register struct obj *obj;
 {
@@ -134,6 +137,7 @@ register struct obj *obj;
     oname(obj, buf);
 }
 
+void
 oname(obj, buf)
 register struct obj *obj;
 char *buf;
@@ -171,6 +175,7 @@ char *buf;
     free((char *) obj); /* let us hope nobody else saved a pointer */
 }
 
+int
 ddocall()
 {
     register struct obj *obj;
@@ -206,6 +211,7 @@ ddocall()
     return (0);
 }
 
+void
 docall(obj)
 register struct obj *obj;
 {

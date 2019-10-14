@@ -19,7 +19,7 @@ extern struct wseg *wsegs[32];
 
 int lastinvnr = 51; /* 0 ... 51 */
 
-static
+static void
 assigninvlet(otmp)
 register struct obj *otmp;
 {
@@ -103,6 +103,7 @@ register struct obj *obj;
     return (obj);
 }
 
+void
 useup(obj)
 register struct obj *obj;
 {
@@ -116,6 +117,7 @@ register struct obj *obj;
     }
 }
 
+void
 freeinv(obj)
 register struct obj *obj;
 {
@@ -132,6 +134,7 @@ register struct obj *obj;
 }
 
 /* destroy object in fobj chain (if unpaid, it remains on the bill) */
+void
 delobj(obj)
 register struct obj *obj;
 {
@@ -141,6 +144,7 @@ register struct obj *obj;
 }
 
 /* unlink obj from chain starting with fobj */
+void
 freeobj(obj)
 register struct obj *obj;
 {
@@ -157,6 +161,7 @@ register struct obj *obj;
 }
 
 /* Note: freegold throws away its argument! */
+void
 freegold(gold)
 register struct gold *gold;
 {
@@ -173,6 +178,7 @@ register struct gold *gold;
     free((char *) gold);
 }
 
+void
 deltrap(trap)
 register struct trap *trap;
 {
@@ -240,6 +246,7 @@ register n, x, y;
     return (0);
 }
 
+int
 carried(obj)
 register struct obj *obj;
 {
@@ -501,6 +508,7 @@ register char *let, *word;
     return (otmp);
 }
 
+int
 ckunpaid(otmp)
 register struct obj *otmp;
 {
@@ -509,6 +517,7 @@ register struct obj *otmp;
 
 /* interactive version of getobj - used for Drop and Identify */
 /* return the number of times fn was called successfully */
+int
 ggetobj(word, fn, max)
 char *word;
 int (*fn)(), max;
@@ -594,6 +603,7 @@ int (*fn)(), max;
  * If allflag then no questions are asked. Max gives the max nr of
  * objects to be treated. Return the number of objects treated.
  */
+int
 askchain(objchn, olets, allflag, fn, ckfn, max)
 struct obj *objchn;
 register char *olets;
@@ -657,6 +667,7 @@ ret:
     return (cnt);
 }
 
+int
 obj_to_let(obj) /* should of course only be called for things in invent */
 register struct obj *obj;
 {
@@ -672,6 +683,7 @@ register struct obj *obj;
     return (otmp ? ilet : NOINVSYM);
 }
 
+void
 prinv(obj)
 register struct obj *obj;
 {
@@ -689,6 +701,7 @@ register char let;
     return (li);
 }
 
+int
 ddoinv()
 {
     doinv((char *) 0);
@@ -706,6 +719,7 @@ extern char *let_to_name();
 
 /* called with 0 or "": all objects in inventory */
 /* otherwise: all objects with (serial) letter in lets */
+void
 doinv(lets)
 register char *lets;
 {
@@ -767,6 +781,7 @@ nextclass:
     cornline(2, any);
 }
 
+int
 dotypeinv() /* free after Robert Viduya */
 /* Changed to one type only, so he doesnt have to type cr */
 {
@@ -854,6 +869,7 @@ dotypeinv() /* free after Robert Viduya */
 }
 
 /* look at what is here */
+int
 dolook()
 {
     register struct obj *otmp, *otmp0;
@@ -949,6 +965,7 @@ dolook()
     return (!!Blind);
 }
 
+void
 stackobj(obj)
 register struct obj *obj;
 {
@@ -961,6 +978,7 @@ register struct obj *obj;
 }
 
 /* merge obj with otmp and delete obj if types agree */
+int
 merged(otmp, obj, lose)
 register struct obj *otmp, *obj;
 {
@@ -993,6 +1011,7 @@ extern int (*occupation)();
 extern char *occtxt;
 static long goldcounted;
 
+int
 countgold()
 {
     if ((goldcounted += 100 * (u.ulevel + 1)) >= u.ugold) {
@@ -1005,6 +1024,7 @@ countgold()
     return (1); /* continue */
 }
 
+int
 doprgold()
 {
     if (!u.ugold)
@@ -1022,6 +1042,7 @@ doprgold()
 
 /* --- end of gold counting section --- */
 
+int
 doprwep()
 {
     if (!uwep)
@@ -1031,6 +1052,7 @@ doprwep()
     return (0);
 }
 
+int
 doprarm()
 {
 #ifdef SHIRT
@@ -1067,6 +1089,7 @@ doprarm()
     return (0);
 }
 
+int
 doprring()
 {
     if (!uleft && !uright)
@@ -1085,6 +1108,7 @@ doprring()
     return (0);
 }
 
+int
 digit(c)
 char c;
 {
@@ -1095,6 +1119,7 @@ char c;
  * useupf(obj)
  * uses up an object that's on the floor
  */
+void
 useupf(obj)
 register struct obj *obj;
 {
@@ -1148,6 +1173,7 @@ char let;
 }
 #endif /* SORTING /**/
 
+void
 reassign()
 {
     register int i;

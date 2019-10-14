@@ -5,6 +5,7 @@
 #ifdef SPELLS
 extern char *nomovemsg;
 
+int
 doxcribe()
 {
     register struct obj *book;
@@ -125,6 +126,7 @@ doxcribe()
     return (1);
 }
 
+int
 cursed_book(level)
 register int level;
 {
@@ -177,6 +179,7 @@ register int level;
     return (0);
 }
 
+int
 docast()
 {
     register int spell, energy, damage;
@@ -327,6 +330,7 @@ docast()
     return (1);
 }
 
+int
 getspell()
 {
     register int max, ilet, i;
@@ -373,6 +377,7 @@ getspell()
     }
 }
 
+void
 losespells()
 {
     register boolean confused = (Confusion != 0);
@@ -393,6 +398,7 @@ losespells()
     return;
 }
 
+int
 dovspell()
 {
     register int max, i, side;
@@ -426,6 +432,7 @@ dovspell()
     return (0);
 }
 
+int
 spellet(spl)
 {
     if (spl < 27)
@@ -434,6 +441,7 @@ spellet(spl)
         return ('A' + spl - 27);
 }
 
+int
 spellev(spl)
 {
     return (spl_book[spl - 1].sp_lev);
@@ -445,16 +453,19 @@ spellname(spl)
     return (objects[spl_book[spl - 1].sp_id].oc_name);
 }
 
+int
 spellid(spl)
 {
     return (spl_book[spl - 1].sp_id);
 }
 
 #ifdef HARD
+int
 spelluses(spell)
 {
     return (spl_book[spell - 1].sp_uses);
 }
+void
 decrnuses(spell)
 {
     spl_book[spell - 1].sp_uses--;

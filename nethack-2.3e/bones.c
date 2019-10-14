@@ -15,6 +15,7 @@ char bones[] = "bones_xx";
 #endif
 
 /* save bones and possessions of a deceased adventurer */
+void
 savebones()
 {
     register fd;
@@ -122,6 +123,7 @@ savebones()
 /*
  * "spill" object out of box onto floor
  */
+void
 spill_obj(obj)
 struct obj *obj;
 {
@@ -140,6 +142,7 @@ struct obj *obj;
         }
 }
 
+int
 getbones()
 {
     register fd, x, y, ok;

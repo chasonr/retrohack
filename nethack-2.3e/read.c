@@ -10,6 +10,7 @@ char *hcolor();
 boolean known;
 int identify();
 
+int
 doread()
 {
     register struct obj *scroll;
@@ -64,6 +65,7 @@ doread()
     return (1);
 }
 
+int
 seffects(sobj)
 register struct obj *sobj;
 {
@@ -508,6 +510,7 @@ register struct obj *sobj;
     return (0);
 }
 
+int
 identify(otmp) /* also called by newmail() */
 register struct obj *otmp;
 {
@@ -524,6 +527,7 @@ register struct obj *otmp;
     return (1);
 }
 
+void
 litroom(on)
 register boolean on;
 {
@@ -613,6 +617,7 @@ do_it:
 }
 
 /* Test whether we may genocide all monsters with symbol  ch  */
+int
 monstersym(ch) /* arnold@ucsfcgl */
 register char ch;
 {
@@ -637,6 +642,7 @@ register char ch;
     return FALSE;
 }
 
+void
 do_genocide()
 {
     extern char genocided[], fut_geno[];
@@ -683,6 +689,7 @@ do_genocide()
 #endif
 }
 
+void
 do_mapping()
 {
     register struct rm *lev;
@@ -718,6 +725,7 @@ do_mapping()
         }
 }
 
+int
 destroy_arm()
 {
     if (uarm) {

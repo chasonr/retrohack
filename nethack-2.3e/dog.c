@@ -38,6 +38,7 @@ makedog()
     return (mtmp);
 }
 
+void
 initedog(mtmp)
 register struct monst *mtmp;
 {
@@ -58,6 +59,7 @@ struct monst *mydogs = 0;
 struct monst *fallen_down = 0; /* monsters that fell through a trapdoor */
 /* they will appear on the next level @ goes to, even if he goes up! */
 
+void
 losedogs()
 {
     register struct monst *mtmp;
@@ -78,6 +80,7 @@ losedogs()
     }
 }
 
+void
 keepdogs()
 {
     register struct monst *mtmp;
@@ -106,6 +109,7 @@ keepdogs()
         }
 }
 
+void
 fall_down(mtmp)
 register struct monst *mtmp;
 {
@@ -123,6 +127,7 @@ register struct monst *mtmp;
 }
 
 /* return quality of food; the lower the better */
+int
 dogfood(obj)
 register struct obj *obj;
 {
@@ -150,6 +155,7 @@ register struct obj *obj;
 }
 
 /* return roomnumber or -1 */
+int
 inroom(x, y)
 xchar x, y;
 {
@@ -165,6 +171,7 @@ xchar x, y;
     return (-1); /* not in room or on door */
 }
 
+int
 tamedog(mtmp, obj)
 register struct monst *mtmp;
 register struct obj *obj;

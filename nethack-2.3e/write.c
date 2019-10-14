@@ -60,6 +60,7 @@ register struct obj *scroll;
     return (1000);
 }
 
+int
 dowrite(pen)
 register struct obj *pen;
 {

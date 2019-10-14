@@ -14,6 +14,7 @@ struct ltchars ltchars, ltchars0;
 struct termio termio;
 #endif
 
+void
 getioctls()
 {
 #ifdef BSD
@@ -24,6 +25,7 @@ getioctls()
 #endif
 }
 
+void
 setioctls()
 {
 #ifdef BSD

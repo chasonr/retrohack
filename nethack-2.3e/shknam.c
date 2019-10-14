@@ -373,6 +373,7 @@ register struct mkroom *sroom;
      */
 }
 
+int
 saleable(nshop, obj) /* does "shop" stock this item type */
 register int nshop;
 register struct obj *obj;

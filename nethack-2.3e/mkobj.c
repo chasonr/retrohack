@@ -207,11 +207,13 @@ register otyp;
     return (otmp);
 }
 
+int
 letter(c)
 {
     return (('@' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
 }
 
+int
 weight(obj)
 register struct obj *obj;
 {
@@ -219,6 +221,7 @@ register struct obj *obj;
     return (wt ? wt * obj->quan : (obj->quan + 1) / 2);
 }
 
+void
 mkgold(num, x, y)
 register long num;
 {

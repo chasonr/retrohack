@@ -54,6 +54,7 @@ int dodebug();
 static int (*timed_occ_fn)();
 
 /* Count down by decrementing multi */
+int
 timed_occupation()
 {
     (*timed_occ_fn)();
@@ -263,6 +264,7 @@ struct ext_func_tab extcmdlist[] = {
 
 extern char *parse(), lowc(), unctrl(), quitchars[];
 
+void
 rhack(cmd)
 register char *cmd;
 {
@@ -387,6 +389,7 @@ register char *cmd;
     return;
 }
 
+int
 doextcmd() /* here after # - now read a full-word command */
 {
     char buf[BUFSZ];
@@ -410,6 +413,7 @@ doextcmd() /* here after # - now read a full-word command */
     return (0);
 }
 
+int
 doextlist() /* here after #? - now list all full-word commands */
 {
     register struct ext_func_tab *efp = extcmdlist;
@@ -453,6 +457,7 @@ schar xdir[10] = { -1, -1, 0, 1, 1, 1, 0, -1, 0, 0 };
 schar ydir[10] = { 0, -1, -1, -1, 0, 1, 1, 1, 0, 0 };
 schar zdir[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, -1 };
 
+int
 movecmd(sym) /* also sets u.dz, but returns false for <> */
 char sym;
 {
@@ -467,6 +472,7 @@ char sym;
     return (!u.dz);
 }
 
+int
 getdir(s)
 boolean s;
 {
@@ -496,6 +502,7 @@ boolean s;
     return (1);
 }
 
+void
 confdir()
 {
     register x = rn2(8);
@@ -549,6 +556,7 @@ register x, y;
 }
 #endif /* QUEST /**/
 
+void
 isok(x, y)
 register x, y;
 {
@@ -590,6 +598,7 @@ wiz_map()
         do_mapping();
     else
         pline("If you want a map, you'll have to make one yourself!");
+    return (0);
 }
 
 int
@@ -597,9 +606,10 @@ wiz_detect()
 {
     if (wizard) {
         if (!findit())
-            return;
+            return (0);
     } else
         pline("Don't ask me where anything is, I only work here!");
+    return (0);
 }
 
 int

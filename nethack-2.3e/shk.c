@@ -78,7 +78,9 @@ struct obj *billobjs;   /* objects on bill with bp->useup */
 /* only accessed here and by save & restore */
 static long int total;     /* filled by addupbill() */
 static long int followmsg; /* last time of follow message */
-static setpaid(), findshk(), dopayobj(), getprice(), realhunger();
+static void setpaid();
+static void findshk();
+static dopayobj(), getprice(), realhunger();
 
 /*
         invariants: obj->unpaid iff onbill(obj) [unless bp->useup]
@@ -92,6 +94,7 @@ register struct monst *mtmp;
     return (ESHK(mtmp)->shknam);
 }
 
+void
 shkdead(mtmp) /* called in mon.c */
 register struct monst *mtmp;
 {
@@ -106,6 +109,7 @@ register struct monst *mtmp;
     }
 }
 
+void
 replshk(mtmp, mtmp2)
 register struct monst *mtmp, *mtmp2;
 {
@@ -115,7 +119,7 @@ register struct monst *mtmp, *mtmp2;
     }
 }
 
-static
+static void
 setpaid()
 {   /* caller has checked that shopkeeper exists */
     /* either we paid or left the shop or he just died */
@@ -140,7 +144,7 @@ setpaid()
     ESHK(shopkeeper)->billct = 0;
 }
 
-static
+static void
 addupbill()
 {   /* delivers result in total */
     /* caller has checked that shopkeeper exists */
@@ -153,6 +157,7 @@ addupbill()
     }
 }
 
+int
 inshop()
 {
     register roomno = inroom(u.ux, u.uy);
@@ -278,7 +283,7 @@ inshop()
     return (u.uinshop);
 }
 
-static
+static void
 findshk(roomno)
 register roomno;
 {
@@ -320,6 +325,7 @@ register struct obj *obj;
 }
 
 /* called with two args on merge */
+void
 obfree(obj, merge)
 register struct obj *obj, *merge;
 {
@@ -348,7 +354,7 @@ register struct obj *obj, *merge;
     free((char *) obj);
 }
 
-static
+static void
 pay(tmp, shkp)
 long tmp;
 register struct monst *shkp;
@@ -366,6 +372,7 @@ register struct monst *shkp;
     }
 }
 
+int
 dopay()
 {
     long ltmp;
@@ -500,7 +507,7 @@ dopay()
 /* return 1 if paid successfully */
 /*        0 if not enough money */
 /*       -1 if object could not be found (but was paid) */
-static
+static int
 dopayobj(bp)
 register struct bill_x *bp;
 {
@@ -550,6 +557,7 @@ register struct bill_x *bp;
 }
 
 /* routine called after dying (or quitting) with nonempty bill */
+void
 paybill()
 {
     if (shlevel == dlevel && shopkeeper && ESHK(shopkeeper)->billct) {
@@ -593,6 +601,7 @@ register struct bill_x *bp;
 }
 
 /* called in hack.c when we pickup an object */
+void
 addtobill(obj)
 register struct obj *obj;
 {
@@ -661,6 +670,7 @@ register struct obj *obj;
     obj->unpaid = 1;
 }
 
+void
 splitbill(obj, otmp)
 register struct obj *obj, *otmp;
 {
@@ -694,6 +704,7 @@ register struct obj *obj, *otmp;
     }
 }
 
+void
 subfrombill(obj)
 register struct obj *obj;
 {
@@ -776,6 +787,7 @@ register struct obj *obj;
               plur(ltmp));
 }
 
+int
 doinvbill(mode)
 int mode; /* 0: deliver count 1: paged */
 {
@@ -840,7 +852,7 @@ quit:
     return (0);
 }
 
-static
+static int
 getprice(obj)
 register struct obj *obj;
 {
@@ -945,7 +957,7 @@ register struct obj *obj;
     return (tmp);
 }
 
-static
+static int
 realhunger()
 { /* not completely foolproof */
     register tmp = u.uhunger;
@@ -958,6 +970,7 @@ realhunger()
     return ((tmp <= 0) ? 1 : tmp);
 }
 
+int
 shkcatch(obj)
 register struct obj *obj;
 {
@@ -978,6 +991,7 @@ register struct obj *obj;
 /*
  * shk_move: return 1: he moved  0: he didnt  -1: let m_move do it
  */
+int
 shk_move(shkp)
 register struct monst *shkp;
 {
@@ -1154,6 +1168,7 @@ register struct monst *shkp;
 }
 #endif /* QUEST /**/
 
+int
 online(x, y) /*	New version to speed things up.
               *	Compiler dependant, may not always work.
               */
@@ -1169,6 +1184,7 @@ register xchar x, y;
  */
 
 /* Does this monster follow me downstairs? */
+int
 follower(mtmp)
 register struct monst *mtmp;
 {
@@ -1177,6 +1193,7 @@ register struct monst *mtmp;
 }
 
 /* He is digging in the shop. */
+void
 shopdig(fall)
 register int fall;
 {

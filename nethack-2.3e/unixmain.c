@@ -37,6 +37,7 @@ char obuf[BUFSIZ];                  /* BUFSIZ is defined in stdio.h */
 extern char *nomovemsg;
 extern long wailmsg;
 
+int
 main(argc, argv)
 int argc;
 char *argv[];
@@ -450,6 +451,7 @@ char *argv[];
     }
 }
 
+void
 glo(foo)
 register foo;
 {
@@ -467,6 +469,7 @@ register foo;
  * explicitly (-w implies wizard) or by askname.
  * It may still contain a suffix denoting pl_character.
  */
+void
 askname()
 {
     register int c, ct;
@@ -494,6 +497,7 @@ askname()
 }
 
 /*VARARGS1*/
+void
 impossible(s, x1, x2)
 register char *s;
 {
@@ -545,6 +549,7 @@ boolean wr;
 }
 #endif /* CHDIR /**/
 
+void
 stop_occupation()
 {
     extern void pushch();
@@ -559,6 +564,7 @@ stop_occupation()
     }
 }
 
+void
 whoami()
 {
     /*
@@ -585,6 +591,7 @@ whoami()
         (void) strncpy(plname, s, sizeof(plname) - 1);
 }
 
+int
 newgame()
 {
     extern struct monst *makedog();

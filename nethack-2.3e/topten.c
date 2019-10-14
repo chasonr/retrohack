@@ -36,6 +36,7 @@ struct toptenentry {
     char date[7]; /* yymmdd */
 } * tt_head;
 
+void
 topten()
 {
     int uid = getuid();
@@ -244,6 +245,7 @@ unlock:;
 #endif
 }
 
+void
 outheader()
 {
     char linebuf[BUFSZ];
@@ -393,6 +395,7 @@ register char *s;
  * requested. Otherwise, find scores for the current player (and list them
  * if argc == -1).
  */
+void
 prscore(argc, argv)
 int argc;
 char **argv;

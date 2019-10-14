@@ -18,6 +18,7 @@ register char let;
     return (0);
 }
 
+void
 init_objects()
 {
     register int i, j, first, last, sum, end;
@@ -99,6 +100,7 @@ init_objects()
     }
 }
 
+int
 probtype(let)
 register char let;
 {
@@ -111,6 +113,7 @@ register char let;
     return (i);
 }
 
+void
 setgemprobs()
 {
     register int j, first;
@@ -130,6 +133,7 @@ setgemprobs()
         objects[j].oc_prob = (18 + j - first) / (LAST_GEM - first);
 }
 
+void
 oinit() /* level dependent initialization */
 {
     setgemprobs();
@@ -137,6 +141,7 @@ oinit() /* level dependent initialization */
 
 extern long *alloc();
 
+void
 savenames(fd)
 register fd;
 {
@@ -158,6 +163,7 @@ register fd;
     }
 }
 
+void
 restnames(fd)
 register fd;
 {
@@ -198,6 +204,7 @@ register fd;
     }
 }
 
+int
 dodiscovered() /* free after Robert Viduya */
 {
     extern char *typename();
@@ -232,6 +239,7 @@ dodiscovered() /* free after Robert Viduya */
     return (0);
 }
 
+int
 interesting_to_discover(i)
 register int i;
 {
@@ -239,6 +247,7 @@ register int i;
             || (objects[i].oc_name_known && objects[i].oc_descr != NULL));
 }
 
+int
 init_corpses()
 {
 #ifdef SPIDERS

@@ -33,6 +33,7 @@ static char tgotobuf[20];
 #define tgoto(fmt, x, y) (sprintf(tgotobuf, fmt, y + 1, x + 1), tgotobuf)
 #endif /* MSDOS /**/
 
+void
 startup()
 {
     register char *term;
@@ -119,6 +120,7 @@ startup()
 #endif
 }
 
+void
 start_screen()
 {
     xputs(TI);
@@ -131,6 +133,7 @@ start_screen()
 #endif
 }
 
+void
 end_screen()
 {
     clear_screen();
@@ -141,6 +144,7 @@ end_screen()
 /* Cursor movements */
 extern xchar curx, cury;
 
+void
 curs(x, y)
 register int x, y; /* not xchar: perhaps xchar is unsigned and
                       curx-x would be unsigned as well */
@@ -163,6 +167,7 @@ register int x, y; /* not xchar: perhaps xchar is unsigned and
         cmov(x, y);
 }
 
+void
 nocmov(x, y)
 {
     if (cury > y) {
@@ -210,6 +215,7 @@ nocmov(x, y)
     }
 }
 
+void
 cmov(x, y)
 register x, y;
 {
@@ -218,12 +224,14 @@ register x, y;
     curx = x;
 }
 
+void
 xputc(c)
 char c;
 {
     (void) fputc(c, stdout);
 }
 
+void
 xputs(s)
 char *s;
 {
@@ -234,6 +242,7 @@ char *s;
 #endif
 }
 
+void
 cl_end()
 {
     if (CE)
@@ -251,12 +260,14 @@ cl_end()
     }
 }
 
+void
 clear_screen()
 {
     xputs(CL);
     home();
 }
 
+void
 home()
 {
     if (HO)
@@ -268,24 +279,28 @@ home()
     curx = cury = 1;
 }
 
+void
 standoutbeg()
 {
     if (SO)
         xputs(SO);
 }
 
+void
 standoutend()
 {
     if (SE)
         xputs(SE);
 }
 
+void
 backsp()
 {
     xputs(BC);
     curx--;
 }
 
+void
 bell()
 {
 #ifdef DGKMOD
@@ -301,6 +316,7 @@ static short tmspc10[] = { /* from termcap */
                            166, 83,   55,   41,  20,  10,  5
 };
 
+void
 delay_output()
 {
     /* delay 50 ms - could also use a 'nap'-system call */
@@ -338,6 +354,7 @@ delay_output()
 #endif /* MSDOS /**/
 }
 
+void
 cl_eos() /* free after Robert Viduya */
 {        /* must only be called with curx = 1 */
 

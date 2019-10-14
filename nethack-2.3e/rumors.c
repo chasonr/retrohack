@@ -57,6 +57,7 @@ int n_rumors = 0;
 int n_used_rumors = -1;
 char *usedbits;
 
+void
 init_rumors(rumf)
 register FILE *rumf;
 {
@@ -71,6 +72,7 @@ register FILE *rumf;
         usedbits[i] = 0;
 }
 
+int
 skipline(rumf)
 register FILE *rumf;
 {
@@ -83,6 +85,7 @@ register FILE *rumf;
     }
 }
 
+void
 outline(rumf)
 register FILE *rumf;
 {
@@ -96,6 +99,7 @@ register FILE *rumf;
     pline(line);
 }
 
+void
 outrumor()
 {
     register int rn, i;
@@ -122,6 +126,7 @@ none:
     (void) fclose(rumf);
 }
 
+int
 used(i)
 register int i;
 {

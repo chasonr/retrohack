@@ -17,6 +17,7 @@ extern char *xname();
 #endif
 static int drop(/* struct obj *obj */);
 
+int
 dodrop()
 {
     if (u.ugold)
@@ -95,6 +96,7 @@ register struct obj *obj;
 }
 
 /* Called in several places - should not produce texts */
+void
 dropx(obj)
 register struct obj *obj;
 {
@@ -102,6 +104,7 @@ register struct obj *obj;
     dropy(obj);
 }
 
+void
 dropy(obj)
 register struct obj *obj;
 {
@@ -131,11 +134,13 @@ register struct obj *obj;
 }
 
 /* drop several things */
+int
 doddrop()
 {
     return (ggetobj("drop", drop, 0));
 }
 
+int
 dodown()
 {
     if (u.ux != xdnstair || u.uy != ydnstair) {
@@ -155,6 +160,7 @@ dodown()
     return (1);
 }
 
+int
 doup()
 {
     if (u.ux != xupstair || u.uy != yupstair) {
@@ -174,6 +180,7 @@ doup()
     return (1);
 }
 
+void
 goto_level(newlevel, at_stairs)
 register int newlevel;
 register boolean at_stairs;
@@ -340,12 +347,14 @@ register boolean at_stairs;
     read_engr_at(u.ux, u.uy);
 }
 
+int
 donull()
 {
     return (1); /* Do nothing, but let other things happen */
 }
 
 #if defined(KAA) && defined(KOPS)
+int
 wipeoff()
 {
     if (u.ucreamed < 4)
@@ -367,6 +376,7 @@ wipeoff()
     return (0);
 }
 
+int
 dowipe()
 {
     if (u.ucreamed) {
@@ -405,6 +415,7 @@ register int num;
     return (otmp);
 }
 
+void
 more_experienced(exp, rexp)
 register int exp, rexp;
 {
@@ -418,6 +429,7 @@ register int exp, rexp;
         flags.beginner = 0;
 }
 
+void
 set_wounded_legs(side, timex)
 register long side;
 register int timex;
@@ -428,6 +440,7 @@ register int timex;
         Wounded_legs |= side;
 }
 
+void
 heal_legs()
 {
     if (Wounded_legs) {
@@ -440,6 +453,7 @@ heal_legs()
 }
 
 #ifdef SINKS
+void
 trycall(obj)
 register struct obj *obj;
 {
@@ -447,6 +461,7 @@ register struct obj *obj;
         docall(obj);
 }
 
+void
 dosinkring(obj) /* obj is a ring being dropped over a kitchen sink */
 register struct obj *obj;
 {

@@ -42,6 +42,7 @@ struct rectangle {
 int rscnt, rsmax; /* 0..rscnt-1: currently under consideration */
                   /* rscnt..rsmax: discarded */
 
+void
 makelevel()
 {
     register struct mkroom *croom, *troom;
@@ -238,6 +239,7 @@ makelevel()
         mkroom(SWAMP);
 }
 
+int
 makerooms()
 {
     register struct rectangle *rsp;
@@ -311,6 +313,7 @@ makerooms()
     return (0); /* failed to make vault - very strange */
 }
 
+void
 addrs(lowx, lowy, hix, hiy)
 register int lowx, lowy, hix, hiy;
 {
@@ -346,6 +349,7 @@ register int lowx, lowy, hix, hiy;
     }
 }
 
+void
 addrsx(lx, ly, hx, hy, discarded)
 register int lx, ly, hx, hy;
 boolean discarded; /* piece of a discarded area */
@@ -379,6 +383,7 @@ boolean discarded; /* piece of a discarded area */
     rsp->rhy = hy;
 }
 
+int
 comp(x, y)
 register struct mkroom *x, *y;
 {
@@ -387,6 +392,7 @@ register struct mkroom *x, *y;
     return (x->lx > y->lx);
 }
 
+int
 finddpos(cc, xl, yl, xh, yh)
 coord *cc;
 int xl, yl, xh, yh;
@@ -417,6 +423,7 @@ gotit:
 }
 
 /* see whether it is allowable to create a door at [x,y] */
+int
 okdoor(x, y)
 register x, y;
 {
@@ -430,6 +437,7 @@ register x, y;
     return (1);
 }
 
+void
 dodoor(x, y, aroom)
 register x, y;
 register struct mkroom *aroom;
@@ -443,6 +451,7 @@ register struct mkroom *aroom;
     dosdoor(x, y, aroom, rn2(8) ? DOOR : SDOOR);
 }
 
+void
 dosdoor(x, y, aroom, type)
 register x, y;
 register struct mkroom *aroom;
@@ -471,6 +480,7 @@ register type;
 }
 
 /* Only called from makerooms() */
+int
 maker(lowx, ddx, lowy, ddy)
 schar lowx, ddx, lowy, ddy;
 {
@@ -560,6 +570,7 @@ chk:
     return (1);
 }
 
+void
 makecorridors()
 {
     register a, b;
@@ -584,6 +595,7 @@ makecorridors()
         }
 }
 
+void
 join(a, b)
 register a, b;
 {
@@ -725,6 +737,7 @@ register a, b;
         smeq[a] = smeq[b];
 }
 
+void
 make_niches()
 {
     register int ct = rnd(nroom / 2 + 1);
@@ -747,6 +760,7 @@ make_niches()
 #endif
 }
 
+void
 makevtele()
 {
     makeniche(TELEP_TRAP);
@@ -795,6 +809,7 @@ char *engravings[] = { "",
 #endif
 };
 
+void
 makeniche(trap_type)
 int trap_type;
 {
@@ -851,6 +866,7 @@ int trap_type;
 }
 
 /* make a trap somewhere (in croom if mazeflag = 0) */
+void
 mktrap(num, mazeflag, croom)
 #ifndef REGBUG
     register
@@ -994,6 +1010,7 @@ register
 }
 
 #ifdef FOUNTAINS
+void
 mkfount(mazeflag, croom)
 register struct mkroom *croom;
 register mazeflag;
@@ -1027,6 +1044,7 @@ register mazeflag;
 #endif /* FOUNTAINS /**/
 
 #ifdef SINKS
+void
 mksink(croom)
 register struct mkroom *croom;
 {

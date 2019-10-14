@@ -46,6 +46,7 @@ char *fl[] = { "magic missile", /* Wands must be 0-9 */
 
 /* Routines for IMMEDIATE wands and spells. */
 /* bhitm: monster mtmp was hit by the effect of wand or spell otmp */
+void
 bhitm(mtmp, otmp)
 register struct monst *mtmp;
 register struct obj *otmp;
@@ -123,6 +124,7 @@ register struct obj *otmp;
     }
 }
 
+int
 bhito(obj, otmp) /* object obj was hit by the effect of wand otmp */
 register struct obj *obj, *otmp; /* returns TRUE if sth was done */
 {
@@ -241,6 +243,7 @@ register struct obj *wand;
  * zapnodir - zaps an NODIR wand.
  * added by GAN 11/03/86
  */
+void
 zapnodir(wand)
 register struct obj *wand;
 {
@@ -274,6 +277,7 @@ register struct obj *wand;
     }
 }
 
+int
 dozap()
 {
     register struct obj *obj;
@@ -312,6 +316,7 @@ dozap()
 #ifdef KAA
 #define makeknown(x) objects[x].oc_name_known = 1
 
+int
 zapyourself(obj)
 register struct obj *obj;
 {
@@ -454,6 +459,7 @@ register struct obj *obj;
 #endif /* KAA /**/
 
 /* called for various wand and spell effects - M. Stephenson */
+void
 weffects(obj)
 register struct obj *obj;
 {
@@ -603,6 +609,7 @@ register int force;
     return ((force < 0) ? "?" : (force <= 4) ? "." : "!");
 }
 
+void
 hit(str, mtmp, force)
 register char *str;
 register struct monst *mtmp;
@@ -614,6 +621,7 @@ register char *force; /* usually either "." or "!" */
         pline("The %s hits %s%s", str, monnam(mtmp), force);
 }
 
+void
 miss(str, mtmp)
 register char *str;
 register struct monst *mtmp;
@@ -756,6 +764,7 @@ register dx, dy;
 /* type == -1 to -9   : bolts sent out by wizard */
 /* type == -10 to -19 : dragon breathing at you  */
 /* called with dx = dy = 0 with vertical bolts */
+void
 buzz(type, sx, sy, dx, dy)
 register int type;
 register xchar sx, sy;
@@ -958,6 +967,7 @@ register int dx, dy;
     Tmp_at(-1, -1);
 }
 
+int
 zhit(mon, type) /* returns damage to mon */
 register struct monst *mon;
 register type;
@@ -1036,6 +1046,7 @@ register type;
 #define CORPSE_I_TO_C(otyp)                                          \
     (char) ((otyp >= DEAD_ACID_BLOB) ? 'a' + (otyp - DEAD_ACID_BLOB) \
                                      : '@' + (otyp - DEAD_HUMAN))
+int
 revive(obj)
 register struct obj *obj;
 {
@@ -1084,6 +1095,7 @@ register struct obj *obj;
     return (!!mtmp); /* TRUE if some monster created */
 }
 
+void
 rloco(obj)
 register struct obj *obj;
 {
@@ -1101,6 +1113,7 @@ register struct obj *obj;
         newsym(otx, oty);
 }
 
+void
 fracture_rock(obj)        /* fractured by pick-axe or wand of striking */
 register struct obj *obj; /* no texts here! */
 {
@@ -1113,6 +1126,7 @@ register struct obj *obj; /* no texts here! */
         prl(obj->ox, obj->oy);
 }
 
+void
 boil_potions()
 {
     register struct obj *obj, *obj2;
@@ -1135,6 +1149,7 @@ boil_potions()
     }
 }
 
+void
 freeze_potions()
 {
     register struct obj *obj, *obj2;
@@ -1156,6 +1171,7 @@ freeze_potions()
     }
 }
 
+void
 burn_scrolls()
 {
     register struct obj *obj, *obj2;
@@ -1185,6 +1201,7 @@ burn_scrolls()
     }
 }
 
+int
 resist(mtmp, olet, damage, tell)
 register struct monst *mtmp;
 register char olet;
@@ -1252,6 +1269,7 @@ burn_floor_scrolls(x, y)
     return (cnt);
 }
 
+void
 makewish() /* Separated as there are now 3 places you can wish at. */
 {
     char buf[BUFSZ];
