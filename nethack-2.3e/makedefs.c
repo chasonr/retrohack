@@ -102,8 +102,8 @@ do_traps()
         exit(1);
     }
 
-    while (gets(in_line) != NULL) {
-        puts(in_line);
+    while (fgets(in_line, sizeof(in_line), stdin) != NULL) {
+        fputs(in_line, stdout);
         if (!strncmp(in_line, "/* DO NOT REMOVE THIS LINE */", 29))
             break;
     }
@@ -167,16 +167,16 @@ do_rumors()
         exit(1);
     }
 
-    while (gets(in_line) != NULL)
-        puts(in_line);
+    while (fgets(in_line, sizeof(in_line), stdin) != NULL)
+        fputs(in_line, stdout);
 
 #ifdef KAA
     sprintf(infile, "%s.kaa", RUMOR_FILE);
     if (freopen(infile, RDMODE, stdin) == NULL)
         perror(infile);
 
-    while (gets(in_line) != NULL)
-        puts(in_line);
+    while (fgets(in_line, sizeof(in_line), stdin) != NULL)
+        fputs(in_line, stdout);
 #endif
 
 #ifdef NEWCLASS
@@ -184,8 +184,8 @@ do_rumors()
     if (freopen(infile, RDMODE, stdin) == NULL)
         perror(infile);
 
-    while (gets(in_line) != NULL)
-        puts(in_line);
+    while (fgets(in_line, sizeof(in_line), stdin) != NULL)
+        fputs(in_line, stdout);
 #endif
     fclose(stdin);
     fclose(stdout);
@@ -209,10 +209,10 @@ do_date()
         exit(1);
     }
 
-    while (gets(in_line) != NULL) {
+    while (fgets(in_line, sizeof(in_line), stdin) != NULL) {
         if (!strncmp(in_line, "char datestring[] = ", 20))
             break;
-        puts(in_line);
+        fputs(in_line, stdout);
     }
     time(&clock);
     strcpy(cbuf, ctime(&clock));
@@ -246,52 +246,52 @@ do_data()
         exit(1);
     }
 
-    while (gets(in_line) != NULL) {
+    while (fgets(in_line, sizeof(in_line), stdin) != NULL) {
 #ifdef KOPS
-        if (!strcmp(in_line, "K	a kobold"))
+        if (!strcmp(in_line, "K	a kobold\n"))
             printf("K\ta Keystone Kop\n");
         else
 #endif
 #ifdef KAA
-            if (!strcmp(in_line, "Q	a quasit"))
+            if (!strcmp(in_line, "Q	a quasit\n"))
             printf("Q\ta quantum mechanic\n");
         else
 #endif
 #ifdef ROCKMOLE
-            if (!strcmp(in_line, "r	a giant rat"))
+            if (!strcmp(in_line, "r	a giant rat\n"))
             printf("r\ta rockmole\n");
         else
 #endif
 #ifdef SPIDERS
-            if (!strcmp(in_line, "s	a scorpion"))
+            if (!strcmp(in_line, "s	a scorpion\n"))
             printf("s\ta giant spider\n");
-        else if (!strcmp(in_line, "\"	an amulet"))
+        else if (!strcmp(in_line, "\"	an amulet\n"))
             printf("\"\tan amulet (or a web)\n");
         else
 #endif
 #ifdef SINKS
-            if (!strcmp(in_line, "#	a corridor"))
+            if (!strcmp(in_line, "#	a corridor\n"))
             printf("#\ta corridor (or a kitchen sink)\n");
         else
 #endif
 #ifdef SPELLS
-            if (!strcmp(in_line, "+	a door"))
+            if (!strcmp(in_line, "+	a door\n"))
             printf("+\ta door (or a spell book)\n");
         else
 #endif
 #ifdef FOUNTAINS
-            if (!strcmp(in_line, "}	water filled area")) {
-            puts(in_line);
+            if (!strcmp(in_line, "}	water filled area\n")) {
+            fputs(in_line, stdout);
             printf("{\ta fountain\n");
         } else
 #endif
 #ifdef NEWCLASS
-            if (!strcmp(in_line, "^	a trap")) {
-            puts(in_line);
+            if (!strcmp(in_line, "^	a trap\n")) {
+            fputs(in_line, stdout);
             printf("\\\tan opulent throne.\n");
         } else
 #endif
-            puts(in_line);
+            fputs(in_line, stdout);
     }
 #ifdef SAC
     printf("3\ta soldier;\n");
