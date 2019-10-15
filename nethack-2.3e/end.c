@@ -15,7 +15,7 @@ int done_hup;
 void done(/*void*/);
 void clearlocks(/*void*/);
 
-void
+int
 done1()
 {
     (void) signal(SIGINT, SIG_IGN);
@@ -39,6 +39,7 @@ done1()
     }
     done("quit");
     /* NOTREACHED */
+    return(0);
 }
 
 void

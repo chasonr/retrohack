@@ -64,7 +64,7 @@ doremarm()
     return (1);
 }
 
-void
+int
 doremring()
 {
     if (!uleft && !uright) {

@@ -559,7 +559,7 @@ register x, y;
 }
 #endif /* QUEST */
 
-void
+int
 isok(x, y)
 register int x, y;
 {
@@ -623,7 +623,7 @@ wiz_attributes()
     if (!wizard) {
         pline("Alas! You are not allowed see attributes.");
         pline("Nice try though...");
-        return;
+        return(0);
     }
 
     set_pager(0);
