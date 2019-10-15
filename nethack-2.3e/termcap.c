@@ -10,7 +10,7 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-void nocmov(/*void*/);
+static void nocmov(/*unknown*/);
 void cmov(/*void*/);
 void xputc(/*void*/);
 void xputs(/*void*/);
@@ -176,7 +176,7 @@ register int x, y; /* not xchar: perhaps xchar is unsigned and
         cmov(x, y);
 }
 
-void
+static void
 nocmov(x, y)
 int x, y;
 {

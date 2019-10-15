@@ -14,7 +14,7 @@ void docrt(/*void*/);
 void seemons(/*void*/);
 void pmon(/*void*/);
 void unpmon(/*void*/);
-void cornbot(/*void*/);
+static void cornbot(/*unknown*/);
 void bot(/*void*/);
 void cls(/*void*/);
 
@@ -394,7 +394,7 @@ nscr()
 
 /* 100 suffices for bot(); no relation with COLNO */
 char oldbot[100], newbot[100];
-void
+static void
 cornbot(lth)
 register int lth;
 {

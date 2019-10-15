@@ -12,7 +12,7 @@
 #include <sys/wait.h>
 #include "hack.h"
 
-void page_more(/*void*/);
+static void page_more(/*unknown*/);
 void set_pager(/*void*/);
 
 extern int CO, LI; /* usually COLNO and ROWNO+2 */
@@ -22,6 +22,7 @@ extern char *getenv(), *getlogin();
 extern xchar curx;
 int done1();
 extern int getpos();
+static void intruph(int sig);
 
 int
 dowhatis()
@@ -153,14 +154,14 @@ dowhatis()
 /* make the paging of a file interruptible */
 static int got_intrup;
 
-void
-intruph()
+static void
+intruph(int sig)
 {
     got_intrup++;
 }
 
 /* simple pager, also used from dohelp() */
-void
+static void
 page_more(fp, strip)
 FILE *fp;
 int strip; /* nr of chars to be stripped from each line (0 or 1) */

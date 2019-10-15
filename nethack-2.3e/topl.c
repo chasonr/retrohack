@@ -8,10 +8,11 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-void redotoplin(/*void*/);
+static void redotoplin(/*unknown*/);
 void more(/*void*/);
 void putsym(/*void*/);
 void putstr(/*void*/);
+static void xmore(/*unknown*/);
 
 extern char *eos();
 extern int CO;
@@ -39,7 +40,7 @@ doredotopl()
     return (0);
 }
 
-void
+static void
 redotoplin()
 {
     home();
@@ -93,7 +94,7 @@ char *s;
     flags.toplin = 1;
 }
 
-void
+static void
 xmore(s)
 char *s; /* allowed chars besides space/return */
 {

@@ -75,7 +75,8 @@ static char erase_char, kill_char;
 static boolean settty_needed = FALSE;
 struct termstruct inittyb, curttyb;
 
-void setctty(/*void*/);
+static int end_of_input();
+static void setctty(/*void*/);
 void cgetret(/*void*/);
 void xwaitforspace(/*void*/);
 
@@ -357,7 +358,7 @@ readchar()
     return ((char) sym);
 }
 
-int
+static int
 end_of_input()
 {
     settty("End of input?\n");

@@ -9,14 +9,14 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-void outheader(/*void*/);
+static char *ordin(/*unknown*/);
+static int outentry(/*unknown*/);
+static void outheader(/*unknown*/);
 
 #define Sprintf (void) sprintf
 extern char plname[], pl_character[];
-#ifndef MSC /* set by the Microsoft "C" compiler */
-extern char *itoa();
-#endif
-extern char *ordin(), *eos();
+static char *nh_itoa();
+extern char *eos();
 extern int done_hup, done_stopprint;
 
 #define newttentry() (struct toptenentry *) alloc(sizeof(struct toptenentry))
@@ -249,7 +249,7 @@ unlock:;
 #endif
 }
 
-void
+static void
 outheader()
 {
     char linebuf[BUFSZ];
@@ -267,7 +267,7 @@ outheader()
 }
 
 /* so>0: standout line; so=0: ordinary line; so<0: no output, return lth */
-int
+static int
 outentry(rank, t1, so)
 int rank;
 register struct toptenentry *t1;
@@ -337,7 +337,7 @@ int so;
 #ifdef KJSMODS
         int lngr = strlen(linebuf);
 #endif
-        Sprintf(hpbuf, (t1->hp > 0) ? itoa(t1->hp) : "-");
+        Sprintf(hpbuf, (t1->hp > 0) ? nh_itoa(t1->hp) : "-");
         hppos = COLNO - 7 - strlen(hpbuf);
 #ifdef KJSMODS
         if (lngr >= hppos)
@@ -368,8 +368,8 @@ int so;
     return (strlen(linebuf));
 }
 
-char *
-itoa(a)
+static char *
+nh_itoa(a)
 int a;
 {
     static char buf[12];
@@ -377,7 +377,7 @@ int a;
     return (buf);
 }
 
-char *
+static char *
 ordin(n)
 int n;
 {

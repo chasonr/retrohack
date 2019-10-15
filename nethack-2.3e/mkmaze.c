@@ -3,9 +3,11 @@
 
 #include "hack.h"
 #include "mkroom.h" /* not really used */
+#include "panic.h"
 
-void walkfrom(/*void*/);
-void move(/*void*/);
+static void walkfrom(/*unknown*/);
+static void move(/*void*/);
+static int okay(/*unknown*/);
 
 extern struct monst *makemon(), *mkmon_at();
 extern struct permonst pm_wizard;
@@ -181,7 +183,7 @@ int x, y;
 }
 #endif /* DGK */
 
-void
+static void
 move(x, y, dir)
 register int *x, *y;
 register int dir;

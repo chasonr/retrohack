@@ -4,14 +4,17 @@
 #include <stdlib.h>
 #include "hack.h"
 #include "mfndpos.h"
+#include "panic.h"
 
 void mondead(/*void*/);
 void relmon(/*void*/);
 void monfree(/*void*/);
-void dmonsfree(/*void*/);
+static void dmonsfree(/*unknown*/);
 void unstuck(/*void*/);
 void xkilled(/*void*/);
 void kludge(/*void*/);
+static int ishuman(/*unknown*/);
+static int restrap(/*unknown*/);
 
 extern struct monst *makemon(), *mkmon_at();
 extern struct trap *maketrap();
@@ -496,7 +499,7 @@ register struct monst *mtmp;
     fdmon = mtmp;
 }
 
-void
+static void
 dmonsfree()
 {
     register struct monst *mtmp;
@@ -886,7 +889,7 @@ struct monst *mtmp;
     pmon(mtmp);
 }
 
-int
+static int
 ishuman(mtmp)
 register struct monst *mtmp;
 {
@@ -944,7 +947,7 @@ register struct monst *mtmp;
 }
 
 #ifdef HARD
-int
+static int
 restrap(mtmp) /* unwatched mimics and piercers may hide again,
                * if so, a 1 is returned.
                */

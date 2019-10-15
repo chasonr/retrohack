@@ -31,9 +31,11 @@
 extern char *getenv();
 extern time_t time();
 
-void newmail(/*void*/);
-void mdrush(/*void*/);
+static void newmail(/*void*/);
+static void mdrush(/*void*/);
 void regularize(/*void*/);
+static struct tm *getlt();
+static int veryold();
 
 void
 setrandom()
@@ -41,7 +43,7 @@ setrandom()
     (void) srand((int) time((time_t *) 0));
 }
 
-struct tm *
+static struct tm *
 getlt()
 {
     time_t date;
@@ -165,7 +167,7 @@ int fd;
 }
 
 /* see whether we should throw away this xlock file */
-int
+static int
 veryold(fd)
 int fd;
 {
@@ -359,7 +361,7 @@ ckmailstatus()
     }
 }
 
-void
+static void
 newmail()
 {
     /* produce a scroll of mail */
@@ -391,7 +393,7 @@ newmail()
 }
 
 /* make md run through the cave */
-void
+static void
 mdrush(md, away)
 register struct monst *md;
 boolean away;

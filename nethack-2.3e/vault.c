@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)vault.c	2.1	87/10/17 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdlib.h>
 #include "hack.h"
 #ifdef QUEST
 setgd(/* mtmp */) /* struct monst *mtmp; */
@@ -23,6 +24,7 @@ invault()
 #else
 
 #include "mkroom.h"
+#include "panic.h"
 extern struct monst *makemon();
 #define FCSIZ (ROWNO + COLNO)
 struct fakecorridor {

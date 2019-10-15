@@ -11,16 +11,25 @@ int doredraw(), doredotopl(), dodrop(), dodrink(), doread(), dosearch(),
     ddoinv(), dozap(), ddocall(), dowhatis(), doengrave(), dotele(), dohelp(),
     doeat(), doddrop(), do_mname(), doidtrap(), doprwep(), doprarm(),
     doprring(), doprgold(), dodiscovered(), dotypeinv(), dolook(), doset(),
-    doup(), dodown(), done1(), donull(), dothrow(), doextcmd(), dodip(),
-    dopray(), doextlist(), dorub();
+    doup(), dodown(), done1(), donull(), dothrow(), dodip(),
+    dopray(), dorub();
 void confdir(/*void*/);
+static int doextcmd(/*unknown*/);
+static int doextlist(/*unknown*/);
+static char lowc(/*unknown*/);
+static int timed_occupation(/*unknown*/);
+static char unctrl(/*unknown*/);
 
 #ifdef THEOLOGY
 int dosacrifice();
 #endif;
 
 #ifdef WIZARD
-int wiz_wish(), wiz_identify(), wiz_map(), wiz_detect(), wiz_attributes();
+static int wiz_attributes(/*unknown*/);
+static int wiz_detect(/*unknown*/);
+static int wiz_identify(/*unknown*/);
+static int wiz_map(/*unknown*/);
+static int wiz_wish(/*unknown*/);
 #endif
 #ifdef NEWCLASS
 int dosit(), doturn();
@@ -42,7 +51,7 @@ int dowipe();
 #endif
 
 int rndobjsym(), rndmonsym();
-char *hcolor(), *rndmonnam(), *defmonnam();
+char *hcolor(), *defmonnam();
 
 extern char *occtxt;
 extern int (*occupation)();
@@ -56,7 +65,7 @@ int dodebug();
 static int (*timed_occ_fn)();
 
 /* Count down by decrementing multi */
-int
+static int
 timed_occupation()
 {
     (*timed_occ_fn)();
@@ -265,7 +274,7 @@ struct ext_func_tab extcmdlist[] = {
     (char *) 0,  donull
 };
 
-extern char *parse(), lowc(), unctrl(), quitchars[];
+extern char *parse(), quitchars[];
 
 void
 rhack(cmd)
@@ -392,7 +401,7 @@ register char *cmd;
     return;
 }
 
-int
+static int
 doextcmd() /* here after # - now read a full-word command */
 {
     char buf[BUFSZ];
@@ -416,7 +425,7 @@ doextcmd() /* here after # - now read a full-word command */
     return (0);
 }
 
-int
+static int
 doextlist() /* here after #? - now list all full-word commands */
 {
     register struct ext_func_tab *efp = extcmdlist;
@@ -440,14 +449,14 @@ quit:
     return (0);
 }
 
-char
+static char
 lowc(sym)
 char sym;
 {
     return ((sym >= 'A' && sym <= 'Z') ? sym + 'a' - 'A' : sym);
 }
 
-char
+static char
 unctrl(sym)
 char sym;
 {
@@ -568,7 +577,7 @@ register int x, y;
 }
 
 #ifdef WIZARD
-int
+static int
 wiz_wish() /* Unlimited wishes for wizard mode by Paul Polderman */
 {
     if (!wizard) {
@@ -579,7 +588,7 @@ wiz_wish() /* Unlimited wishes for wizard mode by Paul Polderman */
     return (0);
 }
 
-int
+static int
 wiz_identify()
 {
     struct obj *obj;
@@ -594,7 +603,7 @@ wiz_identify()
     return (0);
 }
 
-int
+static int
 wiz_map()
 {
     if (wizard)
@@ -604,7 +613,7 @@ wiz_map()
     return (0);
 }
 
-int
+static int
 wiz_detect()
 {
     if (wizard) {
@@ -615,7 +624,7 @@ wiz_detect()
     return (0);
 }
 
-int
+static int
 wiz_attributes()
 {
     char buf[BUFSZ];

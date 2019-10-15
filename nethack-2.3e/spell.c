@@ -6,7 +6,16 @@
 #ifdef SPELLS
 extern char *nomovemsg;
 
-void decrnuses(/*void*/);
+static int cursed_book(/*unknown*/);
+#ifdef HARD
+static void decrnuses(/*unknown*/);
+static int spelluses(/*unknown*/);
+#endif
+static int getspell(/*unknown*/);
+static int spellet(/*unknown*/);
+static int spellev(/*unknown*/);
+static int spellid(/*unknown*/);
+static char *spellname(/*unknown*/);
 
 int
 doxcribe()
@@ -129,7 +138,7 @@ doxcribe()
     return (1);
 }
 
-int
+static int
 cursed_book(level)
 register int level;
 {
@@ -333,7 +342,7 @@ docast()
     return (1);
 }
 
-int
+static int
 getspell()
 {
     register int max, ilet, i;
@@ -406,7 +415,7 @@ dovspell()
 {
     register int max, i, side;
     extern char morc;
-    char buf[BUFSZ], any[BUFSZ], *spellname();
+    char buf[BUFSZ], any[BUFSZ];
 
     if (spl_book[0].sp_id == NO_SPELL) {
         pline("You don't know any spells right now.");
@@ -435,7 +444,7 @@ dovspell()
     return (0);
 }
 
-int
+static int
 spellet(spl)
 int spl;
 {
@@ -445,21 +454,21 @@ int spl;
         return ('A' + spl - 27);
 }
 
-int
+static int
 spellev(spl)
 int spl;
 {
     return (spl_book[spl - 1].sp_lev);
 }
 
-char *
+static char *
 spellname(spl)
 int spl;
 {
     return (objects[spl_book[spl - 1].sp_id].oc_name);
 }
 
-int
+static int
 spellid(spl)
 int spl;
 {
@@ -467,13 +476,13 @@ int spl;
 }
 
 #ifdef HARD
-int
+static int
 spelluses(spell)
 int spell;
 {
     return (spl_book[spell - 1].sp_uses);
 }
-void
+static void
 decrnuses(spell)
 int spell;
 {

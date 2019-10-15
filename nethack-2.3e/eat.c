@@ -16,7 +16,11 @@ extern struct obj *splitobj(), *addinv();
 void morehungry(/*void*/);
 void lesshungry(/*void*/);
 void newuhs(/*void*/);
-void choke(/*void*/);
+static void choke(/*unknown*/);
+static int eatcorpse(/*unknown*/);
+static void Meatdone(/*unknown*/);
+static int opentin(/*unknown*/);
+static void unfaint(/*unknown*/);
 
 /* hunger texts used on bottom line (each 8 chars long) */
 #define SATIATED 0
@@ -59,7 +63,7 @@ static struct {
     int usedtime, reqtime;
 } tin;
 
-int
+static int
 opentin()
 {
     register int r;
@@ -98,7 +102,7 @@ opentin()
     return (0);
 }
 
-void
+static void
 Meatdone()
 {
     u.usym = '@';
@@ -387,7 +391,7 @@ register int num;
     newuhs(FALSE);
 }
 
-void
+static void
 unfaint()
 {
     u.uhs = FAINTING;
@@ -478,7 +482,7 @@ register struct obj *otmp;
 }
 
 /* returns 1 if some text was printed */
-int
+static int
 eatcorpse(otmp)
 register struct obj *otmp;
 {
@@ -632,7 +636,7 @@ register struct obj *otmp;
  * Note that if you have enough food, you can always stop being Sick!
  * choke() returns if you don't choke, kills you if you do.
  */
-void
+static void
 choke(food)
 register struct objclass *food;
 {

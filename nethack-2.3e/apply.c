@@ -1,9 +1,11 @@
 /*	SCCS Id: @(#)apply.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdlib.h>
 #include "edog.h"
 #include "hack.h"
 #include "mkroom.h"
+#include "panic.h"
 static struct monst *bchit();
 extern struct obj *addinv();
 extern struct trap *maketrap();
@@ -11,7 +13,7 @@ extern int (*occupation)();
 extern char *occtxt;
 extern char quitchars[];
 extern char pl_character[];
-extern int mpickobj(), freeinv(), rloc();
+static int next_to(/*unknown*/);
 
 #ifdef DGKMOD
 extern void set_occupation();
@@ -453,7 +455,7 @@ struct obj *obj;
     return (0);
 }
 
-int
+static int
 next_to(mtmp)
 register struct monst *mtmp;
 {
@@ -819,16 +821,16 @@ struct obj *obj;
     obj->spe -= 1;
 }
 
-void
+int
 dorub()
 {
     if (!(carrying(LAMP) || carrying(MAGIC_LAMP))) {
         pline("You do not have a lamp!");
-        return;
+        return(0);
     }
     if (!(uwep->otyp == LAMP || uwep->otyp == MAGIC_LAMP)) {
         pline("You must wield the lamp to rub it!");
-        return;
+        return(0);
     }
     if (uwep->otyp == MAGIC_LAMP && uwep->spe > 0 && !rn2(3)) {
         uwep->spe = 0;
@@ -837,4 +839,5 @@ dorub()
         pline("You see a puff of smoke.");
     else
         pline("Nothing happens.");
+    return(1);
 }

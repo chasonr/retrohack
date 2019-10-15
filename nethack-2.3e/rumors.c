@@ -49,6 +49,10 @@ outrumor()
 }
 
 #else
+static void init_rumors(/*unknown*/);
+static int skipline(/*unknown*/);
+static void outline();
+static int used();
 
 #define CHARSZ 8 /* number of bits in a char */
 extern long *alloc();
@@ -57,7 +61,7 @@ int n_rumors = 0;
 int n_used_rumors = -1;
 char *usedbits;
 
-void
+static void
 init_rumors(rumf)
 register FILE *rumf;
 {
@@ -72,7 +76,7 @@ register FILE *rumf;
         usedbits[i] = 0;
 }
 
-int
+static int
 skipline(rumf)
 register FILE *rumf;
 {
@@ -85,7 +89,7 @@ register FILE *rumf;
     }
 }
 
-void
+static void
 outline(rumf)
 register FILE *rumf;
 {
@@ -126,7 +130,7 @@ none:
     (void) fclose(rumf);
 }
 
-int
+static int
 used(i)
 register int i;
 {

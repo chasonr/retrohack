@@ -8,6 +8,8 @@ extern char quitchars[];
 extern char *Doname();
 static int marmoroff(/* struct obj *otmp */);
 void ringoff(/*void*/);
+static int dorr(/*unknown*/);
+static int cursed();
 
 void
 off_msg(otmp)
@@ -100,7 +102,7 @@ doremring()
 #endif
 }
 
-int
+static int
 dorr(otmp)
 register struct obj *otmp;
 {
@@ -111,7 +113,7 @@ register struct obj *otmp;
     return (1);
 }
 
-int
+static int
 cursed(otmp)
 register struct obj *otmp;
 {

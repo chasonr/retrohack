@@ -11,8 +11,15 @@ extern struct monst *makemon();
 extern struct obj *carrying(), *mksobj_at();
 
 void aggravate(/*void*/);
-void clonewiz(/*void*/);
-void resurrect(/*void*/);
+static void clonewiz(/*unknown*/);
+#ifdef DGKMOD
+static struct obj *m_carrying(/*unknown*/);
+#endif
+static int movedist(/*unknown*/);
+static void m_throw(/*unknown*/);
+static void m_useup(/*unknown*/);
+static int nasty(/*unknown*/);
+static void resurrect(/*unknown*/);
 
 #if defined(HARD) || defined(DGKMOD)
 #ifdef SAC
@@ -34,7 +41,7 @@ char wizapp[] = "@&DNPTUVXcemntx";
     (movedist(u.ux, u.uy, x, y) > movedist(u.ux0, u.uy0, x, y))
 extern char mlarge[];
 
-int
+static int
 movedist(x0, x1, y0, y1)
 int x0, x1, y0, y1;
 {
@@ -132,7 +139,7 @@ int type;
 
 /* Remove an item from the monster's inventory.
  */
-void
+static void
 m_useup(mon, obj)
 struct monst *mon;
 struct obj *obj;
@@ -153,7 +160,7 @@ struct obj *obj;
     }
 }
 
-void
+static void
 m_throw(x, y, dx, dy, range, obj)
 register int x, y, dx, dy, range; /* direction and range */
 register struct obj *obj;
@@ -446,7 +453,7 @@ aggravate()
     }
 }
 
-void
+static void
 clonewiz(mtmp)
 register struct monst *mtmp;
 {
@@ -461,7 +468,7 @@ register struct monst *mtmp;
     }
 }
 
-int
+static int
 nasty()
 {
 #ifdef HARD
@@ -527,7 +534,7 @@ register struct monst *mtmp;
 }
 
 /*	Let's resurrect the wizard, for some unexpected fun.	*/
-void
+static void
 resurrect()
 {
     register struct monst *mtmp;

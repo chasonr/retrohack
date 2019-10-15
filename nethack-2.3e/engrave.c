@@ -11,7 +11,8 @@ extern struct obj zeroobj;
 extern char *xname();
 #endif
 void wipe_engr_at(/*void*/);
-void del_engr(/*void*/);
+static void del_engr(/*unknown*/);
+static struct engr *engr_at(/*unknown*/);
 struct engr {
     struct engr *nxt_engr;
     char *engr_txt;
@@ -49,7 +50,7 @@ char random_engr[][30] =
 #define RAND_ENGRS 6
 #endif
 
-struct engr *
+static struct engr *
 engr_at(x, y)
 register xchar x, y;
 {
@@ -588,7 +589,7 @@ int fd;
     }
 }
 
-void
+static void
 del_engr(ep)
 register struct engr *ep;
 {

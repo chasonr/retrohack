@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "hack.h"
+#include "panic.h"
 extern struct obj *splitobj();
 extern struct obj zeroobj;
 extern void savech();
@@ -13,6 +14,11 @@ static char *xprname();
 void freeinv(/*void*/);
 void freeobj(/*void*/);
 void doinv(/*void*/);
+static int ckunpaid(/*unknown*/);
+static int countgold(/*unknown*/);
+static struct obj *mkgoldobj(/*unknown*/);
+static int obj_to_let(/*unknown*/);
+static int merged();
 
 #ifndef NOWORM
 #include "wseg.h"
@@ -512,7 +518,7 @@ register char *let, *word;
     return (otmp);
 }
 
-int
+static int
 ckunpaid(otmp)
 register struct obj *otmp;
 {
@@ -671,7 +677,7 @@ ret:
     return (cnt);
 }
 
-int
+static int
 obj_to_let(obj) /* should of course only be called for things in invent */
 register struct obj *obj;
 {
@@ -982,7 +988,7 @@ register struct obj *obj;
 }
 
 /* merge obj with otmp and delete obj if types agree */
-int
+static int
 merged(otmp, obj, lose)
 register struct obj *otmp, *obj;
 int lose;
@@ -1016,7 +1022,7 @@ extern int (*occupation)();
 extern char *occtxt;
 static long goldcounted;
 
-int
+static int
 countgold()
 {
     if ((goldcounted += 100 * (u.ulevel + 1)) >= u.ugold) {

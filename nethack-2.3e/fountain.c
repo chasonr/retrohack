@@ -42,10 +42,16 @@ extern struct obj *mkobj_at();
 extern char genocided[];
 
 #ifdef FOUNTAINS
+static void dofindgem(/*unknown*/);
+static void dogushforth(/*unknown*/);
+static void dowaterdemon(/*unknown*/);
+static void dowaternymph(/*unknown*/);
+static void dowatersnakes(/*unknown*/);
+
 #define somex() ((int) (rand() % (croom->hx - croom->lx + 1)) + croom->lx)
 #define somey() ((int) (rand() % (croom->hy - croom->ly + 1)) + croom->ly)
 
-void
+static void
 dowatersnakes() /* Fountain of snakes! */
 {
     register int num = rnd(6);
@@ -57,7 +63,7 @@ dowatersnakes() /* Fountain of snakes! */
         pline("The fountain bubbles furiously for a moment, then calms.");
 }
 
-void
+static void
 dowaterdemon() /* Water demon */
 {
     register struct monst *mtmp;
@@ -74,7 +80,7 @@ dowaterdemon() /* Water demon */
     }
 }
 
-void
+static void
 dowaternymph() /* Water Nymph */
 {
     register struct monst *mtmp;
@@ -87,7 +93,7 @@ dowaternymph() /* Water Nymph */
 
 #include "mkroom.h"
 
-void
+static void
 dogushforth() /* Gushing forth in this room */
 {
     register int num = rnd(10);
@@ -127,7 +133,7 @@ dogushforth() /* Gushing forth in this room */
     pline("Water gushes forth from the overflowing fountain!");
 }
 
-void
+static void
 dofindgem() /* Find a gem in the sparkling waters. */
 {
     if (!Blind)

@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)zap.c	2.3	88/02/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdlib.h>
 #include "hack.h"
 
 extern struct obj *mkobj_at(), *mksobj_at();
@@ -15,12 +16,18 @@ void weffects(/*void*/);
 void hit(/*void*/);
 void miss(/*void*/);
 void buzz(/*void*/);
-void rloco(/*void*/);
+static void rloco(/*unknown*/);
 void fracture_rock(/*void*/);
-void boil_potions(/*void*/);
-void freeze_potions(/*void*/);
-void burn_scrolls(/*void*/);
+static void boil_potions(/*unknown*/);
+static void freeze_potions(/*unknown*/);
+static void burn_scrolls(/*unknown*/);
 void makewish(/*void*/);
+static void bhitm(/*unknown*/);
+static int bhito(/*unknown*/);
+static int burn_floor_scrolls(/*unknown*/);
+static uchar dirlet(/*unknown*/);
+static int revive(/*unknown*/);
+static int zhit(/*unknown*/);
 
 char *fl[] = { "magic missile", /* Wands must be 0-9 */
                "bolt of fire",
@@ -57,7 +64,7 @@ char *fl[] = { "magic missile", /* Wands must be 0-9 */
 
 /* Routines for IMMEDIATE wands and spells. */
 /* bhitm: monster mtmp was hit by the effect of wand or spell otmp */
-void
+static void
 bhitm(mtmp, otmp)
 register struct monst *mtmp;
 register struct obj *otmp;
@@ -135,7 +142,7 @@ register struct obj *otmp;
     }
 }
 
-int
+static int
 bhito(obj, otmp) /* object obj was hit by the effect of wand otmp */
 register struct obj *obj, *otmp; /* returns TRUE if sth was done */
 {
@@ -763,7 +770,7 @@ int dx, dy;
     return (0);
 }
 
-uchar
+static uchar
 dirlet(dx, dy)
 register int dx, dy;
 {
@@ -979,7 +986,7 @@ register int dx, dy;
     Tmp_at(-1, -1);
 }
 
-int
+static int
 zhit(mon, type) /* returns damage to mon */
 register struct monst *mon;
 register int type;
@@ -1058,7 +1065,7 @@ register int type;
 #define CORPSE_I_TO_C(otyp)                                          \
     (char) ((otyp >= DEAD_ACID_BLOB) ? 'a' + (otyp - DEAD_ACID_BLOB) \
                                      : '@' + (otyp - DEAD_HUMAN))
-int
+static int
 revive(obj)
 register struct obj *obj;
 {
@@ -1107,7 +1114,7 @@ register struct obj *obj;
     return (!!mtmp); /* TRUE if some monster created */
 }
 
-void
+static void
 rloco(obj)
 register struct obj *obj;
 {
@@ -1138,7 +1145,7 @@ register struct obj *obj; /* no texts here! */
         prl(obj->ox, obj->oy);
 }
 
-void
+static void
 boil_potions()
 {
     register struct obj *obj, *obj2;
@@ -1161,7 +1168,7 @@ boil_potions()
     }
 }
 
-void
+static void
 freeze_potions()
 {
     register struct obj *obj, *obj2;
@@ -1183,7 +1190,7 @@ freeze_potions()
     }
 }
 
-void
+static void
 burn_scrolls()
 {
     register struct obj *obj, *obj2;
@@ -1259,7 +1266,7 @@ register int damage, tell;
  * burn scrolls on floor at position x,y
  * return the number of scrolls burned
  */
-int
+static int
 burn_floor_scrolls(x, y)
 int x, y;
 {

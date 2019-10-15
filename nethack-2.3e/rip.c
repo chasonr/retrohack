@@ -7,7 +7,7 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-void center(/*void*/);
+static void center(/*void*/);
 
 extern char plname[];
 
@@ -101,7 +101,7 @@ outrip()
     getret();
 }
 
-void
+static void
 center(line, text)
 int line;
 char *text;

@@ -5,6 +5,7 @@
 #include "hack.h"
 
 void mpickobj(/*void*/);
+static void stealarm(/*unknown*/);
 
 long /* actually returns something that fits in an int */
 somegold()
@@ -44,7 +45,7 @@ register struct monst *mtmp;
 /* steal armor after he finishes taking it off */
 unsigned stealoid; /* object to be stolen */
 unsigned stealmid; /* monster doing the stealing */
-void
+static void
 stealarm()
 {
     register struct monst *mtmp;

@@ -2,11 +2,12 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include <stdio.h>
-#include "config.h" /* for typedefs */
+#include "hack.h"
 #include "objects.h"
-#include "onames.h" /* for LAST_GEM */
+#include "panic.h"
 
-void setgemprobs(/*void*/);
+static void setgemprobs(/*unknown*/);
+static int interesting_to_discover(/*unknown*/);
 
 extern char *index();
 
@@ -117,7 +118,7 @@ register char let;
     return (i);
 }
 
-void
+static void
 setgemprobs()
 {
     register int j, first;
@@ -243,7 +244,7 @@ dodiscovered() /* free after Robert Viduya */
     return (0);
 }
 
-int
+static int
 interesting_to_discover(i)
 register int i;
 {

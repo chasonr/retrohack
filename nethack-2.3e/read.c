@@ -7,6 +7,7 @@
 void litroom(/*void*/);
 void do_genocide(/*void*/);
 void do_mapping(/*void*/);
+static int monstersym(/*unknown*/);
 
 extern struct monst *makemon();
 extern struct permonst pm_eel;
@@ -622,7 +623,7 @@ do_it:
 }
 
 /* Test whether we may genocide all monsters with symbol  ch  */
-int
+static int
 monstersym(ch) /* arnold@ucsfcgl */
 register char ch;
 {

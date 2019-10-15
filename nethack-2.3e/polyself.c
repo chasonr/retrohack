@@ -5,8 +5,8 @@
 
 #ifdef KAA
 
-void break_armor(/*void*/);
-void drop_weapon(/*void*/);
+static void break_armor(/*unknown*/);
+static void drop_weapon(/*unknown*/);
 
 extern char genocided[];
 extern char pl_character[PL_CSIZ];
@@ -151,7 +151,7 @@ gotone:
     }
 }
 
-void
+static void
 break_armor(turninto)
 char turninto;
 {
@@ -205,7 +205,7 @@ char turninto;
     }
 }
 
-void
+static void
 drop_weapon(turninto)
 char turninto;
 {

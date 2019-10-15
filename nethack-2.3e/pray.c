@@ -7,6 +7,12 @@
 extern char *nomovemsg;
 extern struct monst *mkmon_at();
 extern struct obj *mkobj_at();
+#ifdef PRAYERS
+static int angrygods(/*unknown*/);
+#endif
+static void fix_worst_trouble(/*unknown*/);
+static int in_trouble(/*unknown*/);
+static int pleased(/*unknown*/);
 
 #ifdef PRAYERS
 #ifdef THEOLOGY
@@ -37,7 +43,7 @@ This could get as bizarre as noting surrounding opponents, (or hostile dogs),
 but that's really hard.
  */
 
-int
+static int
 in_trouble()
 {
     /* Borrowed from eat.c */
@@ -84,7 +90,7 @@ in_trouble()
     return (0);
 }
 
-void
+static void
 fix_worst_trouble()
 {
     char *tmp, *hcolor();
@@ -336,7 +342,7 @@ dopray()
 }
 
 #ifdef PRAYERS
-int
+static int
 angrygods()
 {
     register int tmp;
@@ -385,7 +391,7 @@ angrygods()
     return (0);
 }
 
-int
+static int
 pleased()
 {
     char *tmp, *hcolor();

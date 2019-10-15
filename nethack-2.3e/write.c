@@ -7,10 +7,12 @@ extern char pl_character[];
 
 #ifdef MARKER
 
+static int cost(/*unknown*/);
+
 /*
  * returns basecost of a scroll
  */
-int
+static int
 cost(scroll)
 register struct obj *scroll;
 {

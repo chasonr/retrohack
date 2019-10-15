@@ -6,17 +6,17 @@
 #include <unistd.h>
 #include "hack.h"
 #include "mkroom.h"
+#include "panic.h"
 
 void bwrite(/*void*/);
 void saveobjchn(/*void*/);
 void savemonchn(/*void*/);
-void savegoldchn(/*void*/);
-void savetrapchn(/*void*/);
+static void savegoldchn(/*unknown*/);
+static void savetrapchn(/*unknown*/);
 void mread(/*void*/);
 extern struct monst *restmonchn();
 extern struct obj *restobjchn();
 extern struct obj *billobjs;
-extern char *itoa();
 extern char SAVEF[];
 extern int hackpid;
 extern xchar dlevel;

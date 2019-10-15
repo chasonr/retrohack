@@ -9,6 +9,7 @@
 
 extern struct monst *makemon();
 extern struct obj *mkobj_at(), *mksobj_at();
+static void findname(/*unknown*/);
 
 static char *shkliquors[] = {
     /* Ukraine */
@@ -252,7 +253,7 @@ int sx, sy;
 }
 
 /* extract a shopkeeper name for the given shop type */
-void
+static void
 findname(nampt, nlp)
 char *nampt;
 char *nlp[];

@@ -1,8 +1,9 @@
 /*	SCCS Id: @(#)fight.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <stdio.h>
+#include "hack.h"
+#include "panic.h"
 
 extern struct permonst li_dog, dog, la_dog;
 extern char *exclam(), *hcolor(), *xname();
@@ -17,8 +18,10 @@ extern struct monst *mkmon_at();
 extern struct obj *mk_named_obj_at();
 #endif
 void mondied(/*void*/);
-void monstone(/*void*/);
-void stoogejoke(/*void*/);
+static void monstone(/*unknown*/);
+#ifdef STOOGES
+static void stoogejoke(/*unknown*/);
+#endif
 
 static boolean far_noise;
 static long noisetime;
@@ -231,7 +234,7 @@ register struct monst *mdef;
 }
 
 /* drop a rock and remove monster */
-void
+static void
 monstone(mdef)
 register struct monst *mdef;
 {
@@ -779,7 +782,7 @@ register struct monst *mtmp;
 }
 
 #ifdef STOOGES
-void
+static void
 stoogejoke()
 { /* have the stooges say something funny */
     pline("'%s'", random_joke[rn2(RAND_JOKE)]);

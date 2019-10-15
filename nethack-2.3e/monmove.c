@@ -3,6 +3,7 @@
 
 #include "hack.h"
 #include "mfndpos.h"
+#include "panic.h"
 #define NULL (char *) 0
 
 extern struct obj *mksobj_at();

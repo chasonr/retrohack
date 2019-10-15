@@ -10,8 +10,10 @@
 #define PREFIX 15
 extern char *eos();
 extern int bases[];
+static char *sitoa(/*unknown*/);
+static char *strprepend(/*unknown*/);
 
-char *
+static char *
 strprepend(s, pref)
 register char *s, *pref;
 {
@@ -25,7 +27,7 @@ register char *s, *pref;
     return (s);
 }
 
-char *
+static char *
 sitoa(a)
 int a;
 {

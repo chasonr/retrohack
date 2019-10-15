@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "hack.h"
+#include "panic.h"
 #define Sprintf (void) sprintf
 extern char plname[], pl_character[], SAVEF[];
 
@@ -14,6 +15,9 @@ int done_stopprint;
 int done_hup;
 void done(/*void*/);
 void clearlocks(/*void*/);
+static void done_hangup(int sig);
+static void done_intr(int sig);
+static int with_amulet(/*unknown*/);
 
 int
 done1()
@@ -42,8 +46,8 @@ done1()
     return(0);
 }
 
-void
-done_intr()
+static void
+done_intr(int sig)
 {
     done_stopprint++;
     (void) signal(SIGINT, SIG_IGN);
@@ -53,12 +57,12 @@ done_intr()
 }
 
 #ifdef UNIX
-void
-done_hangup()
+static void
+done_hangup(int sig)
 {
     done_hup++;
     (void) signal(SIGHUP, SIG_IGN);
-    done_intr();
+    done_intr(sig);
 }
 #endif
 
@@ -365,7 +369,7 @@ clearlocks()
 }
 
 #ifdef NOSAVEONHANGUP
-hangup()
+nh_hangup()
 {
     (void) signal(SIGINT, SIG_IGN);
     clearlocks();

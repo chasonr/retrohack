@@ -23,6 +23,9 @@ unsigned n;
 #else
 
 #include <stdlib.h>
+#include "panic.h"
+
+static long *enlarge(/*unknown*/);
 
 long *
 alloc(lth)

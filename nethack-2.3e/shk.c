@@ -69,7 +69,8 @@ shkname()
 
 extern char plname[], *xname();
 extern struct monst *makemon();
-extern struct obj *o_on(), *bp_to_obj(), *carrying();
+extern struct obj *o_on(), *carrying();
+static struct obj *bp_to_obj(/*unknown*/);
 
 /* Descriptor of current shopkeeper. Note that the bill need not be
    per-shopkeeper, since it is valid only when in a shop. */

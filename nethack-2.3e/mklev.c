@@ -5,17 +5,21 @@
 #include <stdlib.h>
 #include "hack.h"
 
-void addrs(/*void*/);
-void addrsx(/*void*/);
-void dosdoor(/*void*/);
-void makecorridors(/*void*/);
-void join(/*void*/);
-void make_niches(/*void*/);
-void makevtele(/*void*/);
-void makeniche(/*void*/);
-void mktrap(/*void*/);
-void mkfount(/*void*/);
-void mksink(/*void*/);
+static void addrs(/*unknown*/);
+static void addrsx(/*unknown*/);
+static void dosdoor(/*unknown*/);
+static void makecorridors(/*unknown*/);
+static void join(/*unknown*/);
+static void make_niches(/*unknown*/);
+static void makevtele(/*unknown*/);
+static void makeniche(/*unknown*/);
+static void mkfount(/*unknown*/);
+static void mksink(/*unknown*/);
+static int comp(/*unknown*/);
+static void dodoor(/*unknown*/);
+static int finddpos(/*unknown*/);
+static int maker(/*unknown*/);
+static int makerooms(/*unknown*/);
 
 extern char *getlogin(), *getenv();
 extern struct monst *makemon(), *mkmon_at();
@@ -42,7 +46,6 @@ int smeq[MAXNROFROOMS + 1];
 extern coord doors[DOORMAX];
 int doorindex;
 struct rm zerorm;
-int comp();
 schar nxcor;
 boolean goldseen;
 int nroom;
@@ -397,7 +400,7 @@ boolean discarded; /* piece of a discarded area */
     rsp->rhy = hy;
 }
 
-int
+static int
 comp(x, y)
 register struct mkroom *x, *y;
 {
@@ -406,7 +409,7 @@ register struct mkroom *x, *y;
     return (x->lx > y->lx);
 }
 
-int
+static int
 finddpos(cc, xl, yl, xh, yh)
 coord *cc;
 int xl, yl, xh, yh;
@@ -451,7 +454,7 @@ register int x, y;
     return (1);
 }
 
-void
+static void
 dodoor(x, y, aroom)
 register int x, y;
 register struct mkroom *aroom;

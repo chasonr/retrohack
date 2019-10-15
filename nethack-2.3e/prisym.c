@@ -1,8 +1,9 @@
 /*	SCCS Id: @(#)prisym.c	2.3	88/03/29 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <stdio.h>
+#include "hack.h"
+#include "panic.h"
 
 void on_scr(/*void*/);
 void prl(/*void*/);

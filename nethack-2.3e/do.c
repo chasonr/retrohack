@@ -22,7 +22,13 @@ static int drop(/* struct obj *obj */);
 void dropx(/*void*/);
 void dropy(/*void*/);
 void goto_level(/*void*/);
-void dosinkring(/*void*/);
+static void dosinkring(/*unknown*/);
+#ifdef SINKS
+static void trycall(/*unknown*/);
+#endif
+#if defined(KAA) && defined(KOPS)
+static int wipeoff(/*unknown*/);
+#endif
 
 int
 dodrop()
@@ -361,7 +367,7 @@ donull()
 }
 
 #if defined(KAA) && defined(KOPS)
-int
+static int
 wipeoff()
 {
     if (u.ucreamed < 4)
@@ -460,7 +466,7 @@ heal_legs()
 }
 
 #ifdef SINKS
-void
+static void
 trycall(obj)
 register struct obj *obj;
 {
@@ -468,7 +474,7 @@ register struct obj *obj;
         docall(obj);
 }
 
-void
+static void
 dosinkring(obj) /* obj is a ring being dropped over a kitchen sink */
 register struct obj *obj;
 {

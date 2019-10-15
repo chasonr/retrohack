@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "hack.h"
+#include "panic.h"
 
 extern char genocided[60];        /* defined in decl.c */
 extern char fut_geno[60];         /* idem */
@@ -18,7 +19,7 @@ extern long lseek();
 extern struct obj *restobjchn();
 extern struct monst *restmonchn();
 
-void
+int
 dosave()
 {
     nh_clear_screen();
@@ -27,14 +28,12 @@ dosave()
         settty("Be seeing you ...\n");
         exit(0);
     }
-#ifdef LINT
     return (0);
-#endif
 }
 
 #ifndef NOSAVEONHANGUP
 int
-hangup()
+nh_hangup()
 {
     (void) dosave0(1);
     exit(1);

@@ -22,7 +22,6 @@ int (*afternmv)();
 int (*occupation)();
 
 int done1();
-int hangup();
 
 #ifdef CHDIR
 static void chdirx(/* char *dir, boolean wr */);
@@ -42,7 +41,8 @@ extern long wailmsg;
 
 void askname(/*void*/);
 void stop_occupation(/*void*/);
-void whoami(/*void*/);
+static void whoami(/*void*/);
+static int newgame();
 
 int
 main(argc, argv)
@@ -114,7 +114,7 @@ char *argv[];
     cls();
     u.uhp = 1;  /* prevent RIP on early quits */
     u.ux = FAR; /* prevent nscr() */
-    (void) signal(SIGHUP, hangup);
+    (void) signal(SIGHUP, nh_hangup);
 
     /*
      * Find the creation date of this game,
@@ -572,7 +572,7 @@ stop_occupation()
     }
 }
 
-void
+static void
 whoami()
 {
     /*
@@ -599,7 +599,7 @@ whoami()
         (void) strncpy(plname, s, sizeof(plname) - 1);
 }
 
-int
+static int
 newgame()
 {
     extern struct monst *makedog();

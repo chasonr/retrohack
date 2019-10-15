@@ -9,14 +9,13 @@ extern char plname[PL_NSIZ];
 extern long somegold();
 extern struct monst *makemon();
 extern struct permonst pm_ghost;
+static void spill_obj(/*unknown*/);
 
 #ifdef DGK
 char bones[FILENAME];
 #else
 char bones[] = "bones_xx";
 #endif
-
-void spill_obj(/*void*/);
 
 /* save bones and possessions of a deceased adventurer */
 void
@@ -127,7 +126,7 @@ savebones()
 /*
  * "spill" object out of box onto floor
  */
-void
+static void
 spill_obj(obj)
 struct obj *obj;
 {

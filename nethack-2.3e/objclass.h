@@ -1,6 +1,9 @@
 /*	SCCS Id: @(#)objclass.h	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#ifndef OBJCLASS_H
+#define OBJCLASS_H
+
 /* definition of a class of objects */
 
 struct objclass {
@@ -68,3 +71,5 @@ extern struct objclass objects[];
  * invent.c:          if(index("!%?[)=*(0/+\"", sym)){
  * invent.c:    || index("%?!*+",otmp->olet))){
  */
+
+#endif

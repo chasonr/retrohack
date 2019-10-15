@@ -4,11 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "hack.h"
+#include "panic.h"
 extern char plname[];
-extern char *rndmonnam();
+static char *rndmonnam();
 extern void savech();
 void oname(/*void*/);
 void docall(/*void*/);
+static void do_oname(/*unknown*/);
+static char *visctrl(/*unknown*/);
 
 int
 getpos(cc, force, goal)
@@ -19,7 +22,6 @@ char *goal;
     register int cx, cy, i, c;
     extern char sdir[];          /* defined in hack.c */
     extern schar xdir[], ydir[]; /* idem */
-    extern char *visctrl();      /* see below */
     pline("(For instructions type a ?)");
     cx = u.ux;
     cy = u.uy;
@@ -120,7 +122,7 @@ do_mname()
  * when there might be pointers around in unknown places. For now: only
  * when  obj  is in the inventory.
  */
-void
+static void
 do_oname(obj)
 register struct obj *obj;
 {
@@ -383,7 +385,7 @@ rndmonnam()
     return ("giant eel");
 }
 
-char *
+static char *
 visctrl(c)
 char c;
 {

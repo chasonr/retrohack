@@ -10,11 +10,14 @@ extern char *nomovemsg;
 extern char *exclam();
 extern struct obj *addinv();
 extern boolean hmon();
-void movobj(/*void*/);
+static void movobj(/*unknown*/);
 void pickup(/*void*/);
 void setsee(/*void*/);
 void nomul(/*void*/);
-void dosinkfall(/*void*/);
+#ifdef SINKS
+static void dosinkfall(/*unknown*/);
+#endif
+static int inv_cnt(/*unknown*/);
 
 /* called on movement:
         1. when throwing ball+chain far away
@@ -389,7 +392,7 @@ domove()
         read_engr_at(u.ux, u.uy);
 }
 
-void
+static void
 movobj(obj, ox, oy)
 register struct obj *obj;
 register int ox, oy;
@@ -1192,7 +1195,7 @@ inv_weight()
     return (wt - carrcap);
 }
 
-int
+static int
 inv_cnt()
 {
     register struct obj *otmp = invent;
@@ -1222,7 +1225,7 @@ register schar n;
 }
 
 #ifdef SINKS
-void
+static void
 dosinkfall()
 {
     register struct obj *obj;

@@ -3,7 +3,9 @@
 
 #include "hack.h"
 
-void m_initinv(/*void*/);
+#ifdef DGKMOD
+static void m_initinv(/*unknown*/);
+#endif
 void rloc(/*void*/);
 
 extern char fut_geno[];
@@ -280,7 +282,7 @@ gotmon:
 
 #ifdef DGKMOD
 /* Give some monsters an initial inventory to use */
-void
+static void
 m_initinv(mtmp)
 struct monst *mtmp;
 {

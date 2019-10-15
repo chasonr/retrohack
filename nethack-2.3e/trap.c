@@ -9,14 +9,17 @@ extern struct monst *makemon();
 extern struct obj *mksobj_at();
 
 void selftouch(/*void*/);
-void vtele(/*void*/);
+static void vtele(/*unknown*/);
 void tele(/*void*/);
-void teleds(/*void*/);
+static void teleds(/*unknown*/);
 void placebc(/*void*/);
 void unplacebc(/*void*/);
 void level_tele(/*void*/);
-void domagictrap(/*void*/);
+#ifdef NEWTRAPS
+static void domagictrap(/*unknown*/);
+#endif
 void drown(/*void*/);
+static int teleok(/*unknown*/);
 
 #ifdef KAA
 extern char *Xmonnam();
@@ -599,7 +602,7 @@ float_down()
 
 #include "mkroom.h"
 
-void
+static void
 vtele()
 {
     register struct mkroom *croom;
@@ -674,7 +677,7 @@ tele()
     teleds(nux, nuy);
 }
 
-void
+static void
 teleds(nux, nuy)
 register int nux, nuy;
 {
@@ -700,7 +703,7 @@ register int nux, nuy;
     read_engr_at(u.ux, u.uy);
 }
 
-int
+static int
 teleok(x, y)
 register int x, y;
 { /* might throw him into a POOL
@@ -855,7 +858,7 @@ level_tele()
 
 #ifdef NEWTRAPS
 
-void
+static void
 domagictrap()
 {
     register int fate = rnd(20);

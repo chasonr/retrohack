@@ -5,7 +5,7 @@
 
 void seemimic(/*void*/);
 
-char *rndmonnam(), *defmonnam();
+char *defmonnam();
 
 extern struct monst *makemon();
 

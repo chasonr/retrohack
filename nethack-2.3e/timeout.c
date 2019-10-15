@@ -3,7 +3,7 @@
 
 #include "hack.h"
 
-void stoned_dialogue(/*void*/);
+static void stoned_dialogue(/*unknown*/);
 
 void
 timeout()

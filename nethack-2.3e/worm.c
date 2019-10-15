@@ -6,8 +6,9 @@
 #include "hack.h"
 #ifndef NOWORM
 #include "wseg.h"
+#include "panic.h"
 
-void remseg(/*void*/);
+static void remseg(/*unknown*/);
 
 struct wseg *wsegs[32]; /* linked list, tail first */
 struct wseg *wheads[32];

@@ -20,6 +20,14 @@ static char SCCS_Id[] = "@(#)makedefs.c	2.3\t88/02/18";
 #define WRMODE "w+"
 #endif
 
+static int do_objs();
+static int skipuntil();
+static int getentry();
+static int duplicate();
+static int specprop();
+static int letter();
+static int digit();
+
 /* construct definitions of object constants */
 #define OBJ_FILE "objects.h"
 #define ONAME_FILE "onames.h"
@@ -344,7 +352,7 @@ struct objdef {
     char string[STRSZ];
 } * more, *current;
 
-int
+static int
 do_objs()
 {
     register int index = 0;
@@ -470,7 +478,7 @@ struct inherent {
                   "",
                   "" };
 
-int
+static int
 specprop(name, count)
 char *name;
 int count;
@@ -518,7 +526,7 @@ nextchar()
     return ((lp == lpe) ? 0 : *lp++);
 }
 
-int
+static int
 skipuntil(s)
 char *s;
 {
@@ -555,7 +563,7 @@ loop:
     goto loop;
 }
 
-int
+static int
 getentry(skip)
 int *skip;
 {
@@ -669,7 +677,7 @@ int *skip;
     }
 }
 
-int
+static int
 duplicate()
 {
     char s[STRSZ];
@@ -695,14 +703,14 @@ register char *sp;
         *sp += 'A' - 'a';
 }
 
-int
+static int
 letter(ch)
 register char ch;
 {
     return (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z'));
 }
 
-int
+static int
 digit(ch)
 register char ch;
 {

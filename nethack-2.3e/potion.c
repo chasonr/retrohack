@@ -8,11 +8,10 @@ void healup(/*void*/);
 void pluslvl(/*void*/);
 void strange_feeling(/*void*/);
 void potionbreathe(/*void*/);
-void ghost_from_bottle(/*void*/);
+static void ghost_from_bottle(/*unknown*/);
 void djinni_from_bottle(/*void*/);
 void gainstr(/*void*/);
 
-extern int float_down();
 extern char *nomovemsg;
 extern struct monst youmonst;
 extern struct monst *makemon();
@@ -20,10 +19,6 @@ char *hcolor();
 #ifdef KAA
 char *xname();
 extern char pl_character[];
-#endif
-#ifdef FOUNTAINS
-extern int drinkfountain();
-extern int dipfountain();
 #endif
 
 int nothing, unkn;
@@ -40,7 +35,7 @@ dodrink()
     if (IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
         pline("Drink from the fountain? [ny] ");
         if (readchar() == 'y') {
-            (void) drinkfountain();
+            drinkfountain();
             return (0);
         }
     }
@@ -621,7 +616,7 @@ dodip()
     return (1);
 }
 
-void
+static void
 ghost_from_bottle()
 {
     extern struct permonst pm_ghost;

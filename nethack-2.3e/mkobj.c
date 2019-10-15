@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include "hack.h"
+#include "panic.h"
 #ifdef SPELLS
 char mkobjstr[] = "))[[!!!!????+%%%%/=**))[[!!!!????+%%%%/=**(%";
 #else

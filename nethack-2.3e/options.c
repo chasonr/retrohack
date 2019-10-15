@@ -7,8 +7,8 @@
 #include "hack.h"
 
 void parseoptions(/*void*/);
-void nmcpy(/*void*/);
-void option_help(/*void*/);
+static void nmcpy(/*unknown*/);
+static void option_help(/*unknown*/);
 
 extern char *eos();
 #ifdef SORTING
@@ -435,7 +435,7 @@ dotogglepickup()
 }
 #endif
 
-void
+static void
 nmcpy(dest, source, maxlen)
 char *dest, *source;
 int maxlen;
@@ -465,7 +465,7 @@ char *packorder =
     if (page_line(x)) \
     goto quit
 
-void
+static void
 option_help()
 {
     char buf[BUFSZ];

@@ -9,8 +9,9 @@
 #define void int
 #endif
 
-void ini_inv(/*void*/);
-void wiz_inv(/*void*/);
+static void ini_inv(/*unknown*/);
+static int role_index(/*unknown*/);
+static void wiz_inv(/*unknown*/);
 
 #define Strcpy (void) strcpy
 #define Strcat (void) strcat
@@ -478,7 +479,7 @@ got_suffix:
         u.ustr++, u.ustrmax++;
 }
 
-void
+static void
 ini_inv(trop)
 register struct trobj *trop;
 {
@@ -559,7 +560,7 @@ register struct trobj *trop;
 }
 
 #ifdef WIZARD
-void
+static void
 wiz_inv()
 {
     register struct trobj *trop = &Extra_objs[0];
@@ -599,7 +600,7 @@ plnamesuffix()
     }
 }
 
-int
+static int
 role_index(pc)
 char pc;
 {   /* must be called only from u_init() */
