@@ -7,6 +7,8 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
+void outheader(/*void*/);
+
 #define Sprintf (void) sprintf
 extern char plname[], pl_character[];
 #ifndef MSC /* set by the Microsoft "C" compiler */
@@ -49,7 +51,7 @@ topten()
 #endif
     int sleepct = 300;
     FILE *rfile;
-    register flg = 0;
+    register int flg = 0;
     extern char *getdate();
 #ifdef LOGFILE
     char *lgfile = LOGFILE;
@@ -265,7 +267,9 @@ outheader()
 /* so>0: standout line; so=0: ordinary line; so<0: no output, return lth */
 int
 outentry(rank, t1, so)
+int rank;
 register struct toptenentry *t1;
+int so;
 {
     boolean quit = FALSE, killed = FALSE, starv = FALSE;
     char linebuf[BUFSZ];
@@ -407,7 +411,7 @@ char **argv;
     register struct toptenentry *t1, *t2;
     char *recfile = RECORD;
     FILE *rfile;
-    register flg = 0;
+    register int flg = 0;
     register int i;
 #ifdef nonsense
     long total_score = 0L;

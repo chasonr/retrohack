@@ -3,6 +3,10 @@
 
 #include "hack.h"
 
+void litroom(/*void*/);
+void do_genocide(/*void*/);
+void do_mapping(/*void*/);
+
 extern struct monst *makemon();
 extern struct permonst pm_eel;
 extern struct obj *mkobj_at();
@@ -368,7 +372,7 @@ register struct obj *sobj;
     case SPE_DETECT_FOOD:
 #endif
     {
-        register ct = 0, ctu = 0;
+        register int ct = 0, ctu = 0;
         register struct obj *obj;
         register char foodsym = confused ? POTION_SYM : FOOD_SYM;
 
@@ -531,7 +535,7 @@ void
 litroom(on)
 register boolean on;
 {
-    register num, zx, zy;
+    register int num, zx, zy;
 
     /* first produce the text (provided he is not blind) */
     if (Blind)

@@ -16,6 +16,10 @@ int identify();
 extern char *xname();
 #endif
 static int drop(/* struct obj *obj */);
+void dropx(/*void*/);
+void dropy(/*void*/);
+void goto_level(/*void*/);
+void dosinkring(/*void*/);
 
 int
 dodrop()
@@ -185,7 +189,7 @@ goto_level(newlevel, at_stairs)
 register int newlevel;
 register boolean at_stairs;
 {
-    register fd;
+    register int fd;
     register boolean up = (newlevel < dlevel);
 
     if (newlevel <= 0)

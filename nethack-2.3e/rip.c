@@ -7,6 +7,8 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
+void center(/*void*/);
+
 extern char plname[];
 
 static char *rip[] = {
@@ -33,7 +35,7 @@ outrip()
     register char **dp = rip;
     register char *dpx;
     char buf[BUFSZ];
-    register x, y;
+    register int x, y;
 
     cls();
     (void) sprintf(buf, "%s%s", (Badged) ? "Officer " : "", plname);

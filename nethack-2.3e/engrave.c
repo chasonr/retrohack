@@ -9,6 +9,8 @@ extern struct obj zeroobj;
 #ifdef KAA
 extern char *xname();
 #endif
+void wipe_engr_at(/*void*/);
+void del_engr(/*void*/);
 struct engr {
     struct engr *nxt_engr;
     char *engr_txt;
@@ -314,7 +316,7 @@ doengrave()
                 if (!oep)
                     type = DUST;
                 else {
-                    register tx, ty;
+                    register int tx, ty;
 
                     do {
                         tx = rn1(COLNO - 3, 2);

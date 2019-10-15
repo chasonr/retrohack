@@ -74,6 +74,10 @@ static char erase_char, kill_char;
 static boolean settty_needed = FALSE;
 struct termstruct inittyb, curttyb;
 
+void setctty(/*void*/);
+void cgetret(/*void*/);
+void xwaitforspace(/*void*/);
+
 /*
  * Get initial state of terminal, set ospeed (for termcap routines)
  * and switch off tab expansion if necessary.
@@ -157,6 +161,7 @@ setftty()
 int
 error(s, x, y)
 char *s;
+int x, y;
 {
     if (settty_needed)
         settty((char *) 0);
@@ -268,7 +273,7 @@ char *
 parse()
 {
     static char in_line[COLNO];
-    register foo;
+    register int foo;
 
     multi = 0;
     flags.move = 1;

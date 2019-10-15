@@ -9,6 +9,10 @@ extern struct permonst pm_wizard;
 extern struct monst *makemon();
 extern struct obj *carrying(), *mksobj_at();
 
+void aggravate(/*void*/);
+void clonewiz(/*void*/);
+void resurrect(/*void*/);
+
 #if defined(HARD) || defined(DGKMOD)
 #ifdef SAC
 char nasties[] = "cdDeImoPTUVwxXz3&,:;";
@@ -31,6 +35,7 @@ extern char mlarge[];
 
 int
 movedist(x0, x1, y0, y1)
+int x0, x1, y0, y1;
 {
     register int absdx, absdy;
 

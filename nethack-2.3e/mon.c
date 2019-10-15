@@ -3,6 +3,15 @@
 
 #include "hack.h"
 #include "mfndpos.h"
+
+void mondead(/*void*/);
+void relmon(/*void*/);
+void monfree(/*void*/);
+void dmonsfree(/*void*/);
+void unstuck(/*void*/);
+void xkilled(/*void*/);
+void kludge(/*void*/);
+
 extern struct monst *makemon(), *mkmon_at();
 extern struct trap *maketrap();
 extern struct obj *mkobj_at(), *mksobj_at();
@@ -152,7 +161,7 @@ char *name;
 void
 youswld(mtmp, dam, die, name)
 register struct monst *mtmp;
-register dam, die;
+register int dam, die;
 char *name;
 {
     if (mtmp != u.ustuck)
@@ -366,7 +375,7 @@ void
 poisoned(string, pname)
 register char *string, *pname;
 {
-    register i, plural;
+    register int i, plural;
 
     plural = (string[strlen(string) - 1] == 's') ? 1 : 0;
     if (Blind) {
@@ -803,7 +812,7 @@ newcham(mtmp, mdat) /* make a chameleon look like a new monster */
 register struct monst *mtmp;
 register struct permonst *mdat;
 {
-    register mhp, hpn, hpd;
+    register int mhp, hpn, hpd;
 
 #ifdef RPH
     /* mdat = 0 -> caller wants a random monster shape */

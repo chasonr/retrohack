@@ -8,6 +8,13 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
+void nocmov(/*void*/);
+void cmov(/*void*/);
+void xputc(/*void*/);
+void xputs(/*void*/);
+void clear_screen(/*void*/);
+void home(/*void*/);
+
 extern char *tgetstr(), *tgoto(), *getenv();
 extern long *alloc();
 
@@ -169,6 +176,7 @@ register int x, y; /* not xchar: perhaps xchar is unsigned and
 
 void
 nocmov(x, y)
+int x, y;
 {
     if (cury > y) {
         if (UP) {
@@ -217,7 +225,7 @@ nocmov(x, y)
 
 void
 cmov(x, y)
-register x, y;
+register int x, y;
 {
     xputs(tgoto(CM, x - 1, y - 1));
     cury = y;
@@ -250,7 +258,7 @@ cl_end()
     else { /* no-CE fix - free after Harold Rynes */
         /* this looks terrible, especially on a slow terminal
            but is better than nothing */
-        register cx = curx, cy = cury;
+        register int cx = curx, cy = cury;
 
         while (curx < COLNO) {
             xputc(' ');

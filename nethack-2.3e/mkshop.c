@@ -286,9 +286,9 @@ mkswamp() /* Michiel Huisjes & Fred de Wilde */
 
 boolean
 nexttodoor(sx, sy)
-register sx, sy;
+register int sx, sy;
 {
-    register dx, dy;
+    register int dx, dy;
     register struct rm *lev;
     for (dx = -1; dx <= 1; dx++)
         for (dy = -1; dy <= 1; dy++)
@@ -316,6 +316,7 @@ register struct mkroom *sroom;
 
 int
 dist2(x0, y0, x1, y1)
+int x0, y0, x1, y1;
 {
     return ((x0 - x1) * (x0 - x1) + (y0 - y1) * (y0 - y1));
 }

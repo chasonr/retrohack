@@ -7,6 +7,16 @@
 extern struct monst *makemon();
 extern struct obj *mksobj_at();
 
+void selftouch(/*void*/);
+void vtele(/*void*/);
+void tele(/*void*/);
+void teleds(/*void*/);
+void placebc(/*void*/);
+void unplacebc(/*void*/);
+void level_tele(/*void*/);
+void domagictrap(/*void*/);
+void drown(/*void*/);
+
 #ifdef KAA
 extern char *Xmonnam();
 extern char *nomovemsg;
@@ -58,7 +68,7 @@ char *traps[] = { "",
 
 struct trap *
 maketrap(x, y, typ)
-register x, y, typ;
+register int x, y, typ;
 {
     register struct trap *ttmp;
 
@@ -595,7 +605,7 @@ vtele()
 
     for (croom = &rooms[0]; croom->hx >= 0; croom++)
         if (croom->rtype == VAULT) {
-            register x, y;
+            register int x, y;
 
             x = rn2(2) ? croom->lx : croom->hx;
             y = rn2(2) ? croom->ly : croom->hy;

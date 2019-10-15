@@ -80,7 +80,7 @@ static long int total;     /* filled by addupbill() */
 static long int followmsg; /* last time of follow message */
 static void setpaid();
 static void findshk();
-static dopayobj(), getprice(), realhunger();
+static int dopayobj(), getprice(), realhunger();
 
 /*
         invariants: obj->unpaid iff onbill(obj) [unless bp->useup]
@@ -148,7 +148,7 @@ static void
 addupbill()
 {   /* delivers result in total */
     /* caller has checked that shopkeeper exists */
-    register ct = ESHK(shopkeeper)->billct;
+    register int ct = ESHK(shopkeeper)->billct;
     register struct bill_x *bp = bill;
     total = 0;
     while (ct--) {
@@ -160,7 +160,7 @@ addupbill()
 int
 inshop()
 {
-    register roomno = inroom(u.ux, u.uy);
+    register int roomno = inroom(u.ux, u.uy);
 
     /* Did we just leave a shop? */
     if (u.uinshop
@@ -285,7 +285,7 @@ inshop()
 
 static void
 findshk(roomno)
-register roomno;
+register int roomno;
 {
     register struct monst *mtmp;
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
@@ -960,7 +960,7 @@ register struct obj *obj;
 static int
 realhunger()
 { /* not completely foolproof */
-    register tmp = u.uhunger;
+    register int tmp = u.uhunger;
     register struct obj *otmp = invent;
     while (otmp) {
         if (otmp->olet == FOOD_SYM && !otmp->unpaid)

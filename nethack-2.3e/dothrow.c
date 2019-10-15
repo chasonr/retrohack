@@ -14,6 +14,8 @@ extern char *xname();
 #endif
 
 struct monst *bhit(), *boomhit();
+void hitfloor(/*void*/);
+
 int
 dothrow()
 {

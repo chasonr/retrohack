@@ -3,6 +3,8 @@
 
 #include "hack.h"
 
+void mpickobj(/*void*/);
+
 long /* actually returns something that fits in an int */
 somegold()
 {
@@ -73,8 +75,8 @@ steal(mtmp)
 struct monst *mtmp;
 {
     register struct obj *otmp;
-    register tmp;
-    register named = 0;
+    register int tmp;
+    register int named = 0;
 
     if (!invent) {
         if (Blind)
@@ -205,7 +207,7 @@ register struct monst *mtmp;
 void
 relobj(mtmp, show)
 register struct monst *mtmp;
-register show;
+register int show;
 {
     register struct obj *otmp, *otmp2;
 

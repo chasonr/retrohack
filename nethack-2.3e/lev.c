@@ -4,6 +4,13 @@
 #include "hack.h"
 #include "mkroom.h"
 #include <stdio.h>
+
+void bwrite(/*void*/);
+void saveobjchn(/*void*/);
+void savemonchn(/*void*/);
+void savegoldchn(/*void*/);
+void savetrapchn(/*void*/);
+void mread(/*void*/);
 extern struct monst *restmonchn();
 extern struct obj *restobjchn();
 extern struct obj *billobjs;
@@ -61,7 +68,7 @@ xchar lev;
 {
 #ifndef NOWORM
     register struct wseg *wtmp, *wtmp2;
-    register tmp;
+    register int tmp;
 #endif
 
     if (fd < 0)
@@ -118,7 +125,7 @@ xchar lev;
 
 void
 bwrite(fd, loc, num)
-register fd;
+register int fd;
 register char *loc;
 register unsigned num;
 {
@@ -134,7 +141,7 @@ register unsigned num;
 
 void
 saveobjchn(fd, otmp)
-register fd;
+register int fd;
 register struct obj *otmp;
 {
     register struct obj *otmp2;
@@ -157,7 +164,7 @@ register struct obj *otmp;
 
 void
 savemonchn(fd, mtmp)
-register fd;
+register int fd;
 register struct monst *mtmp;
 {
     register struct monst *mtmp2;
@@ -182,7 +189,7 @@ register struct monst *mtmp;
 
 void
 savegoldchn(fd, gold)
-register fd;
+register int fd;
 register struct gold *gold;
 {
     register struct gold *gold2;
@@ -200,7 +207,7 @@ register struct gold *gold;
 
 void
 savetrapchn(fd, trap)
-register fd;
+register int fd;
 register struct trap *trap;
 {
     register struct trap *trap2;
@@ -226,7 +233,7 @@ xchar lev;
 #ifndef NOWORM
     register struct wseg *wtmp;
 #endif
-    register tmp;
+    register int tmp;
     long omoves;
     int hpid;
     xchar dlvl;
@@ -408,7 +415,7 @@ xchar lev;
 
 void
 mread(fd, buf, len)
-register fd;
+register int fd;
 register char *buf;
 register unsigned len;
 {

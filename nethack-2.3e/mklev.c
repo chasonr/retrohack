@@ -3,6 +3,18 @@
 
 #include "hack.h"
 
+void addrs(/*void*/);
+void addrsx(/*void*/);
+void dosdoor(/*void*/);
+void makecorridors(/*void*/);
+void join(/*void*/);
+void make_niches(/*void*/);
+void makevtele(/*void*/);
+void makeniche(/*void*/);
+void mktrap(/*void*/);
+void mkfount(/*void*/);
+void mksink(/*void*/);
+
 extern char *getlogin(), *getenv();
 extern struct monst *makemon(), *mkmon_at();
 extern struct obj *mkobj_at(), *mksobj_at();
@@ -397,7 +409,7 @@ finddpos(cc, xl, yl, xh, yh)
 coord *cc;
 int xl, yl, xh, yh;
 {
-    register x, y;
+    register int x, y;
 
     x = (xl == xh) ? xl : (xl + rn2(xh - xl + 1));
     y = (yl == yh) ? yl : (yl + rn2(yh - yl + 1));
@@ -425,7 +437,7 @@ gotit:
 /* see whether it is allowable to create a door at [x,y] */
 int
 okdoor(x, y)
-register x, y;
+register int x, y;
 {
     if (levl[x - 1][y].typ == DOOR || levl[x + 1][y].typ == DOOR
         || levl[x][y + 1].typ == DOOR || levl[x][y - 1].typ == DOOR
@@ -439,7 +451,7 @@ register x, y;
 
 void
 dodoor(x, y, aroom)
-register x, y;
+register int x, y;
 register struct mkroom *aroom;
 {
     if (doorindex >= DOORMAX) {
@@ -453,12 +465,12 @@ register struct mkroom *aroom;
 
 void
 dosdoor(x, y, aroom, type)
-register x, y;
+register int x, y;
 register struct mkroom *aroom;
-register type;
+register int type;
 {
     register struct mkroom *broom;
-    register tmp;
+    register int tmp;
 
     if (!IS_WALL(levl[x][y].typ)) /* avoid SDOORs with DOOR_SYM as scrsym */
         type = DOOR;
@@ -485,8 +497,8 @@ maker(lowx, ddx, lowy, ddy)
 schar lowx, ddx, lowy, ddy;
 {
     register struct mkroom *croom;
-    register x, y, hix = lowx + ddx, hiy = lowy + ddy;
-    register xlim = XLIM + secret, ylim = YLIM + secret;
+    register int x, y, hix = lowx + ddx, hiy = lowy + ddy;
+    register int xlim = XLIM + secret, ylim = YLIM + secret;
 
     if (nroom >= MAXNROFROOMS)
         return (0);
@@ -573,7 +585,7 @@ chk:
 void
 makecorridors()
 {
-    register a, b;
+    register int a, b;
 
     nxcor = 0;
     for (a = 0; a < nroom - 1; a++)
@@ -597,13 +609,13 @@ makecorridors()
 
 void
 join(a, b)
-register a, b;
+register int a, b;
 {
     coord cc, tt;
-    register tx, ty, xx, yy;
+    register int tx, ty, xx, yy;
     register struct rm *crm;
     register struct mkroom *croom, *troom;
-    register dx, dy, dix, diy, cct;
+    register int dx, dy, dix, diy, cct;
 
     croom = &rooms[a];
     troom = &rooms[b];
@@ -684,7 +696,7 @@ register a, b;
 
         /* do we have to change direction ? */
         if (dy && dix > diy) {
-            register ddx = (xx > tx) ? -1 : 1;
+            register int ddx = (xx > tx) ? -1 : 1;
 
             crm = &levl[xx + ddx][yy];
             if (!crm->typ || crm->typ == CORR || crm->typ == SCORR) {
@@ -693,7 +705,7 @@ register a, b;
                 continue;
             }
         } else if (dx && diy > dix) {
-            register ddy = (yy > ty) ? -1 : 1;
+            register int ddy = (yy > ty) ? -1 : 1;
 
             crm = &levl[xx][yy + ddy];
             if (!crm->typ || crm->typ == CORR || crm->typ == SCORR) {
@@ -817,7 +829,7 @@ int trap_type;
     register struct rm *rm;
     register int vct = 8;
     coord dd;
-    register dy, xx, yy;
+    register int dy, xx, yy;
     register struct trap *ttmp;
 
     if (doorindex < DOORMAX)
@@ -1013,7 +1025,7 @@ register
 void
 mkfount(mazeflag, croom)
 register struct mkroom *croom;
-register mazeflag;
+register int mazeflag;
 {
     register xchar mx, my;
     register int tryct = 0;

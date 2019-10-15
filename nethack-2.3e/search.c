@@ -2,6 +2,9 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
+
+void seemimic(/*void*/);
+
 char *rndmonnam(), *defmonnam();
 
 extern struct monst *makemon();

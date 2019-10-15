@@ -7,6 +7,7 @@ extern char *nomovemsg;
 extern char quitchars[];
 extern char *Doname();
 static int marmoroff(/* struct obj *otmp */);
+void ringoff(/*void*/);
 
 void
 off_msg(otmp)

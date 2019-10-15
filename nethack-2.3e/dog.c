@@ -15,6 +15,7 @@ struct permonst li_dog = { "little dog",       'd', 2, 18, 6, 0, 1, 6,
 struct permonst dog = { "dog", 'd', 4, 16, 5, 0, 1, 6, sizeof(struct edog) };
 struct permonst la_dog = { "large dog",        'd', 6, 15, 4, 0, 2, 4,
                            sizeof(struct edog) };
+void initedog(/*void*/);
 
 struct monst *
 makedog()

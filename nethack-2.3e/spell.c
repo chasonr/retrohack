@@ -5,6 +5,8 @@
 #ifdef SPELLS
 extern char *nomovemsg;
 
+void decrnuses(/*void*/);
+
 int
 doxcribe()
 {
@@ -434,6 +436,7 @@ dovspell()
 
 int
 spellet(spl)
+int spl;
 {
     if (spl < 27)
         return ('a' + spl - 1);
@@ -443,18 +446,21 @@ spellet(spl)
 
 int
 spellev(spl)
+int spl;
 {
     return (spl_book[spl - 1].sp_lev);
 }
 
 char *
 spellname(spl)
+int spl;
 {
     return (objects[spl_book[spl - 1].sp_id].oc_name);
 }
 
 int
 spellid(spl)
+int spl;
 {
     return (spl_book[spl - 1].sp_id);
 }
@@ -462,11 +468,13 @@ spellid(spl)
 #ifdef HARD
 int
 spelluses(spell)
+int spell;
 {
     return (spl_book[spell - 1].sp_uses);
 }
 void
 decrnuses(spell)
+int spell;
 {
     spl_book[spell - 1].sp_uses--;
 }

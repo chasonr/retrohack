@@ -8,6 +8,9 @@
 #define void int
 #endif
 
+void ini_inv(/*void*/);
+void wiz_inv(/*void*/);
+
 #define Strcpy (void) strcpy
 #define Strcat (void) strcat
 #define UNDEF_TYP 0

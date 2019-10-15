@@ -2,6 +2,10 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
+
+void m_initinv(/*void*/);
+void rloc(/*void*/);
+
 extern char fut_geno[];
 extern char *index();
 extern struct obj *mkobj_at(), *mksobj(), *mkobj();
@@ -54,9 +58,10 @@ extern struct permonst pm_gremlin;
 struct monst *
 makemon(ptr, x, y)
 register struct permonst *ptr;
+int x, y;
 {
     register struct monst *mtmp;
-    register nleft, deep, ct;
+    register int nleft, deep, ct;
     boolean anything = (!ptr);
     int zlevel = dlevel;
 #ifdef BVH
@@ -411,6 +416,7 @@ foofull:
 
 int
 goodpos(x, y) /* used only in mnexto and rloc */
+int x, y;
 {
     return (!(x < 1 || x > COLNO - 2 || y < 1 || y > ROWNO - 2 || m_at(x, y)
               || !ACCESSIBLE(levl[x][y].typ) || (x == u.ux && y == u.uy)
@@ -421,7 +427,7 @@ void
 rloc(mtmp)
 struct monst *mtmp;
 {
-    register tx, ty;
+    register int tx, ty;
     register char ch = mtmp->data->mlet;
 
 #ifndef NOWORM

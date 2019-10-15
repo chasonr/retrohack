@@ -462,9 +462,9 @@ register struct monst *mtmp;
 int
 hitu(mtmp, dam)
 register struct monst *mtmp;
-register dam;
+register int dam;
 {
-    register tmp, res;
+    register int tmp, res;
 
     nomul(0);
     if (mtmp->mfroz || mtmp->mhp <= 0)

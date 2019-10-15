@@ -43,7 +43,7 @@ int
 dosave0(hu)
 int hu;
 {
-    register fd, ofd;
+    register int fd, ofd;
     int tmp; /* not register ! */
 #ifdef DGK
     long fds, needed;
@@ -172,9 +172,9 @@ again:
 
 int
 dorecover(fd)
-register fd;
+register int fd;
 {
-    register nfd;
+    register int nfd;
     int tmp;      /* not a register ! */
     unsigned mid; /* idem */
     struct obj *otmp;
@@ -330,7 +330,7 @@ register fd;
 
 struct obj *
 restobjchn(fd)
-register fd;
+register int fd;
 {
     register struct obj *otmp, *otmp2;
     register struct obj *first = 0;
@@ -362,7 +362,7 @@ register fd;
 
 struct monst *
 restmonchn(fd)
-register fd;
+register int fd;
 {
     register struct monst *mtmp, *mtmp2;
     register struct monst *first = 0;

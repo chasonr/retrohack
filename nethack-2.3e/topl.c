@@ -7,6 +7,11 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
+void redotoplin(/*void*/);
+void more(/*void*/);
+void putsym(/*void*/);
+void putstr(/*void*/);
+
 extern char *eos();
 extern int CO;
 

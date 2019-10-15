@@ -2,6 +2,15 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
+
+void healup(/*void*/);
+void pluslvl(/*void*/);
+void strange_feeling(/*void*/);
+void potionbreathe(/*void*/);
+void ghost_from_bottle(/*void*/);
+void djinni_from_bottle(/*void*/);
+void gainstr(/*void*/);
+
 extern int float_down();
 extern char *nomovemsg;
 extern struct monst youmonst;
@@ -343,7 +352,7 @@ register boolean curesick, cureblind;
 void
 pluslvl()
 {
-    register num;
+    register int num;
 
     pline("You feel more experienced.");
     num = rnd(10);

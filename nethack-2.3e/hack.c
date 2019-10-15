@@ -10,6 +10,11 @@ extern char *nomovemsg;
 extern char *exclam();
 extern struct obj *addinv();
 extern boolean hmon();
+void movobj(/*void*/);
+void pickup(/*void*/);
+void setsee(/*void*/);
+void nomul(/*void*/);
+void dosinkfall(/*void*/);
 
 /* called on movement:
         1. when throwing ball+chain far away
@@ -19,7 +24,7 @@ extern boolean hmon();
 void
 unsee()
 {
-    register x, y;
+    register int x, y;
     register struct rm *lev;
 
 /*
@@ -61,8 +66,9 @@ unsee()
  */
 void
 seeoff(mode) /* 1 to redo @, 0 to leave them */
-{            /* 1 means misc movement, 0 means blindness */
-    register x, y;
+int mode;    /* 1 means misc movement, 0 means blindness */
+{
+    register int x, y;
     register struct rm *lev;
 
     if (u.udispl && mode) {
@@ -420,6 +426,7 @@ dopickup()
 
 void
 pickup(all)
+int all;
 {
     register struct gold *gold;
     register struct obj *obj, *obj2;
@@ -710,7 +717,7 @@ pickup(all)
 void
 lookaround()
 {
-    register x, y, i, x0, y0, m0, i0 = 9;
+    register int x, y, i, x0, y0, m0, i0 = 9;
     register int corrct = 0, noturn = 0;
     register struct monst *mtmp;
 #ifdef LINT
@@ -936,7 +943,7 @@ setsee()
 void
 setsee()
 {
-    register x, y;
+    register int x, y;
 
     if (Blind) {
         pru();
@@ -982,7 +989,7 @@ setsee()
 
 void
 nomul(nval)
-register nval;
+register int nval;
 {
 #ifdef DGKMOD
     if (multi < nval)
@@ -1044,7 +1051,7 @@ dbon()
 
 void
 losestr(num) /* may kill you; cause may be poison or monster like 'A' */
-register num;
+register int num;
 {
     u.ustr -= num;
     while (u.ustr < 3) {
@@ -1057,7 +1064,7 @@ register num;
 
 void
 losehp(n, knam)
-register n;
+register int n;
 register char *knam;
 {
 #ifdef KAA
@@ -1084,7 +1091,7 @@ register char *knam;
 
 void
 losehp_m(n, mtmp)
-register n;
+register int n;
 register struct monst *mtmp;
 {
 #ifdef KAA
@@ -1105,7 +1112,7 @@ register struct monst *mtmp;
 void
 losexp() /* hit by V or W */
 {
-    register num;
+    register int num;
     extern long newuexp();
 
     if (u.usym == 'V' || u.usym == 'W')

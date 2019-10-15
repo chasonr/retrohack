@@ -10,6 +10,8 @@ extern char plname[], pl_character[], SAVEF[];
 xchar maxdlevel = 1;
 int done_stopprint;
 int done_hup;
+void done(/*void*/);
+void clearlocks(/*void*/);
 
 void
 done1()
@@ -93,6 +95,7 @@ boolean panicking;
 void
 panic(str, a1, a2, a3, a4, a5, a6)
 char *str;
+int a1, a2, a3, a4, a5, a6;
 {
     if (panicking++)
         abort(); /* avoid loops - this should never happen*/
@@ -348,7 +351,7 @@ clearlocks()
         eraseall(permbones, alllevels);
 #else
 #ifdef UNIX
-    register x;
+    register int x;
     (void) signal(SIGHUP, SIG_IGN);
     for (x = maxdlevel; x >= 0; x--) {
         glo(x);

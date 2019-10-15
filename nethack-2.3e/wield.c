@@ -88,7 +88,7 @@ corrode_weapon()
 int
 chwepon(otmp, amount)
 register struct obj *otmp;
-register amount;
+register int amount;
 {
     register char *color = (amount < 0) ? "black" : "green";
     register char *time;

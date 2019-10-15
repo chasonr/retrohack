@@ -6,6 +6,8 @@
 #ifndef NOWORM
 #include "wseg.h"
 
+void remseg(/*void*/);
+
 struct wseg *wsegs[32]; /* linked list, tail first */
 struct wseg *wheads[32];
 long wgrowtime[32];
@@ -14,7 +16,7 @@ int
 getwn(mtmp)
 struct monst *mtmp;
 {
-    register tmp;
+    register int tmp;
     for (tmp = 1; tmp < 32; tmp++)
         if (!wsegs[tmp]) {
             mtmp->wormno = tmp;
@@ -29,7 +31,7 @@ initworm(mtmp)
 struct monst *mtmp;
 {
     register struct wseg *wtmp;
-    register tmp = mtmp->wormno;
+    register int tmp = mtmp->wormno;
     if (!tmp)
         return;
     wheads[tmp] = wsegs[tmp] = wtmp = newseg();
@@ -45,7 +47,7 @@ worm_move(mtmp)
 struct monst *mtmp;
 {
     register struct wseg *wtmp, *whd;
-    register tmp = mtmp->wormno;
+    register int tmp = mtmp->wormno;
     wtmp = newseg();
     wtmp->wx = mtmp->mx;
     wtmp->wy = mtmp->my;
@@ -77,7 +79,7 @@ void
 worm_nomove(mtmp)
 register struct monst *mtmp;
 {
-    register tmp;
+    register int tmp;
     register struct wseg *wtmp;
     tmp = mtmp->wormno;
     wtmp = wsegs[tmp];
@@ -94,7 +96,7 @@ void
 wormdead(mtmp)
 register struct monst *mtmp;
 {
-    register tmp = mtmp->wormno;
+    register int tmp = mtmp->wormno;
     register struct wseg *wtmp, *wtmp2;
     if (!tmp)
         return;
@@ -110,7 +112,7 @@ void
 wormhit(mtmp)
 register struct monst *mtmp;
 {
-    register tmp = mtmp->wormno;
+    register int tmp = mtmp->wormno;
     register struct wseg *wtmp;
     if (!tmp)
         return; /* worm without tail */
@@ -150,7 +152,7 @@ register uchar weptyp; /* uwep->otyp or 0 */
 {
     register struct wseg *wtmp, *wtmp2;
     register struct monst *mtmp2;
-    register tmp, tmp2;
+    register int tmp, tmp2;
     if (mtmp->mx == x && mtmp->my == y)
         return; /* hit headon */
 

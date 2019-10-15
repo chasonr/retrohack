@@ -16,6 +16,9 @@ extern struct monst *mkmon_at();
 #ifdef RPH
 extern struct obj *mk_named_obj_at();
 #endif
+void mondied(/*void*/);
+void monstone(/*void*/);
+void stoogejoke(/*void*/);
 
 static boolean far_noise;
 static long noisetime;
@@ -262,7 +265,7 @@ register struct monst *mtmp;
 /* u is hit by sth, but not a monster */
 int
 thitu(tlev, dam, name)
-register tlev, dam;
+register int tlev, dam;
 register char *name;
 {
     char buf[BUFSZ];
@@ -293,9 +296,9 @@ char mlarge[] = "bCDdegIlmnoPSsTUwY',&";
 boolean hmon(mon, obj, thrown) /* return TRUE if mon still alive */
 register struct monst *mon;
 register struct obj *obj;
-register thrown;
+register int thrown;
 {
-    register tmp;
+    register int tmp;
     boolean hittxt = FALSE;
 
 #ifdef KAA

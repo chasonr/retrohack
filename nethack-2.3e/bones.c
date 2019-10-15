@@ -14,11 +14,13 @@ char bones[FILENAME];
 char bones[] = "bones_xx";
 #endif
 
+void spill_obj(/*void*/);
+
 /* save bones and possessions of a deceased adventurer */
 void
 savebones()
 {
-    register fd;
+    register int fd;
     register struct obj *otmp;
     register struct trap *ttmp;
     register struct monst *mtmp;
@@ -145,7 +147,7 @@ struct obj *obj;
 int
 getbones()
 {
-    register fd, x, y, ok;
+    register int fd, x, y, ok;
     /* wizard check added by GAN 02/05/87 */
     if (rn2(3) /* only once in three times do we find bones */
 #ifdef WIZARD

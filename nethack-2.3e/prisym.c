@@ -4,11 +4,16 @@
 #include "hack.h"
 #include <stdio.h>
 
+void on_scr(/*void*/);
+void prl(/*void*/);
+void newsym(/*void*/);
+
 extern xchar scrlx, scrhx, scrly, scrhy; /* corners from pri.c */
 
 void
 atl(x, y, ch)
-register x, y;
+register int x, y;
+int ch;
 {
     register struct rm *crm = &levl[x][y];
 
@@ -25,7 +30,7 @@ register x, y;
 
 void
 on_scr(x, y)
-register x, y;
+register int x, y;
 {
     if (x < scrlx)
         scrlx = x;
@@ -83,7 +88,7 @@ int x, y;
     static char let;
     static xchar cnt;
     static coord tc[COLNO]; /* but watch reflecting beams! */
-    register xx, yy;
+    register int xx, yy;
     if ((int) x == -1) {
         if (y > 0) { /* open call */
             let = y;
@@ -150,6 +155,7 @@ extern struct wseg *m_atseg;
 /* print a position that is visible for @ */
 void
 prl(x, y)
+int x, y;
 {
     register struct rm *room;
     register struct monst *mtmp;
@@ -280,7 +286,7 @@ register xchar x, y;
 
 void
 newsym(x, y)
-register x, y;
+register int x, y;
 {
     atl(x, y, news0(x, y));
 }
@@ -289,7 +295,7 @@ register x, y;
 /* also when a POOL evaporates */
 void
 mnewsym(x, y)
-register x, y;
+register int x, y;
 {
     register struct rm *room;
     char newscrsym;
@@ -306,7 +312,7 @@ register x, y;
 
 void
 nosee(x, y)
-register x, y;
+register int x, y;
 {
     register struct rm *room;
 
@@ -323,7 +329,7 @@ register x, y;
 #ifndef QUEST
 void
 prl1(x, y)
-register x, y;
+register int x, y;
 {
     if (u.dx) {
         if (u.dy) {
@@ -346,7 +352,7 @@ register x, y;
 
 void
 nose1(x, y)
-register x, y;
+register int x, y;
 {
     if (u.dx) {
         if (u.dy) {
@@ -370,7 +376,7 @@ register x, y;
 
 int
 vism_at(x, y)
-register x, y;
+register int x, y;
 {
     register struct monst *mtmp;
 

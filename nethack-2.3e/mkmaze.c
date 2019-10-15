@@ -3,6 +3,10 @@
 
 #include "hack.h"
 #include "mkroom.h" /* not really used */
+
+void walkfrom(/*void*/);
+void move(/*void*/);
+
 extern struct monst *makemon(), *mkmon_at();
 extern struct permonst pm_wizard;
 extern struct obj *mkobj_at(), *mksobj_at();
@@ -12,7 +16,7 @@ void
 makemaz()
 {
     int x, y;
-    register zx, zy;
+    register int zx, zy;
     coord mm;
     boolean al = (dlevel >= 30 && !flags.made_amulet);
 

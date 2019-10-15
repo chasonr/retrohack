@@ -11,12 +11,13 @@ extern int (*occupation)();
 extern char *occtxt;
 extern char quitchars[];
 extern char pl_character[];
+extern int mpickobj(), freeinv(), rloc();
 
 #ifdef DGKMOD
 extern void set_occupation();
 #endif
 #ifdef KAA
-static use_stethoscope();
+static int use_stethoscope();
 extern boolean unweapon;
 #endif
 #ifdef WALKIES
@@ -32,6 +33,7 @@ extern int dowrite();
 static void use_mirror();
 #endif
 static void use_lamp();
+void dighole(/*void*/);
 
 int
 doapply()
@@ -468,7 +470,7 @@ static int
 dig()
 {
     register struct rm *lev;
-    register dpx = dig_pos.x, dpy = dig_pos.y;
+    register int dpx = dig_pos.x, dpy = dig_pos.y;
 
     /* perhaps a nymph stole his pick-axe while he was busy digging */
     /* or perhaps he teleported away */
@@ -709,7 +711,6 @@ struct obj *obj;
 {
     register struct monst *mtmp;
     register char mlet;
-    extern mpickobj(), freeinv(), rloc();
 
     if (!getdir(1)) { /* ask: in what direction? */
         flags.move = multi = 0;

@@ -36,7 +36,7 @@ register int otyp, x, y;
 #ifdef RPH
 struct obj *
 mk_named_obj_at(let, x, y, nm, lth) /* used for named corpses */
-register let, x, y;
+register int let, x, y;
 char *nm;
 register int lth;
 {
@@ -62,6 +62,7 @@ register int lth;
 
 struct obj *
 mkobj(let)
+int let;
 {
     int realtype;
     switch (let) {
@@ -95,7 +96,7 @@ struct obj zeroobj;
 
 struct obj *
 mksobj(otyp)
-register otyp;
+register int otyp;
 {
     register struct obj *otmp;
     char let = objects[otyp].oc_olet;
@@ -209,6 +210,7 @@ register otyp;
 
 int
 letter(c)
+int c;
 {
     return (('@' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
 }
@@ -224,6 +226,7 @@ register struct obj *obj;
 void
 mkgold(num, x, y)
 register long num;
+int x, y;
 {
     register struct gold *gold;
     register long amount = (num ? num : 1 + (rnd(dlevel + 2) * rnd(30)));

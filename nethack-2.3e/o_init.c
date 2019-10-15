@@ -4,6 +4,9 @@
 #include "config.h" /* for typedefs */
 #include "objects.h"
 #include "onames.h" /* for LAST_GEM */
+
+void setgemprobs(/*void*/);
+
 extern char *index();
 
 int
@@ -143,7 +146,7 @@ extern long *alloc();
 
 void
 savenames(fd)
-register fd;
+register int fd;
 {
     register int i;
     unsigned len;
@@ -165,7 +168,7 @@ register fd;
 
 void
 restnames(fd)
-register fd;
+register int fd;
 {
     register int i;
     unsigned len;

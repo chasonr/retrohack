@@ -27,6 +27,13 @@ static char SCCS_Id[] = "@(#)makedefs.c	2.3\t88/02/18";
 
 char in_line[256], outline[256];
 
+void do_traps(/*void*/);
+void do_rumors(/*void*/);
+void do_date(/*void*/);
+void do_data(/*void*/);
+void newobj(/*void*/);
+void capitalize(/*void*/);
+
 int
 main(argc, argv)
 int argc;
@@ -706,6 +713,7 @@ boolean panicking = 0;
 int
 panic(str, a1, a2, a3, a4, a5, a6)
 char *str;
+int a1, a2, a3, a4, a5, a6;
 {
     if (panicking++)
         exit(1); /* avoid loops - this should never happen*/

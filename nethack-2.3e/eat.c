@@ -12,6 +12,10 @@ extern int (*afternmv)();
 extern int (*occupation)();
 extern char *occtxt;
 extern struct obj *splitobj(), *addinv();
+void morehungry(/*void*/);
+void lesshungry(/*void*/);
+void newuhs(/*void*/);
+void choke(/*void*/);
 
 /* hunger texts used on bottom line (each 8 chars long) */
 #define SATIATED 0
@@ -105,7 +109,7 @@ doeat()
 {
     register struct obj *otmp;
     register struct objclass *ftmp;
-    register tmp;
+    register int tmp;
 
     /* Is there some food (probably a heavy corpse) here on the ground? */
     if (!Levitation)
@@ -353,7 +357,7 @@ gethungry()
 /* called after vomiting and after performing feats of magic */
 void
 morehungry(num)
-register num;
+register int num;
 {
     u.uhunger -= num;
     newuhs(TRUE);
@@ -362,7 +366,7 @@ register num;
 /* called after eating something (and after drinking fruit juice) */
 void
 lesshungry(num)
-register num;
+register int num;
 {
     u.uhunger += num;
     if (u.uhunger >= 2000)
@@ -482,7 +486,7 @@ register struct obj *otmp;
 #else
     register char let = CORPSE_I_TO_C(otmp->otyp);
 #endif
-    register tp = 0;
+    register int tp = 0;
 #ifdef KAA
     if (otmp->otyp == DEAD_DEMON)
         let = '&';

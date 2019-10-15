@@ -5,6 +5,9 @@
 
 #ifdef KAA
 
+void break_armor(/*void*/);
+void drop_weapon(/*void*/);
+
 extern char genocided[];
 extern char pl_character[PL_CSIZ];
 extern char plname[PL_NSIZ];

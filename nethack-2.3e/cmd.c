@@ -12,6 +12,7 @@ int doredraw(), doredotopl(), dodrop(), dodrink(), doread(), dosearch(),
     doprring(), doprgold(), dodiscovered(), dotypeinv(), dolook(), doset(),
     doup(), dodown(), done1(), donull(), dothrow(), doextcmd(), dodip(),
     dopray(), doextlist(), dorub();
+void confdir(/*void*/);
 
 #ifdef THEOLOGY
 int dosacrifice();
@@ -70,6 +71,7 @@ void
 set_occupation(fn, txt, time)
 int (*fn)();
 char *txt;
+int time;
 {
     if (time) {
         occupation = timed_occupation;
@@ -270,7 +272,7 @@ register char *cmd;
 {
     register struct func_tab *tlist = cmdlist;
     boolean firsttime = FALSE;
-    register res;
+    register int res;
 
     if (!cmd) {
         firsttime = TRUE;
@@ -505,7 +507,7 @@ boolean s;
 void
 confdir()
 {
-    register x = rn2(8);
+    register int x = rn2(8);
     u.dx = xdir[x];
     u.dy = ydir[x];
 }
@@ -558,7 +560,7 @@ register x, y;
 
 void
 isok(x, y)
-register x, y;
+register int x, y;
 {
     /* x corresponds to curx, so x==1 is the first column. Ach. %% */
     return (x >= 1 && x <= COLNO - 1 && y >= 0 && y <= ROWNO - 1);

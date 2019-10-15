@@ -3,6 +3,8 @@
 
 #include "hack.h"
 
+void rndcurse(/*void*/);
+
 #ifdef NEWCLASS
 int identify();
 extern struct monst *makemon();

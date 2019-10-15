@@ -11,6 +11,17 @@ char *exclam();
 extern char *xname();
 #endif
 
+void weffects(/*void*/);
+void hit(/*void*/);
+void miss(/*void*/);
+void buzz(/*void*/);
+void rloco(/*void*/);
+void fracture_rock(/*void*/);
+void boil_potions(/*void*/);
+void freeze_potions(/*void*/);
+void burn_scrolls(/*void*/);
+void makewish(/*void*/);
+
 char *fl[] = { "magic missile", /* Wands must be 0-9 */
                "bolt of fire",
                "sleep ray",
@@ -698,6 +709,7 @@ struct obj *obj;            /* 2nd arg to fhitm/fhito */
 
 struct monst *
 boomhit(dx, dy)
+int dx, dy;
 {
     register int i, ct;
     register struct monst *mtmp;
@@ -753,7 +765,7 @@ boomhit(dx, dy)
 
 uchar
 dirlet(dx, dy)
-register dx, dy;
+register int dx, dy;
 {
     return (dx == dy) ? '\\' : (dx && dy) ? '/' : dx ? HWALL_SYM : VWALL_SYM;
 }
@@ -970,7 +982,7 @@ register int dx, dy;
 int
 zhit(mon, type) /* returns damage to mon */
 register struct monst *mon;
-register type;
+register int type;
 {
     register int tmp = 0;
 
@@ -1099,7 +1111,7 @@ void
 rloco(obj)
 register struct obj *obj;
 {
-    register tx, ty, otx, oty;
+    register int tx, ty, otx, oty;
 
     otx = obj->ox;
     oty = obj->oy;
@@ -1249,6 +1261,7 @@ register int damage, tell;
  */
 int
 burn_floor_scrolls(x, y)
+int x, y;
 {
     register struct obj *obj, *obj2;
     register int scrquan, i;

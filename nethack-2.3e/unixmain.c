@@ -37,6 +37,10 @@ char obuf[BUFSIZ];                  /* BUFSIZ is defined in stdio.h */
 extern char *nomovemsg;
 extern long wailmsg;
 
+void askname(/*void*/);
+void stop_occupation(/*void*/);
+void whoami(/*void*/);
+
 int
 main(argc, argv)
 int argc;
@@ -453,7 +457,7 @@ char *argv[];
 
 void
 glo(foo)
-register foo;
+register int foo;
 {
     /* construct the string  xlock.n  */
     register char *tf;
@@ -500,6 +504,7 @@ askname()
 void
 impossible(s, x1, x2)
 register char *s;
+int x1, x2;
 {
     pline(s, x1, x2);
     pline("Program in disorder - perhaps you'd better Quit.");
@@ -536,7 +541,7 @@ boolean wr;
     /* perhaps we should also test whether . is writable */
     /* unfortunately the access systemcall is worthless */
     if (wr) {
-        register fd;
+        register int fd;
 
         if (dir == NULL)
             dir = ".";

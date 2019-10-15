@@ -11,30 +11,30 @@
 
 int
 rn1(x, y) /* y <= rn1(x,y) < (y+x) */
-register x, y;
+register int x, y;
 {
     return (RND(x) + y);
 }
 
 int
 rn2(x) /* 0 <= rn2(x) < x */
-register x;
+register int x;
 {
     return (RND(x));
 }
 
 int
 rnd(x) /* 1 <= rnd(x) <= x */
-register x;
+register int x;
 {
     return (RND(x) + 1);
 }
 
 int
 d(n, x) /* n <= d(n,x) <= (n*x) */
-register n, x;
+register int n, x;
 {
-    register tmp = n;
+    register int tmp = n;
 
     while (n--)
         tmp += RND(x);
@@ -43,9 +43,9 @@ register n, x;
 
 int
 rne(x) /* by stewr 870807 */
-register x;
+register int x;
 {
-    register tmp = 1;
+    register int tmp = 1;
     while (!rn2(x))
         tmp++;
     return (tmp);

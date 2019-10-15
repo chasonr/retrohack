@@ -3,6 +3,11 @@
 
 #include "config.h"
 #include "hack.h"
+
+void parseoptions(/*void*/);
+void nmcpy(/*void*/);
+void option_help(/*void*/);
+
 extern char *eos();
 #ifdef SORTING
 static boolean set_order;

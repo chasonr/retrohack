@@ -11,6 +11,7 @@
 int
 dog_move(mtmp, after)
 register struct monst *mtmp;
+int after;
 {
 #ifndef REGBUG
     register

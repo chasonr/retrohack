@@ -12,10 +12,10 @@ int
 dochugw(mtmp)
 register struct monst *mtmp;
 {
-    register x = mtmp->mx;
-    register y = mtmp->my;
-    register d = dochug(mtmp);
-    register dd;
+    register int x = mtmp->mx;
+    register int y = mtmp->my;
+    register int d = dochug(mtmp);
+    register int dd;
     if (!d) /* monster still alive */
         if (Warning)
             if (!mtmp->mpeaceful)
@@ -33,7 +33,7 @@ dochug(mtmp)
 register struct monst *mtmp;
 {
     register struct permonst *mdat;
-    register tmp, nearby, scared, onscary;
+    register int tmp, nearby, scared, onscary;
 
     if (mtmp->cham && !rn2(6))
         (void) newcham(mtmp,
@@ -141,6 +141,7 @@ register struct monst *mtmp;
 int
 m_move(mtmp, after)
 register struct monst *mtmp;
+int after;
 {
 #ifndef REGBUG
     register

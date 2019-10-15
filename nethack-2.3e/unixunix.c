@@ -27,6 +27,10 @@
 extern char *getenv();
 extern time_t time();
 
+void newmail(/*void*/);
+void mdrush(/*void*/);
+void regularize(/*void*/);
+
 void
 setrandom()
 {
@@ -143,6 +147,7 @@ char *name;
 
 int
 uptodate(fd)
+int fd;
 {
     if (fstat(fd, &buf)) {
         pline("Cannot get status of saved level? ");
@@ -158,6 +163,7 @@ uptodate(fd)
 /* see whether we should throw away this xlock file */
 int
 veryold(fd)
+int fd;
 {
     register int i;
     time_t date;

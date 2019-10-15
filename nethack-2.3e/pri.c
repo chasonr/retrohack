@@ -10,6 +10,14 @@
 extern int hilite();
 #endif
 
+void docrt(/*void*/);
+void seemons(/*void*/);
+void pmon(/*void*/);
+void unpmon(/*void*/);
+void cornbot(/*void*/);
+void bot(/*void*/);
+void cls(/*void*/);
+
 xchar scrlx, scrhx, scrly, scrhy; /* corners of new area on screen */
 
 extern char *hu_stat[]; /* in eat.c */
@@ -125,7 +133,7 @@ doredraw()
 void
 docrt()
 {
-    register x, y;
+    register int x, y;
     register struct rm *room;
     register struct monst *mtmp;
 
@@ -217,9 +225,9 @@ docrt()
 
 void
 docorner(xmin, ymax)
-register xmin, ymax;
+register int xmin, ymax;
 {
-    register x, y;
+    register int x, y;
     register struct rm *room;
     register struct monst *mtmp;
 
@@ -367,7 +375,7 @@ register struct monst *mon;
 void
 nscr()
 {
-    register x, y;
+    register int x, y;
     register struct rm *room;
 
     if (u.uswallow || u.ux == FAR || flags.nscrinh)

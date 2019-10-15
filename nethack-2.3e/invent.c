@@ -9,6 +9,9 @@ extern void savech();
 extern char morc;
 extern char quitchars[];
 static char *xprname();
+void freeinv(/*void*/);
+void freeobj(/*void*/);
+void doinv(/*void*/);
 
 #ifndef NOWORM
 #include "wseg.h"
@@ -198,7 +201,7 @@ struct wseg *m_atseg;
 
 struct monst *
 m_at(x, y)
-register x, y;
+register int x, y;
 {
     register struct monst *mtmp;
 #ifndef NOWORM
@@ -224,7 +227,7 @@ register x, y;
 
 struct obj *
 o_at(x, y)
-register x, y;
+register int x, y;
 {
     register struct obj *otmp;
 
@@ -236,7 +239,7 @@ register x, y;
 
 struct obj *
 sobj_at(n, x, y)
-register n, x, y;
+register int n, x, y;
 {
     register struct obj *otmp;
 
@@ -284,7 +287,7 @@ register struct obj *objchn;
 
 struct trap *
 t_at(x, y)
-register x, y;
+register int x, y;
 {
     register struct trap *trap = ftrap;
     while (trap) {
@@ -297,7 +300,7 @@ register x, y;
 
 struct gold *
 g_at(x, y)
-register x, y;
+register int x, y;
 {
     register struct gold *gold = fgold;
     while (gold) {
@@ -981,6 +984,7 @@ register struct obj *obj;
 int
 merged(otmp, obj, lose)
 register struct obj *otmp, *obj;
+int lose;
 {
     if (obj->otyp == otmp->otyp && obj->unpaid == otmp->unpaid
         && obj->spe == otmp->spe && obj->dknown == otmp->dknown

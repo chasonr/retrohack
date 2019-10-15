@@ -6,6 +6,8 @@
 extern char plname[];
 extern char *rndmonnam();
 extern void savech();
+void oname(/*void*/);
+void docall(/*void*/);
 
 int
 getpos(cc, force, goal)
@@ -13,7 +15,7 @@ coord *cc;
 int force;
 char *goal;
 {
-    register cx, cy, i, c;
+    register int cx, cy, i, c;
     extern char sdir[];          /* defined in hack.c */
     extern schar xdir[], ydir[]; /* idem */
     extern char *visctrl();      /* see below */

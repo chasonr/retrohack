@@ -8,12 +8,17 @@
 #include "hack.h"
 #include <signal.h>
 #include <stdio.h>
+
+void page_more(/*void*/);
+void set_pager(/*void*/);
+
 extern int CO, LI; /* usually COLNO and ROWNO+2 */
 extern char *CD;
 extern char quitchars[];
 extern char *getenv(), *getlogin();
 extern xchar curx;
 int done1();
+extern int getpos();
 
 int
 dowhatis()
@@ -30,7 +35,6 @@ dowhatis()
         pline("Specify what? ");
         q = readchar();
 #else
-        extern getpos();
         coord cc;
         char r;
 
@@ -502,6 +506,7 @@ dosh()
 
 int
 child(wt)
+int wt;
 {
     register int f = fork();
     if (f == 0) {           /* child */
