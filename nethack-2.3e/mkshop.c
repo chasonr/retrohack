@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mkshop.c	2.3	87/12/12
+/*	SCCS Id: @(#)mkshop.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /*
@@ -327,7 +327,7 @@ int a;
 {
     return (a * a);
 }
-#endif /* QUEST /**/
+#endif /* QUEST */
 
 #ifdef NEWCLASS
 struct permonst *
@@ -359,4 +359,4 @@ courtmon()
         return (PM_KOBOLD);
 #endif
 }
-#endif /* NEWCLASS /**/
+#endif /* NEWCLASS */

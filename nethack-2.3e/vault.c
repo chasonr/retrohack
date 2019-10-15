@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)vault.c	2.1	87/10/17
+/*	SCCS Id: @(#)vault.c	2.1	87/10/17 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -302,4 +302,4 @@ register struct monst *mtmp, *mtmp2;
         guard = mtmp2;
 }
 
-#endif /* QUEST /**/
+#endif /* QUEST */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)do_wear.c	2.3	88/01/21
+/*	SCCS Id: @(#)do_wear.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -364,7 +364,7 @@ register struct obj *obj;
          * change shape again -dgk
          */
         restartcham();
-#endif /* DGKMOD /**/
+#endif /* DGKMOD */
         break;
     }
 }

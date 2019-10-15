@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)makemon.c	2.3	87/12/12
+/*	SCCS Id: @(#)makemon.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -24,7 +24,7 @@ struct permonst kobold = { "kobold", 'K', 1, 6, 7, 0, 1, 4, 0 };
 #ifdef ROCKMOLE
 struct permonst giant_rat = { "giant rat", 'r', 0, 12, 7, 0, 1, 3, 0 };
 #endif
-#endif /* KJSMODS /**/
+#endif /* KJSMODS */
 
 struct permonst grey_dragon = { "grey dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
 struct permonst red_dragon = { "red dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
@@ -116,7 +116,7 @@ int x, y;
 #endif
                 continue;
             }
-#endif /* KOPS /**/
+#endif /* KOPS */
             if (deep-- <= 0)
                 goto gotmon;
         }
@@ -250,7 +250,7 @@ gotmon:
                 mtmp->mpeaceful = mtmp->mtame = 0;
 #endif
     }
-#endif /* HARD /**/
+#endif /* HARD */
 #ifndef NOWORM
     if (ptr->mlet == 'w' && getwn(mtmp))
         initworm(mtmp);
@@ -260,7 +260,7 @@ gotmon:
         if (ptr->mlet == 'O' || ptr->mlet == 'k'
 #ifdef SAC
             || ptr->mlet == '3'
-#endif /* SAC /**/
+#endif /* SAC */
             || (ptr->mlet == 'G' && mtmp->isgremlin)) {
 
             coord mm;
@@ -320,7 +320,7 @@ struct monst *mtmp;
             otmp = mksobj(C_RATION);
             mpickobj(mtmp, otmp);
         }
-#endif /* SAC /**/
+#endif /* SAC */
 #ifdef KOPS
     case 'K': /* create Keystone Kops with cream pies to
                * throw. As suggested by KAA.	   [MRS]

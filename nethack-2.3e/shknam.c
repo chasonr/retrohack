@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)shknam.c	2.3	87/12/18
+/*	SCCS Id: @(#)shknam.c	2.3	87/12/18 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* shknam.c -- initialize a shop */

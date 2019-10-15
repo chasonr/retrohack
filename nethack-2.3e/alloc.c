@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)alloc.c	1.4	87/08/08
+/*	SCCS Id: @(#)alloc.c	1.4	87/08/08 */
 /* alloc.c - version 1.0.2 */
 #ifdef LINT
 
@@ -50,4 +50,4 @@ register unsigned lth;
 }
 #endif
 
-#endif /* LINT /**/
+#endif /* LINT */

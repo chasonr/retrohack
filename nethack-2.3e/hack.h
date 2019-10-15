@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)hack.h	2.3	87/12/12
+/*	SCCS Id: @(#)hack.h	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #ifndef HACK_H
@@ -74,4 +74,4 @@ extern coord bhitpos; /* place where thrown weapon falls to the ground */
 #endif
 #define FAR (COLNO + 2) /* position outside screen */
 
-#endif /* HACK_H /**/
+#endif /* HACK_H */

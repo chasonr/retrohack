@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)you.h	2.3	87/12/12
+/*	SCCS Id: @(#)you.h	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #ifndef YOU_H
@@ -122,4 +122,4 @@ struct you {
     int nr_killed[CMNUM + 2]; /* used for experience bookkeeping */
 };
 
-#endif /* YOU_H /**/
+#endif /* YOU_H */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)ioctl.c	2.0	87/09/18
+/*	SCCS Id: @(#)ioctl.c	2.0	87/09/18 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* This cannot be part of hack.tty.c (as it was earlier) since on some
@@ -56,4 +56,4 @@ dosuspend()
 #endif
     return (0);
 }
-#endif /* SUSPEND /**/
+#endif /* SUSPEND */

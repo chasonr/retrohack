@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)cmd.c	2.3	88/01/21
+/*	SCCS Id: @(#)cmd.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "func_tab.h"
@@ -556,7 +556,7 @@ register x, y;
             && (levl[x][y].typ == ROOM
                 || (levl[x][y].typ >= LDOOR && flags.run >= 6)));
 }
-#endif /* QUEST /**/
+#endif /* QUEST */
 
 void
 isok(x, y)

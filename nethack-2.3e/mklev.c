@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mklev.c	2.3	87/12/12
+/*	SCCS Id: @(#)mklev.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -1053,7 +1053,7 @@ register int mazeflag;
     levl[mx][my].typ = FOUNTAIN;
     levl[mx][my].scrsym = FOUNTAIN_SYM;
 }
-#endif /* FOUNTAINS /**/
+#endif /* FOUNTAINS */
 
 #ifdef SINKS
 void
@@ -1082,4 +1082,4 @@ register struct mkroom *croom;
     levl[mx][my].typ = SINK;
     levl[mx][my].scrsym = SINK_SYM;
 }
-#endif /* SINKS /**/
+#endif /* SINKS */

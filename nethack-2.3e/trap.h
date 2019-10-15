@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)trap.h	1.4	87/08/08
+/*	SCCS Id: @(#)trap.h	1.4	87/08/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* trap.h - version 1.0.2 */
 
@@ -30,13 +30,14 @@ struct trap *t_at();
 /* if you add any additional code below the next line, it will disappear.  */
 /* DO NOT REMOVE THIS LINE */
 
-#define MGTRP 10
-#define SQBRD 11
-#define WEB 12
-#define SPIKED_PIT 13
-#define LEVEL_TELEP 14
-#define ANTI_MAGIC 15
-#define RUST_TRAP 16
-#define POLY_TRAP 17
+#define	MGTRP		10
+#define	SQBRD		11
+#define	WEB		12
+#define	SPIKED_PIT	13
+#define	LEVEL_TELEP	14
+#define	ANTI_MAGIC	15
+#define	RUST_TRAP	16
+#define	POLY_TRAP	17
+#define	LANDMINE	18
 
-#define TRAPNUM 18
+#define	TRAPNUM	19

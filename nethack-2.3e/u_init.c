@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)u_init.c	2.3	88/01/21
+/*	SCCS Id: @(#)u_init.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -94,7 +94,7 @@ struct trobj Healer[] = { { STETHOSCOPE, 0, TOOL_SYM, 1, 0 },
                           { POT_EXTRA_HEALING, 0, POTION_SYM, 4, 1 },
                           { APPLE, 0, FOOD_SYM, 5, 0 },
                           { 0, 0, 0, 0, 0 } };
-#endif /* KAA /**/
+#endif /* KAA */
 
 struct trobj Archeologist[] = { { STUDDED_LEATHER_ARMOR, 0, ARMOR_SYM, 1, 1 },
                                 { UNDEF_TYP, 0, POTION_SYM, 2, 0 },
@@ -174,7 +174,7 @@ struct trobj Priest[] = { { CHAIN_MAIL, 0, ARMOR_SYM, 1, 1 },
                           { UNDEF_TYP, UNDEF_SPE, SPBOOK_SYM, 2, 0 },
 #endif
                           { 0, 0, 0, 0, 0 } };
-#endif /* NEWCLASS /**/
+#endif /* NEWCLASS */
 
 void
 u_init()
@@ -457,7 +457,7 @@ got_suffix:
             ini_inv(Lamp);
         objects[POT_HOLY_WATER].oc_name_known = 1;
         break;
-#endif       /* NEWCLASS /**/
+#endif       /* NEWCLASS */
     default: /* impossible */
         u.uhp = u.uhpmax = 12;
         u.ustr = u.ustrmax = 16;
@@ -581,7 +581,7 @@ wiz_inv()
         ini_inv(trop);
     }
 }
-#endif /* WIZARD /**/
+#endif /* WIZARD */
 
 void
 plnamesuffix()

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)msdos.c	2.3	87/12/16
+/*	SCCS Id: @(#)msdos.c	2.3	87/12/16 */
 /* An assortment of MSDOS functions.
  */
 
@@ -41,7 +41,7 @@ tgetch()
     }
     return ((ch == '\r') ? '\n' : ch);
 }
-#else /* REDO /**/
+#else /* REDO */
 tgetch()
 {
     char ch;
@@ -56,7 +56,7 @@ tgetch()
         ch = DOSgetch();
     return ((ch == '\r') ? '\n' : ch);
 }
-#endif /* REDO /**/
+#endif /* REDO */
 
 #define DIRECT_INPUT 0x7
 static char
@@ -543,7 +543,7 @@ read_config_file()
                 getreturn("to continue");
             }
             translate[i] = '\0';
-#endif /* GRAPHICS /**/
+#endif /* GRAPHICS */
 /*
  * You could have problems here if you configure FOUNTAINS, SPIDERS or
  * NEWCLASS in or out and forget to change the tail entries in your graphics

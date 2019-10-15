@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)lev.c	2.3	88/01/24
+/*	SCCS Id: @(#)lev.c	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -111,7 +111,7 @@ xchar lev;
             wsegs[tmp] = 0;
     }
     bwrite(fd, (char *) wgrowtime, sizeof(wgrowtime));
-#endif /* NOWORM /**/
+#endif /* NOWORM */
 #ifdef DGK
     if (count_only)
         return (0);

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)monst.h	2.3	88/02/11
+/*	SCCS Id: @(#)monst.h	2.3	88/02/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 struct monst {

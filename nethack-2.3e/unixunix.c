@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)unixunix.c	2.3	87/12/12
+/*	SCCS Id: @(#)unixunix.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* This file collects some Unix dependencies; pager.c contains some more */
@@ -106,12 +106,12 @@ char *name;
 {
 /* old version - for people short of space */
 /*
-/* register char *np;
-/*	if(stat(name, &hbuf))
-/*		error("Cannot get status of %s.",
-/*			(np = rindex(name, '/')) ? np+1 : name);
-/*
-/* version using PATH from: seismo!gregc@ucsf-cgl.ARPA (Greg Couch) */
+ * register char *np;
+ *	if(stat(name, &hbuf))
+ *		error("Cannot get status of %s.",
+ *			(np = rindex(name, '/')) ? np+1 : name);
+ *
+ * version using PATH from: seismo!gregc@ucsf-cgl.ARPA (Greg Couch) */
 
 /*
  * The problem with   #include	<sys/param.h>   is that this include file
@@ -183,8 +183,8 @@ int fd;
             return (0);
 
             /* From: Rick Adams <seismo!rick>
-            /* This will work on 4.1cbsd, 4.2bsd and system 3? & 5.
-            /* It will do nothing on V7 or 4.1bsd. */
+             * This will work on 4.1cbsd, 4.2bsd and system 3? & 5.
+             * It will do nothing on V7 or 4.1bsd. */
 #ifndef NETWORK
         /* It will do a VERY BAD THING if the playground is shared
            by more than one machine! -pem */
@@ -465,7 +465,7 @@ readmail()
        window where we do not see new mail */
     getmailstatus();
 }
-#endif /* MAIL /**/
+#endif /* MAIL */
 
 void
 regularize(s) /* normalize file name - we don't like ..'s or /'s */

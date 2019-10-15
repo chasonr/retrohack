@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)config.h	2.3	87/12/12
+/*	SCCS Id: @(#)config.h	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #ifndef CONFIG /* make sure the compiler does not see the typedefs twice */
@@ -18,22 +18,22 @@
  * Also, the code for suspend and various ioctls is only given for BSD4.2
  */
 #ifdef __MSDOS__ /* Turbo C auto-defines __MSDOS__, others MSDOS */
-/* # define MSDOS 	/* define for MS-DOS (actually defined by compiler) */
+/* # define MSDOS */ 	/* define for MS-DOS (actually defined by compiler) */
 #endif
 #define UNIX /* delete if no fork(), exec() available */
-/* #define	GENIX		/* Yet Another Unix Clone */
+/* #define GENIX */	/* Yet Another Unix Clone */
 /* #define BSD */	/* defind for 4.n BSD  */
-/* #define SYSV		/* define for System V */
-/* #define NETWORK	/* if running on a networked system */
+/* #define SYSV */	/* define for System V */
+/* #define NETWORK */	/* if running on a networked system */
 
-/* #define BETA		/* if a beta-test copy  [MRS] */
+/* #define BETA */	/* if a beta-test copy  [MRS] */
 #define VERSION "2.3e" /* version number. */
 
 #define PYRAMID_BUG /* avoid a bug on the Pyramid */
-/* #define APOLLO		/* same for the Apollo */
-/* #define STUPID		/* avoid some complicated expressions if
+/* #define APOLLO */		/* same for the Apollo */
+/* #define STUPID */		/* avoid some complicated expressions if
                            your C compiler chokes on them */
-/* #define TERMINFO		/* uses "curses" rather than termcap */
+/* #define TERMINFO */		/* uses "curses" rather than termcap */
 
 /* Two popular Unix-like systems */
 #ifdef __APPLE__
@@ -105,7 +105,7 @@ extern long lrand48();
 #define rand() lrand48()
 #define srand(seed) srand48(seed)
 #endif
-#endif /* UNIX /**/
+#endif /* UNIX */
 
 #ifdef CHDIR
 /*
@@ -128,7 +128,7 @@ extern long lrand48();
  * simultaneously, define HACKDIR, SECURE and MAX_NR_OF_PLAYERS.
  * #define MAX_NR_OF_PLAYERS	6
  */
-#endif /* CHDIR /**/
+#endif /* CHDIR */
 
 /* size of terminal screen is (at least) (ROWNO+2) by COLNO */
 #define COLNO 80
@@ -168,7 +168,7 @@ typedef unsigned char uchar;
  */
 typedef schar xchar;
 typedef xchar boolean; /* 0 or 1 */
-/* #define void	int			/* define if no "void" data type. */
+/* #define void	int */			/* define if no "void" data type. */
 #define TRUE 1
 #define FALSE 0
 
@@ -190,7 +190,7 @@ typedef xchar boolean; /* 0 or 1 */
 #define exit msexit /* do chdir first */
 #ifdef getchar
 #undef getchar
-#endif /* getchar /**/
+#endif /* getchar */
 #define getchar tgetch
 #define DGK /* MS DOS specific enhancements by dgk */
 
@@ -203,8 +203,8 @@ typedef xchar boolean; /* 0 or 1 */
 #define TOPERM 2                  /* for ramdisk use */
 #define glo(x) name_file(lock, x) /* name_file used for bones */
 extern char *configfile;
-#endif /* DGK /**/
-#endif /* MSDOS /**/
+#endif /* DGK */
+#endif /* MSDOS */
 
 /*
  *	Conditional compilation of special options are controlled here.
@@ -268,4 +268,4 @@ extern char *configfile;
 #define LARGEST_INT ((1 << 15) - 1)
 #endif
 
-#endif /* CONFIG /**/
+#endif /* CONFIG */

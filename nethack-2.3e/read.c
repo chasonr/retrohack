@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)read.c	2.3	88/01/21
+/*	SCCS Id: @(#)read.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -244,7 +244,7 @@ register struct obj *sobj;
                     ;
                 (void) makemon(crmonst, u.ux, u.uy);
             } else
-#endif /* WIZARD /**/
+#endif /* WIZARD */
                 (void) makemon(confused ? PM_ACID_BLOB
                                         : (struct permonst *) 0,
                                u.ux, u.uy);

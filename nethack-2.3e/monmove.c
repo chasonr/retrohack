@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)monmove.c	2.3	87/12/12
+/*	SCCS Id: @(#)monmove.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -477,7 +477,7 @@ postmov:
         /* Maybe a rock mole just ate some gold or armor? */
         if (msym == 'r')
             meatgold(mtmp);
-#endif /* ROCKMOLE /**/
+#endif /* ROCKMOLE */
         if (likegold)
             mpickgold(mtmp);
 #ifdef KAA

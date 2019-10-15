@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)extern.h	2.3	87/12/12
+/*	SCCS Id: @(#)extern.h	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "config.h"

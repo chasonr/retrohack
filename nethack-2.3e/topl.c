@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)topl.c	2.0	87/09/15
+/*	SCCS Id: @(#)topl.c	2.0	87/09/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"

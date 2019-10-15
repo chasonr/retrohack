@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)msdos.h	1.4	87/08/08
+/*	SCCS Id: @(#)msdos.h	1.4	87/08/08 */
 /* msdos.h - function declarations for msdos.c */
 
 extern char *alllevels, *allbones;

@@ -169,4 +169,4 @@ register struct obj *pen;
 
     return (1);
 }
-#endif /* MARKER /**/
+#endif /* MARKER */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mon.c	2.3	87/12/12
+/*	SCCS Id: @(#)mon.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -174,7 +174,7 @@ char *name;
     }
     if (u.uhp < 1)
         done_in_by(mtmp);
-    /* flags.botlx = 1;		/* should we show status line ? */
+    /* flags.botlx = 1; */	/* should we show status line ? */
 }
 
 #ifdef ROCKMOLE
@@ -209,7 +209,7 @@ register struct monst *mtmp;
         newsym(mtmp->mx, mtmp->my);
     }
 }
-#endif /* ROCKMOLE /**/
+#endif /* ROCKMOLE */
 
 void
 mpickgold(mtmp)
@@ -332,7 +332,7 @@ nexttry: /* eels prefer the water, but if there is no water nearby,
                                          * ttmp->ttyp;*/
                                         /* why don't we just have code look
                                         like what it's supposed to do? then it
-                                        /* might start working for every case.
+                                        might start working for every case.
                                         try this instead: -sac */
                                         tt = (ttmp->ttyp < TRAPNUM
                                               && ttmp->ttyp > 0);
@@ -628,7 +628,7 @@ int dest;
     }
     /* note: ul is not necessarily the future value of u.ulevel */
     /* ------- end of recent valuation change ------- */
-#endif /* NEW_SCORING /**/
+#endif /* NEW_SCORING */
 
     more_experienced(tmp, 0);
     flags.botl = 1;
@@ -760,7 +760,7 @@ int dest;
 #endif
             else
                 obj2 = mkobj_at(tmp, x, y);
-#endif /* RPH /**/
+#endif /* RPH */
             if (cansee(x, y))
                 atl(x, y, Hallucination ? rndobjsym() : obj2->olet);
             stackobj(obj2);

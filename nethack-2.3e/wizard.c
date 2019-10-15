@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)wizard.c	2.3	88/02/11
+/*	SCCS Id: @(#)wizard.c	2.3	88/02/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* wizard code - inspired by rogue code from Merlyn Leroy (digi-g!brian) */
@@ -228,11 +228,11 @@ register struct obj *obj;
                         && obj->otyp != CREAM_PIE
 #else
             if (!thitu(8, rnd(oclass->wldam), oclass->oc_name)
-#endif /* KOPS /**/
+#endif /* KOPS */
                     || obj->otyp == ENORMOUS_ROCK) {
 #else
             if (!thitu(8, rnd(oclass->wldam), oclass->oc_name)) {
-#endif /* KAA /**/
+#endif /* KAA */
                     mksobj_at(obj->otyp, u.ux, u.uy);
                     fobj->quan = 1;
                     stackobj(fobj);
@@ -538,4 +538,4 @@ resurrect()
         pline("\"So you thought you could kill me, fool.\"");
     }
 }
-#endif /* HARD /**/
+#endif /* HARD */

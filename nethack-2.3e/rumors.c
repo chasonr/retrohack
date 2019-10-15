@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)rumors.c	1.4	87/08/08
+/*	SCCS Id: @(#)rumors.c	1.4	87/08/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* hack.rumors.c - version 1.0.3 */
 
@@ -133,4 +133,4 @@ register int i;
     return (usedbits[i / CHARSZ] & (1 << (i % CHARSZ)));
 }
 
-#endif /* DGK /**/
+#endif /* DGK */

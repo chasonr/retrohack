@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)timeout.c	2.0	87/09/18
+/*	SCCS Id: @(#)timeout.c	2.0	87/09/18 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"

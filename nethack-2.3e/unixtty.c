@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)unixtty.c	2.3	88/03/31
+/*	SCCS Id: @(#)unixtty.c	2.3	88/03/31 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* tty.c - (Unix) version */
 
@@ -350,7 +350,7 @@ readchar()
     }
 #else
         end_of_input();
-#endif /* NR_OF_EOFS /**/
+#endif /* NR_OF_EOFS */
     if (flags.toplin == 1)
         flags.toplin = 2;
     return ((char) sym);

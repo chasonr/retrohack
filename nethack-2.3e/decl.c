@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)decl.c	2.3	87/12/16
+/*	SCCS Id: @(#)decl.c	2.3	87/12/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -24,7 +24,7 @@ struct symbols defsyms = {
 
 struct symbols showsyms; /* will contain the symbols actually used */
 
-#endif /* GRAPHICS /**/
+#endif /* GRAPHICS */
 
 #ifdef DGK
 char hackdir[PATHLEN];   /* where rumors, help, record are */

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mkroom.h	2.3	87/12/12
+/*	SCCS Id: @(#)mkroom.h	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* mkroom.h - types and structures for room and shop initialization */

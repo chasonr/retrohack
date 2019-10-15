@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)objects.h	2.3	87/12/16
+/*	SCCS Id: @(#)objects.h	2.3	87/12/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* objects have letter " % ) ( 0 _ ` [ ! ? / = * + */
@@ -378,7 +378,7 @@ struct objclass objects[] = {
     SPELL(NULL, "thick", 0, 0, 0, 0),
     SPELL(NULL, "thin", 0, 0, 0, 0),
     SPELL(NULL, "stained", 0, 0, 0, 0),
-#endif /* SPELLS /**/
+#endif /* SPELLS */
 
 #define RING(name, stone, spec)                                \
     {                                                          \

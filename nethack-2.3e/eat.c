@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)eat.c	2.3	87/12/16
+/*	SCCS Id: @(#)eat.c	2.3	87/12/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -245,7 +245,7 @@ gotit:
             lesshungry(ftmp->nutrition);
             if (multi < 0)
                 nomovemsg = "You finished your meal.";
-#endif /* DGKMOD /**/
+#endif /* DGKMOD */
             break;
         case TRIPE_RATION:
             if (u.usym != '@')
@@ -287,7 +287,7 @@ gotit:
 #else
             if (otmp->otyp == DEAD_LIZARD && (HConfusion > 2))
                 HConfusion = 2;
-#endif /* DGKMOD /**/
+#endif /* DGKMOD */
             else
 #ifdef QUEST
                 if (otmp->otyp == CARROT && !Blind) {
@@ -382,7 +382,7 @@ register int num;
             nomovemsg = "You're finally finished.";
         }
     }
-#endif /* DGKMOD /**/
+#endif /* DGKMOD */
     newuhs(FALSE);
 }
 

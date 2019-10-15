@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)pager.c	2.3	87/12/12
+/*	SCCS Id: @(#)pager.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* This file contains the command routine dowhatis() and a pager. */
@@ -196,7 +196,7 @@ int strip; /* nr of chars to be stripped from each line (0 or 1) */
         ep = index(bufr, '\n');
         if (ep)
             *ep = 0;
-#endif /* DGK /**/
+#endif /* DGK */
         if (page_line(bufr + strip)) {
             set_pager(2);
             goto ret;
@@ -481,7 +481,7 @@ boolean silent;
         }
         page_more(f, 0);
     }
-#endif /* DEF_PAGER /**/
+#endif /* DEF_PAGER */
 
     return (1);
 }
@@ -502,7 +502,7 @@ dosh()
     }
     return (0);
 }
-#endif /* SHELL /**/
+#endif /* SHELL */
 
 int
 child(wt)
@@ -538,4 +538,4 @@ int wt;
     docrt();
     return (0);
 }
-#endif /* UNIX /**/
+#endif /* UNIX */

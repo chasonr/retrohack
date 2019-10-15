@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)eshk.h	2.1	87/09/28
+/*	SCCS Id: @(#)eshk.h	2.1	87/09/28 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "coord.h"

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)fountain.c	2.3	88/01/21
+/*	SCCS Id: @(#)fountain.c	2.3	88/01/21 */
 /* fountain.c  v 1.4.4 */
 
 /*

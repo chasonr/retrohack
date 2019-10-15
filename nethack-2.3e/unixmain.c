@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)unixmain.c	2.3	88/01/21
+/*	SCCS Id: @(#)unixmain.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* main.c - (Unix) version */
 
@@ -78,7 +78,7 @@ char *argv[];
         if (!*dir)
             error("Flag -d must be followed by a directory name.");
     }
-#endif /* CHDIR /**/
+#endif /* CHDIR */
 #ifdef GRAPHICS
     /* Set the default values of the presentation characters */
     memcpy((char *) &showsyms, (char *) &defsyms, sizeof(struct symbols));
@@ -234,7 +234,7 @@ char *argv[];
             (void) strcpy(fut_geno, genocided);
         }
     }
-#endif /* WIZARD /**/
+#endif /* WIZARD */
     setftty();
     (void) sprintf(SAVEF, "save/%d%s", getuid(), plname);
     regularize(SAVEF + 5); /* avoid . or / in name */
@@ -552,7 +552,7 @@ boolean wr;
             (void) close(fd);
     }
 }
-#endif /* CHDIR /**/
+#endif /* CHDIR */
 
 void
 stop_occupation()

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)sit.c	2.3	88/02/02
+/*	SCCS Id: @(#)sit.c	2.3	88/02/02 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -143,7 +143,7 @@ dosit()
         pline("Having fun sitting on the floor???");
     return (1);
 }
-#endif /* NEWCLASS /**/
+#endif /* NEWCLASS */
 
 #if defined(NEWCLASS) || defined(PRAYERS) || defined(HARD)
 void

@@ -480,4 +480,4 @@ int spell;
 }
 #endif
 
-#endif /* SPELLS /**/
+#endif /* SPELLS */

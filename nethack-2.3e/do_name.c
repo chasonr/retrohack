@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)do_name.c	2.3	88/02/11
+/*	SCCS Id: @(#)do_name.c	2.3	88/02/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -173,7 +173,6 @@ char *buf;
                 break;
             }
         }
-    /* obfree(obj, otmp2);	/* now unnecessary: no pointers on bill */
     free((char *) obj); /* let us hope nobody else saved a pointer */
 }
 

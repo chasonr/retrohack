@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)dogmove.c	1.4	87/08/08
+/*	SCCS Id: @(#)dogmove.c	1.4	87/08/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* dogmove.c - version 1.0 */
 

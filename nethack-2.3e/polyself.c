@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)polyself.c	2.3	88/01/21
+/*	SCCS Id: @(#)polyself.c	2.3	88/01/21 */
 /* Polymorph self routine.  Called in zap.c. Copyright 1987 by Ken Arromdee */
 
 #include "hack.h"

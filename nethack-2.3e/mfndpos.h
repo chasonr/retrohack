@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mfndpos.h	1.4	87/08/08
+/*	SCCS Id: @(#)mfndpos.h	1.4	87/08/08 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* mfndpos.h - version 1.0.2 */
 

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mkmaze.c	2.3	88/03/31
+/*	SCCS Id: @(#)mkmaze.c	2.3	88/03/31 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -179,7 +179,7 @@ int x, y;
         walkfrom(x, y);
     }
 }
-#endif /* DGK /**/
+#endif /* DGK */
 
 void
 move(x, y, dir)

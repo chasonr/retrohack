@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)termcap.c	2.3	87/12/12
+/*	SCCS Id: @(#)termcap.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"  /* for ROWNO, COLNO, *HI, *HE */
@@ -38,7 +38,7 @@ int CO, LI; /* used in pri.c and whatis.c */
 #if defined(MSDOS) && !defined(TERMLIB)
 static char tgotobuf[20];
 #define tgoto(fmt, x, y) (sprintf(tgotobuf, fmt, y + 1, x + 1), tgotobuf)
-#endif /* MSDOS /**/
+#endif /* MSDOS */
 
 void
 startup()
@@ -314,7 +314,7 @@ bell()
 #ifdef DGKMOD
     if (flags.silent)
         return;
-#endif                      /* DGKMOD /**/
+#endif                      /* DGKMOD */
     (void) putchar('\007'); /* curx does not change */
     (void) fflush(stdout);
 }
@@ -337,7 +337,7 @@ delay_output()
         cmov(curx, cury);
         (void) fflush(stdout);
     }
-#else /* MSDOS /**/
+#else /* MSDOS */
     if (!flags.nonull)
 #ifdef TERMINFO
         tputs("$<50>", 1, xputs);
@@ -359,7 +359,7 @@ delay_output()
                 i -= cmlen * tmspc10[ospeed];
             }
         }
-#endif /* MSDOS /**/
+#endif /* MSDOS */
 }
 
 void

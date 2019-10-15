@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)topten.c	2.3	88/02/01
+/*	SCCS Id: @(#)topten.c	2.3	88/02/01 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -545,5 +545,5 @@ char **argv;
                 pl_character[0] = "CFKSTWX"[i];
             break;
         }
-#endif /* nonsense /**/
+#endif /* nonsense */
 }

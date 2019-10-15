@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)mhitu.c	2.3	88/01/21
+/*	SCCS Id: @(#)mhitu.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -65,7 +65,7 @@ register struct monst *mtmp;
 #else
             pline("The mysterious monster totally digests you.");
             u.uhp = 0;
-#endif /* DGKMOD /**/
+#endif /* DGKMOD */
         }
         if (u.uhp < 1)
             done_in_by(mtmp);
@@ -658,7 +658,7 @@ register struct monst *mtmp;
                 pline("Huh, What? Where am I?");
             HConfusion += rn1(7, 16);
             break;
-#endif           /* HARD /**/
+#endif           /* HARD */
         default: /* demons and chamelons as demons */
             (void) hitu(mtmp, d(2, 5 + Athome));
             (void) hitu(mtmp, d(2, 5 + Athome));

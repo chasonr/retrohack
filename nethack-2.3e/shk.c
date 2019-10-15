@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)shk.c	2.3	88/01/24
+/*	SCCS Id: @(#)shk.c	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -495,7 +495,7 @@ dopay()
             *bp = bill[--ESHK(shopkeeper)->billct];
 #else
             bill[tmp] = bill[--ESHK(shopkeeper)->billct];
-#endif /* MSDOS /**/
+#endif /* MSDOS */
         }
     }
     pline("Thank you for shopping in %s's %s!", shkname(shopkeeper),
@@ -1166,7 +1166,7 @@ register struct monst *shkp;
     }
     return (0);
 }
-#endif /* QUEST /**/
+#endif /* QUEST */
 
 int
 online(x, y) /*	New version to speed things up.

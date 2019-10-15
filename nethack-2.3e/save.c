@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)save.c	2.3	88/01/24
+/*	SCCS Id: @(#)save.c	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"

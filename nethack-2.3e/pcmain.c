@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)pcmain.c	2.3	87/12/12
+/*	SCCS Id: @(#)pcmain.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* main.c - (PC) version */
 
@@ -597,7 +597,7 @@ boolean wr;
             (void) close(fd);
     }
 }
-#endif /* CHDIR /**/
+#endif /* CHDIR */
 
 stop_occupation()
 {

@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)pray.c	2.3	87/12/12
+/*	SCCS Id: @(#)pray.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -540,7 +540,7 @@ pleased()
 #endif
     return (0);
 }
-#endif /* PRAYERS /**/
+#endif /* PRAYERS */
 #ifdef NEWCLASS
 int
 doturn()
@@ -592,4 +592,4 @@ doturn()
     nomul(-5);
     return (1);
 }
-#endif /* NEWCLASS /**/
+#endif /* NEWCLASS */

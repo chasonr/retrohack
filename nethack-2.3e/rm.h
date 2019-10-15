@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)rm.h	2.3	88/03/29
+/*	SCCS Id: @(#)rm.h	2.3	88/03/29 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /*
@@ -144,7 +144,7 @@ struct rm {
     Bitfield(seen, 1);
     Bitfield(lit, 1);
 };
-#endif /* MSDOS /**/
+#endif /* MSDOS */
 extern struct rm levl[COLNO][ROWNO];
 
 #ifdef DGK

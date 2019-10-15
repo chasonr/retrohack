@@ -376,7 +376,7 @@ domove()
             }
             nose1(u.ux0 - u.dx, u.uy0 - u.dy);
         }
-#endif /* QUEST /**/
+#endif /* QUEST */
     } else {
         pru();
     }
@@ -913,7 +913,7 @@ xchar x, y;
         return (1);
     return (0);
 }
-#endif /* QUEST /**/
+#endif /* QUEST */
 
 int
 sgn(a)
@@ -985,7 +985,7 @@ setsee()
                 prl(seehx + 1, y);
     }
 }
-#endif /* QUEST /**/
+#endif /* QUEST */
 
 void
 nomul(nval)

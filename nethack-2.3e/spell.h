@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)spell.h	2.1	87/10/18
+/*	SCCS Id: @(#)spell.h	2.1	87/10/18 */
 /* M. Stephenson  07-07-86 */
 
 #ifndef SPELL_H

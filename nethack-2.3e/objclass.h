@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)objclass.h	2.3	88/01/24
+/*	SCCS Id: @(#)objclass.h	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* definition of a class of objects */

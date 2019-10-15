@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)invent.c	2.3	88/01/21
+/*	SCCS Id: @(#)invent.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -733,7 +733,7 @@ register char *lets;
 #ifdef SORTING
     char *invlet = inv_order;
     int classcount = 0;
-#endif /* SORTING /**/
+#endif /* SORTING */
 
     morc = 0; /* just to be sure */
 
@@ -779,7 +779,7 @@ nextclass:
             if (++ilet > 'z')
                 ilet = 'A';
     }
-#endif /* SORTING /**/
+#endif /* SORTING */
     any[ct] = 0;
     cornline(2, any);
 }
@@ -1175,7 +1175,7 @@ char let;
         Sprintf(buf, "%s", names[pos - obj_symbols]);
     return (buf);
 }
-#endif /* SORTING /**/
+#endif /* SORTING */
 
 void
 reassign()

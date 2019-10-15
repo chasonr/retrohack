@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)dothrow.c	2.3	88/02/02
+/*	SCCS Id: @(#)dothrow.c	2.3	88/02/02 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 /* Contains code for 't' (throw) */

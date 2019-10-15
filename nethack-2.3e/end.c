@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)end.c	2.3	87/12/16
+/*	SCCS Id: @(#)end.c	2.3	87/12/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -154,7 +154,7 @@ register char *st1;
         flags.botl = 1;
         return;
     }
-#endif /* WIZARD /**/
+#endif /* WIZARD */
 die:
     (void) signal(SIGINT, done_intr);
 #ifdef UNIX

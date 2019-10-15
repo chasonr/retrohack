@@ -1,4 +1,4 @@
-/*	SCCS Id: @(#)trap.c	2.3	87/12/16
+/*	SCCS Id: @(#)trap.c	2.3	87/12/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
@@ -967,7 +967,7 @@ domagictrap()
             break;
         }
 }
-#endif /* NEWTRAPS /**/
+#endif /* NEWTRAPS */
 
 void
 drown()
