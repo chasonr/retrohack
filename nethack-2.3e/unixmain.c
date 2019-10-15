@@ -2,9 +2,12 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* main.c - (Unix) version */
 
-#include "hack.h"
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include "hack.h"
 
 #ifdef QUEST
 #define gamename "NetQuest"

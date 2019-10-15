@@ -6,10 +6,11 @@
  * arnold@ucsf-cgl, wcs@bo95b, cbcephus!pds and others.
  */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "extern.h"
 #include "func_tab.h"
 #include "hack.h"
-#include <stdio.h>
 
 extern void savech();
 
@@ -107,7 +108,7 @@ void
 settty(s)
 char *s;
 {
-    clear_screen();
+    nh_clear_screen();
     end_screen();
     if (s)
         printf(s);
@@ -200,7 +201,7 @@ register char *bufp;
                 bufp--;
                 putstr("\b \b"); /* putsym converts \b */
             } else
-                bell();
+                nh_bell();
         } else if (c == '\n') {
             *bufp = 0;
             return;
@@ -219,7 +220,7 @@ register char *bufp;
                 putstr("\b \b");
             }
         } else
-            bell();
+            nh_bell();
     }
 }
 
@@ -262,7 +263,7 @@ register char *s; /* chars allowed besides space or return */
                 morc = c;
                 break;
             }
-            bell();
+            nh_bell();
         }
     }
 }
@@ -395,7 +396,7 @@ register char *bufp;
                 bufp--;
                 putstr("\b \b"); /* putsym converts \b */
             } else
-                bell();
+                nh_bell();
         } else if (c == '\n') {
             *bufp = 0;
             return;
@@ -437,7 +438,7 @@ register char *bufp;
                 putstr("\b \b");
             }
         } else
-            bell();
+            nh_bell();
     }
 }
 #endif COM_COMPL

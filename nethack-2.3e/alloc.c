@@ -22,8 +22,7 @@ unsigned n;
 
 #else
 
-extern char *malloc();
-extern char *realloc();
+#include <stdlib.h>
 
 long *
 alloc(lth)

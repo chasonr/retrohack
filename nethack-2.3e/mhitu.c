@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)mhitu.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdio.h>
 #include "hack.h"
 extern struct monst *makemon();
 extern struct obj *carrying();

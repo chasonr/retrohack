@@ -3,8 +3,11 @@
 
 static char SCCS_Id[] = "@(#)makedefs.c	2.3\t88/02/18";
 
-#include "config.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include "config.h"
 
 #ifdef MSDOS
 #undef exit

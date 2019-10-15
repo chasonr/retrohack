@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)engrave.c	2.3	88/02/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdlib.h>
 #include "hack.h"
 
 extern char *nomovemsg;

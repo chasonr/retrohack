@@ -1,9 +1,11 @@
 /*	SCCS Id: @(#)lev.c	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #include "hack.h"
 #include "mkroom.h"
-#include <stdio.h>
 
 void bwrite(/*void*/);
 void saveobjchn(/*void*/);

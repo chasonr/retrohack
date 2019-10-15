@@ -1,8 +1,9 @@
 /*	SCCS Id: @(#)topl.c	2.0	87/09/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "hack.h"
 #ifdef GENIX
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif

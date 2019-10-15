@@ -5,9 +5,12 @@
 /* Also readmail() and doshell(), and generally the things that
    contact the outside world. */
 
-#include "hack.h"
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include "hack.h"
 
 void page_more(/*void*/);
 void set_pager(/*void*/);
@@ -40,7 +43,7 @@ dowhatis()
 
         pline("Specify unknown object by cursor ? [ynq] ");
         while (!index("yYnNqQ", (q = readchar())) && !index(quitchars, q))
-            bell();
+            nh_bell();
 
         if (q == 'n' || q == 'N') {
             pline("Specify what? ");
@@ -425,7 +428,7 @@ dohelp()
 
     pline("Long or short help? ");
     while (((c = readchar()) != 'l') && (c != 's') && !index(quitchars, c))
-        bell();
+        nh_bell();
     if (!index(quitchars, c))
         (void) page_file((c == 'l') ? HELP : SHELP, FALSE);
     return (0);

@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)o_init.c	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdio.h>
 #include "config.h" /* for typedefs */
 #include "objects.h"
 #include "onames.h" /* for LAST_GEM */

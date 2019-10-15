@@ -2,6 +2,8 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* bones.c - version 1.0.3 */
 
+#include <fcntl.h>
+#include <unistd.h>
 #include "hack.h"
 extern char plname[PL_NSIZ];
 extern long somegold();

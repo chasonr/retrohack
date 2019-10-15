@@ -1,9 +1,12 @@
 /*	SCCS Id: @(#)save.c	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include "hack.h"
 
 extern char genocided[60];        /* defined in decl.c */
 extern char fut_geno[60];         /* idem */
@@ -18,7 +21,7 @@ extern struct monst *restmonchn();
 void
 dosave()
 {
-    clear_screen();
+    nh_clear_screen();
     fflush(stdout);
     if (dosave0(0)) {
         settty("Be seeing you ...\n");

@@ -1,9 +1,10 @@
 /*	SCCS Id: @(#)u_init.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "hack.h"
 #ifdef GENIX
 #define void int
 #endif
@@ -204,7 +205,7 @@ u_init()
     printf("\nShall I pick a character for you (yes, no, or quit) ? [ynq] ");
 
     while (!index("yYnNqQ", (exper = readchar())))
-        bell();
+        nh_bell();
 
     printf("%c\n", exper); /* echo */
 
@@ -247,7 +248,7 @@ u_init()
         }
         if (pc == '\n')
             break;
-        bell();
+        nh_bell();
     }
     if (pc == '\n')
         pc = 0;

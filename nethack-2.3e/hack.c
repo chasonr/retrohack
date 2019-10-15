@@ -589,7 +589,7 @@ int all;
 
                 pline("Pick up %s ? [ynaq]", doname(obj));
                 while (!index("ynaq ", (c = readchar())))
-                    bell();
+                    nh_bell();
                 if (c == 'q')
                     return;
                 if (c == 'n')

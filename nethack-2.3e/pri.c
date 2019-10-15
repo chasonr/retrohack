@@ -541,7 +541,7 @@ cls()
         more();
     flags.toplin = 0;
 
-    clear_screen();
+    nh_clear_screen();
 
     flags.botlx = 1;
 }

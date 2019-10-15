@@ -1,9 +1,11 @@
 /*	SCCS Id: @(#)termcap.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"  /* for ROWNO, COLNO, *HI, *HE */
 #include <ctype.h> /* for isdigit() */
 #include <stdio.h>
+#include <stdlib.h>
+#include <term.h>
+#include "hack.h"  /* for ROWNO, COLNO, *HI, *HE */
 #ifdef GENIX
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
@@ -12,7 +14,7 @@ void nocmov(/*void*/);
 void cmov(/*void*/);
 void xputc(/*void*/);
 void xputs(/*void*/);
-void clear_screen(/*void*/);
+void nh_clear_screen(/*void*/);
 void home(/*void*/);
 
 extern char *tgetstr(), *tgoto(), *getenv();
@@ -143,7 +145,7 @@ start_screen()
 void
 end_screen()
 {
-    clear_screen();
+    nh_clear_screen();
     xputs(VE);
     xputs(TE);
 }
@@ -269,7 +271,7 @@ cl_end()
 }
 
 void
-clear_screen()
+nh_clear_screen()
 {
     xputs(CL);
     home();
@@ -309,7 +311,7 @@ backsp()
 }
 
 void
-bell()
+nh_bell()
 {
 #ifdef DGKMOD
     if (flags.silent)

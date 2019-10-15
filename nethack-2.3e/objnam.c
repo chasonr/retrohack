@@ -1,6 +1,8 @@
 /*	SCCS Id: @(#)objnam.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "hack.h"
 #define Sprintf (void) sprintf
 #define Strcat (void) strcat

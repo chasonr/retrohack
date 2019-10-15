@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)cmd.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdio.h>
 #include "func_tab.h"
 #include "hack.h"
 
@@ -294,7 +295,7 @@ register char *cmd;
     if (!*cmd || *cmd == (char) 0377
         || (flags.no_rest_on_space && *cmd == ' ')) {
 #endif
-        bell();
+        nh_bell();
         flags.move = 0;
         return; /* probably we just had an interrupt */
     }

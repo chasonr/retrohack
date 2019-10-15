@@ -12,9 +12,12 @@
  *	- determination of what files are "very old"
  */
 
-#include "hack.h" /* mainly for index() which depends on BSD */
 #include <errno.h>
+#include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #include <sys/stat.h>
 #include <sys/types.h> /* for time_t and stat */
@@ -23,6 +26,7 @@
 #else
 #include <time.h>
 #endif
+#include "hack.h" /* mainly for index() which depends on BSD */
 
 extern char *getenv();
 extern time_t time();

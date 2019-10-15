@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)steal.c	2.3	88/01/21 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdlib.h>
 #include "hack.h"
 
 void mpickobj(/*void*/);

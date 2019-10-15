@@ -1,8 +1,9 @@
 /*	SCCS Id: @(#)trap.c	2.3	87/12/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "hack.h"
 
 extern struct monst *makemon();
 extern struct obj *mksobj_at();

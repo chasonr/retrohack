@@ -1,6 +1,8 @@
 /*	SCCS Id: @(#)shk.c	2.3	88/01/24 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "hack.h"
 #ifdef QUEST
 int shlevel = 0;

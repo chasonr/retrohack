@@ -1,9 +1,11 @@
 /*	SCCS Id: @(#)end.c	2.3	87/12/16 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "hack.h"
 #define Sprintf (void) sprintf
 extern char plname[], pl_character[], SAVEF[];
 
@@ -220,7 +222,7 @@ die:
     if (with_amulet())
         (void) strcat(killer, " (with amulet)");
 #endif
-    settty((char *) 0); /* does a clear_screen() */
+    settty((char *) 0); /* does an nh_clear_screen() */
     if (!done_stopprint)
         printf("Goodbye %s %s...\n\n", (Badged) ? "Officer" : pl_character,
                plname);

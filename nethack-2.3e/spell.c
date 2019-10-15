@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)spell.c	2.3	87/12/12
  */
 
+#include <stdio.h>
 #include "hack.h"
 #ifdef SPELLS
 extern char *nomovemsg;

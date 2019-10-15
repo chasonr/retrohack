@@ -2,6 +2,7 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* worm.c - version 1.0.2 */
 
+#include <stdlib.h>
 #include "hack.h"
 #ifndef NOWORM
 #include "wseg.h"

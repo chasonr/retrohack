@@ -83,7 +83,7 @@ register char *bufp;
                 bufp--;
                 putstr("\b \b"); /* putsym converts \b */
             } else
-                bell();
+                nh_bell();
         } else if (c == '\n') {
             *bufp = 0;
             return;
@@ -102,7 +102,7 @@ register char *bufp;
                 putstr("\b \b");
             }
         } else
-            bell();
+            nh_bell();
     }
 }
 
@@ -141,7 +141,7 @@ register char *s; /* chars allowed besides space or return */
                 morc = c;
                 break;
             }
-            bell();
+            nh_bell();
         }
     }
 }
@@ -254,7 +254,7 @@ register char *bufp;
                 bufp--;
                 putstr("\b \b"); /* putsym converts \b */
             } else
-                bell();
+                nh_bell();
         } else if (c == '\n') {
             *bufp = 0;
             return;
@@ -296,7 +296,7 @@ register char *bufp;
                 putstr("\b \b");
             }
         } else
-            bell();
+            nh_bell();
     }
 }
 #endif /* COM_COMPL /* */

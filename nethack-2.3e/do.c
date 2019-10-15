@@ -3,6 +3,9 @@
 
 /* Contains code for 'd', 'D' (drop), '>', '<' (up, down) and 't' (throw) */
 
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "hack.h"
 
 extern struct obj *splitobj(), *addinv();

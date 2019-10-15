@@ -1,6 +1,7 @@
 /*	SCCS Id: @(#)mon.c	2.3	87/12/12 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdlib.h>
 #include "hack.h"
 #include "mfndpos.h"
 

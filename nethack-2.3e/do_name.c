@@ -1,8 +1,9 @@
 /*	SCCS Id: @(#)do_name.c	2.3	88/02/11 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "hack.h"
 extern char plname[];
 extern char *rndmonnam();
 extern void savech();

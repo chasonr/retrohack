@@ -1,8 +1,10 @@
 /*	SCCS Id: @(#)topten.c	2.3	88/02/01 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
-#include "hack.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "hack.h"
 #ifdef GENIX
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
