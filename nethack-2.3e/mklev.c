@@ -27,21 +27,21 @@ static int makerooms(/*unknown*/);
 #include "mkroom.h"
 #define XLIM 4 /* define minimum required space around a room */
 #define YLIM 3
-boolean secret; /* TRUE while making a vault: increase [XY]LIM */
-int smeq[MAXNROFROOMS + 1];
+static boolean secret; /* TRUE while making a vault: increase [XY]LIM */
+static int smeq[MAXNROFROOMS + 1];
 int doorindex;
-struct rm zerorm;
-schar nxcor;
-boolean goldseen;
+static struct rm zerorm;
+static schar nxcor;
+static boolean goldseen;
 int nroom;
 
 /* Definitions used by makerooms() and addrs() */
 #define MAXRS 50 /* max lth of temp rectangle table - arbitrary */
-struct rectangle {
+static struct rectangle {
     xchar rlx, rly, rhx, rhy;
 } rs[MAXRS + 1];
-int rscnt, rsmax; /* 0..rscnt-1: currently under consideration */
-                  /* rscnt..rsmax: discarded */
+static int rscnt, rsmax; /* 0..rscnt-1: currently under consideration */
+                         /* rscnt..rsmax: discarded */
 
 void
 makelevel()
@@ -768,45 +768,46 @@ makevtele()
 }
 
 /* there should be one of these per trap */
-char *engravings[] = { "",
-                       "",
-                       "",
-                       "",
-                       "",
-                       "ad ae?ar um",
-                       "?la? ?as ?er?",
-                       "",
-                       "",
-                       ""
+static char *engravings[] = {
+    "",
+    "",
+    "",
+    "",
+    "",
+    "ad ae?ar um",
+    "?la? ?as ?er?",
+    "",
+    "",
+    ""
 #ifdef NEWTRAPS
-                       ,
-                       "",
-                       ""
+    ,
+    "",
+    ""
 #endif
 #ifdef SPIDERS
-                       ,
-                       ""
+    ,
+    ""
 #endif
 #ifdef NEWCLASS
-                       ,
-                       "",
-                       "ad ae?ar um"
+    ,
+    "",
+    "ad ae?ar um"
 #endif
 #ifdef SPELLS
-                       ,
-                       ""
+    ,
+    ""
 #endif
 #ifdef KAA
-                       ,
-                       ""
+    ,
+    ""
 #ifdef RPH
-                       ,
-                       ""
+    ,
+    ""
 #endif
 #endif
 #ifdef SAC
-                       ,
-                       ""
+    ,
+    ""
 #endif
 };
 

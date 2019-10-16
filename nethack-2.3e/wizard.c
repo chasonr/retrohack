@@ -20,9 +20,9 @@ static void resurrect(/*unknown*/);
 
 #if defined(HARD) || defined(DGKMOD)
 #ifdef SAC
-char nasties[] = "cdDeImoPTUVwxXz3&,:;";
+static char nasties[] = "cdDeImoPTUVwxXz3&,:;";
 #else
-char nasties[] = "cdDeImoPTUVwxXz&,:;";
+static char nasties[] = "cdDeImoPTUVwxXz&,:;";
 #endif
 #define WIZSHOT 2
 #else
@@ -31,7 +31,7 @@ char nasties[] = "cdDeImoPTUVwxXz&,:;";
 
 #define BOLT_LIM 8 /* from this distance D and 1 will try to hit you */
 
-char wizapp[] = "@&DNPTUVXcemntx";
+static char wizapp[] = "@&DNPTUVXcemntx";
 
 #ifdef DGKMOD
 #define URETREATING(x, y) \

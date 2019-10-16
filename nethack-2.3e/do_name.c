@@ -237,7 +237,7 @@ register struct obj *obj;
     *str1 = str;
 }
 
-char *ghostnames[] = { /* these names should have length < PL_NSIZ */
+static char *ghostnames[] = { /* these names should have length < PL_NSIZ */
                        /* Capitalize the names for asthetics -dgk
                         */
                        "Adri",       "Andries", "Andreas",     "Bert",

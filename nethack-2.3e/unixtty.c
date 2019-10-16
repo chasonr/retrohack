@@ -70,7 +70,7 @@
 
 static char erase_char, kill_char;
 static boolean settty_needed = FALSE;
-struct termstruct inittyb, curttyb;
+static struct termstruct inittyb, curttyb;
 
 static int end_of_input();
 static void setctty(/*void*/);

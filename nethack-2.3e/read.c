@@ -10,7 +10,7 @@ void do_mapping(/*void*/);
 static int monstersym(/*unknown*/);
 
 char *hcolor();
-boolean known;
+static boolean known;
 int identify();
 
 int

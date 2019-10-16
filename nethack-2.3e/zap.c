@@ -24,38 +24,40 @@ static uchar dirlet(/*unknown*/);
 static int revive(/*unknown*/);
 static int zhit(/*unknown*/);
 
-char *fl[] = { "magic missile", /* Wands must be 0-9 */
-               "bolt of fire",
-               "sleep ray",
-               "bolt of cold",
-               "death ray",
-               "bolt of lightening",
-               "",
-               "",
-               "",
-               "",
+static char *fl[] = {
+    "magic missile", /* Wands must be 0-9 */
+    "bolt of fire",
+    "sleep ray",
+    "bolt of cold",
+    "death ray",
+    "bolt of lightening",
+    "",
+    "",
+    "",
+    "",
 
-               "magic missile", /* Spell equivalents must be 10-19 */
-               "fireball",
-               "sleep ray",
-               "cone of cold",
-               "finger of death",
-               "bolt of lightening",
-               "",
-               "",
-               "",
-               "",
+    "magic missile", /* Spell equivalents must be 10-19 */
+    "fireball",
+    "sleep ray",
+    "cone of cold",
+    "finger of death",
+    "bolt of lightening",
+    "",
+    "",
+    "",
+    "",
 
-               "blast of missiles", /* Dragon breath equivalents 20-29*/
-               "blast of fire",
-               "blast of sleep gas",
-               "blast of frost",
-               "blast of disintegration",
-               "blast of lightening",
-               "blast of poison gas",
-               "blast of acid",
-               "",
-               "" };
+    "blast of missiles", /* Dragon breath equivalents 20-29*/
+    "blast of fire",
+    "blast of sleep gas",
+    "blast of frost",
+    "blast of disintegration",
+    "blast of lightening",
+    "blast of poison gas",
+    "blast of acid",
+    "",
+    ""
+};
 
 /* Routines for IMMEDIATE wands and spells. */
 /* bhitm: monster mtmp was hit by the effect of wand or spell otmp */

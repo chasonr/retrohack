@@ -37,7 +37,7 @@ init_uhunger()
     u.uhs = NOT_HUNGRY;
 }
 
-struct {
+static struct {
     char *txt;
     int nut;
 } tintxts[] = {

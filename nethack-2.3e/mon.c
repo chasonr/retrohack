@@ -17,9 +17,9 @@ static int ishuman(/*unknown*/);
 static int restrap(/*unknown*/);
 
 int warnlevel; /* used by movemon and dochugw */
-long lastwarntime;
-int lastwarnlev;
-char *warnings[] = { "white", "pink", "red", "ruby", "purple", "black" };
+static long lastwarntime;
+static int lastwarnlev;
+static char *warnings[] = { "white", "pink", "red", "ruby", "purple", "black" };
 
 void
 movemon()
@@ -476,7 +476,7 @@ register struct monst *mon;
 
 /* we do not free monsters immediately, in order to have their name
    available shortly after their demise */
-struct monst *fdmon; /* chain of dead monsters, need not to be saved */
+static struct monst *fdmon; /* chain of dead monsters, need not to be saved */
 
 void
 monfree(mtmp)

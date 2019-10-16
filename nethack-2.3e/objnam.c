@@ -417,24 +417,26 @@ register struct obj *obj;
     return (s);
 }
 
-char *wrp[] = { "wand",
-                "ring",
-                "potion",
-                "scroll",
-                "gem"
+static char *wrp[] = {
+    "wand",
+    "ring",
+    "potion",
+    "scroll",
+    "gem"
 #ifdef SPELLS
-                ,
-                "spellbook"
+    ,
+    "spellbook"
 #endif
 };
-char wrpsym[] = { WAND_SYM,
-                  RING_SYM,
-                  POTION_SYM,
-                  SCROLL_SYM,
-                  GEM_SYM
+static char wrpsym[] = {
+    WAND_SYM,
+    RING_SYM,
+    POTION_SYM,
+    SCROLL_SYM,
+    GEM_SYM
 #ifdef SPELLS
-                  ,
-                  SPBOOK_SYM
+    ,
+    SPBOOK_SYM
 #endif
 };
 

@@ -4,8 +4,10 @@
 #include <stdio.h>
 #include "hack.h"
 
-char *breathe[] = { "fragments", "fire",       "sleep gas",  "frost",
-                    "death",     "lightening", "poison gas", "acid" };
+static char *breathe[] = {
+    "fragments", "fire",       "sleep gas",  "frost",
+    "death",     "lightening", "poison gas", "acid"
+};
 
 /*
  * mhitu: monster hits you

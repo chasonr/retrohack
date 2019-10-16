@@ -710,7 +710,7 @@ register char ch;
 
 /* a copy of the panic code from hack.pri.c, edited for standalone use */
 
-boolean panicking = 0;
+static boolean panicking = 0;
 
 int
 panic(str, a1, a2, a3, a4, a5, a6)

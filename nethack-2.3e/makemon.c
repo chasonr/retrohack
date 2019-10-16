@@ -8,38 +8,38 @@ static void m_initinv(/*unknown*/);
 #endif
 void rloc(/*void*/);
 
-struct monst zeromonst;
+static struct monst zeromonst;
 
 #ifdef HARD /* used in hell for bigger, badder demons! */
 
-struct permonst d_lord = { "demon lord", '&', 12, 13, -5, 50, 1, 5, 0 },
-                d_prince = { "demon prince", '&', 14, 14, -6, 70, 1, 6, 0 };
+static struct permonst d_lord = { "demon lord", '&', 12, 13, -5, 50, 1, 5, 0 },
+                       d_prince = { "demon prince", '&', 14, 14, -6, 70, 1, 6, 0 };
 #endif
 #ifdef KJSMODS
 #ifdef KOPS
-struct permonst kobold = { "kobold", 'K', 1, 6, 7, 0, 1, 4, 0 };
+static struct permonst kobold = { "kobold", 'K', 1, 6, 7, 0, 1, 4, 0 };
 #endif
 #ifdef ROCKMOLE
-struct permonst giant_rat = { "giant rat", 'r', 0, 12, 7, 0, 1, 3, 0 };
+static struct permonst giant_rat = { "giant rat", 'r', 0, 12, 7, 0, 1, 3, 0 };
 #endif
 #endif /* KJSMODS */
 
-struct permonst grey_dragon = { "grey dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
-struct permonst red_dragon = { "red dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
-struct permonst orange_dragon = {
+static struct permonst grey_dragon = { "grey dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
+static struct permonst red_dragon = { "red dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
+static struct permonst orange_dragon = {
     "orange dragon", 'D', 10, 9, -1, 20, 3, 8, 0
 };
-struct permonst white_dragon = {
+static struct permonst white_dragon = {
     "white dragon", 'D', 10, 9, -1, 20, 3, 8, 0
 };
-struct permonst black_dragon = {
+static struct permonst black_dragon = {
     "black dragon", 'D', 10, 9, -1, 20, 3, 8, 0
 };
-struct permonst blue_dragon = { "blue dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
-struct permonst green_dragon = {
+static struct permonst blue_dragon = { "blue dragon", 'D', 10, 9, -1, 20, 3, 8, 0 };
+static struct permonst green_dragon = {
     "green dragon", 'D', 10, 9, -1, 20, 3, 8, 0
 };
-struct permonst yellow_dragon = {
+static struct permonst yellow_dragon = {
     "yellow dragon", 'D', 10, 9, -1, 20, 3, 8, 0
 };
 

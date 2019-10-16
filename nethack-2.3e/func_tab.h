@@ -8,8 +8,6 @@ struct func_tab {
     char *f_text;
 };
 
-extern struct func_tab cmdlist[];
-
 struct ext_func_tab {
     char *ef_txt, *ef_desc;
     int (*ef_funct)();

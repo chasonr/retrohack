@@ -14,10 +14,10 @@ void putsym(/*void*/);
 void putstr(/*void*/);
 static void xmore(/*unknown*/);
 
-char toplines[BUFSIZ];
-xchar tlx, tly; /* set by pline; used by addtopl */
+static char toplines[BUFSIZ];
+static xchar tlx, tly; /* set by pline; used by addtopl */
 
-struct topl {
+static struct topl {
     struct topl *next_topl;
     char *topl_text;
 } * old_toplines, *last_redone_topl;

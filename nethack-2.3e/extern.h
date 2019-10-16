@@ -23,6 +23,7 @@ extern int holetime(/*unknown*/);
 /*** bones.c ***/
 extern int getbones(/*unknown*/);
 extern void savebones(/*unknown*/);
+extern char bones[];
 
 /*** cmd.c ***/
 extern void confdir(/*unknown*/);

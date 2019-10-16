@@ -53,9 +53,9 @@ static void outline();
 static int used();
 
 #define CHARSZ 8 /* number of bits in a char */
-int n_rumors = 0;
-int n_used_rumors = -1;
-char *usedbits;
+static int n_rumors = 0;
+static int n_used_rumors = -1;
+static char *usedbits;
 
 static void
 init_rumors(rumf)

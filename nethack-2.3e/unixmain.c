@@ -29,7 +29,7 @@ char *catmore; /* default pager */
 #endif
 char SAVEF[PL_NSIZ + 11] = "save/"; /* save/99999player */
 char *hname;                        /* name of the game (argv[0] of call) */
-char obuf[BUFSIZ];                  /* BUFSIZ is defined in stdio.h */
+static char obuf[BUFSIZ];           /* BUFSIZ is defined in stdio.h */
 
 void askname(/*void*/);
 void stop_occupation(/*void*/);

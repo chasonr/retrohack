@@ -3,7 +3,7 @@
 
 #include "hack.h"
 
-struct worn {
+static struct worn {
     long w_mask;
     struct obj **w_obj;
 } worn[] = { { W_ARM, &uarm },    { W_ARM2, &uarm2 },   { W_ARMH, &uarmh },

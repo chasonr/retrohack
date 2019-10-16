@@ -144,7 +144,7 @@ char ch;
 }
 #endif /* REDO */
 
-struct func_tab cmdlist[] = {
+static struct func_tab cmdlist[] = {
 #if defined(DGKMOD) && defined(DEBUG_DOESNT_WORK)
     { '\004', /* ^D */ dodebug }, /* generic debug function */
 #endif
@@ -451,7 +451,7 @@ char sym;
 char sdir[] = "hykulnjb><";
 schar xdir[10] = { -1, -1, 0, 1, 1, 1, 0, -1, 0, 0 };
 schar ydir[10] = { 0, -1, -1, -1, 0, 1, 1, 1, 0, 0 };
-schar zdir[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, -1 };
+static schar zdir[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, -1 };
 
 int
 movecmd(sym) /* also sets u.dz, but returns false for <> */

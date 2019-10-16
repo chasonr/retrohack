@@ -17,7 +17,7 @@ char *hcolor();
 char *xname();
 #endif
 
-int nothing, unkn;
+static int nothing, unkn;
 
 int
 dodrink()
@@ -377,8 +377,9 @@ register char *txt;
     useup(obj);
 }
 
-char *bottlenames[] = { "bottle", "phial", "flagon", "carafe",
-                        "flask",  "jar",   "vial" };
+static char *bottlenames[] = {
+    "bottle", "phial", "flagon", "carafe", "flask",  "jar",   "vial"
+};
 
 void
 potionhit(mon, obj)

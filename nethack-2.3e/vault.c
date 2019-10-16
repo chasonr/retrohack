@@ -38,8 +38,9 @@ struct egd {
     struct fakecorridor fakecorr[FCSIZ];
 };
 
-struct permonst pm_guard = { "guard",           '@', 12, 12, -1, 40, 4, 10,
-                             sizeof(struct egd) };
+static struct permonst pm_guard = {
+    "guard",           '@', 12, 12, -1, 40, 4, 10, sizeof(struct egd)
+};
 
 static struct monst *guard;
 static int gdlevel;

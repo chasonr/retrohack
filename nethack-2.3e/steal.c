@@ -43,8 +43,8 @@ register struct monst *mtmp;
 }
 
 /* steal armor after he finishes taking it off */
-unsigned stealoid; /* object to be stolen */
-unsigned stealmid; /* monster doing the stealing */
+static unsigned stealoid; /* object to be stolen */
+static unsigned stealmid; /* monster doing the stealing */
 static void
 stealarm(void)
 {

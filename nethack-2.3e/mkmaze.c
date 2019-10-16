@@ -9,7 +9,7 @@ static void walkfrom(/*unknown*/);
 static void move(/*void*/);
 static int okay(/*unknown*/);
 
-struct permonst hell_hound = { "hell hound", 'd', 12, 14, 2, 20, 3, 6, 0 };
+static struct permonst hell_hound = { "hell hound", 'd', 12, 14, 2, 20, 3, 6, 0 };
 
 void
 makemaz()

@@ -5,9 +5,9 @@
 #include "hack.h"
 #include "panic.h"
 #ifdef SPELLS
-char mkobjstr[] = "))[[!!!!????+%%%%/=**))[[!!!!????+%%%%/=**(%";
+static char mkobjstr[] = "))[[!!!!????+%%%%/=**))[[!!!!????+%%%%/=**(%";
 #else
-char mkobjstr[] = "))[[!!!!????%%%%/=**))[[!!!!????%%%%/=**(%";
+static char mkobjstr[] = "))[[!!!!????%%%%/=**))[[!!!!????%%%%/=**(%";
 #endif
 
 struct obj *mkobj(), *mksobj();

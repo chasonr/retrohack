@@ -6,9 +6,9 @@
 
 #define UTSZ 50
 
-coord utrack[UTSZ];
-int utcnt = 0;
-int utpnt = 0;
+static coord utrack[UTSZ];
+static int utcnt = 0;
+static int utpnt = 0;
 
 void
 initrack()

@@ -20,7 +20,7 @@ int (*occupation)();
 
 char SAVEF[FILENAME];
 char *hname = gamename;
-char obuf[BUFSIZ]; /* BUFSIZ is defined in stdio.h */
+static char obuf[BUFSIZ]; /* BUFSIZ is defined in stdio.h */
 int hackpid;       /* not used anymore, but kept in for save files */
 
 main(argc, argv)

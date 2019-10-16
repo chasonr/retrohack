@@ -22,7 +22,7 @@ static int merged();
 
 #define NOINVSYM '#'
 
-int lastinvnr = 51; /* 0 ... 51 */
+static int lastinvnr = 51; /* 0 ... 51 */
 
 static void
 assigninvlet(otmp)

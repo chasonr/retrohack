@@ -101,7 +101,7 @@ midnight()
     return (getlt()->tm_hour == 0);
 }
 
-struct stat buf, hbuf;
+static struct stat buf, hbuf;
 
 void
 gethdate(name)

@@ -101,7 +101,7 @@ register struct monst *mtmp;
 }
 
 /*VARARGS1*/
-boolean panicking;
+static boolean panicking;
 
 void
 panic(str, a1, a2, a3, a4, a5, a6)

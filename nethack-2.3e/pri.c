@@ -386,7 +386,7 @@ nscr()
 }
 
 /* 100 suffices for bot(); no relation with COLNO */
-char oldbot[100], newbot[100];
+static char oldbot[100], newbot[100];
 static void
 cornbot(lth)
 register int lth;
@@ -573,41 +573,43 @@ rndobjsym()
     return *(rndsym + rn2(11));
 }
 
-char *hcolors[] = { "ultraviolet",
-                    "infrared",
-                    "hot pink",
-                    "psychedelic",
-                    "bluish-orange",
-                    "reddish-green",
-                    "dark white",
-                    "light black",
-                    "loud",
-                    "salty",
-                    "sweet",
-                    "sour",
-                    "bitter",
-                    "luminescent",
-                    "striped",
-                    "polka-dotted",
-                    "square",
-                    "round",
-                    "triangular",
-                    "brilliant",
-                    "navy blue",
-                    "cerise",
-                    "chartreuse",
-                    "copper",
-                    "sea green",
-                    "spiral",
-                    "swirly",
-                    "blotchy",
-                    "fluorescent green",
-                    "burnt orange",
-                    "indigo",
-                    "amber",
-                    "tan",
-                    "sky blue-pink",
-                    "lemon yellow" };
+static char *hcolors[] = {
+    "ultraviolet",
+    "infrared",
+    "hot pink",
+    "psychedelic",
+    "bluish-orange",
+    "reddish-green",
+    "dark white",
+    "light black",
+    "loud",
+    "salty",
+    "sweet",
+    "sour",
+    "bitter",
+    "luminescent",
+    "striped",
+    "polka-dotted",
+    "square",
+    "round",
+    "triangular",
+    "brilliant",
+    "navy blue",
+    "cerise",
+    "chartreuse",
+    "copper",
+    "sea green",
+    "spiral",
+    "swirly",
+    "blotchy",
+    "fluorescent green",
+    "burnt orange",
+    "indigo",
+    "amber",
+    "tan",
+    "sky blue-pink",
+    "lemon yellow"
+};
 
 char *
 hcolor()

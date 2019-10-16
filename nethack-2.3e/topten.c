@@ -25,7 +25,7 @@ static char *nh_itoa();
 #ifndef MSDOS
 #define PERS_IS_UID /* delete for PERSMAX per name; now per uid */
 #endif
-struct toptenentry {
+static struct toptenentry {
     struct toptenentry *tt_next;
     long int points;
     int level, maxlvl, hp, maxhp;

@@ -15,7 +15,7 @@ static boolean far_noise;
 static long noisetime;
 
 #ifdef STOOGES
-char random_joke[][30] = { "Why I ought a ...",
+static char random_joke[][30] = { "Why I ought a ...",
                            "You'll get what's comming!",
                            "I'll murder you!",
                            "I get no respect!",

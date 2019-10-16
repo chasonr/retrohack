@@ -22,9 +22,9 @@ static void wiz_inv(/*unknown*/);
      || (x)->olet == RING_SYM || (x)->olet == SCROLL_SYM \
      || (x)->olet == SPBOOK_SYM)
 
-struct you zerou;
+static struct you zerou;
 char pl_character[PL_CSIZ];
-char *(roles[]) = { /* must all have distinct first letter */
+static char *(roles[]) = { /* must all have distinct first letter */
                     /* roles[4] & [7] may be changed for females */
                     "Archeologist", "Tourist",  "Barbarian",
                     "Knight",       "Cave-man",
@@ -37,7 +37,7 @@ char *(roles[]) = { /* must all have distinct first letter */
                     "Wizard"
 };
 #define NR_OF_ROLES SIZE(roles)
-char rolesyms[NR_OF_ROLES + 1]; /* filled by u_init() */
+static char rolesyms[NR_OF_ROLES + 1]; /* filled by u_init() */
 
 struct trobj {
     unsigned short trotyp;
@@ -48,10 +48,10 @@ struct trobj {
 };
 
 #ifdef WIZARD
-struct trobj Extra_objs[] = { { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } };
+static struct trobj Extra_objs[] = { { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } };
 #endif
 
-struct trobj Cave_man[] = {
+static struct trobj Cave_man[] = {
 #define C_ARROWS 2
     { CLUB, 1, WEAPON_SYM, 1, 1 },
     { BOW, 1, WEAPON_SYM, 1, 1 },
@@ -60,11 +60,11 @@ struct trobj Cave_man[] = {
     { 0, 0, 0, 0, 0 }
 };
 
-struct trobj Barbarian[] = { { TWO_HANDED_SWORD, 0, WEAPON_SYM, 1, 1 },
+static struct trobj Barbarian[] = { { TWO_HANDED_SWORD, 0, WEAPON_SYM, 1, 1 },
                              { RING_MAIL, 0, ARMOR_SYM, 1, 1 },
                              { 0, 0, 0, 0, 0 } };
 
-struct trobj Knight[] = { { LONG_SWORD, 0, WEAPON_SYM, 1, 1 },
+static struct trobj Knight[] = { { LONG_SWORD, 0, WEAPON_SYM, 1, 1 },
                           { SPEAR, 2, WEAPON_SYM, 1, 1 },
                           { RING_MAIL, 1, ARMOR_SYM, 1, 1 },
                           { HELMET, 0, ARMOR_SYM, 1, 1 },
@@ -73,7 +73,7 @@ struct trobj Knight[] = { { LONG_SWORD, 0, WEAPON_SYM, 1, 1 },
                           { 0, 0, 0, 0, 0 } };
 
 #ifdef KAA
-struct trobj Elf[] = {
+static struct trobj Elf[] = {
 #define E_ARROWS 2
 #define E_ARMOR 3
     { SHORT_SWORD, 0, WEAPON_SYM, 1, 1 },
@@ -83,43 +83,43 @@ struct trobj Elf[] = {
     { 0, 0, 0, 0, 0 }
 };
 
-struct trobj Valkyrie[] = { { LONG_SWORD, 1, WEAPON_SYM, 1, 1 },
+static struct trobj Valkyrie[] = { { LONG_SWORD, 1, WEAPON_SYM, 1, 1 },
                             { SHIELD, 3, ARMOR_SYM, 1, 1 },
                             { FOOD_RATION, 0, FOOD_SYM, 1, 1 },
                             { 0, 0, 0, 0, 0 } };
 
-struct trobj Healer[] = { { STETHOSCOPE, 0, TOOL_SYM, 1, 0 },
+static struct trobj Healer[] = { { STETHOSCOPE, 0, TOOL_SYM, 1, 0 },
                           { POT_HEALING, 0, POTION_SYM, 4, 1 },
                           { POT_EXTRA_HEALING, 0, POTION_SYM, 4, 1 },
                           { APPLE, 0, FOOD_SYM, 5, 0 },
                           { 0, 0, 0, 0, 0 } };
 #endif /* KAA */
 
-struct trobj Archeologist[] = { { STUDDED_LEATHER_ARMOR, 0, ARMOR_SYM, 1, 1 },
+static struct trobj Archeologist[] = { { STUDDED_LEATHER_ARMOR, 0, ARMOR_SYM, 1, 1 },
                                 { UNDEF_TYP, 0, POTION_SYM, 2, 0 },
                                 { FOOD_RATION, 0, FOOD_SYM, 3, 1 },
                                 { PICK_AXE, UNDEF_SPE, TOOL_SYM, 1, 0 },
                                 { ICE_BOX, 0, TOOL_SYM, 1, 0 },
                                 { 0, 0, 0, 0, 0 } };
 
-struct trobj Tinopener[] = { { CAN_OPENER, 0, TOOL_SYM, 1, 1 },
+static struct trobj Tinopener[] = { { CAN_OPENER, 0, TOOL_SYM, 1, 1 },
                              { 0, 0, 0, 0, 0 } };
 
 #ifdef MARKER
-struct trobj Magicmarker[] = { { MAGIC_MARKER, 50, TOOL_SYM, 1, 0 },
+static struct trobj Magicmarker[] = { { MAGIC_MARKER, 50, TOOL_SYM, 1, 0 },
                                { 0, 0, 0, 0, 0 } };
 #endif
 
-struct trobj Lamp[] = { { LAMP, 5, TOOL_SYM, 1, 0 }, { 0, 0, 0, 0, 0 } };
+static struct trobj Lamp[] = { { LAMP, 5, TOOL_SYM, 1, 0 }, { 0, 0, 0, 0, 0 } };
 
 #ifdef WALKIES
-struct trobj Leash[] = { { LEASH, 0, TOOL_SYM, 1, 0 }, { 0, 0, 0, 0, 0 } };
+static struct trobj Leash[] = { { LEASH, 0, TOOL_SYM, 1, 0 }, { 0, 0, 0, 0, 0 } };
 #endif
 
-struct trobj Blindfold[] = { { BLINDFOLD, 0, TOOL_SYM, 1, 0 },
+static struct trobj Blindfold[] = { { BLINDFOLD, 0, TOOL_SYM, 1, 0 },
                              { 0, 0, 0, 0, 0 } };
 
-struct trobj Tourist[] = {
+static struct trobj Tourist[] = {
 #define T_DARTS 3
     { UNDEF_TYP, 0, FOOD_SYM, 10, 1 },
     { POT_EXTRA_HEALING, 0, POTION_SYM, 2, 0 },
@@ -131,7 +131,7 @@ struct trobj Tourist[] = {
     { 0, 0, 0, 0, 0 }
 };
 
-struct trobj Wizard[] = {
+static struct trobj Wizard[] = {
 #define W_MULTSTART 2
 #define W_MULTEND 6
     { ELVEN_CLOAK, 0, ARMOR_SYM, 1, 1 },
@@ -147,7 +147,7 @@ struct trobj Wizard[] = {
 };
 
 #ifdef NEWCLASS
-struct trobj Samurai[] = {
+static struct trobj Samurai[] = {
 #define S_ARROWS 3
     { KATANA, 0, WEAPON_SYM, 1, 1 },
     { SHORT_SWORD, 0, WEAPON_SYM, 1, 1 }, /* the wakizashi */
@@ -157,7 +157,7 @@ struct trobj Samurai[] = {
     { 0, 0, 0, 0, 0 }
 };
 
-struct trobj Ninja[] = {
+static struct trobj Ninja[] = {
 #define N_SHURIKEN 1
     { KATANA, 0, WEAPON_SYM, 1, 1 },
     { SHURIKEN, 0, WEAPON_SYM, 25, 1 }, /* quan is variable */
@@ -165,7 +165,7 @@ struct trobj Ninja[] = {
     { 0, 0, 0, 0, 0 }
 };
 
-struct trobj Priest[] = { { CHAIN_MAIL, 0, ARMOR_SYM, 1, 1 },
+static struct trobj Priest[] = { { CHAIN_MAIL, 0, ARMOR_SYM, 1, 1 },
                           { SHIELD, 0, ARMOR_SYM, 1, 1 },
                           { MACE, 1, WEAPON_SYM, 1, 1 },
                           { POT_HOLY_WATER, 0, POTION_SYM, 4, 1 },

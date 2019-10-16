@@ -7,7 +7,7 @@
 void wipe_engr_at(/*void*/);
 static void del_engr(/*unknown*/);
 static struct engr *engr_at(/*unknown*/);
-struct engr {
+static struct engr {
     struct engr *nxt_engr;
     char *engr_txt;
     xchar engr_x, engr_y;
@@ -27,9 +27,9 @@ struct engr {
 
 /* random engravings */
 #ifdef KAA
-char *random_engr[] =
+static char *random_engr[] =
 #else
-char random_engr[][30] =
+static char random_engr[][30] =
 #endif
     { "Elbereth", "ad ae?ar um",
 #ifdef NEWCLASS
