@@ -6,13 +6,7 @@
 #include "mfndpos.h"
 #include "panic.h"
 
-void mondead(/*void*/);
-void relmon(/*void*/);
-void monfree(/*void*/);
 static void dmonsfree(/*unknown*/);
-void unstuck(/*void*/);
-void xkilled(/*void*/);
-void kludge(/*void*/);
 static int ishuman(/*unknown*/);
 static int restrap(/*unknown*/);
 

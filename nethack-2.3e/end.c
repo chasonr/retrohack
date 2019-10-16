@@ -12,8 +12,6 @@
 xchar maxdlevel = 1;
 int done_stopprint;
 int done_hup;
-void done(/*void*/);
-void clearlocks(/*void*/);
 static void done_hangup(int sig);
 static void done_intr(int sig);
 static int with_amulet(/*unknown*/);

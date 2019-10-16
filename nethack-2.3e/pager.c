@@ -13,7 +13,6 @@
 #include "hack.h"
 
 static void page_more(/*unknown*/);
-void set_pager(/*void*/);
 
 static void intruph(int sig);
 

@@ -3,10 +3,6 @@
 
 #include "hack.h"
 
-void seemimic(/*void*/);
-
-char *defmonnam();
-
 int
 findit() /* returns number of things found */
 {

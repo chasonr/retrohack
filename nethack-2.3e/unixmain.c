@@ -31,8 +31,6 @@ char SAVEF[PL_NSIZ + 11] = "save/"; /* save/99999player */
 char *hname;                        /* name of the game (argv[0] of call) */
 static char obuf[BUFSIZ];           /* BUFSIZ is defined in stdio.h */
 
-void askname(/*void*/);
-void stop_occupation(/*void*/);
 static void whoami(/*void*/);
 static int newgame();
 

@@ -74,8 +74,6 @@ static struct termstruct inittyb, curttyb;
 
 static int end_of_input();
 static void setctty(/*void*/);
-void cgetret(/*void*/);
-void xwaitforspace(/*void*/);
 
 /*
  * Get initial state of terminal, set ospeed (for termcap routines)

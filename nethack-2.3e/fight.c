@@ -5,7 +5,6 @@
 #include "hack.h"
 #include "panic.h"
 
-void mondied(/*void*/);
 static void monstone(/*unknown*/);
 #ifdef STOOGES
 static void stoogejoke(/*unknown*/);

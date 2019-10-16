@@ -4,19 +4,10 @@
 #include <stdlib.h>
 #include "hack.h"
 
-struct monst *bhit();
-char *exclam();
-
-void weffects(/*void*/);
-void hit(/*void*/);
-void miss(/*void*/);
-void buzz(/*void*/);
 static void rloco(/*unknown*/);
-void fracture_rock(/*void*/);
 static void boil_potions(/*unknown*/);
 static void freeze_potions(/*unknown*/);
 static void burn_scrolls(/*unknown*/);
-void makewish(/*void*/);
 static void bhitm(/*unknown*/);
 static int bhito(/*unknown*/);
 static int burn_floor_scrolls(/*unknown*/);

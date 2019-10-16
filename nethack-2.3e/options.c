@@ -6,7 +6,6 @@
 #include "config.h"
 #include "hack.h"
 
-void parseoptions(/*void*/);
 static void nmcpy(/*unknown*/);
 static void option_help(/*unknown*/);
 

@@ -39,12 +39,12 @@ static int digit();
 
 char in_line[256], outline[256];
 
-void do_traps(/*void*/);
-void do_rumors(/*void*/);
-void do_date(/*void*/);
-void do_data(/*void*/);
-void newobj(/*void*/);
-void capitalize(/*void*/);
+static void do_traps(/*void*/);
+static void do_rumors(/*void*/);
+static void do_date(/*void*/);
+static void do_data(/*void*/);
+static void newobj(/*void*/);
+static void capitalize(/*void*/);
 
 int
 main(argc, argv)
@@ -86,7 +86,7 @@ char *argv[];
     exit(1);
 }
 
-void
+static void
 do_traps()
 {
     int ntrap, getpid();
@@ -147,7 +147,7 @@ struct hline {
     char *line;
 } * f_line;
 
-void
+static void
 do_rumors()
 {
     char infile[30];
@@ -191,7 +191,7 @@ do_rumors()
     fclose(stdout);
 }
 
-void
+static void
 do_date()
 {
     int getpid();
@@ -229,7 +229,7 @@ do_date()
     rename(tmpfile, DATE_FILE);
 }
 
-void
+static void
 do_data()
 {
     int getpid();
@@ -447,7 +447,7 @@ char *name;
     return (temp);
 }
 
-void
+static void
 newobj()
 {
     more = current;
@@ -686,7 +686,7 @@ duplicate()
     return (0);
 }
 
-void
+static void
 capitalize(sp)
 register char *sp;
 {

@@ -3,11 +3,7 @@
 
 #include "hack.h"
 
-void rndcurse(/*void*/);
-
 #ifdef NEWCLASS
-int identify();
-
 int
 dosit()
 {

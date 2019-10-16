@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include "hack.h"
 
-void aggravate(/*void*/);
 static void clonewiz(/*unknown*/);
 #ifdef DGKMOD
 static struct obj *m_carrying(/*unknown*/);

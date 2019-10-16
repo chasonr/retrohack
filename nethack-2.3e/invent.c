@@ -7,9 +7,6 @@
 #include "panic.h"
 
 static char *xprname();
-void freeinv(/*void*/);
-void freeobj(/*void*/);
-void doinv(/*void*/);
 static int ckunpaid(/*unknown*/);
 static int countgold(/*unknown*/);
 static struct obj *mkgoldobj(/*unknown*/);

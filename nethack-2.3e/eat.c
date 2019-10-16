@@ -9,9 +9,6 @@ char POISONOUS[] = "ADKSVabhks&";
 #else
 char POISONOUS[] = "ADKSVabhks";
 #endif
-void morehungry(/*void*/);
-void lesshungry(/*void*/);
-void newuhs(/*void*/);
 static void choke(/*unknown*/);
 static int eatcorpse(/*unknown*/);
 static void Meatdone(void);

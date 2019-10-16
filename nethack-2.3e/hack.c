@@ -8,9 +8,6 @@
 #endif
 
 static void movobj(/*unknown*/);
-void pickup(/*void*/);
-void setsee(/*void*/);
-void nomul(/*void*/);
 #ifdef SINKS
 static void dosinkfall(/*unknown*/);
 #endif

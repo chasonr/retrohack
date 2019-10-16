@@ -5,10 +5,6 @@
 #include "hack.h"
 #include "panic.h"
 
-void on_scr(/*void*/);
-void prl(/*void*/);
-void newsym(/*void*/);
-
 void
 atl(x, y, ch)
 register int x, y;

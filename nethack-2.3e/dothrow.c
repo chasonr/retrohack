@@ -5,7 +5,6 @@
 
 #include "hack.h"
 
-struct monst *bhit(), *boomhit();
 static void hitfloor(/*unknown*/);
 static int thitmonst(/*unknown*/);
 static int throwit(/*unknown*/);

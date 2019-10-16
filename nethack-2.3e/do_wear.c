@@ -5,7 +5,6 @@
 #include <stdio.h>
 
 static int marmoroff(/* struct obj *otmp */);
-void ringoff(/*void*/);
 static int dorr(/*unknown*/);
 static int cursed();
 

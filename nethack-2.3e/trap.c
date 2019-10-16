@@ -5,17 +5,11 @@
 #include <stdlib.h>
 #include "hack.h"
 
-void selftouch(/*void*/);
 static void vtele(/*unknown*/);
-void tele(/*void*/);
 static void teleds(/*unknown*/);
-void placebc(/*void*/);
-void unplacebc(/*void*/);
-void level_tele(/*void*/);
 #ifdef NEWTRAPS
 static void domagictrap(/*unknown*/);
 #endif
-void drown(/*void*/);
 static int teleok(/*unknown*/);
 
 char vowels[] = "aeiou";

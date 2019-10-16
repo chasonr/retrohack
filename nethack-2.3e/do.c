@@ -8,11 +8,7 @@
 #include <unistd.h>
 #include "hack.h"
 
-int identify();
 static int drop(/* struct obj *obj */);
-void dropx(/*void*/);
-void dropy(/*void*/);
-void goto_level(/*void*/);
 static void dosinkring(/*unknown*/);
 #ifdef SINKS
 static void trycall(/*unknown*/);

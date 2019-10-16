@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include "hack.h"
 
-void mpickobj(/*void*/);
 static void stealarm(void);
 
 long /* actually returns something that fits in an int */

@@ -8,12 +8,8 @@
 #include "mkroom.h"
 #include "panic.h"
 
-void bwrite(/*void*/);
-void saveobjchn(/*void*/);
-void savemonchn(/*void*/);
 static void savegoldchn(/*unknown*/);
 static void savetrapchn(/*unknown*/);
-void mread(/*void*/);
 
 #ifndef NOWORM
 #include "wseg.h"

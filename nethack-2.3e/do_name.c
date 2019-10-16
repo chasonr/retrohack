@@ -7,8 +7,6 @@
 #include "panic.h"
 
 static char *rndmonnam();
-void oname(/*void*/);
-void docall(/*void*/);
 static void do_oname(/*unknown*/);
 static char *visctrl(/*unknown*/);
 

@@ -9,9 +9,6 @@
 #endif
 
 static void redotoplin(/*unknown*/);
-void more(/*void*/);
-void putsym(/*void*/);
-void putstr(/*void*/);
 static void xmore(/*unknown*/);
 
 static char toplines[BUFSIZ];

@@ -7,13 +7,7 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-void docrt(/*void*/);
-void seemons(/*void*/);
-void pmon(/*void*/);
-void unpmon(/*void*/);
 static void cornbot(/*unknown*/);
-void bot(/*void*/);
-void cls(/*void*/);
 
 xchar scrlx, scrhx, scrly, scrhy; /* corners of new area on screen */
 

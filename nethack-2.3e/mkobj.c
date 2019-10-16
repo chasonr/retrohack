@@ -10,8 +10,6 @@ static char mkobjstr[] = "))[[!!!!????+%%%%/=**))[[!!!!????+%%%%/=**(%";
 static char mkobjstr[] = "))[[!!!!????%%%%/=**))[[!!!!????%%%%/=**(%";
 #endif
 
-struct obj *mkobj(), *mksobj();
-
 struct obj *
 mkobj_at(let, x, y)
 register int let, x, y;

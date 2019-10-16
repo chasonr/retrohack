@@ -11,10 +11,6 @@
 #endif
 
 static void nocmov(/*unknown*/);
-void cmov(/*void*/);
-void xputs(/*void*/);
-void nh_clear_screen(/*void*/);
-void home(/*void*/);
 
 #ifndef SYSV
 short ospeed; /* terminal baudrate; used by tputs */

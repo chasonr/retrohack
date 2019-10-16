@@ -6,7 +6,7 @@
 #include "hack.h"
 #ifdef QUEST
 int shlevel = 0;
-struct monst *mkmon_at(), *shopkeeper = 0;
+struct monst *shopkeeper = 0;
 struct obj *billobjs = 0;
 obfree(obj, merge)
 register struct obj *obj, *merge;

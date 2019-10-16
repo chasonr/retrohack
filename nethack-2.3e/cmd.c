@@ -5,24 +5,11 @@
 #include "func_tab.h"
 #include "hack.h"
 
-int doredraw(), doredotopl(), dodrop(), dodrink(), doread(), dosearch(),
-    dopickup(), doversion(), doweararm(), dowearring(), doremarm(),
-    doddoremarm(), doremring(), dopay(), doapply(), dosave(), dowield(),
-    ddoinv(), dozap(), ddocall(), dowhatis(), doengrave(), dotele(), dohelp(),
-    doeat(), doddrop(), do_mname(), doidtrap(), doprwep(), doprarm(),
-    doprring(), doprgold(), dodiscovered(), dotypeinv(), dolook(), doset(),
-    doup(), dodown(), donull(), dothrow(), dodip(),
-    dopray(), dorub();
-void confdir(/*void*/);
 static int doextcmd(/*unknown*/);
 static int doextlist(/*unknown*/);
 static char lowc(/*unknown*/);
 static int timed_occupation(/*unknown*/);
 static char unctrl(/*unknown*/);
-
-#ifdef THEOLOGY
-int dosacrifice();
-#endif
 
 #ifdef WIZARD
 static int wiz_attributes(/*unknown*/);
@@ -31,34 +18,8 @@ static int wiz_identify(/*unknown*/);
 static int wiz_map(/*unknown*/);
 static int wiz_wish(/*unknown*/);
 #endif
-#ifdef NEWCLASS
-int dosit(), doturn();
-#endif
-#ifdef SPELLS
-int docast(), dovspell(), doxcribe();
-#endif
-#ifdef SHELL
-int dosh();
-#endif
-#ifdef SUSPEND
-int dosuspend();
-#endif
-#ifdef KAA
-int doremove(), dobreathe();
-#ifdef KOPS
-int dowipe();
-#endif
-#endif
-
-int rndobjsym(), rndmonsym();
-char *hcolor(), *defmonnam();
 
 #ifdef DGKMOD
-int dotogglepickup(), doMSCversion();
-#ifdef DEBUG
-int dodebug();
-#endif
-
 static int (*timed_occ_fn)();
 
 /* Count down by decrementing multi */

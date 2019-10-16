@@ -4,14 +4,9 @@
 #include <stdlib.h>
 #include "hack.h"
 
-void litroom(/*void*/);
-void do_genocide(/*void*/);
-void do_mapping(/*void*/);
 static int monstersym(/*unknown*/);
 
-char *hcolor();
 static boolean known;
-int identify();
 
 int
 doread()

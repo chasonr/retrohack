@@ -6,7 +6,6 @@
 #ifdef DGKMOD
 static void m_initinv(/*unknown*/);
 #endif
-void rloc(/*void*/);
 
 static struct monst zeromonst;
 

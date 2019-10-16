@@ -4,18 +4,7 @@
 #include <stdio.h>
 #include "hack.h"
 
-void healup(/*void*/);
-void pluslvl(/*void*/);
-void strange_feeling(/*void*/);
-void potionbreathe(/*void*/);
 static void ghost_from_bottle(/*unknown*/);
-void djinni_from_bottle(/*void*/);
-void gainstr(/*void*/);
-
-char *hcolor();
-#ifdef KAA
-char *xname();
-#endif
 
 static int nothing, unkn;
 

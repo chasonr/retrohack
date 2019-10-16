@@ -30,7 +30,6 @@
 
 static void newmail(/*void*/);
 static void mdrush(/*void*/);
-void regularize(/*void*/);
 static struct tm *getlt();
 static int veryold();
 

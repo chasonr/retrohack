@@ -22,7 +22,6 @@ static int use_pick_axe();
 static void use_mirror();
 #endif
 static void use_lamp();
-void dighole(/*void*/);
 
 int
 doapply()

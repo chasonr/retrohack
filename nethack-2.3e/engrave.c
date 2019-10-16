@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include "hack.h"
 
-void wipe_engr_at(/*void*/);
 static void del_engr(/*unknown*/);
 static struct engr *engr_at(/*unknown*/);
 static struct engr {
