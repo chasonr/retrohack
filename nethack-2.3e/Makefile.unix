@@ -67,7 +67,7 @@ $(GAME):	$(SPECIFICS) $(HOBJ) Makefile
 	@echo "Loading ..."
 	@cc $(LFLAGS) -o $(GAME) $(HOBJ) $(TERMLIB)
 
-all:	$(GAME) Guidebook lint
+all:	$(GAME) $(VARAUX) Guidebook
 	@echo "Done."
 
 Guidebook:	Guidebook.mn
