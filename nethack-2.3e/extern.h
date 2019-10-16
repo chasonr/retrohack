@@ -108,7 +108,8 @@ extern int poisonous(/*unknown*/);
 extern void charcat(/*unknown*/);
 extern void clearlocks(/*unknown*/);
 extern void done(/*unknown*/);
-extern int done1(/*unknown*/);
+extern void done1(int sig);
+extern int doquit(void);
 extern void done_in_by(/*unknown*/);
 
 /*** engrave.c ***/
@@ -409,7 +410,7 @@ extern void outrumor(/*unknown*/);
 extern int dorecover(/*unknown*/);
 extern int dosave(/*unknown*/);
 extern int dosave0(/*unknown*/);
-extern int nh_hangup(/*unknown*/);
+extern void nh_hangup(int sig);
 extern struct monst *restmonchn(/*unknown*/);
 extern struct obj *restobjchn(/*unknown*/);
 
@@ -476,7 +477,7 @@ extern void standoutbeg(/*unknown*/);
 extern void standoutend(/*unknown*/);
 extern void start_screen(/*unknown*/);
 extern void startup(/*unknown*/);
-extern void xputc(/*unknown*/);
+extern int xputc(int c);
 extern void xputs(/*unknown*/);
 
 /*** timeout.c ***/

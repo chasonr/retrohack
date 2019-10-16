@@ -12,7 +12,6 @@
 
 static void nocmov(/*unknown*/);
 void cmov(/*void*/);
-void xputc(/*void*/);
 void xputs(/*void*/);
 void nh_clear_screen(/*void*/);
 void home(/*void*/);
@@ -234,11 +233,11 @@ register int x, y;
     curx = x;
 }
 
-void
+int
 xputc(c)
-char c;
+int c;
 {
-    (void) fputc(c, stdout);
+    return fputc(c, stdout);
 }
 
 void
@@ -342,9 +341,9 @@ delay_output()
 #else /* MSDOS */
     if (!flags.nonull)
 #ifdef TERMINFO
-        tputs("$<50>", 1, xputs);
+        tputs("$<50>", 1, xputc);
 #else
-        tputs("50", 1, xputs);
+        tputs("50", 1, xputc);
 #endif
     /* cbosgd!cbcephus!pds for SYS V R2 */
     /* is this terminfo, or what? */

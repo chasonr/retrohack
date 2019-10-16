@@ -20,7 +20,7 @@ static void done_intr(int sig);
 static int with_amulet(/*unknown*/);
 
 int
-done1()
+doquit(void)
 {
     (void) signal(SIGINT, SIG_IGN);
 #if defined(WIZARD) && defined(UNIX) && !defined(KJSMODS)
@@ -44,6 +44,12 @@ done1()
     done("quit");
     /* NOTREACHED */
     return(0);
+}
+
+void
+done1(int sig)
+{
+    doquit();
 }
 
 static void
@@ -369,7 +375,8 @@ clearlocks()
 }
 
 #ifdef NOSAVEONHANGUP
-nh_hangup()
+void
+nh_hangup(int sig)
 {
     (void) signal(SIGINT, SIG_IGN);
     clearlocks();

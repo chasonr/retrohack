@@ -20,7 +20,6 @@ extern char *CD;
 extern char quitchars[];
 extern char *getenv(), *getlogin();
 extern xchar curx;
-int done1();
 extern int getpos();
 static void intruph(int sig);
 
@@ -191,7 +190,7 @@ int strip; /* nr of chars to be stripped from each line (0 or 1) */
         }
         *bufrp = '\0';
 #else
-    int (*prevsig)() = signal(SIGINT, intruph);
+    void (*prevsig)(int sig) = signal(SIGINT, intruph);
 
     set_pager(0);
     bufr = (char *) alloc((unsigned) CO);

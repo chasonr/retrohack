@@ -18,10 +18,8 @@
 extern char *getlogin(), *getenv();
 extern char plname[PL_NSIZ], pl_character[PL_CSIZ];
 
-int (*afternmv)();
+void (*afternmv)();
 int (*occupation)();
-
-int done1();
 
 #ifdef CHDIR
 static void chdirx(/* char *dir, boolean wr */);

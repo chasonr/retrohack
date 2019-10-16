@@ -9,7 +9,7 @@ char POISONOUS[] = "ADKSVabhks&";
 char POISONOUS[] = "ADKSVabhks";
 #endif
 extern char *nomovemsg;
-extern int (*afternmv)();
+extern void (*afternmv)(void);
 extern int (*occupation)();
 extern char *occtxt;
 extern struct obj *splitobj(), *addinv();
@@ -18,9 +18,9 @@ void lesshungry(/*void*/);
 void newuhs(/*void*/);
 static void choke(/*unknown*/);
 static int eatcorpse(/*unknown*/);
-static void Meatdone(/*unknown*/);
+static void Meatdone(void);
 static int opentin(/*unknown*/);
-static void unfaint(/*unknown*/);
+static void unfaint(void);
 
 /* hunger texts used on bottom line (each 8 chars long) */
 #define SATIATED 0
@@ -103,7 +103,7 @@ opentin()
 }
 
 static void
-Meatdone()
+Meatdone(void)
 {
     u.usym = '@';
     prme();
@@ -392,7 +392,7 @@ register int num;
 }
 
 static void
-unfaint()
+unfaint(void)
 {
     u.uhs = FAINTING;
     flags.botl = 1;

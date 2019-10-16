@@ -32,8 +32,8 @@ dosave()
 }
 
 #ifndef NOSAVEONHANGUP
-int
-nh_hangup()
+void
+nh_hangup(int sig)
 {
     (void) dosave0(1);
     exit(1);

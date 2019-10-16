@@ -5,7 +5,7 @@
 #include "hack.h"
 
 void mpickobj(/*void*/);
-static void stealarm(/*unknown*/);
+static void stealarm(void);
 
 long /* actually returns something that fits in an int */
 somegold()
@@ -46,7 +46,7 @@ register struct monst *mtmp;
 unsigned stealoid; /* object to be stolen */
 unsigned stealmid; /* monster doing the stealing */
 static void
-stealarm()
+stealarm(void)
 {
     register struct monst *mtmp;
     register struct obj *otmp;
@@ -143,7 +143,7 @@ struct monst *mtmp;
                 otmp->cursed = curssv;
                 if (multi < 0) {
                     extern char *nomovemsg;
-                    extern int (*afternmv)();
+                    extern void (*afternmv)(void);
                     /*
                     multi = 0;
                     nomovemsg = 0;

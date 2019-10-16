@@ -11,7 +11,7 @@ int doredraw(), doredotopl(), dodrop(), dodrink(), doread(), dosearch(),
     ddoinv(), dozap(), ddocall(), dowhatis(), doengrave(), dotele(), dohelp(),
     doeat(), doddrop(), do_mname(), doidtrap(), doprwep(), doprarm(),
     doprring(), doprgold(), dodiscovered(), dotypeinv(), dolook(), doset(),
-    doup(), dodown(), done1(), donull(), dothrow(), dodip(),
+    doup(), dodown(), donull(), dothrow(), dodip(),
     dopray(), dorub();
 void confdir(/*void*/);
 static int doextcmd(/*unknown*/);
@@ -190,7 +190,7 @@ struct func_tab cmdlist[] = {
     { 'p', dopay },
     { 'P', dowearring },
     { 'q', dodrink },
-    { 'Q', done1 },
+    { 'Q', doquit },
     { 'r', doread },
     { 'R', doremring },
     { 's', dosearch, "searching" },

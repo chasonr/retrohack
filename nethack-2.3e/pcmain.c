@@ -19,7 +19,8 @@ extern char genocided[], fut_geno[];
 extern char *getlogin(), *getenv();
 extern char plname[PL_NSIZ], pl_character[PL_CSIZ];
 
-int (*afternmv)(), done1(), (*occupation)();
+void (*afternmv)(void);
+int (*occupation)();
 
 char SAVEF[FILENAME];
 char *hname = gamename;
