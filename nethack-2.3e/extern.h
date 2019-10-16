@@ -43,7 +43,7 @@ extern schar ydir[];
 extern char fut_geno[60];
 extern char genocided[60];
 extern boolean in_mklev;
-extern char *nomovemsg;
+extern const char *nomovemsg;
 extern char nul[40];
 extern char plname[PL_NSIZ];
 extern char quitchars[];
@@ -126,7 +126,7 @@ extern void morehungry(/*unknown*/);
 extern void newuhs(/*unknown*/);
 extern int poisonous(/*unknown*/);
 extern char POISONOUS[];
-extern char *hu_stat[];
+extern const char *hu_stat[];
 
 /*** end.c ***/
 extern void charcat(/*unknown*/);
@@ -407,7 +407,7 @@ extern void cls(/*unknown*/);
 extern void docorner(/*unknown*/);
 extern void docrt(/*unknown*/);
 extern int doredraw(/*unknown*/);
-extern char *hcolor(/*unknown*/);
+extern const char *hcolor(/*unknown*/);
 extern void mstatusline(/*unknown*/);
 extern void nscr(/*unknown*/);
 extern void pmon(/*unknown*/);
@@ -536,7 +536,7 @@ extern void start_screen(/*unknown*/);
 extern void startup(/*unknown*/);
 extern int xputc(int c);
 extern void xputs(/*unknown*/);
-extern char *CD;
+extern const char *CD;
 extern int CO, LI;
 extern short ospeed;
 
@@ -667,7 +667,7 @@ extern struct monst *bhit(/*unknown*/);
 extern struct monst *boomhit(/*unknown*/);
 extern void buzz(/*unknown*/);
 extern int dozap(/*unknown*/);
-extern char *exclam(/*unknown*/);
+extern const char *exclam(/*unknown*/);
 extern void fracture_rock(/*unknown*/);
 extern void hit(/*unknown*/);
 extern void makewish(/*unknown*/);
@@ -688,7 +688,7 @@ extern struct spell spl_book[]; /* sized in decl.c */
 #endif
 
 extern int occtime;
-extern char *occtxt; /* defined when occupation != NULL */
+extern const char *occtxt; /* defined when occupation != NULL */
 
 #ifdef REDO
 extern int in_doagain;
@@ -708,7 +708,7 @@ extern struct obj *invent, *uwep, *uarm, *uarm2, *uarmh, *uarms, *uarmg,
 extern struct obj *uchain; /* defined iff PUNISHED */
 extern struct obj *uball;  /* defined if PUNISHED */
 
-extern char *traps[];
+extern const char *traps[];
 extern char vowels[];
 
 #include "you.h"
@@ -718,7 +718,8 @@ extern struct you u;
 extern xchar curx, cury; /* cursor location on screen */
 
 extern xchar seehx, seelx, seehy, seely; /* where to see*/
-extern char *save_cm, *killer;
+extern char *save_cm;
+extern const char *killer;
 
 extern xchar dlevel, maxdlevel; /* dungeon level */
 

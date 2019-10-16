@@ -445,7 +445,7 @@ int maxlen;
 }
 
 #ifdef SORTING
-static char *packorder =
+static const char *packorder =
 #ifdef SPELLS
     "\")[%?+/=!(*0";
 #else

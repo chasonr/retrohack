@@ -85,8 +85,8 @@ chwepon(otmp, amount)
 register struct obj *otmp;
 register int amount;
 {
-    register char *color = (amount < 0) ? "black" : "green";
-    register char *time;
+    register const char *color = (amount < 0) ? "black" : "green";
+    register const char *time;
 
     if (Hallucination)
         color = hcolor();

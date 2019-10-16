@@ -2,7 +2,8 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 struct permonst {
-    char *mname, mlet;
+    const char *mname;
+    char mlet;
     schar mlevel, mmove, ac, mr, damn, damd;
     unsigned pxlth;
 };

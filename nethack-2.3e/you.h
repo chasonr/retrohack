@@ -84,7 +84,7 @@ struct you {
     struct prop uprops[LAST_PROP + 1];
 
     unsigned umconf;
-    char *usick_cause;
+    const char *usick_cause;
     int mh, mhmax, mtimedone, umonnum; /* for polymorph-self */
     schar mstr, mstrmax;               /* for saving ustr/ustrmax */
 #if defined(KOPS) && defined(KAA)

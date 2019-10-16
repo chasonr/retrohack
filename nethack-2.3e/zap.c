@@ -15,7 +15,7 @@ static uchar dirlet(/*unknown*/);
 static int revive(/*unknown*/);
 static int zhit(/*unknown*/);
 
-static char *fl[] = {
+static const char *fl[] = {
     "magic missile", /* Wands must be 0-9 */
     "bolt of fire",
     "sleep ray",
@@ -605,7 +605,7 @@ register struct obj *obj;
     return;
 }
 
-char *
+const char *
 exclam(force)
 register int force;
 {
@@ -779,7 +779,7 @@ register int dx, dy;
     int abstype = (type == 20) ? 1 : abs(type) % 10;
     int txttype =
         (type == 20) ? 21 : (type > -10) ? abs(type) : abs(type) + 10;
-    register char *fltxt = fl[txttype];
+    register const char *fltxt = fl[txttype];
     struct rm *lev;
     xchar range;
     struct monst *mon;

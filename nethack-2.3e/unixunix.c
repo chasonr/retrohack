@@ -122,7 +122,7 @@ char *name;
  */
 #define MAXPATHLEN 1024
 
-    register char *np, *path;
+    register const char *np, *path;
     char filename[MAXPATHLEN + 1];
     if (index(name, '/') != NULL || (path = getenv("PATH")) == NULL)
         path = "";
@@ -446,7 +446,7 @@ void
 readmail()
 {
 #ifdef DEF_MAILREADER /* This implies that UNIX is defined */
-    register char *mr = 0;
+    register const char *mr = 0;
     more();
     if (!(mr = getenv("MAILREADER")))
         mr = DEF_MAILREADER;

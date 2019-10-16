@@ -24,7 +24,7 @@ static void wiz_inv(/*unknown*/);
 
 static struct you zerou;
 char pl_character[PL_CSIZ];
-static char *(roles[]) = { /* must all have distinct first letter */
+static const char *(roles[]) = { /* must all have distinct first letter */
                     /* roles[4] & [7] may be changed for females */
                     "Archeologist", "Tourist",  "Barbarian",
                     "Knight",       "Cave-man",
@@ -262,9 +262,6 @@ beginner:
         /* give him some feedback in case mklev takes much time */
         (void) putchar('\n');
         (void) fflush(stdout);
-    }
-    if (exper) {
-        roles[i][0] = pc;
     }
 
 got_suffix:

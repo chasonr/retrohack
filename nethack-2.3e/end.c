@@ -135,10 +135,13 @@ int a1, a2, a3, a4, a5, a6;
 /* Be careful not to call panic from here! */
 void
 done(st1)
-register char *st1;
+register const char *st1;
 {
 #ifdef DIAGS
     char c;
+#endif
+#ifdef KJSMODS
+    char kbuf[BUFSZ];
 #endif
 #ifdef WIZARD
     if (wizard && index("bcds", *st1)) {
@@ -224,8 +227,10 @@ die:
     if (*st1 == 'c')
         killer = st1; /* after outrip() */
 #ifdef KJSMODS
-    if (with_amulet())
-        (void) strcat(killer, " (with amulet)");
+    if (with_amulet()) {
+        (void) sprintf(kbuf, "%s (with amulet)", killer);
+        killer = kbuf;
+    }
 #endif
     settty((char *) 0); /* does an nh_clear_screen() */
     if (!done_stopprint)

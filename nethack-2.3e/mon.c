@@ -13,7 +13,7 @@ static int restrap(/*unknown*/);
 int warnlevel; /* used by movemon and dochugw */
 static long lastwarntime;
 static int lastwarnlev;
-static char *warnings[] = { "white", "pink", "red", "ruby", "purple", "black" };
+static const char *warnings[] = { "white", "pink", "red", "ruby", "purple", "black" };
 
 void
 movemon()
@@ -102,7 +102,7 @@ movemon()
         warnlevel = SIZE(warnings) - 1;
     if (warnlevel >= 0)
         if (warnlevel > lastwarnlev || moves > lastwarntime + 5) {
-            register char *rr;
+            register const char *rr;
             switch ((int) (Warning & (LEFT_RING | RIGHT_RING))) {
             case LEFT_RING:
                 rr = "Your left ring glows";

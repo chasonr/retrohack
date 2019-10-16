@@ -69,12 +69,14 @@ struct monst youmonst; /* dummy; used as return value for boomhit */
 
 xchar dlevel = 1;
 xchar xupstair, yupstair, xdnstair, ydnstair;
-char *save_cm = 0, *killer, *nomovemsg;
+char *save_cm = 0;
+const char *killer;
+const char *nomovemsg;
 
 long moves = 1;
 long wailmsg = 0;
 int multi = 0;
-char *occtxt;
+const char *occtxt;
 #ifdef DGKMOD
 int occtime;
 #endif

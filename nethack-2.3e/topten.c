@@ -9,7 +9,7 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-static char *ordin(/*unknown*/);
+static const char *ordin(/*unknown*/);
 static int outentry(/*unknown*/);
 static void outheader(/*unknown*/);
 
@@ -44,17 +44,17 @@ topten()
     int rank, rank0 = -1, rank1 = 0;
     int occ_cnt = PERSMAX;
     register struct toptenentry *t0, *t1, *tprev;
-    char *recfile = RECORD;
+    const char *recfile = RECORD;
 #ifdef UNIX
-    char *reclock = "record_lock";
+    const char *reclock = "record_lock";
 #endif
     int sleepct = 300;
     FILE *rfile;
     register int flg = 0;
 #ifdef LOGFILE
-    char *lgfile = LOGFILE;
+    const char *lgfile = LOGFILE;
     FILE *lfile;
-    char *loglock = "logfile_lock";
+    const char *loglock = "logfile_lock";
     int sleeplgct = 30;
 #endif
 
@@ -373,7 +373,7 @@ int a;
     return (buf);
 }
 
-static char *
+static const char *
 ordin(n)
 int n;
 {
@@ -406,7 +406,7 @@ char **argv;
     int playerct;
     int rank;
     register struct toptenentry *t1, *t2;
-    char *recfile = RECORD;
+    const char *recfile = RECORD;
     FILE *rfile;
     register int flg = 0;
     register int i;

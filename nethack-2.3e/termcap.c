@@ -19,11 +19,11 @@ short ospeed = 0; /* gets around "not defined" error message */
 #endif
 
 static char tbuf[512];
-static char *HO, *CL, *CE, *UP, *CM, *ND, *XD, *BC, *SO, *SE, *TI, *TE;
-static char *VS, *VE, *US, *UE;
+static const char *HO, *CL, *CE, *UP, *CM, *ND, *XD, *BC, *SO, *SE, *TI, *TE;
+static const char *VS, *VE, *US, *UE;
 static int SG;
 static char PC = '\0';
-char *CD;   /* tested in pri.c: docorner() */
+const char *CD;   /* tested in pri.c: docorner() */
 int CO, LI; /* used in pri.c and whatis.c */
 
 #if defined(MSDOS) && !defined(TERMLIB)
@@ -53,9 +53,9 @@ startup()
     if (!(BC = tgetstr("bc", &tbufptr))) {
         if (!tgetflag("bs"))
             error("Terminal must backspace.");
+        tbufptr[0] = '\b';
         BC = tbufptr;
         tbufptr += 2;
-        *BC = '\b';
     }
     HO = tgetstr("ho", &tbufptr);
     CO = tgetnum("co");

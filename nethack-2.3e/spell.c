@@ -14,7 +14,7 @@ static int getspell(/*unknown*/);
 static int spellet(/*unknown*/);
 static int spellev(/*unknown*/);
 static int spellid(/*unknown*/);
-static char *spellname(/*unknown*/);
+static const char *spellname(/*unknown*/);
 
 int
 doxcribe()
@@ -459,7 +459,7 @@ int spl;
     return (spl_book[spl - 1].sp_lev);
 }
 
-static char *
+static const char *
 spellname(spl)
 int spl;
 {

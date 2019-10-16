@@ -255,8 +255,8 @@ register struct obj *obj;
                 return (1);
         if (obj->olet == GEM_SYM && mon->data->mlet == 'u' && !mon->mtame) {
             char buf[BUFSZ];
-            char *nogood = " is not interested in your junk.";
-            char *addluck = " graciously accepts your gift.";
+            const char *nogood = " is not interested in your junk.";
+            const char *addluck = " graciously accepts your gift.";
 
             strcpy(buf, Monnam(mon));
 

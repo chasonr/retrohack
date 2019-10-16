@@ -3,13 +3,13 @@
 /* func_tab.h - version 1.0.2 */
 
 struct func_tab {
-    char f_char;
+    const char f_char;
     int (*f_funct)();
-    char *f_text;
+    const char *f_text;
 };
 
 struct ext_func_tab {
-    char *ef_txt, *ef_desc;
+    const char *ef_txt, *ef_desc;
     int (*ef_funct)();
 };
 

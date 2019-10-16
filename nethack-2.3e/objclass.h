@@ -7,8 +7,8 @@
 /* definition of a class of objects */
 
 struct objclass {
-    char *oc_name;  /* actual name */
-    char *oc_descr; /* description when name unknown */
+    const char *oc_name;  /* actual name */
+    const char *oc_descr; /* description when name unknown */
     char *oc_uname; /* called by user */
     Bitfield(oc_name_known, 1);
     Bitfield(oc_merge, 1); /* merge otherwise equal objects */

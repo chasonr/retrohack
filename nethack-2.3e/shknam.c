@@ -9,7 +9,7 @@
 
 static void findname(/*unknown*/);
 
-static char *shkliquors[] = {
+static const char *shkliquors[] = {
     /* Ukraine */
     "Njezjin", "Tsjernigof", "Gomel", "Ossipewsk", "Gorlowka",
     /* N. Russia */
@@ -22,7 +22,7 @@ static char *shkliquors[] = {
     "Vals", "Schuls", "Zum Loch", ""
 };
 
-static char *shkbooks[] = {
+static const char *shkbooks[] = {
     /* Eire */
     "Skibbereen",     "Kanturk",     "Rath Luirc",
     "Ennistymon",     "Lahinch",     "Kinnegad",
@@ -35,7 +35,7 @@ static char *shkbooks[] = {
     "Inishbofin",     "Kesh",        ""
 };
 
-static char *shkarmors[] = {
+static const char *shkarmors[] = {
     /* Turquie */
     "Demirci",
     "Kalecik",
@@ -70,7 +70,7 @@ static char *shkarmors[] = {
     ""
 };
 
-static char *shkwands[] = {
+static const char *shkwands[] = {
     /* Wales */
     "Yr Wyddgrug", "Trallwng", "Mallwyd", "Pontarfynach", "Rhaeader",
     "Llandrindod", "Llanfair-ym-muallt", "Y-Fenni", "Measteg", "Rhydaman",
@@ -81,7 +81,7 @@ static char *shkwands[] = {
     "Sgurr na Ciche", "Cannich", "Gairloch", "Kyleakin", "Dunvegan", ""
 };
 
-static char *shkrings[] = {
+static const char *shkrings[] = {
     /* Hollandse familienamen */
     "Feyfer", "Flugi", "Gheel", "Havic", "Haynin", "Hoboken", "Imbyze",
     "Juyn", "Kinsky", "Massis", "Matray", "Moy", "Olycan", "Sadelin",
@@ -92,7 +92,7 @@ static char *shkrings[] = {
     "Kajaani", "Fauske", ""
 };
 
-static char *shkfoods[] = {
+static const char *shkfoods[] = {
     /* Indonesia */
     "Djasinga",    "Tjibarusa",     "Tjiwidej",
     "Pengalengan", "Bandjar",       "Parbalingga",
@@ -107,7 +107,7 @@ static char *shkfoods[] = {
     "Tegal",       "Samoe",         ""
 };
 
-static char *shkweapons[] = {
+static const char *shkweapons[] = {
     /* Perigord */
     "Voulgezac",    "Rouffiac",  "Lerignac",   "Touverac",
     "Guizengeard",  "Melac",     "Neuvicq",    "Vanzac",
@@ -119,7 +119,7 @@ static char *shkweapons[] = {
     "Eygurande",    "Eauze",     "Labouheyre", ""
 };
 
-static char *shkgeneral[] = {
+static const char *shkgeneral[] = {
     /* Suriname */
     "Hebiwerie", "Possogroenoe", "Asidonhopo", "Manlobbi", "Adjama",
     "Pakka Pakka", "Kabalebo", "Wonotobo", "Akalapi", "Sipaliwini",
@@ -215,7 +215,7 @@ struct shclass shtypes[] = {
       { { 90, SPBOOK_SYM }, { 10, SCROLL_SYM }, { 0, 0 } },
       shkbooks },
 #endif
-    { (char *) 0, 0, 0, 0, { { 0, 0 }, { 0, 0 }, { 0, 0 } }, (char **) 0 }
+    { (char *) 0, 0, 0, 0, { { 0, 0 }, { 0, 0 }, { 0, 0 } }, (char const * const *) 0 }
 };
 
 /* make an object of the appropriate type for a shop square */
@@ -254,7 +254,7 @@ int sx, sy;
 static void
 findname(nampt, nlp)
 char *nampt;
-char *nlp[];
+const char *nlp[];
 {
     register int i;
 

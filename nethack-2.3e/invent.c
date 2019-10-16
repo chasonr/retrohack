@@ -875,7 +875,7 @@ dolook()
 {
     register struct obj *otmp, *otmp0;
     register struct gold *gold;
-    char *verb = Blind ? "feel" : "see";
+    const char *verb = Blind ? "feel" : "see";
     int ct = 0;
     int fd = 0;
 
@@ -1142,14 +1142,17 @@ register struct obj *obj;
  */
 #define Sprintf (void) sprintf
 
-static char *names[] = { "Illegal objects", "Amulets", "Comestibles",
-                         "Weapons",         "Tools",   "Iron balls",
-                         "Chains",          "Rocks",   "Armor",
-                         "Potions",         "Scrolls", "Wands",
+static const char *names[] = {
+    "Illegal objects", "Amulets", "Comestibles",
+    "Weapons",         "Tools",   "Iron balls",
+    "Chains",          "Rocks",   "Armor",
+    "Potions",         "Scrolls", "Wands",
 #ifdef SPELLS
-                         "Spellbooks",
+    "Spellbooks",
 #endif
-                         "Rings",           "Gems" };
+    "Rings",           "Gems"
+};
+
 char *
 let_to_name(let)
 char let;

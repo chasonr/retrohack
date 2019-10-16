@@ -213,7 +213,7 @@ register int fd;
 #ifdef HARD
     {
         /* Save name pointer from being munged -- tom@uw-warp */
-        char *name = pm_wizard.mname;
+        const char *name = pm_wizard.mname;
         mread(fd, (char *) &pm_wizard, sizeof(struct permonst));
         pm_wizard.mname = name;
     }

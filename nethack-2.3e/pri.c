@@ -14,7 +14,7 @@ xchar scrlx, scrhx, scrly, scrhy; /* corners of new area on screen */
 void
 swallowed()
 {
-    char *ulook = "|@|";
+    char ulook[] = "|@|";
     ulook[1] = u.usym;
 
     cls();
@@ -563,11 +563,11 @@ rndmonsym()
 int
 rndobjsym()
 {
-    char *rndsym = ")[!?%/=*($`";
+    const char *rndsym = ")[!?%/=*($`";
     return *(rndsym + rn2(11));
 }
 
-static char *hcolors[] = {
+static const char *hcolors[] = {
     "ultraviolet",
     "infrared",
     "hot pink",
@@ -605,7 +605,7 @@ static char *hcolors[] = {
     "lemon yellow"
 };
 
-char *
+const char *
 hcolor()
 {
     return hcolors[rn2(35)];

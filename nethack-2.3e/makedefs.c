@@ -456,7 +456,7 @@ newobj()
 }
 
 struct inherent {
-    char *attrib, *monsters;
+    const char *attrib, *monsters;
 } abilities[] = {
     { "Regeneration", "TVi" },
     { "See_invisible", "I" },

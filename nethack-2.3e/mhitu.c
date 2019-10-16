@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "hack.h"
 
-static char *breathe[] = {
+static const char *breathe[] = {
     "fragments", "fire",       "sleep gas",  "frost",
     "death",     "lightening", "poison gas", "acid"
 };

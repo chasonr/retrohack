@@ -80,7 +80,7 @@ timeout()
 }
 
 /* He is being petrified - dialogue by inmet!tower */
-static char *stoned_texts[] = {
+static const char *stoned_texts[] = {
     "You are slowing down.",            /* 5 */
     "Your limbs are stiffening.",       /* 4 */
     "Your limbs have turned to stone.", /* 3 */

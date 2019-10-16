@@ -489,7 +489,7 @@ dig()
             }
         }
     } else if (dig_effort > 100) {
-        register char *digtxt;
+        register const char *digtxt;
         register struct obj *obj;
 
         lev = &levl[dpx][dpy];
@@ -717,7 +717,7 @@ struct obj *obj;
             if (rn2(4 - u.uluck / 3) || !HTelepat)
                 pline("You can't see your ugly face.");
             else {
-                char *tm, *tl;
+                const char *tm, *tl;
                 int ll;
                 if (rn2(4)) {
                     tm = "ugly monster";

@@ -14,45 +14,46 @@ static int teleok(/*unknown*/);
 
 char vowels[] = "aeiou";
 
-char *traps[] = { "",
-                  " bear trap",
-                  "n arrow trap",
-                  " dart trap",
-                  " trapdoor",
-                  " teleportation trap",
-                  " pit",
-                  " sleeping gas trap",
-                  " piercer",
-                  " mimic"
+const char *traps[] = {
+    "",
+    " bear trap",
+    "n arrow trap",
+    " dart trap",
+    " trapdoor",
+    " teleportation trap",
+    " pit",
+    " sleeping gas trap",
+    " piercer",
+    " mimic"
 #ifdef NEWTRAPS
-                  ,
-                  " magic trap",
-                  " squeaky board"
+    ,
+    " magic trap",
+    " squeaky board"
 #endif
 #ifdef SPIDERS
-                  ,
-                  " web"
+    ,
+    " web"
 #endif
 #ifdef NEWCLASS
-                  ,
-                  " spiked pit",
-                  " level teleporter"
+    ,
+    " spiked pit",
+    " level teleporter"
 #endif
 #ifdef SPELLS
-                  ,
-                  " anti-magic field"
+    ,
+    " anti-magic field"
 #endif
 #ifdef KAA
-                  ,
-                  " rust trap"
+    ,
+    " rust trap"
 #ifdef RPH
-                  ,
-                  " polymorph trap"
+    ,
+    " polymorph trap"
 #endif
 #endif
 #ifdef SAC
-                  ,
-                  " land mine"
+    ,
+    " land mine"
 #endif
 };
 

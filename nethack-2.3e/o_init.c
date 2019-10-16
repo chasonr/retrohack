@@ -25,7 +25,8 @@ void
 init_objects()
 {
     register int i, j, first, last, sum, end;
-    register char let, *tmp;
+    register char let;
+    const char *tmp;
 
     /* bug fix to prevent "initialization error" abort on Intel Xenix.
      * reported by mikew@semike
@@ -72,22 +73,22 @@ init_objects()
                     /* NOTE:  longest color name must be default */
                     if (!strcmp(objects[j].oc_name, "turquoise")) {
                         if (rn2(2)) /* change from green? */
-                            strcpy(objects[j].oc_descr, "blue");
+                            objects[j].oc_descr = "blue";
                     } else if (!strcmp(objects[j].oc_name, "aquamarine")) {
                         if (rn2(2)) /* change from green? */
-                            strcpy(objects[j].oc_descr, "blue");
+                            objects[j].oc_descr = "blue";
                     } else if (!strcmp(objects[j].oc_name, "fluorite")) {
                         switch (rn2(4)) { /* change from violet? */
                         case 0:
                             break;
                         case 1:
-                            strcpy(objects[j].oc_descr, "blue");
+                            objects[j].oc_descr = "blue";
                             break;
                         case 2:
-                            strcpy(objects[j].oc_descr, "white");
+                            objects[j].oc_descr = "white";
                             break;
                         case 3:
-                            strcpy(objects[j].oc_descr, "green");
+                            objects[j].oc_descr = "green";
                             break;
                         }
                     }
@@ -249,20 +250,20 @@ int
 init_corpses()
 {
 #ifdef SPIDERS
-    strcpy(objects[DEAD_GIANT_SPIDER].oc_name, "dead giant spider");
+    objects[DEAD_GIANT_SPIDER].oc_name = "dead giant spider";
 #endif
 
 #ifdef KOPS
-    strcpy(objects[DEAD_KOP].oc_name, "dead Kop");
+    objects[DEAD_KOP].oc_name = "dead Kop";
 #endif
 
 #ifdef ROCKMOLE
-    strcpy(objects[DEAD_ROCKMOLE].oc_name, "dead rockmole");
+    objects[DEAD_ROCKMOLE].oc_name = "dead rockmole";
 #endif
 
 #ifndef KAA
-    strcpy(objects[DEAD_QUASIT].oc_name, "dead quasit");
-    strcpy(objects[DEAD_VIOLET_FUNGI].oc_name, "dead violet fungi");
+    objects[DEAD_QUASIT].oc_name = "dead quasit";
+    objects[DEAD_VIOLET_FUNGI].oc_name = "dead violet fungi";
 #endif
     return (0);
 }

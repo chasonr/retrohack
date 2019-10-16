@@ -24,8 +24,10 @@ static void unfaint(void);
 #define FAINTED 5
 #define STARVED 6
 
-char *hu_stat[] = { "Satiated", "        ", "Hungry  ", "Weak    ",
-                    "Fainting", "Fainted ", "Starved " };
+const char *hu_stat[] = {
+    "Satiated", "        ", "Hungry  ", "Weak    ",
+    "Fainting", "Fainted ", "Starved "
+};
 
 void
 init_uhunger()
@@ -35,7 +37,7 @@ init_uhunger()
 }
 
 static struct {
-    char *txt;
+    const char *txt;
     int nut;
 } tintxts[] = {
     { "It contains salmon - not bad!", 60 },

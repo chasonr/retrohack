@@ -6,7 +6,7 @@
 #include "hack.h"
 #include "panic.h"
 
-static char *rndmonnam();
+static const char *rndmonnam();
 static void do_oname(/*unknown*/);
 static char *visctrl(/*unknown*/);
 
@@ -235,17 +235,18 @@ register struct obj *obj;
     *str1 = str;
 }
 
-static char *ghostnames[] = { /* these names should have length < PL_NSIZ */
-                       /* Capitalize the names for asthetics -dgk
-                        */
-                       "Adri",       "Andries", "Andreas",     "Bert",
-                       "David",      "Dirk",    "Emile",       "Frans",
-                       "Fred",       "Greg",    "Hether",      "Jay",
-                       "John",       "Jon",     "Karnov",      "Kay",
-                       "Kenny",      "Kevin",   "Maud",        "Michiel",
-                       "Mike",       "Peter",   "Robert",      "Ron",
-                       "Tom",        "Wilmar",  "Nick Danger", "Phoenix",
-                       "Miracleman", "Stephan"
+static const char *ghostnames[] = {
+    /* these names should have length < PL_NSIZ */
+    /* Capitalize the names for asthetics -dgk
+     */
+    "Adri",       "Andries", "Andreas",     "Bert",
+    "David",      "Dirk",    "Emile",       "Frans",
+    "Fred",       "Greg",    "Hether",      "Jay",
+    "John",       "Jon",     "Karnov",      "Kay",
+    "Kenny",      "Kevin",   "Maud",        "Michiel",
+    "Mike",       "Peter",   "Robert",      "Ron",
+    "Tom",        "Wilmar",  "Nick Danger", "Phoenix",
+    "Miracleman", "Stephan"
 };
 
 char *
@@ -260,7 +261,7 @@ int vb;
     }
     switch (mtmp->data->mlet) {
     case ' ': {
-        register char *gn = (char *) mtmp->mextra;
+        register const char *gn = (const char *) mtmp->mextra;
         if (!*gn) { /* might also look in scorefile */
             gn = ghostnames[rn2(SIZE(ghostnames))];
             if (!rn2(2))
@@ -368,7 +369,7 @@ register struct monst *mtmp;
     return (bp);
 }
 
-char *
+static const char *
 rndmonnam()
 { /* Random name of monster type, if hallucinating */
     int x;

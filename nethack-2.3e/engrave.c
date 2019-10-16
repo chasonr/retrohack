@@ -26,7 +26,7 @@ static struct engr {
 
 /* random engravings */
 #ifdef KAA
-static char *random_engr[] =
+static const char *random_engr[] =
 #else
 static char random_engr[][30] =
 #endif

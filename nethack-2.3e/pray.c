@@ -121,9 +121,9 @@ fix_worst_trouble()
 
     case TROUBLE_CURSED_ITEMS: {
         struct obj *otmp;
-        char *what;
+        const char *what;
         otmp = (struct obj *) 0;
-        what = (char *) 0;
+        what = (const char *) 0;
         if (uarmh && uarmh->cursed) /* helmet */
             otmp = uarmh;
         else if (uarms && uarms->cursed) /* shield */
@@ -184,7 +184,6 @@ dosacrifice()
     register struct objclass *ftmp;
     int value;
     char let;
-    char *hcolor();
 
     otmp = getobj("%", "sacrifice");
     if (!otmp)
@@ -388,7 +387,7 @@ angrygods()
 static int
 pleased()
 {
-    char *tmp, *hcolor();
+    const char *tmp;
 #ifdef THEOLOGY
     int trouble = in_trouble(); /* what's your worst difficulty? */
     int pat_on_head = 0;

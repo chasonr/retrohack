@@ -366,7 +366,7 @@ register char *txt;
     useup(obj);
 }
 
-static char *bottlenames[] = {
+static const char *bottlenames[] = {
     "bottle", "phial", "flagon", "carafe", "flask",  "jar",   "vial"
 };
 
@@ -375,7 +375,7 @@ potionhit(mon, obj)
 register struct monst *mon;
 register struct obj *obj;
 {
-    register char *botlnam = bottlenames[rn2(SIZE(bottlenames))];
+    register const char *botlnam = bottlenames[rn2(SIZE(bottlenames))];
     boolean uclose, isyou = (mon == &youmonst);
 
     if (isyou) {
@@ -539,7 +539,7 @@ dodip()
 {
     register struct obj *potion, *obj;
 #ifdef KAA
-    char *tmp;
+    const char *tmp;
 #endif
 
     if (!(obj = getobj("#", "dip")))

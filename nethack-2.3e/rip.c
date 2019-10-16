@@ -9,7 +9,7 @@
 
 static void center(/*void*/);
 
-static char *rip[] = {
+static char rip[][50] = {
     "                       ----------",
     "                      /          \\",
     "                     /    REST    \\",
@@ -24,14 +24,13 @@ static char *rip[] = {
     "                  |       1001       |",
     "                 *|     *  *  *      | *",
     "        _________)/\\\\_//(\\/(/\\)/\\//\\/|_)_______\n",
-    0
+    ""
 };
 
 void
 outrip()
 {
-    register char **dp = rip;
-    register char *dpx;
+    register char const *dpx;
     char buf[BUFSZ];
     register int x, y;
 
@@ -80,13 +79,13 @@ outrip()
     center(9, buf);
     (void) sprintf(buf, "%4d", getyear());
     center(11, buf);
-    for (y = 8; *dp; y++, dp++) {
+    for (y = 0; rip[y][0] != '\0'; y++) {
         x = 0;
-        dpx = *dp;
+        dpx = rip[y];
         while (dpx[x]) {
             while (dpx[x] == ' ')
                 x++;
-            curs(x, y);
+            curs(x, y + 8);
             while (dpx[x] && dpx[x] != ' ') {
                 if (done_stopprint)
                     return;

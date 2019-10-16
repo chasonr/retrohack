@@ -768,7 +768,7 @@ makevtele()
 }
 
 /* there should be one of these per trap */
-static char *engravings[] = {
+static const char *engravings[] = {
     "",
     "",
     "",

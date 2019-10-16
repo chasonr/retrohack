@@ -506,7 +506,7 @@ int x1, x2;
 #ifdef CHDIR
 static void
 chdirx(dir, wr)
-char *dir;
+const char *dir;
 boolean wr;
 {
 #ifdef SECURE
