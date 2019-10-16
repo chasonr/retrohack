@@ -3,5 +3,7 @@ main.c
 makedefs
 nethack23
 onames.h
+date.h
+trap.h
 tty.c
 unix.c

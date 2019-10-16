@@ -33,7 +33,9 @@ static char *limit();
 /* construct definitions of object constants */
 #define OBJ_FILE "objects.h"
 #define ONAME_FILE "onames.h"
+#define TRAP_IN_FILE "trap_in.h"
 #define TRAP_FILE "trap.h"
+#define DATE_IN_FILE "date_in.h"
 #define DATE_FILE "date.h"
 #define RUMOR_FILE "rumors"
 #define DATA_FILE "data"
@@ -91,15 +93,13 @@ static void
 do_traps()
 {
     int ntrap;
-    char tmpfile[30];
     FILE *inp_file, *out_file;
 
-    sprintf(tmpfile, "makedefs.%d", getpid());
-    if ((out_file = fopen(tmpfile, WRMODE)) == NULL) {
+    if ((out_file = fopen(TRAP_FILE, WRMODE)) == NULL) {
         perror(tmpfile);
         exit(1);
     }
-    if ((inp_file = fopen(TRAP_FILE, RDMODE)) == NULL) {
+    if ((inp_file = fopen(TRAP_IN_FILE, RDMODE)) == NULL) {
         perror(TRAP_FILE);
         exit(1);
     }
@@ -137,10 +137,6 @@ do_traps()
     fprintf(out_file, "\n#define\tTRAPNUM\t%d\n", ntrap);
     fclose(inp_file);
     fclose(out_file);
-#ifdef MSDOS
-    remove(TRAP_FILE);
-#endif
-    rename(tmpfile, TRAP_FILE);
 }
 
 struct hline {
@@ -198,15 +194,14 @@ static void
 do_date()
 {
     long clock;
-    char tmpfile[30], cbuf[30], *c;
+    char cbuf[30], *c;
     FILE *inp_file, *out_file;
 
-    sprintf(tmpfile, "makedefs.%d", getpid());
-    if ((out_file = fopen(tmpfile, WRMODE)) == NULL) {
+    if ((out_file = fopen(DATE_FILE, WRMODE)) == NULL) {
         perror(tmpfile);
         exit(1);
     }
-    if ((inp_file = fopen(DATE_FILE, RDMODE)) == NULL) {
+    if ((inp_file = fopen(DATE_IN_FILE, RDMODE)) == NULL) {
         perror(DATE_FILE);
         exit(1);
     }
@@ -225,10 +220,6 @@ do_date()
 
     fclose(inp_file);
     fclose(out_file);
-#ifdef MSDOS
-    remove(DATE_FILE);
-#endif
-    rename(tmpfile, DATE_FILE);
 }
 
 static void
@@ -732,52 +723,3 @@ int a1, a2, a3, a4, a5, a6;
 #endif
     exit(1);
 }
-
-#if defined(SYSV) || defined(GENIX)
-int
-rename(oldname, newname)
-const char *oldname, *newname;
-{
-    int rc = 0;
-    if (strcmp(oldname, newname)) {
-        rc = unlink(newname);
-        if (rc == 0) {
-            rc = link(oldname, newname);
-        }
-        if (rc == 0) {
-            unlink(oldname);
-        }
-    }
-    return rc;
-}
-#endif
-
-#ifdef MSDOS
-/* Get around bug in freopen when opening for writing	*/
-/* Supplied by Nathan Glasser (nathan@mit-eddie)	*/
-#undef freopen
-FILE *_freopen(fname, fmode, fp)
-char *fname, *fmode;
-FILE *fp;
-{
-    if (!strncmp(fmode, "w", 1)) {
-        FILE *tmpfp;
-
-        if ((tmpfp = fopen(fname, fmode)) == NULL)
-            return (NULL);
-        if (dup2(fileno(tmpfp), fileno(fp)) < 0)
-            return (NULL);
-        fclose(tmpfp);
-        return (fp);
-    } else
-        return (freopen(fname, fmode, fp));
-}
-
-#ifdef __TURBOC__
-int
-getpid()
-{
-    return (1);
-}
-#endif
-#endif
