@@ -150,7 +150,7 @@ extern long lrand48();
  * will do when you have signed characters; otherwise use
  *	typedef	short int schar;
  */
-typedef char schar;
+typedef signed char schar;
 
 /*
  * small unsigned integers (8 bits suffice - but 7 bits do not)
