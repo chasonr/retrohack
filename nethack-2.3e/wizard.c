@@ -179,7 +179,7 @@ register struct obj *obj;
     while (range-- > 0) {
         bhitpos.x += dx;
         bhitpos.y += dy;
-        if (mtmp = m_at(bhitpos.x, bhitpos.y)) {
+        if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != NULL) {
             damage = index(mlarge, mtmp->data->mlet) ? oclass->wldam
                                                      : oclass->wsdam;
 #ifdef KAA
@@ -459,7 +459,7 @@ register struct monst *mtmp;
 {
     register struct monst *mtmp2;
 
-    if (mtmp2 = makemon(PM_WIZARD, u.ux, u.uy)) {
+    if ((mtmp2 = makemon(PM_WIZARD, u.ux, u.uy)) != NULL) {
         flags.no_of_wizards = 2;
         mtmp2->mtame = mtmp2->mpeaceful = 0;
         unpmon(mtmp2);
@@ -539,7 +539,7 @@ resurrect()
 {
     register struct monst *mtmp;
 
-    if (mtmp = makemon(PM_WIZARD, u.ux, u.uy)) {
+    if ((mtmp = makemon(PM_WIZARD, u.ux, u.uy)) != NULL) {
         mtmp->msleep = mtmp->mtame = mtmp->mpeaceful = 0;
         flags.no_of_wizards++;
         pline("A voice booms out...");

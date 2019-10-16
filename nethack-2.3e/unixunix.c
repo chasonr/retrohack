@@ -373,7 +373,7 @@ newmail()
     extern struct permonst pm_mail_daemon;
 
     obj = mksobj(SCR_MAIL);
-    if (md = makemon(&pm_mail_daemon, u.ux, u.uy)) /* always succeeds */
+    if ((md = makemon(&pm_mail_daemon, u.ux, u.uy)) != NULL) /* always succeeds */
         mdrush(md, 0);
 
     pline("\"Hello, %s%s! I have some mail for you.\"",

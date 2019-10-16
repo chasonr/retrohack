@@ -349,7 +349,7 @@ register boolean at_stairs;
     losedogs();
     {
         register struct monst *mtmp;
-        if (mtmp = m_at(u.ux, u.uy))
+        if ((mtmp = m_at(u.ux, u.uy)) != NULL)
             mnexto(mtmp); /* riv05!a3 */
     }
     flags.nscrinh = 0;

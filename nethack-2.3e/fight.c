@@ -346,7 +346,7 @@ register int thrown;
             u.uhunger += 20 * mon->mhpmax;
             newuhs(FALSE);
             xkilled(mon, 2);
-            if (tmp = mon->mhpmax / 5) {
+            if ((tmp = mon->mhpmax / 5) != 0) {
                 nomul(-tmp);
                 (void) sprintf(msgbuf, "You finished digesting %s.",
                                monnam(mon));

@@ -194,7 +194,7 @@ u_init()
         rolesyms[i] = roles[i][0];
     rolesyms[i] = 0;
 
-    if (pc = pl_character[0]) {
+    if ((pc = pl_character[0]) != '\0') {
         if ('a' <= pc && pc <= 'z')
             pc += 'A' - 'a';
         if ((i = role_index(pc)) >= 0)
@@ -234,7 +234,7 @@ u_init()
     }
     printf("? [%s or q(quit)] ", rolesyms);
 
-    while (pc = readchar()) {
+    while ((pc = readchar()) != '\0') {
         if (pc == 'q' || pc == 'Q') {
             clearlocks();
             settty((char *) 0);
@@ -589,7 +589,7 @@ void
 plnamesuffix()
 {
     register char *p;
-    if (p = rindex(plname, '-')) {
+    if ((p = rindex(plname, '-')) != NULL) {
         *p = 0;
         pl_character[0] = p[1];
         pl_character[1] = 0;
@@ -607,7 +607,7 @@ char pc;
     /* so that rolesyms[] is defined */
     register char *cp;
 
-    if (cp = index(rolesyms, pc))
+    if ((cp = index(rolesyms, pc)) != NULL)
         return (cp - rolesyms);
     return (-1);
 }

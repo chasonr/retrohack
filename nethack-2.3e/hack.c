@@ -104,7 +104,7 @@ moverock()
     register struct monst *mtmp;
     struct monst *m_at();
 
-    while (otmp = sobj_at(ENORMOUS_ROCK, u.ux + u.dx, u.uy + u.dy)) {
+    while ((otmp = sobj_at(ENORMOUS_ROCK, u.ux + u.dx, u.uy + u.dy)) != NULL) {
         rx = u.ux + 2 * u.dx;
         ry = u.uy + 2 * u.dy;
         nomul(0);
@@ -119,7 +119,7 @@ moverock()
                 pline("Perhaps that's why you cannot move it.");
                 goto cannot_push;
             }
-            if (ttmp = t_at(rx, ry))
+            if ((ttmp = t_at(rx, ry)) != NULL)
                 switch (ttmp->ttyp) {
                 case PIT:
                     pline("You push the rock into a pit!");
@@ -455,7 +455,7 @@ int all;
         if (!ct && g_at(u.ux, u.uy)) {
             if (flags.run)
                 nomul(0);
-            while (gold = g_at(u.ux, u.uy)) {
+            while ((gold = g_at(u.ux, u.uy)) != NULL) {
                 pline("%ld gold piece%s.", gold->amount, plur(gold->amount));
                 u.ugold += gold->amount;
                 flags.botl = 1;
@@ -479,7 +479,7 @@ int all;
         return;
     }
 #endif
-    while (gold = g_at(u.ux, u.uy)) {
+    while ((gold = g_at(u.ux, u.uy)) != NULL) {
         pline("%ld gold piece%s.", gold->amount, plur(gold->amount));
         u.ugold += gold->amount;
         flags.botl = 1;
@@ -527,9 +527,7 @@ int all;
             ilets[iletct++] = 'A';
             ilets[iletct] = 0;
 
-            if (iletct = 3)
-                pline("What kinds of thing do you want to pick up? [%s] ",
-                      ilets);
+            pline("What kinds of thing do you want to pick up? [%s] ", ilets);
             getlin(buf);
             if (buf[0] == '\033') {
                 clrlin();
@@ -542,7 +540,7 @@ int all;
         }
         ip = buf;
         olets[0] = 0;
-        while (sym = *ip++) {
+        while ((sym = *ip++) != '\0') {
             /* new A function (selective all) added by
              * GAN 01/09/87
              */
@@ -567,7 +565,7 @@ int all;
     }
 
     if (all || index(olets, GOLD_SYM))
-        while (gold = g_at(u.ux, u.uy)) {
+        while ((gold = g_at(u.ux, u.uy)) != NULL) {
             pline("%ld gold piece%s.", gold->amount, plur(gold->amount));
             u.ugold += gold->amount;
             flags.botl = 1;

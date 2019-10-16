@@ -405,7 +405,7 @@ register char *let, *word;
         foo = foo2 = 1;
         ilet2 = bp[0];
         ilet1 = bp[1];
-        while (ilet = bp[++foo2] = bp[++foo]) {
+        while ((ilet = bp[++foo2] = bp[++foo]) != '\0') {
             if (ilet == ilet1 + 1) {
                 if (ilet1 == ilet2 + 1)
                     bp[foo2 - 1] = ilet1 = '-';
@@ -574,7 +574,7 @@ int (*fn)(), max;
     }
     ip = buf;
     olets[0] = 0;
-    while (sym = *ip++) {
+    while ((sym = *ip++) != '\0') {
         if (sym == ' ')
             continue;
         if (sym == GOLD_SYM) {

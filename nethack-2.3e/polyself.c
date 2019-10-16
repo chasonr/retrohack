@@ -169,7 +169,7 @@ char turninto;
             useup(uarm);
         } else if (index("abcfghikpqrstvxyABEFJQS", turninto)) {
             pline("Your armor falls around you!");
-            if (otmp = uarm2) {
+            if ((otmp = uarm2) != NULL) {
                 setworn((struct obj *) 0, otmp->owornmask & W_ARM2);
                 dropx(otmp);
             }
@@ -186,18 +186,18 @@ char turninto;
     }
 #endif
     if (!index("enozCGHIKLNOTUVWXYZ&',", turninto)) {
-        if (otmp = uarmg) {
+        if ((otmp = uarmg) != NULL) {
             pline("You drop your gloves!");
             setworn((struct obj *) 0, otmp->owornmask & W_ARMG);
             dropx(otmp);
             drop_weapon('a'); /* the 'a' is dummy to ensure dropping */
         }
-        if (otmp = uarms) {
+        if ((otmp = uarms) != NULL) {
             pline("You can no longer hold your shield!");
             setworn((struct obj *) 0, otmp->owornmask & W_ARMS);
             dropx(otmp);
         }
-        if (otmp = uarmh) {
+        if ((otmp = uarmh) != NULL) {
             pline("Your helmet falls to the floor!");
             setworn((struct obj *) 0, otmp->owornmask & W_ARMH);
             dropx(otmp);
@@ -210,7 +210,7 @@ drop_weapon(turninto)
 char turninto;
 {
     struct obj *otmp;
-    if (otmp = uwep) {
+    if ((otmp = uwep) != NULL) {
         if (cantwield(turninto)) {
             pline("You find you must drop your weapon!");
             setuwep((struct obj *) 0);

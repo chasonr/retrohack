@@ -678,7 +678,7 @@ struct obj *obj;            /* 2nd arg to fhitm/fhito */
         bhitpos.x += ddx;
         bhitpos.y += ddy;
         typ = levl[bhitpos.x][bhitpos.y].typ;
-        if (mtmp = m_at(bhitpos.x, bhitpos.y)) {
+        if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != NULL) {
             if (sym) {
                 tmp_at(-1, -1); /* close call */
                 return (mtmp);
@@ -739,7 +739,7 @@ int dx, dy;
         dy = ydir[i];
         bhitpos.x += dx;
         bhitpos.y += dy;
-        if (mtmp = m_at(bhitpos.x, bhitpos.y)) {
+        if ((mtmp = m_at(bhitpos.x, bhitpos.y)) != NULL) {
             tmp_at(-1, -1);
             return (mtmp);
         }

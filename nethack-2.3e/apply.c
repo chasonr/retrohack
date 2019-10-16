@@ -171,7 +171,7 @@ use_camera(obj)
         return;
     }
 #endif
-    if (mtmp = bchit(u.dx, u.dy, COLNO, '!')) {
+    if ((mtmp = bchit(u.dx, u.dy, COLNO, '!')) != NULL) {
         if (mtmp->msleep) {
             mtmp->msleep = 0;
             pline("The flash awakens %s.", monnam(mtmp)); /* a3 */
@@ -235,7 +235,7 @@ use_stethoscope()
         mstatusline(u.ustuck);
         return (0);
     }
-    if (mtmp = m_at(rx, ry)) {
+    if ((mtmp = m_at(rx, ry)) != NULL) {
         mstatusline(mtmp);
         return (0);
     }
@@ -362,7 +362,7 @@ char sym;
     while (range--) {
         bchx += ddx;
         bchy += ddy;
-        if (mtmp = m_at(bchx, bchy))
+        if ((mtmp = m_at(bchx, bchy)) != NULL)
             break;
         if (!ZAP_POS(levl[bchx][bchy].typ)) {
             bchx -= ddx;
@@ -508,7 +508,7 @@ dig()
         register struct obj *obj;
 
         lev = &levl[dpx][dpy];
-        if (obj = sobj_at(ENORMOUS_ROCK, dpx, dpy)) {
+        if ((obj = sobj_at(ENORMOUS_ROCK, dpx, dpy)) != NULL) {
             fracture_rock(obj);
             digtxt = "The rock falls apart.";
         } else if (!lev->typ || lev->typ == SCORR) {
@@ -761,7 +761,7 @@ struct obj *obj;
         }
         return;
     }
-    if (mtmp = bchit(u.dx, u.dy, COLNO, 0)) {
+    if ((mtmp = bchit(u.dx, u.dy, COLNO, 0)) != NULL) {
         mlet = mtmp->data->mlet;
         if (mtmp->msleep) {
             pline("%s is tired and doesn't look at your mirror.",

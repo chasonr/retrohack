@@ -538,7 +538,7 @@ register char *bp;
         /* find "cloves of garlic", "worthless pieces of blue glass" */
         for (p = bp; *p; p++)
             if (!strncmp(p, "s of ", 5)) {
-                while (*p = p[1])
+                while ((*p = p[1]) != '\0')
                     p++;
                 goto sing;
             }

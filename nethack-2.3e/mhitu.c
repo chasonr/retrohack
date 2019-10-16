@@ -479,7 +479,7 @@ register int dam;
         if (!Blind) {
             register struct obj *obj;
             extern char *Xmonnam();
-            if (obj = o_at(mtmp->mx, mtmp->my))
+            if ((obj = o_at(mtmp->mx, mtmp->my)) != NULL)
                 pline("%s was hidden under %s!", Xmonnam(mtmp), doname(obj));
         }
     }

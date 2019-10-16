@@ -42,7 +42,7 @@ initoptions()
     read_config_file();
 #endif
 #ifdef HACKOPTIONS
-    if (opts = getenv("HACKOPTIONS"))
+    if ((opts = getenv("HACKOPTIONS")) != NULL)
         parseoptions(opts, TRUE);
 #endif
 }
@@ -56,11 +56,11 @@ boolean from_env;
     unsigned num;
     boolean negated;
 
-    if (op = index(opts, ',')) {
+    if ((op = index(opts, ',')) != NULL) {
         *op++ = 0;
         parseoptions(op, from_env);
     }
-    if (op = index(opts, ' ')) {
+    if ((op = index(opts, ' ')) != NULL) {
         op2 = op;
         while (*op++)
             if (*op != ' ')

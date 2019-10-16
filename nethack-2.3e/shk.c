@@ -140,7 +140,7 @@ setpaid()
     for (mtmp = fallen_down; mtmp; mtmp = mtmp->nmon)
         for (obj = mtmp->minvent; obj; obj = obj->nobj)
             obj->unpaid = 0;
-    while (obj = billobjs) {
+    while ((obj = billobjs) != NULL) {
         billobjs = obj->nobj;
         free((char *) obj);
     }
@@ -594,10 +594,10 @@ register struct bill_x *bp;
     else if (!(obj = o_on(id, invent)) && !(obj = o_on(id, fobj))
              && !(obj = o_on(id, fcobj))) {
         for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
-            if (obj = o_on(id, mtmp->minvent))
+            if ((obj = o_on(id, mtmp->minvent)) != NULL)
                 break;
         for (mtmp = fallen_down; mtmp; mtmp = mtmp->nmon)
-            if (obj = o_on(id, mtmp->minvent))
+            if ((obj = o_on(id, mtmp->minvent)) != NULL)
                 break;
     }
     return (obj);

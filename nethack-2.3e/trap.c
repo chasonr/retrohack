@@ -125,7 +125,7 @@ register struct trap *trap;
             break;
         case PIERC:
             deltrap(trap);
-            if (mtmp = makemon(PM_PIERCER, u.ux, u.uy)) {
+            if ((mtmp = makemon(PM_PIERCER, u.ux, u.uy)) != NULL) {
                 pline("%s suddenly drops from the ceiling!", Xmonnam(mtmp));
                 if (uarmh)
                     pline("Its blow glances off your helmet.");
@@ -586,7 +586,7 @@ float_down()
         drown();
 
     pline("You float gently to the ground.");
-    if (trap = t_at(u.ux, u.uy))
+    if ((trap = t_at(u.ux, u.uy)) != NULL)
         switch (trap->ttyp) {
         case PIERC:
             break;
@@ -932,7 +932,7 @@ domagictrap()
                 pline("You feel charismatic.");
                 for (i = -bd; i <= bd; i++)
                     for (j = -bd; j <= bd; j++)
-                        if (mtmp = m_at(u.ux + i, u.uy + j))
+                        if ((mtmp = m_at(u.ux + i, u.uy + j)) != NULL)
                             (void) tamedog(mtmp, (struct obj *) 0);
                 break;
             }

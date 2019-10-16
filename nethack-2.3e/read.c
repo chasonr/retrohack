@@ -281,7 +281,7 @@ register struct obj *sobj;
 
         for (i = -bd; i <= bd; i++)
             for (j = -bd; j <= bd; j++)
-                if (mtmp = m_at(u.ux + i, u.uy + j))
+                if ((mtmp = m_at(u.ux + i, u.uy + j)) != NULL)
                     if (!resist(mtmp, sobj->olet, 0, NOTELL))
                         (void) tamedog(mtmp, (struct obj *) 0);
         break;

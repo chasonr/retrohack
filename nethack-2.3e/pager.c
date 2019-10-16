@@ -416,7 +416,7 @@ char *text;
     }
 
 cleanup:
-    while (tl = texthead) {
+    while ((tl = texthead) != NULL) {
         texthead = tl->next_line;
         free((char *) tl);
     }
@@ -497,7 +497,7 @@ dosh()
 {
     register char *str;
     if (child(0)) {
-        if (str = getenv("SHELL"))
+        if ((str = getenv("SHELL")) != NULL)
             execl(str, str, (char *) 0);
         else
             execl("/bin/sh", "sh", (char *) 0);

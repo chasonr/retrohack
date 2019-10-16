@@ -115,7 +115,7 @@ makelevel()
     {
         struct monst *mtmp;
         if (dlevel == u.medusa_level)
-            if (mtmp = makemon(PM_MEDUSA, xdnstair, ydnstair))
+            if ((mtmp = makemon(PM_MEDUSA, xdnstair, ydnstair)) != NULL)
                 mtmp->msleep = 1;
     }
 #endif
@@ -988,7 +988,7 @@ register
                 my = somey();
             }
         } while (m_at(mx, my) || levl[mx][my].typ == STAIRS);
-        if (mtmp = makemon(PM_MIMIC, mx, my)) {
+        if ((mtmp = makemon(PM_MIMIC, mx, my)) != NULL) {
             mtmp->mimic = 1;
             mtmp->mappearance =
                 fakegold

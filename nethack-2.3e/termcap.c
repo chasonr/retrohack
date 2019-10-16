@@ -59,7 +59,7 @@ startup()
         flags.nonull = 1; /* this should be a termcap flag */
     if (tgetent(tptr, term) < 1)
         error("Unknown terminal type: %s.", term);
-    if (pc = tgetstr("pc", &tbufptr))
+    if ((pc = tgetstr("pc", &tbufptr)) != NULL)
         PC = *pc;
     if (!(BC = tgetstr("bc", &tbufptr))) {
         if (!tgetflag("bs"))

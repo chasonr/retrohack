@@ -39,7 +39,7 @@ findit() /* returns number of things found */
                 levl[zx][zy].typ = CORR;
                 atl(zx, zy, CORR_SYM);
                 num++;
-            } else if (ttmp = t_at(zx, zy)) {
+            } else if ((ttmp = t_at(zx, zy)) != NULL) {
                 if (ttmp->ttyp == PIERC) {
                     (void) makemon(PM_PIERCER, zx, zy);
                     num++;
@@ -50,7 +50,7 @@ findit() /* returns number of things found */
                         atl(zx, zy, TRAP_SYM);
                     num++;
                 }
-            } else if (mtmp = m_at(zx, zy))
+            } else if ((mtmp = m_at(zx, zy)) != NULL)
                 if (mtmp->mimic) {
                     seemimic(mtmp);
                     num++;
@@ -96,7 +96,7 @@ dosearch()
                     } else {
                         /* Be careful not to find anything in an SCORR or
                          * SDOOR */
-                        if (mtmp = m_at(x, y))
+                        if ((mtmp = m_at(x, y)) != NULL)
                             if (mtmp->mimic) {
                                 seemimic(mtmp);
                                 pline("You find %s.", defmonnam(mtmp));

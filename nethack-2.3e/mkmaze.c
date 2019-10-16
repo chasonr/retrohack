@@ -51,9 +51,9 @@ makemaz()
             (void) mkobj_at(AMULET_SYM, zx, zy);
             flags.made_amulet = 1;
             walkfrom(zx + 4, zy);
-            if (mtmp = makemon(&hell_hound, zx, zy))
+            if ((mtmp = makemon(&hell_hound, zx, zy)) != NULL)
                 mtmp->msleep = 1;
-            if (mtmp = makemon(PM_WIZARD, zx + 1, zy)) {
+            if ((mtmp = makemon(PM_WIZARD, zx + 1, zy)) != NULL) {
                 mtmp->msleep = 1;
                 flags.no_of_wizards = 1;
             }
@@ -61,10 +61,10 @@ makemaz()
         } else {
             struct obj *ot;
             /* make a cheap plastic imitation */
-            if (ot = mkobj_at(AMULET_SYM, zx, zy))
+            if ((ot = mkobj_at(AMULET_SYM, zx, zy)) != NULL)
                 ot->spe = -1;
             walkfrom(zx + 4, zy);
-            if (mtmp = makemon(&hell_hound, zx, zy))
+            if ((mtmp = makemon(&hell_hound, zx, zy)) != NULL)
                 mtmp->msleep = 1;
             mkmon_at('&', zx + 1, zy);
         }

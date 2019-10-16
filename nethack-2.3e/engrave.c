@@ -170,7 +170,7 @@ register char *s;
 {
     register struct engr *ep;
 
-    if (ep = engr_at(x, y))
+    if ((ep = engr_at(x, y)) != NULL)
         del_engr(ep);
     ep = (struct engr *) alloc(
         (unsigned) (sizeof(struct engr) + strlen(s) + 1));

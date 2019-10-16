@@ -81,7 +81,7 @@ int after;
                 edog->droptime = moves;
             }
     } else {
-        if (obj = o_at(omx, omy))
+        if ((obj = o_at(omx, omy)) != NULL)
             if (!index("0_", obj->olet)) {
                 if ((otyp = dogfood(obj)) <= CADAVER) {
                     nix = omx;

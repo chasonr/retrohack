@@ -384,7 +384,7 @@ register int x, y;
     if (x == u.ux && y == u.uy && !Invisible)
         return (1);
 
-    if (mtmp = m_at(x, y))
+    if ((mtmp = m_at(x, y)) != NULL)
         return ((Blind && Telepat) || canseemon(mtmp));
 
     return (0);

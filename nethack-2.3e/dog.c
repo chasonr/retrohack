@@ -64,13 +64,13 @@ void
 losedogs()
 {
     register struct monst *mtmp;
-    while (mtmp = mydogs) {
+    while ((mtmp = mydogs) != NULL) {
         mydogs = mtmp->nmon;
         mtmp->nmon = fmon;
         fmon = mtmp;
         mnexto(mtmp);
     }
-    while (mtmp = fallen_down) {
+    while ((mtmp = fallen_down) != NULL) {
         fallen_down = mtmp->nmon;
         mtmp->nmon = fmon;
 #ifdef WALKIES

@@ -233,7 +233,7 @@ int x, y;
     register struct gold *gold;
     register long amount = (num ? num : 1 + (rnd(dlevel + 2) * rnd(30)));
 
-    if (gold = g_at(x, y))
+    if ((gold = g_at(x, y)) != NULL)
         gold->amount += amount;
     else {
         gold = newgold();

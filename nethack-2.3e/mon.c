@@ -194,7 +194,7 @@ register struct monst *mtmp;
         return;
 #endif
     /* Eats gold if it is there */
-    while (gold = g_at(mtmp->mx, mtmp->my)) {
+    while ((gold = g_at(mtmp->mx, mtmp->my)) != NULL) {
         freegold(gold);
         /* Left behind a pile? */
         pile = rnd(25);
@@ -220,7 +220,7 @@ mpickgold(mtmp)
 register struct monst *mtmp;
 {
     register struct gold *gold;
-    while (gold = g_at(mtmp->mx, mtmp->my)) {
+    while ((gold = g_at(mtmp->mx, mtmp->my)) != NULL) {
         mtmp->mgold += gold->amount;
         freegold(gold);
         if (levl[mtmp->mx][mtmp->my].scrsym == GOLD_SYM)
@@ -295,7 +295,7 @@ nexttry: /* eels prefer the water, but if there is no water nearby,
                                     if (!(flag & ALLOW_U))
                                         continue;
                                     info[cnt] = ALLOW_U;
-                                } else if (mtmp = m_at(nx, ny)) {
+                                } else if ((mtmp = m_at(nx, ny)) != NULL) {
                                     if (!(flag & ALLOW_M))
                                         continue;
                                     info[cnt] = ALLOW_M;
@@ -503,7 +503,7 @@ static void
 dmonsfree()
 {
     register struct monst *mtmp;
-    while (mtmp = fdmon) {
+    while ((mtmp = fdmon) != NULL) {
         fdmon = mtmp->nmon;
         free((char *) mtmp);
     }

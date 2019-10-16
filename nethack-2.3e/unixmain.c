@@ -212,7 +212,7 @@ char *argv[];
         register char *sfoo;
         extern char genocided[], fut_geno[];
         (void) strcpy(lock, plname);
-        if (sfoo = getenv("MAGIC"))
+        if ((sfoo = getenv("MAGIC")) != NULL)
             while (*sfoo) {
                 switch (*sfoo++) {
                 case 'n':
@@ -220,7 +220,7 @@ char *argv[];
                     break;
                 }
             }
-        if (sfoo = getenv("GENOCIDED")) {
+        if ((sfoo = getenv("GENOCIDED")) != NULL) {
             if (*sfoo == '!') {
                 extern struct permonst mons[CMNUM + 2];
                 register struct permonst *pm = mons;
@@ -626,7 +626,7 @@ newgame()
          * makedog() will fail when it calls makemon().
          * 			- ucsfcgl!kneller
          */
-        if (mtmp = m_at(u.ux, u.uy))
+        if ((mtmp = m_at(u.ux, u.uy)) != NULL)
             mnexto(mtmp);
     }
     (void) makedog();
