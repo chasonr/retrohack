@@ -34,7 +34,7 @@ dochug(mtmp)
 register struct monst *mtmp;
 {
     register struct permonst *mdat;
-    register int tmp, nearby, scared, onscary;
+    register int tmp = 0, nearby, scared, onscary;
 
     if (mtmp->cham && !rn2(6))
         (void) newcham(mtmp,
@@ -155,9 +155,9 @@ int after;
         ny, omx, omy, appr, nearer, cnt, i, j;
     xchar gx, gy, nix, niy, chcnt;
     schar chi;
-    boolean likegold, likegems, likeobjs;
+    boolean likegold = FALSE, likegems = FALSE, likeobjs = FALSE;
 #ifdef KAA
-    boolean likerock;
+    boolean likerock = FALSE;
 #endif
     char msym = mtmp->data->mlet;
     schar mmoved = 0; /* not strictly nec.: chi >= 0 will do */

@@ -18,7 +18,7 @@ int after;
 #endif
         int nx,
         ny, omx, omy, appr, nearer, j;
-    int udist, chi, i, whappr;
+    int udist, chi = 0, i, whappr;
     register struct monst *mtmp2;
     register struct permonst *mdat = mtmp->data;
     register struct edog *edog = EDOG(mtmp);

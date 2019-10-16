@@ -1069,7 +1069,7 @@ static int
 revive(obj)
 register struct obj *obj;
 {
-    register struct monst *mtmp;
+    register struct monst *mtmp = NULL;
     register int let;
 
     if (obj->olet == FOOD_SYM && obj->otyp > CORPSE) {

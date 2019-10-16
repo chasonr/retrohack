@@ -1005,7 +1005,7 @@ register struct monst *shkp;
     register int udist;
     int z;
     schar shkroom, chi, chcnt, cnt;
-    boolean uondoor, satdoor, avoid, badinv;
+    boolean uondoor = FALSE, satdoor, avoid = FALSE, badinv;
     coord poss[9];
     long info[9];
     struct obj *ib = 0;

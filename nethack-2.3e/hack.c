@@ -188,9 +188,9 @@ moverock()
 void
 domove()
 {
-    register struct monst *mtmp;
+    register struct monst *mtmp = NULL;
     register struct rm *tmpr, *ust;
-    struct trap *trap;
+    struct trap *trap = NULL;
 
     u_wipe_engr(rnd(5));
 
@@ -718,7 +718,7 @@ int all;
 void
 lookaround()
 {
-    register int x, y, i, x0, y0, m0, i0 = 9;
+    register int x, y, i, x0 = 0, y0 = 0, m0 = 0, i0 = 9;
     register int corrct = 0, noturn = 0;
     register struct monst *mtmp;
 #ifdef LINT
