@@ -29,12 +29,12 @@ MANEXT   = 6
 
 HACKCSRC = alloc.c apply.c bones.c cmd.c decl.c do.c do_name.c do_wear.c\
 	dog.c dogmove.c dothrow.c eat.c end.c engrave.c fight.c fountain.c\
-	hack.c invent.c ioctl.c lev.c main.c makemon.c mhitu.c\
+	hack.c invent.c ioctl.c lev.c $(MAIN) makemon.c mhitu.c\
 	mklev.c mkmaze.c mkobj.c mkshop.c mon.c monmove.c monst.c o_init.c\
 	objnam.c options.c pager.c polyself.c potion.c pray.c pri.c\
 	prisym.c read.c rip.c rnd.c rumors.c save.c search.c shk.c shknam.c\
 	sit.c spell.c steal.c termcap.c timeout.c topl.c topten.c track.c\
-	trap.c tty.c u_init.c unix.c vault.c version.c wield.c wizard.c\
+	trap.c $(TTY) u_init.c $(UNIX) vault.c version.c wield.c wizard.c\
 	worm.c worn.c write.c zap.c
 
 CSOURCES = $(HACKCSRC) makedefs.c
@@ -93,20 +93,14 @@ trap.h:	config.h makedefs
 onames.h:	makedefs objects.h
 	./makedefs -o
 
-main.o:
+main.o: $(MAIN) hack.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-main.c:	unixmain.c hack.h
-	cp $(MAIN) main.c
+tty.o: $(TTY) hack.h func_tab.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
-tty.o:
-
-tty.c:	unixtty.c hack.h func_tab.h
-	cp $(TTY) tty.c
-
-unix.o:
-
-unix.c:	unixunix.c hack.h mkroom.h
-	cp $(UNIX) unix.c
+unix.o: $(UNIX) hack.h mkroom.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 lint:
 # lint cannot have -p here because (i) capitals are meaningful:
@@ -171,7 +165,7 @@ clean:
 
 spotless: clean
 	rm -f a.out core $(GAME) makedefs
-	rm -f Makefile $(VARAUX) main.c tty.c unix.c
+	rm -f Makefile $(VARAUX)
 
 depend:
 # For the moment we are lazy and disregard /usr/include files because
