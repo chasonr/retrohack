@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include "config.h"
@@ -12,7 +13,6 @@
 
 #ifdef MSDOS
 #undef exit
-#define freopen _freopen
 #define alloc malloc
 #define RDMODE "r"
 #define WRMODE "w"
@@ -28,6 +28,7 @@ static int duplicate();
 static int specprop();
 static int letter();
 static int digit();
+static char *limit();
 
 /* construct definitions of object constants */
 #define OBJ_FILE "objects.h"
@@ -89,53 +90,53 @@ char *argv[];
 static void
 do_traps()
 {
-    int ntrap, getpid();
+    int ntrap;
     char tmpfile[30];
-    FILE *freopen();
+    FILE *inp_file, *out_file;
 
     sprintf(tmpfile, "makedefs.%d", getpid());
-    if (freopen(tmpfile, WRMODE, stdout) == NULL) {
+    if ((out_file = fopen(tmpfile, WRMODE)) == NULL) {
         perror(tmpfile);
         exit(1);
     }
-    if (freopen(TRAP_FILE, RDMODE, stdin) == NULL) {
+    if ((inp_file = fopen(TRAP_FILE, RDMODE)) == NULL) {
         perror(TRAP_FILE);
         exit(1);
     }
 
-    while (fgets(in_line, sizeof(in_line), stdin) != NULL) {
-        fputs(in_line, stdout);
+    while (fgets(in_line, sizeof(in_line), inp_file) != NULL) {
+        fputs(in_line, out_file);
         if (!strncmp(in_line, "/* DO NOT REMOVE THIS LINE */", 29))
             break;
     }
     ntrap = 10;
-    printf("\n");
+    fprintf(out_file, "\n");
 #ifdef NEWTRAPS
-    printf("#define\tMGTRP\t\t%d\n", ntrap++);
-    printf("#define\tSQBRD\t\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tMGTRP\t\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tSQBRD\t\t%d\n", ntrap++);
 #endif
 #ifdef SPIDERS
-    printf("#define\tWEB\t\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tWEB\t\t%d\n", ntrap++);
 #endif
 #ifdef NEWCLASS
-    printf("#define\tSPIKED_PIT\t%d\n", ntrap++);
-    printf("#define\tLEVEL_TELEP\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tSPIKED_PIT\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tLEVEL_TELEP\t%d\n", ntrap++);
 #endif
 #ifdef SPELLS
-    printf("#define\tANTI_MAGIC\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tANTI_MAGIC\t%d\n", ntrap++);
 #endif
 #ifdef KAA
-    printf("#define\tRUST_TRAP\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tRUST_TRAP\t%d\n", ntrap++);
 #ifdef RPH
-    printf("#define\tPOLY_TRAP\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tPOLY_TRAP\t%d\n", ntrap++);
 #endif
 #endif
 #ifdef SAC
-    printf("#define\tLANDMINE\t%d\n", ntrap++);
+    fprintf(out_file, "#define\tLANDMINE\t%d\n", ntrap++);
 #endif /* SAC */
-    printf("\n#define\tTRAPNUM\t%d\n", ntrap);
-    fclose(stdin);
-    fclose(stdout);
+    fprintf(out_file, "\n#define\tTRAPNUM\t%d\n", ntrap);
+    fclose(inp_file);
+    fclose(out_file);
 #ifdef MSDOS
     remove(TRAP_FILE);
 #endif
@@ -151,9 +152,9 @@ static void
 do_rumors()
 {
     char infile[30];
-    FILE *freopen();
+    FILE *inp_file, *out_file;
 
-    if (freopen(RUMOR_FILE, WRMODE, stdout) == NULL) {
+    if ((out_file = fopen(RUMOR_FILE, WRMODE)) == NULL) {
         perror(RUMOR_FILE);
         exit(1);
     }
@@ -162,67 +163,68 @@ do_rumors()
 #else
     sprintf(infile, "%s.base", RUMOR_FILE);
 #endif
-    if (freopen(infile, RDMODE, stdin) == NULL) {
+    if ((inp_file = fopen(infile, RDMODE)) == NULL) {
         perror(infile);
         exit(1);
     }
 
-    while (fgets(in_line, sizeof(in_line), stdin) != NULL)
-        fputs(in_line, stdout);
+    while (fgets(in_line, sizeof(in_line), inp_file) != NULL)
+        fputs(in_line, out_file);
 
 #ifdef KAA
+    fclose(inp_file);
     sprintf(infile, "%s.kaa", RUMOR_FILE);
-    if (freopen(infile, RDMODE, stdin) == NULL)
+    if ((inp_file = fopen(infile, RDMODE)) == NULL)
         perror(infile);
 
-    while (fgets(in_line, sizeof(in_line), stdin) != NULL)
-        fputs(in_line, stdout);
+    while (fgets(in_line, sizeof(in_line), inp_file) != NULL)
+        fputs(in_line, out_file);
 #endif
 
 #ifdef NEWCLASS
     sprintf(infile, "%s.mrx", RUMOR_FILE);
-    if (freopen(infile, RDMODE, stdin) == NULL)
+    fclose(inp_file);
+    if ((inp_file = fopen(infile, RDMODE)) == NULL)
         perror(infile);
 
-    while (fgets(in_line, sizeof(in_line), stdin) != NULL)
-        fputs(in_line, stdout);
+    while (fgets(in_line, sizeof(in_line), inp_file) != NULL)
+        fputs(in_line, out_file);
 #endif
-    fclose(stdin);
-    fclose(stdout);
+    fclose(inp_file);
+    fclose(out_file);
 }
 
 static void
 do_date()
 {
-    int getpid();
-    long clock, time();
-    char tmpfile[30], cbuf[30], *c, *ctime();
-    FILE *freopen();
+    long clock;
+    char tmpfile[30], cbuf[30], *c;
+    FILE *inp_file, *out_file;
 
     sprintf(tmpfile, "makedefs.%d", getpid());
-    if (freopen(tmpfile, WRMODE, stdout) == NULL) {
+    if ((out_file = fopen(tmpfile, WRMODE)) == NULL) {
         perror(tmpfile);
         exit(1);
     }
-    if (freopen(DATE_FILE, RDMODE, stdin) == NULL) {
+    if ((inp_file = fopen(DATE_FILE, RDMODE)) == NULL) {
         perror(DATE_FILE);
         exit(1);
     }
 
-    while (fgets(in_line, sizeof(in_line), stdin) != NULL) {
+    while (fgets(in_line, sizeof(in_line), inp_file) != NULL) {
         if (!strncmp(in_line, "char datestring[] = ", 20))
             break;
-        fputs(in_line, stdout);
+        fputs(in_line, out_file);
     }
     time(&clock);
     strcpy(cbuf, ctime(&clock));
     for (c = cbuf; *c != '\n'; c++)
         ;
     *c = 0; /* strip off the '\n' */
-    printf("char datestring[] = %c%s%c;\n", '"', cbuf, '"');
+    fprintf(out_file, "char datestring[] = %c%s%c;\n", '"', cbuf, '"');
 
-    fclose(stdin);
-    fclose(stdout);
+    fclose(inp_file);
+    fclose(out_file);
 #ifdef MSDOS
     remove(DATE_FILE);
 #endif
@@ -232,115 +234,114 @@ do_date()
 static void
 do_data()
 {
-    int getpid();
     char tmpfile[30];
-    FILE *freopen();
+    FILE *inp_file, *out_file;
 
     sprintf(tmpfile, "%s.base", DATA_FILE);
-    if (freopen(tmpfile, RDMODE, stdin) == NULL) {
+    if ((inp_file = fopen(tmpfile, RDMODE)) == NULL) {
         perror(tmpfile);
         exit(1);
     }
-    if (freopen(DATA_FILE, WRMODE, stdout) == NULL) {
+    if ((out_file = fopen(DATA_FILE, WRMODE)) == NULL) {
         perror(DATA_FILE);
         exit(1);
     }
 
-    while (fgets(in_line, sizeof(in_line), stdin) != NULL) {
+    while (fgets(in_line, sizeof(in_line), inp_file) != NULL) {
 #ifdef KOPS
         if (!strcmp(in_line, "K	a kobold\n"))
-            printf("K\ta Keystone Kop\n");
+            fprintf(out_file, "K\ta Keystone Kop\n");
         else
 #endif
 #ifdef KAA
             if (!strcmp(in_line, "Q	a quasit\n"))
-            printf("Q\ta quantum mechanic\n");
+            fprintf(out_file, "Q\ta quantum mechanic\n");
         else
 #endif
 #ifdef ROCKMOLE
             if (!strcmp(in_line, "r	a giant rat\n"))
-            printf("r\ta rockmole\n");
+            fprintf(out_file, "r\ta rockmole\n");
         else
 #endif
 #ifdef SPIDERS
             if (!strcmp(in_line, "s	a scorpion\n"))
-            printf("s\ta giant spider\n");
+            fprintf(out_file, "s\ta giant spider\n");
         else if (!strcmp(in_line, "\"	an amulet\n"))
-            printf("\"\tan amulet (or a web)\n");
+            fprintf(out_file, "\"\tan amulet (or a web)\n");
         else
 #endif
 #ifdef SINKS
             if (!strcmp(in_line, "#	a corridor\n"))
-            printf("#\ta corridor (or a kitchen sink)\n");
+            fprintf(out_file, "#\ta corridor (or a kitchen sink)\n");
         else
 #endif
 #ifdef SPELLS
             if (!strcmp(in_line, "+	a door\n"))
-            printf("+\ta door (or a spell book)\n");
+            fprintf(out_file, "+\ta door (or a spell book)\n");
         else
 #endif
 #ifdef FOUNTAINS
             if (!strcmp(in_line, "}	water filled area\n")) {
-            fputs(in_line, stdout);
-            printf("{\ta fountain\n");
+            fputs(in_line, out_file);
+            fprintf(out_file, "{\ta fountain\n");
         } else
 #endif
 #ifdef NEWCLASS
             if (!strcmp(in_line, "^	a trap\n")) {
-            fputs(in_line, stdout);
-            printf("\\\tan opulent throne.\n");
+            fputs(in_line, out_file);
+            fprintf(out_file, "\\\tan opulent throne.\n");
         } else
 #endif
-            fputs(in_line, stdout);
+            fputs(in_line, out_file);
     }
 #ifdef SAC
-    printf("3\ta soldier;\n");
-    printf(
+    fprintf(out_file, "3\ta soldier;\n");
+    fprintf(out_file, 
         "\tThe soldiers  of Yendor are  well-trained in the art of war,\n");
-    printf(
+    fprintf(out_file, 
         "\tmany  trained by  the wizard himself.  Some say the soldiers\n");
-    printf(
+    fprintf(out_file, 
         "\tare explorers  who were  unfortunate enough  to be captured,\n");
-    printf(
+    fprintf(out_file, 
         "\tand  put under the wizard's spell.  Those who have  survived\n");
-    printf(
+    fprintf(out_file, 
         "\tencounters  with  soldiers   say  they  travel  together  in\n");
-    printf(
+    fprintf(out_file, 
         "\tplatoons,  and are fierce fighters.  Because of the  load of\n");
-    printf(
+    fprintf(out_file, 
         "\ttheir  combat gear,  however,  one can usually run away from\n");
-    printf("\tthem, and doing so is considered a wise thing.\n");
+    fprintf(out_file, "\tthem, and doing so is considered a wise thing.\n");
 #endif
 #ifdef RPH
-    printf("8\tthe medusa;\n");
-    printf(
+    fprintf(out_file, "8\tthe medusa;\n");
+    fprintf(out_file, 
         "\tThis hideous  creature from  ancient Greek myth was the doom\n");
-    printf(
+    fprintf(out_file, 
         "\tof many a valiant adventurer.  It is said that one gaze from\n");
-    printf(
+    fprintf(out_file, 
         "\tits eyes  could turn a man to stone.  One bite from the nest\n");
-    printf(
+    fprintf(out_file, 
         "\tof  snakes which  crown its head could  cause instant death.\n");
-    printf(
+    fprintf(out_file, 
         "\tThe only  way to kill this  monstrosity is to turn its  gaze\n");
-    printf("\tback upon itself.\n");
+    fprintf(out_file, "\tback upon itself.\n");
 #endif
 #ifdef KAA
-    printf("9\ta giant;\n");
-    printf(
+    fprintf(out_file, "9\ta giant;\n");
+    fprintf(out_file, 
         "\tGiants have always walked the earth, though they are rare in\n");
-    printf(
+    fprintf(out_file, 
         "\tthese times.  They range in size from  little over nine feet\n");
-    printf(
+    fprintf(out_file, 
         "\tto a towering twenty feet or more.  The larger ones use huge\n");
-    printf(
+    fprintf(out_file, 
         "\tboulders as weapons, hurling them over large distances.  All\n");
-    printf(
+    fprintf(out_file, 
         "\ttypes of giants share a love for men  -  roasted, boiled, or\n");
-    printf("\tfried.  Their table manners are legendary.\n");
+    fprintf(out_file, "\tfried.  Their table manners are legendary.\n");
 #endif
-    fclose(stdin);
-    fclose(stdout);
+    fclose(inp_file);
+    fclose(out_file);
 }
 
 #define LINSZ 1000
@@ -360,10 +361,9 @@ do_objs()
 #ifdef SPELLS
     register int nspell = 0;
 #endif
-    FILE *freopen();
     register char *sp;
-    char *limit();
     int skip;
+    FILE *out_file;
 
     fd = open(OBJ_FILE, 0);
     if (fd < 0) {
@@ -371,7 +371,7 @@ do_objs()
         exit(1);
     }
 
-    if (freopen(ONAME_FILE, WRMODE, stdout) == NULL) {
+    if ((out_file = fopen(ONAME_FILE, WRMODE)) == NULL) {
         perror(ONAME_FILE);
         exit(1);
     }
@@ -394,52 +394,54 @@ do_objs()
         /* M. Stephenson					   */
         if (!duplicate()) {
             if (!strncmp(current->string, "RIN_", 4))
-                propct = specprop(current->string + 4, propct);
+                propct = specprop(out_file, current->string + 4, propct);
             for (sp = current->string; *sp; sp++)
                 capitalize(sp);
             /* avoid trouble with stupid C preprocessors */
             if (!strncmp(current->string, "WORTHLESS_PIECE_OF_", 19))
-                printf("/* #define\t%s\t%d */\n", current->string, index++);
+                fprintf(out_file, "/* #define\t%s\t%d */\n", current->string, index++);
             else {
 #ifdef SPELLS
                 if (!strncmp(current->string, "SPE_", 4))
                     nspell++;
-                printf("#define\t%s\t%d\n", limit(current->string), index++);
+                fprintf(out_file, "#define\t%s\t%d\n", limit(current->string), index++);
 #else
                 if (strncmp(current->string, "SPE_", 4))
-                    printf("#define\t%s\t%d\n", limit(current->string),
+                    fprintf(out_file, "#define\t%s\t%d\n", limit(current->string),
                            index++);
 #endif
             }
             newobj();
         }
     }
-    printf("\n#define	CORPSE		DEAD_HUMAN\n");
+    fprintf(out_file, "\n#define	CORPSE		DEAD_HUMAN\n");
 #ifdef KOPS
-    printf("#define	DEAD_KOP		DEAD_KOBOLD\n");
+    fprintf(out_file, "#define	DEAD_KOP		DEAD_KOBOLD\n");
 #endif
 #ifdef SPIDERS
-    printf("#define	DEAD_GIANT_SPIDER	DEAD_GIANT_SCORPION\n");
+    fprintf(out_file, "#define	DEAD_GIANT_SPIDER	DEAD_GIANT_SCORPION\n");
 #endif
 #ifdef ROCKMOLE
-    printf("#define	DEAD_ROCKMOLE		DEAD_GIANT_RAT\n");
+    fprintf(out_file, "#define	DEAD_ROCKMOLE		DEAD_GIANT_RAT\n");
 #endif
 #ifndef KAA
-    printf("#define DEAD_QUASIT		DEAD_QUANTUM_MECHANIC\n");
-    printf("#define DEAD_VIOLET_FUNGI	DEAD_VIOLET_FUNGUS\n");
+    fprintf(out_file, "#define DEAD_QUASIT		DEAD_QUANTUM_MECHANIC\n");
+    fprintf(out_file, "#define DEAD_VIOLET_FUNGI	DEAD_VIOLET_FUNGUS\n");
 #endif
-    printf("#define	LAST_GEM	(JADE+1)\n");
-    printf("#define	LAST_RING	%d\n", propct);
+    fprintf(out_file, "#define	LAST_GEM	(JADE+1)\n");
+    fprintf(out_file, "#define	LAST_RING	%d\n", propct);
 #ifdef SPELLS
-    printf("#define MAXSPELL	%d\n", nspell + 1);
+    fprintf(out_file, "#define MAXSPELL	%d\n", nspell + 1);
 #endif
-    printf("#define	NROFOBJECTS	%d\n", index - 1);
+    fprintf(out_file, "#define	NROFOBJECTS	%d\n", index - 1);
+    fclose(out_file);
     exit(0);
 }
 
 static char temp[32];
 
-char *limit(name) /* limit a name to 30 characters length */
+static char *
+limit(name) /* limit a name to 30 characters length */
 char *name;
 {
     strncpy(temp, name, 30);
@@ -470,24 +472,25 @@ struct inherent {
 };
 
 static int
-specprop(name, count)
+specprop(out_file, name, count)
+FILE *out_file;
 char *name;
 int count;
 {
     int i;
-    char *tname, *limit();
+    char *tname;
 
     tname = limit(name);
     capitalize(tname);
     for (i = 0; strlen(abilities[i].attrib); i++)
         if (!strcmp(abilities[i].attrib, tname)) {
-            printf("#define\tH%s\tu.uprops[%d].p_flgs\n", tname, count);
-            printf("#define\t%s\t((H%s) || index(\"%s\", u.usym))\n", tname,
+            fprintf(out_file, "#define\tH%s\tu.uprops[%d].p_flgs\n", tname, count);
+            fprintf(out_file, "#define\t%s\t((H%s) || index(\"%s\", u.usym))\n", tname,
                    tname, abilities[i].monsters);
             return (++count);
         }
 
-    printf("#define\t%s\tu.uprops[%d].p_flgs\n", tname, count);
+    fprintf(out_file, "#define\t%s\tu.uprops[%d].p_flgs\n", tname, count);
     return (++count);
 }
 
@@ -499,7 +502,7 @@ readline()
 {
     register int n = read(fd, lp0, (line + LINSZ) - lp0);
     if (n < 0) {
-        printf("Input error.\n");
+        fprintf(stderr, "Input error.\n");
         exit(1);
     }
     if (n == 0)
@@ -525,7 +528,7 @@ char *s;
 loop:
     while (*s != nextchar())
         if (xeof) {
-            printf("Cannot skipuntil %s\n", s);
+            fprintf(stderr, "Cannot skipuntil %s\n", s);
             exit(1);
         }
     if (strlen(s) > lpe - lp + 1) {
@@ -539,7 +542,7 @@ loop:
         readline();
         lp0 = lp2;
         if (strlen(s) > lpe - lp + 1) {
-            printf("error in skipuntil");
+            fprintf(stderr, "error in skipuntil");
             exit(1);
         }
     }
@@ -608,7 +611,7 @@ int *skip;
         case ')':
             inparens--;
             if (inparens < 0) {
-                printf("too many ) ?");
+                fprintf(stderr, "too many ) ?");
                 exit(1);
             }
             continue;
@@ -636,7 +639,7 @@ int *skip;
                 }
                 if (stringseen)
                     return (1);
-                printf("unexpected ,\n");
+                fprintf(stderr, "unexpected ,\n");
                 exit(1);
             }
             commaseen++;
@@ -645,7 +648,7 @@ int *skip;
             if ((ch = nextchar()) == '\\')
                 ch = nextchar();
             if (nextchar() != '\'') {
-                printf("strange character denotation?\n");
+                fprintf(stderr, "strange character denotation?\n");
                 exit(1);
             }
             continue;
@@ -719,8 +722,8 @@ int a1, a2, a3, a4, a5, a6;
 {
     if (panicking++)
         exit(1); /* avoid loops - this should never happen*/
-    fputs(" ERROR:  ", stdout);
-    printf(str, a1, a2, a3, a4, a5, a6);
+    fputs(" ERROR:  ", stderr);
+    fprintf(stderr, str, a1, a2, a3, a4, a5, a6);
 #ifdef DEBUG
 #ifdef UNIX
     if (!fork())
