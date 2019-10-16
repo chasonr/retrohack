@@ -40,7 +40,7 @@ static char *limit();
 #define RUMOR_FILE "rumors"
 #define DATA_FILE "data"
 
-char in_line[256], outline[256];
+static char in_line[256], outline[256];
 
 static void do_traps(/*void*/);
 static void do_rumors(/*void*/);
@@ -96,11 +96,11 @@ do_traps()
     FILE *inp_file, *out_file;
 
     if ((out_file = fopen(TRAP_FILE, WRMODE)) == NULL) {
-        perror(tmpfile);
+        perror(TRAP_FILE);
         exit(1);
     }
     if ((inp_file = fopen(TRAP_IN_FILE, RDMODE)) == NULL) {
-        perror(TRAP_FILE);
+        perror(TRAP_IN_FILE);
         exit(1);
     }
 
@@ -139,7 +139,7 @@ do_traps()
     fclose(out_file);
 }
 
-struct hline {
+static struct hline {
     struct hline *next;
     char *line;
 } * f_line;
@@ -198,11 +198,11 @@ do_date()
     FILE *inp_file, *out_file;
 
     if ((out_file = fopen(DATE_FILE, WRMODE)) == NULL) {
-        perror(tmpfile);
+        perror(DATE_FILE);
         exit(1);
     }
     if ((inp_file = fopen(DATE_IN_FILE, RDMODE)) == NULL) {
-        perror(DATE_FILE);
+        perror(DATE_IN_FILE);
         exit(1);
     }
 
@@ -338,8 +338,8 @@ do_data()
 #define LINSZ 1000
 #define STRSZ 40
 
-int fd;
-struct objdef {
+static int fd;
+static struct objdef {
     struct objdef *next;
     char string[STRSZ];
 } * more, *current;
@@ -448,7 +448,7 @@ newobj()
     current->next = more;
 }
 
-struct inherent {
+static struct inherent {
     const char *attrib, *monsters;
 } abilities[] = {
     { "Regeneration", "TVi" },
@@ -485,10 +485,10 @@ int count;
     return (++count);
 }
 
-char line[LINSZ], *lp = line, *lp0 = line, *lpe = line;
-int xeof;
+static char line[LINSZ], *lp = line, *lp0 = line, *lpe = line;
+static int xeof;
 
-void
+static void
 readline()
 {
     register int n = read(fd, lp0, (line + LINSZ) - lp0);
@@ -501,7 +501,7 @@ readline()
     lpe = lp0 + n;
 }
 
-char
+static char
 nextchar()
 {
     if (lp == lpe) {
