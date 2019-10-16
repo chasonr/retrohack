@@ -13,8 +13,9 @@
  *	- determination of what files are "very old"
  */
 
-#include "hack.h"  /* mainly for index() which depends on BSD */
 #include <stdio.h> /* mainly for NULL */
+#include <stdlib.h>
+#include "hack.h"  /* mainly for index() which depends on BSD */
 
 #ifndef __TURBOC__     /* Turbo C has time_t in time.h */
 #include <sys/types.h> /* for time_t */
@@ -22,7 +23,6 @@
 #include <sys/stat.h>
 #include <time.h>
 
-extern time_t time();
 static struct stat buf, hbuf;
 
 setrandom()

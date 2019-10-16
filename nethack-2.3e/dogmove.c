@@ -184,7 +184,6 @@ int after;
         appr = 0;
 
     if (gx == u.ux && gy == u.uy && (dogroom != uroom || dogroom < 0)) {
-        extern coord *gettrack();
         register coord *cp;
         cp = gettrack(omx, omy);
         if (cp) {

@@ -10,8 +10,6 @@
 #include "hack.h"
 #include <stdio.h>
 
-extern void savech();
-
 static char erase_char, kill_char;
 
 /*

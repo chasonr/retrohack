@@ -7,8 +7,6 @@ void seemimic(/*void*/);
 
 char *defmonnam();
 
-extern struct monst *makemon();
-
 int
 findit() /* returns number of things found */
 {

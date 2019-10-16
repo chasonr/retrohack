@@ -9,8 +9,6 @@ void on_scr(/*void*/);
 void prl(/*void*/);
 void newsym(/*void*/);
 
-extern xchar scrlx, scrhx, scrly, scrhy; /* corners from pri.c */
-
 void
 atl(x, y, ch)
 register int x, y;
@@ -150,7 +148,6 @@ pru()
 
 #ifndef NOWORM
 #include "wseg.h"
-extern struct wseg *m_atseg;
 #endif
 
 /* print a position that is visible for @ */

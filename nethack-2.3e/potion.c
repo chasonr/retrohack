@@ -12,13 +12,9 @@ static void ghost_from_bottle(/*unknown*/);
 void djinni_from_bottle(/*void*/);
 void gainstr(/*void*/);
 
-extern char *nomovemsg;
-extern struct monst youmonst;
-extern struct monst *makemon();
 char *hcolor();
 #ifdef KAA
 char *xname();
-extern char pl_character[];
 #endif
 
 int nothing, unkn;
@@ -360,8 +356,6 @@ pluslvl()
     u.uen += num;
 #endif
     if (u.ulevel < 14) {
-        extern long newuexp();
-
         u.uexp = newuexp() + 1;
         pline("Welcome to experience level %u.", ++u.ulevel);
     }
@@ -391,7 +385,6 @@ potionhit(mon, obj)
 register struct monst *mon;
 register struct obj *obj;
 {
-    extern char *xname();
     register char *botlnam = bottlenames[rn2(SIZE(bottlenames))];
     boolean uclose, isyou = (mon == &youmonst);
 
@@ -619,7 +612,6 @@ dodip()
 static void
 ghost_from_bottle()
 {
-    extern struct permonst pm_ghost;
     register struct monst *mtmp;
 
     if (!(mtmp = makemon(PM_GHOST, u.ux, u.uy))) {
@@ -635,7 +627,6 @@ ghost_from_bottle()
 void
 djinni_from_bottle()
 {
-    extern struct permonst pm_djinni;
     register struct monst *mtmp;
 
     if (!(mtmp = makemon(PM_DJINNI, u.ux, u.uy))) {

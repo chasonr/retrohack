@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "config.h"
+#include "alloc.h"
 
 #ifdef MSDOS
 #undef exit
@@ -449,8 +450,6 @@ char *name;
 void
 newobj()
 {
-    extern long *alloc();
-
     more = current;
     current = (struct objdef *) alloc(sizeof(struct objdef));
     current->next = more;

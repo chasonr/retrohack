@@ -4,9 +4,6 @@
 #include <stdlib.h>
 #include "hack.h"
 
-extern char *nomovemsg;
-extern struct monst *mkmon_at();
-extern struct obj *mkobj_at();
 #ifdef PRAYERS
 static int angrygods(/*unknown*/);
 #endif
@@ -179,8 +176,6 @@ fix_worst_trouble()
 #define CORPSE_I_TO_C(otyp)                                          \
     (char) ((otyp >= DEAD_ACID_BLOB) ? 'a' + (otyp - DEAD_ACID_BLOB) \
                                      : '@' + (otyp - DEAD_HUMAN))
-
-extern char POISONOUS[];
 
 int
 dosacrifice()
@@ -554,7 +549,6 @@ doturn()
 
     register struct monst *mtmp;
     register int xlev = 6;
-    extern char pl_character[];
 
     if ((pl_character[0] != 'P') && (pl_character[0] != 'K')) {
         pline("You don't know how to turn undead!");

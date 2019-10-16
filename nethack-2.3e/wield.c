@@ -2,11 +2,6 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
-extern struct obj zeroobj;
-extern char *hcolor();
-#ifdef KAA
-extern boolean unweapon;
-#endif
 
 void
 setuwep(obj)

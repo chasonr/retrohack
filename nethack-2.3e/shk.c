@@ -67,9 +67,6 @@ shkname()
 #define NOTANGRY(mon) mon->mpeaceful
 #define ANGRY(mon) !NOTANGRY(mon)
 
-extern char plname[], *xname();
-extern struct monst *makemon();
-extern struct obj *o_on(), *carrying();
 static struct obj *bp_to_obj(/*unknown*/);
 
 /* Descriptor of current shopkeeper. Note that the bill need not be
@@ -610,7 +607,7 @@ register struct obj *obj;
 {
     register struct bill_x *bp;
     char buf[40];
-    extern char *typename();
+
     if (!inshop()
         || (u.ux == ESHK(shopkeeper)->shk.x
             && u.uy == ESHK(shopkeeper)->shk.y)

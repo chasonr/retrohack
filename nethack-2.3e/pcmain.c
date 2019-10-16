@@ -2,9 +2,10 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* main.c - (PC) version */
 
-#include "hack.h"
 #include <signal.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "hack.h"
 
 #ifdef QUEST
 #define gamename "PC NetQuest"
@@ -14,11 +15,6 @@
 
 char orgdir[PATHLEN], *getcwd();
 
-extern struct permonst mons[CMNUM + 2];
-extern char genocided[], fut_geno[];
-extern char *getlogin(), *getenv();
-extern char plname[PL_NSIZ], pl_character[PL_CSIZ];
-
 void (*afternmv)(void);
 int (*occupation)();
 
@@ -27,16 +23,12 @@ char *hname = gamename;
 char obuf[BUFSIZ]; /* BUFSIZ is defined in stdio.h */
 int hackpid;       /* not used anymore, but kept in for save files */
 
-extern char *nomovemsg;
-extern long wailmsg;
-
 main(argc, argv)
 int argc;
 char *argv[];
 {
     register int fd;
     register char *dir;
-    extern struct monst *makedog();
 #ifdef MSDOS
     static void moveloop(); /* a helper function for MSC optimizer */
 
@@ -315,7 +307,6 @@ moveloop()
 
             if (moves % 2 == 0
                 || (!(Fast & ~INTRINSIC) && (!Fast || rn2(3)))) {
-                extern struct monst *makemon();
                 movemon();
 #ifdef HARD
                 if (!rn2(u.udemigod ? 25 : (dlevel > 30) ? 50 : 70))
@@ -602,8 +593,6 @@ boolean wr;
 
 stop_occupation()
 {
-    extern void pushch();
-
     if (occupation) {
         pline("You stop %s.", occtxt);
         occupation = 0;

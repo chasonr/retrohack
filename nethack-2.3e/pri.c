@@ -6,9 +6,6 @@
 #ifdef GENIX
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
-#ifdef MSDOSCOLOR
-extern int hilite();
-#endif
 
 void docrt(/*void*/);
 void seemons(/*void*/);
@@ -19,10 +16,6 @@ void bot(/*void*/);
 void cls(/*void*/);
 
 xchar scrlx, scrhx, scrly, scrhy; /* corners of new area on screen */
-
-extern char *hu_stat[]; /* in eat.c */
-extern char *CD;
-extern struct monst *makemon();
 
 void
 swallowed()
@@ -409,7 +402,7 @@ bot()
 {
     register char *ob = oldbot, *nb = newbot;
     register int i;
-    extern char *eos();
+
     if (flags.botlx)
         *ob = 0;
     flags.botl = flags.botlx = 0;
@@ -519,7 +512,6 @@ register struct monst *mtmp;
           mtmp->mcan ? ", cancelled" : "", mtmp->mtame ? " (tame)" : "");
 }
 
-extern char plname[];
 void
 ustatusline()
 {
@@ -625,8 +617,6 @@ hcolor()
 
 #ifdef MSDOSCOLOR
 /* what if a level character is the same as an object/monster? */
-
-extern char obj_symbols[];
 
 hilite(let)
 char let;

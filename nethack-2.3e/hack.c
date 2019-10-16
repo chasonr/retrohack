@@ -2,14 +2,11 @@
 
 #include "hack.h"
 #include <stdio.h>
+
 #ifdef UNIX
 /*static char SCCS_Id[] = "@(#)hack.c	2.3\t88/02/18";*/
 #endif
-extern char news0();
-extern char *nomovemsg;
-extern char *exclam();
-extern struct obj *addinv();
-extern boolean hmon();
+
 static void movobj(/*unknown*/);
 void pickup(/*void*/);
 void setsee(/*void*/);
@@ -634,7 +631,6 @@ int all;
             if (wt > 0) {
                 if (obj->quan > 1) {
                     /* see how many we can lift */
-                    extern struct obj *splitobj();
                     int savequan = obj->quan;
                     int iw = inv_weight();
                     int qq;
@@ -1114,7 +1110,6 @@ void
 losexp() /* hit by V or W */
 {
     register int num;
-    extern long newuexp();
 
     if (u.usym == 'V' || u.usym == 'W')
         return;

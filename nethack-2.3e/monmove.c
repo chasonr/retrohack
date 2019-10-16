@@ -5,9 +5,6 @@
 #include "mfndpos.h"
 #include "panic.h"
 
-extern struct obj *mksobj_at();
-extern int warnlevel; /* defined in mon.c */
-
 int
 dochugw(mtmp)
 register struct monst *mtmp;
@@ -286,7 +283,6 @@ not_special:
         (uwep && !strcmp(ONAME(uwep), "Excalibur")) ||
 #endif
         ('a' <= msym && msym <= 'z')) {
-        extern coord *gettrack();
         register coord *cp;
         schar mroom;
         mroom = inroom(omx, omy);

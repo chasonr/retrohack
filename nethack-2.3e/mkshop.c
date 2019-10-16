@@ -13,13 +13,10 @@
  * (note: this module should become mkroom.c in the next major release)
  */
 #ifndef QUEST
+#include <stdlib.h>
 #include "hack.h"
 #include "mkroom.h"
-extern struct monst *makemon();
-extern struct permonst pm_soldier;
-extern struct obj *mkobj_at(), *mksobj_at();
-extern void stock_room();
-extern int nroom;
+
 static void mkshop();
 static void mkzoo(/* int type */);
 static struct permonst *morguemon();
@@ -72,8 +69,6 @@ mkshop()
     register struct mkroom *sroom;
     int roomno, i = -1;
 #ifdef WIZARD
-    extern char *getenv();
-
     /* first determine shoptype */
     if (wizard) {
         register char *ep = getenv("SHOPTYPE");
@@ -245,7 +240,6 @@ int type;
 static struct permonst *
 morguemon()
 {
-    extern struct permonst pm_ghost;
     register int i = rn2(100), hd = rn2(dlevel);
 
     if (hd > 10 && i < 10)
@@ -260,7 +254,6 @@ mkswamp() /* Michiel Huisjes & Fred de Wilde */
 {
     register struct mkroom *sroom;
     register int sx, sy, i, eelct = 0;
-    extern struct permonst pm_eel;
 
     for (i = 0; i < 5; i++) { /* 5 tries */
         sroom = &rooms[rn2(nroom)];

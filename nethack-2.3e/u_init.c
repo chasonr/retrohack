@@ -17,9 +17,6 @@ static void wiz_inv(/*unknown*/);
 #define Strcat (void) strcat
 #define UNDEF_TYP 0
 #define UNDEF_SPE '\177'
-extern struct obj *addinv();
-extern char *eos();
-extern char plname[];
 #define IS_MAGIC(x)                                      \
     ((x)->olet == WAND_SYM || (x)->olet == POTION_SYM    \
      || (x)->olet == RING_SYM || (x)->olet == SCROLL_SYM \
@@ -183,7 +180,7 @@ u_init()
 {
     register int i;
     char exper = 'y', pc;
-    extern char readchar();
+
     if (flags.female) { /* should have been set in HACKOPTIONS */
         roles[4] = "Cave-woman";
 #ifdef NEWCLASS
@@ -484,7 +481,7 @@ ini_inv(trop)
 register struct trobj *trop;
 {
     register struct obj *obj;
-    extern struct obj *mkobj();
+
     while (trop->trolet) {
         obj = mkobj(trop->trolet);
         obj->known = trop->trknown;
@@ -564,7 +561,6 @@ static void
 wiz_inv()
 {
     register struct trobj *trop = &Extra_objs[0];
-    extern char *getenv();
     register char *ep = getenv("INVENT");
     register int type;
     while (ep && *ep) {

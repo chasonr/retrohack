@@ -12,8 +12,6 @@
 #include "func_tab.h"
 #include "hack.h"
 
-extern void savech();
-
 #define ON 1
 #define OFF 0
 
@@ -70,7 +68,6 @@ extern void savech();
 
 #endif
 
-extern short ospeed;
 static char erase_char, kill_char;
 static boolean settty_needed = FALSE;
 struct termstruct inittyb, curttyb;

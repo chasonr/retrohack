@@ -5,11 +5,7 @@
 #include <stdlib.h>
 #include "hack.h"
 #include "panic.h"
-extern struct obj *splitobj();
-extern struct obj zeroobj;
-extern void savech();
-extern char morc;
-extern char quitchars[];
+
 static char *xprname();
 void freeinv(/*void*/);
 void freeobj(/*void*/);
@@ -22,7 +18,6 @@ static int merged();
 
 #ifndef NOWORM
 #include "wseg.h"
-extern struct wseg *wsegs[32];
 #endif
 
 #define NOINVSYM '#'
@@ -724,7 +719,6 @@ char inv_order[] = "\")[%?+/=!(*0_`"; /* to be safe, include _ and ` */
 #else
 char inv_order[] = "\")[%?/=!(*0_`";
 #endif
-extern char *let_to_name();
 #endif
 
 /* called with 0 or "": all objects in inventory */
@@ -1018,8 +1012,6 @@ int lose;
  * it may take a while before you have counted it all.
  * [Bug: d$ and pickup still tell you how much it was.]
  */
-extern int (*occupation)();
-extern char *occtxt;
 static long goldcounted;
 
 static int
@@ -1153,7 +1145,6 @@ register struct obj *obj;
  */
 #define Sprintf (void) sprintf
 
-extern char obj_symbols[];
 static char *names[] = { "Illegal objects", "Amulets", "Comestibles",
                          "Weapons",         "Tools",   "Iron balls",
                          "Chains",          "Rocks",   "Armor",
@@ -1167,7 +1158,6 @@ let_to_name(let)
 char let;
 {
     char *pos = index(obj_symbols, let);
-    extern char *HI, *HE;
     /* arbitrary buffer size by Tom May (tom@uw-warp) */
     static char *buf = NULL;
 

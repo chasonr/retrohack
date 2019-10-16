@@ -5,9 +5,6 @@
 #include <stdlib.h>
 #include "hack.h"
 
-extern struct monst *makemon();
-extern struct obj *mksobj_at();
-
 void selftouch(/*void*/);
 static void vtele(/*unknown*/);
 void tele(/*void*/);
@@ -20,11 +17,6 @@ static void domagictrap(/*unknown*/);
 #endif
 void drown(/*void*/);
 static int teleok(/*unknown*/);
-
-#ifdef KAA
-extern char *Xmonnam();
-extern char *nomovemsg;
-#endif
 
 char vowels[] = "aeiou";
 
@@ -391,7 +383,6 @@ register struct monst *mtmp;
 #else
         int in_sight = cansee(mtmp->mx, mtmp->my);
 #endif
-        extern char mlarge[];
 
         if (mtmp->mtrapseen & (1 << tt)) {
             /* he has been in such a trap - perhaps he escapes */
@@ -726,8 +717,6 @@ register int x, y;
 int
 dotele()
 {
-    extern char pl_character[];
-
     if ((!index("LNt", u.usym)) &&
 #ifdef WIZARD
         !wizard &&

@@ -14,9 +14,6 @@ void putsym(/*void*/);
 void putstr(/*void*/);
 static void xmore(/*unknown*/);
 
-extern char *eos();
-extern int CO;
-
 char toplines[BUFSIZ];
 xchar tlx, tly; /* set by pline; used by addtopl */
 

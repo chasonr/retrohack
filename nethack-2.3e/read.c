@@ -9,9 +9,6 @@ void do_genocide(/*void*/);
 void do_mapping(/*void*/);
 static int monstersym(/*unknown*/);
 
-extern struct monst *makemon();
-extern struct permonst pm_eel;
-extern struct obj *mkobj_at();
 char *hcolor();
 boolean known;
 int identify();
@@ -75,7 +72,6 @@ int
 seffects(sobj)
 register struct obj *sobj;
 {
-    extern struct obj *some_armor();
     register boolean confused = (Confusion != 0);
 
     switch (sobj->otyp) {
@@ -652,7 +648,6 @@ register char ch;
 void
 do_genocide()
 {
-    extern char genocided[], fut_geno[];
     char buf[BUFSZ];
     register struct monst *mtmp, *mtmp2;
 

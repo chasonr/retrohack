@@ -5,9 +5,8 @@
 #include <stdlib.h>
 #include "hack.h"
 #include "panic.h"
-extern char plname[];
+
 static char *rndmonnam();
-extern void savech();
 void oname(/*void*/);
 void docall(/*void*/);
 static void do_oname(/*unknown*/);
@@ -20,8 +19,6 @@ int force;
 char *goal;
 {
     register int cx, cy, i, c;
-    extern char sdir[];          /* defined in hack.c */
-    extern schar xdir[], ydir[]; /* idem */
     pline("(For instructions type a ?)");
     cx = u.ux;
     cy = u.uy;
@@ -62,7 +59,6 @@ do_mname()
     coord cc;
     register int cx, cy, lth, i;
     register struct monst *mtmp, *mtmp2;
-    extern char *lmonnam();
     getpos(&cc, 0, "the monster you want to name");
     cx = cc.x;
     cy = cc.y;
@@ -222,7 +218,6 @@ register struct obj *obj;
     char buf[BUFSZ];
     struct obj otemp;
     register char **str1;
-    extern char *xname();
     register char *str;
 
     otemp = *obj;
@@ -261,7 +256,6 @@ register struct monst *mtmp;
 int vb;
 {
     static char buf[BUFSZ]; /* %% */
-    extern char *shkname();
     if (mtmp->mnamelth && !vb) {
         (void) strcpy(buf, NAME(mtmp));
         return (buf);

@@ -142,7 +142,6 @@ struct monst *mtmp;
                 (void) armoroff(otmp);
                 otmp->cursed = curssv;
                 if (multi < 0) {
-                    extern void (*afternmv)(void);
                     stealoid = otmp->o_id;
                     stealmid = mtmp->m_id;
                     afternmv = stealarm;

@@ -21,19 +21,6 @@ static int finddpos(/*unknown*/);
 static int maker(/*unknown*/);
 static int makerooms(/*unknown*/);
 
-extern char *getlogin(), *getenv();
-extern struct monst *makemon(), *mkmon_at();
-extern struct obj *mkobj_at(), *mksobj_at();
-extern struct trap *maketrap();
-
-#ifdef RPH
-extern struct permonst pm_medusa;
-#endif
-
-#ifdef STOOGES
-extern struct permonst pm_larry, pm_curly, pm_moe;
-#endif
-
 #define somex() ((int) (rand() % (croom->hx - croom->lx + 1)) + croom->lx)
 #define somey() ((int) (rand() % (croom->hy - croom->ly + 1)) + croom->ly)
 
@@ -41,15 +28,12 @@ extern struct permonst pm_larry, pm_curly, pm_moe;
 #define XLIM 4 /* define minimum required space around a room */
 #define YLIM 3
 boolean secret; /* TRUE while making a vault: increase [XY]LIM */
-extern struct mkroom rooms[MAXNROFROOMS + 1];
 int smeq[MAXNROFROOMS + 1];
-extern coord doors[DOORMAX];
 int doorindex;
 struct rm zerorm;
 schar nxcor;
 boolean goldseen;
 int nroom;
-extern xchar xdnstair, xupstair, ydnstair, yupstair;
 
 /* Definitions used by makerooms() and addrs() */
 #define MAXRS 50 /* max lth of temp rectangle table - arbitrary */
@@ -916,7 +900,6 @@ register
         tryct = 0;
 
     xchar mx, my;
-    extern char fut_geno[];
 
     if (!num || num >= TRAPNUM) {
         nopierc = (dlevel < 4) ? 1 : 0;

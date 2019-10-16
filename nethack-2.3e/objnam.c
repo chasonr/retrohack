@@ -8,8 +8,7 @@
 #define Strcat (void) strcat
 #define Strcpy (void) strcpy
 #define PREFIX 15
-extern char *eos();
-extern int bases[];
+
 static char *sitoa(/*unknown*/);
 static char *strprepend(/*unknown*/);
 
@@ -685,7 +684,6 @@ any:
     typ = probtype(let);
 typfnd : {
     register struct obj *otmp;
-    extern struct obj *mksobj();
     let = objects[typ].oc_olet;
     otmp = mksobj(typ);
     if (heavy)

@@ -7,13 +7,10 @@ void rndcurse(/*void*/);
 
 #ifdef NEWCLASS
 int identify();
-extern struct monst *makemon();
-extern struct permonst *courtmon();
 
 int
 dosit()
 {
-    extern struct obj *readobjnam(), *addinv();
     struct obj *sobj_at();
     register int cnt;
 

@@ -8,7 +8,6 @@
 #include "hack.h"
 #include "panic.h"
 #define Sprintf (void) sprintf
-extern char plname[], pl_character[], SAVEF[];
 
 xchar maxdlevel = 1;
 int done_stopprint;
@@ -77,7 +76,6 @@ done_in_by(mtmp)
 register struct monst *mtmp;
 {
     static char buf[BUFSZ];
-    extern char *eos(), *shkname();
 
     pline("You die ...");
     strcpy(buf, "");
@@ -145,8 +143,6 @@ register char *st1;
     char c;
 #endif
 #ifdef WIZARD
-    extern char *nomovemsg;
-
     if (wizard && index("bcds", *st1)) {
         char buf[BUFSZ];
         pline("Die? ");
@@ -250,7 +246,6 @@ die:
             u.urexp += 1000 * ((maxdlevel > 30) ? 10 : maxdlevel - 20);
     }
     if (*st1 == 'e') {
-        extern struct monst *mydogs;
         register struct monst *mtmp;
         register struct obj *otmp;
 #ifdef DGKMOD

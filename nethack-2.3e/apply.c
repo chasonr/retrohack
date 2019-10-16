@@ -7,20 +7,10 @@
 #include "mkroom.h"
 #include "panic.h"
 static struct monst *bchit();
-extern struct obj *addinv();
-extern struct trap *maketrap();
-extern int (*occupation)();
-extern char *occtxt;
-extern char quitchars[];
-extern char pl_character[];
 static int next_to(/*unknown*/);
 
-#ifdef DGKMOD
-extern void set_occupation();
-#endif
 #ifdef KAA
 static int use_stethoscope();
-extern boolean unweapon;
 #endif
 #ifdef WALKIES
 static int use_leash(/* struct obj *obj */);
@@ -28,9 +18,6 @@ static int use_leash(/* struct obj *obj */);
 static void use_camera(), use_ice_box(), use_whistle();
 static void use_magic_whistle();
 static int use_pick_axe();
-#ifdef MARKER
-extern int dowrite();
-#endif
 #ifdef RPH
 static void use_mirror();
 #endif
@@ -416,7 +403,6 @@ use_leash(obj)
 struct obj *obj;
 {
     register struct monst *mtmp = fmon;
-    extern char *lmonnam();
 
     while (mtmp && !mtmp->mleashed)
         mtmp = mtmp->nmon;
@@ -577,7 +563,6 @@ use_pick_axe(obj)
 struct obj *obj;
 {
     char dirsyms[12];
-    extern char sdir[];
     register char *dsp = dirsyms, *sdp = sdir;
     register struct monst *mtmp;
     register struct rm *lev;

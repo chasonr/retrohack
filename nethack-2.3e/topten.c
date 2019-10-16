@@ -14,10 +14,7 @@ static int outentry(/*unknown*/);
 static void outheader(/*unknown*/);
 
 #define Sprintf (void) sprintf
-extern char plname[], pl_character[];
 static char *nh_itoa();
-extern char *eos();
-extern int done_hup, done_stopprint;
 
 #define newttentry() (struct toptenentry *) alloc(sizeof(struct toptenentry))
 #define NAMSZ 10
@@ -54,7 +51,6 @@ topten()
     int sleepct = 300;
     FILE *rfile;
     register int flg = 0;
-    extern char *getdate();
 #ifdef LOGFILE
     char *lgfile = LOGFILE;
     FILE *lfile;
@@ -406,7 +402,6 @@ prscore(argc, argv)
 int argc;
 char **argv;
 {
-    extern char *hname;
     char **players = NULL;
     int playerct;
     int rank;

@@ -15,9 +15,6 @@
 #define gamename "NetHack"
 #endif
 
-extern char *getlogin(), *getenv();
-extern char plname[PL_NSIZ], pl_character[PL_CSIZ];
-
 void (*afternmv)();
 int (*occupation)();
 
@@ -33,9 +30,6 @@ char *catmore; /* default pager */
 char SAVEF[PL_NSIZ + 11] = "save/"; /* save/99999player */
 char *hname;                        /* name of the game (argv[0] of call) */
 char obuf[BUFSIZ];                  /* BUFSIZ is defined in stdio.h */
-
-extern char *nomovemsg;
-extern long wailmsg;
 
 void askname(/*void*/);
 void stop_occupation(/*void*/);
@@ -208,7 +202,6 @@ char *argv[];
 #ifdef WIZARD
     } else {
         register char *sfoo;
-        extern char genocided[], fut_geno[];
         (void) strcpy(lock, plname);
         if ((sfoo = getenv("MAGIC")) != NULL)
             while (*sfoo) {
@@ -220,7 +213,6 @@ char *argv[];
             }
         if ((sfoo = getenv("GENOCIDED")) != NULL) {
             if (*sfoo == '!') {
-                extern struct permonst mons[CMNUM + 2];
                 register struct permonst *pm = mons;
                 register char *gp = genocided;
 
@@ -288,7 +280,6 @@ char *argv[];
 
             if (moves % 2 == 0
                 || (!(Fast & ~INTRINSIC) && (!Fast || rn2(3)))) {
-                extern struct monst *makemon();
                 movemon();
 #ifdef HARD
                 if (!rn2(u.udemigod ? 25 : (dlevel > 30) ? 50 : 70))
@@ -561,8 +552,6 @@ boolean wr;
 void
 stop_occupation()
 {
-    extern void pushch();
-
     if (occupation) {
         pline("You stop %s.", occtxt);
         occupation = 0;
@@ -603,8 +592,6 @@ whoami()
 static int
 newgame()
 {
-    extern struct monst *makedog();
-
     fobj = fcobj = invent = 0;
     fmon = fallen_down = 0;
     ftrap = 0;

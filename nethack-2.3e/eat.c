@@ -3,16 +3,12 @@
 
 #include <stdio.h>
 #include "hack.h"
+
 #ifdef KAA
 char POISONOUS[] = "ADKSVabhks&";
 #else
 char POISONOUS[] = "ADKSVabhks";
 #endif
-extern char *nomovemsg;
-extern void (*afternmv)(void);
-extern int (*occupation)();
-extern char *occtxt;
-extern struct obj *splitobj(), *addinv();
 void morehungry(/*void*/);
 void lesshungry(/*void*/);
 void newuhs(/*void*/);
@@ -162,7 +158,6 @@ gotit:
                 pline("The tin slips out of your hands.");
                 if (otmp->quan > 1) {
                     register struct obj *obj;
-                    extern struct obj *splitobj();
 
                     obj = splitobj(otmp, 1);
                     if (otmp == uwep)

@@ -9,16 +9,6 @@
 #include "hack.h"
 #include "panic.h"
 
-extern char genocided[60];        /* defined in decl.c */
-extern char fut_geno[60];         /* idem */
-extern struct permonst pm_wizard; /* since the wizard evolves */
-
-extern char SAVEF[], nul[];
-extern char pl_character[PL_CSIZ];
-extern long lseek();
-extern struct obj *restobjchn();
-extern struct monst *restmonchn();
-
 int
 dosave()
 {
@@ -49,7 +39,6 @@ int hu;
     int tmp; /* not register ! */
 #ifdef DGK
     long fds, needed;
-    extern long bytes_counted;
     int mode;
 #endif
 #ifdef UNIX
@@ -129,15 +118,12 @@ again:
     }
 #endif
     for (tmp = 1; tmp <= maxdlevel; tmp++) {
-        extern int hackpid;
 #ifdef DGK
         if (tmp == dlevel || !fileinfo[tmp].where)
             continue;
         if (fileinfo[tmp].where != ACTIVE)
             swapin_file(tmp);
 #else
-        extern boolean level_exists[];
-
         if (tmp == dlevel || !level_exists[tmp])
             continue;
 #endif
@@ -180,7 +166,6 @@ register int fd;
     int tmp;      /* not a register ! */
     unsigned mid; /* idem */
     struct obj *otmp;
-    extern boolean restoring;
 #ifdef DGK
     struct flag oldflags;
 

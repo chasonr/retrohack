@@ -5,18 +5,6 @@
 #include "hack.h"
 #include "panic.h"
 
-extern struct permonst li_dog, dog, la_dog;
-extern char *exclam(), *hcolor(), *xname();
-extern struct obj *mkobj_at();
-#ifdef KAA
-extern boolean stoned;
-extern boolean unweapon;
-extern char *nomovemsg, *defmonnam();
-extern struct monst *mkmon_at();
-#endif
-#ifdef RPH
-extern struct obj *mk_named_obj_at();
-#endif
 void mondied(/*void*/);
 static void monstone(/*unknown*/);
 #ifdef STOOGES
@@ -238,7 +226,6 @@ static void
 monstone(mdef)
 register struct monst *mdef;
 {
-    extern char mlarge[];
     if (index(mlarge, mdef->data->mlet))
         mksobj_at(ENORMOUS_ROCK, mdef->mx, mdef->my);
     else

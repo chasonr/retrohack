@@ -3,11 +3,6 @@
 
 #include <stdio.h>
 #include "hack.h"
-extern struct monst *makemon();
-extern struct obj *carrying();
-#ifdef KAA
-extern char pl_character[];
-#endif
 
 char *breathe[] = { "fragments", "fire",       "sleep gas",  "frost",
                     "death",     "lightening", "poison gas", "acid" };
@@ -478,7 +473,6 @@ register int dam;
         mtmp->mundetected = 0;
         if (!Blind) {
             register struct obj *obj;
-            extern char *Xmonnam();
             if ((obj = o_at(mtmp->mx, mtmp->my)) != NULL)
                 pline("%s was hidden under %s!", Xmonnam(mtmp), doname(obj));
         }

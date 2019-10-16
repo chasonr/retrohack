@@ -37,10 +37,6 @@
 
 #include "hack.h"
 
-extern struct monst *mkmon_at();
-extern struct obj *mkobj_at();
-extern char genocided[];
-
 #ifdef FOUNTAINS
 static void dofindgem(/*unknown*/);
 static void dogushforth(/*unknown*/);

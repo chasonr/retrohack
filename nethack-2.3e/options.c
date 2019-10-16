@@ -10,7 +10,6 @@ void parseoptions(/*void*/);
 static void nmcpy(/*unknown*/);
 static void option_help(/*unknown*/);
 
-extern char *eos();
 #ifdef SORTING
 static boolean set_order;
 #endif
@@ -19,7 +18,6 @@ void
 initoptions()
 {
     register char *opts;
-    extern char *getenv();
 
     flags.time = flags.nonews = flags.notombstone = flags.end_own =
         flags.standout = flags.nonull = FALSE;
@@ -148,7 +146,6 @@ boolean from_env;
      */
     if (!strncmp(opts, "packorder", 4)) {
         register char *sp, *tmp;
-        extern char inv_order[];
         int tmpend;
 
         op = index(opts, ':');
@@ -217,7 +214,6 @@ boolean from_env;
 
     /* name:string */
     if (!strncmp(opts, "name", 4)) {
-        extern char plname[PL_NSIZ];
         if (!from_env) {
 #ifdef DGK
             pline("'name' only settable from %s.", configfile);
@@ -324,7 +320,6 @@ boolean from_env;
     }
 #ifdef DOGNAME
     if (!strncmp(opts, "dogname", 3)) {
-        extern char dogname[];
         op = index(opts, ':');
         if (!op)
             goto bad;
@@ -356,9 +351,6 @@ int
 doset()
 {
     char buf[BUFSZ];
-#ifdef SORTING
-    extern char inv_order[];
-#endif
 
     pline("What options do you want to set? ");
     getlin(buf);

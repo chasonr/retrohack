@@ -23,6 +23,7 @@ unsigned n;
 #else
 
 #include <stdlib.h>
+#include "alloc.h"
 #include "panic.h"
 
 long *

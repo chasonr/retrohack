@@ -28,9 +28,6 @@
 #endif
 #include "hack.h" /* mainly for index() which depends on BSD */
 
-extern char *getenv();
-extern time_t time();
-
 static void newmail(/*void*/);
 static void mdrush(/*void*/);
 void regularize(/*void*/);
@@ -180,7 +177,6 @@ int fd;
         return (0); /* not an xlock file */
     (void) time(&date);
     if (date - buf.st_mtime < 3L * 24L * 60L * 60L) { /* recent */
-        extern int errno;
         int lockedpid; /* should be the same size as hackpid */
 
         if (read(fd, (char *) &lockedpid, sizeof(lockedpid))
@@ -212,7 +208,6 @@ int fd;
 void
 getlock()
 {
-    extern int errno, hackpid, locknum;
     register int i = 0, fd;
 
     (void) fflush(stdout);
@@ -367,10 +362,6 @@ newmail()
     /* produce a scroll of mail */
     register struct obj *obj;
     register struct monst *md;
-    extern char plname[];
-    extern struct obj *mksobj(), *addinv();
-    extern struct monst *makemon();
-    extern struct permonst pm_mail_daemon;
 
     obj = mksobj(SCR_MAIL);
     if ((md = makemon(&pm_mail_daemon, u.ux, u.uy)) != NULL) /* always succeeds */

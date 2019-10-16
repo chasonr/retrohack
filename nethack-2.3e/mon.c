@@ -16,18 +16,6 @@ void kludge(/*void*/);
 static int ishuman(/*unknown*/);
 static int restrap(/*unknown*/);
 
-extern struct monst *makemon(), *mkmon_at();
-extern struct trap *maketrap();
-extern struct obj *mkobj_at(), *mksobj_at();
-extern char *hcolor();
-#ifdef KAA
-extern boolean stoned;
-extern char mlarge[];
-#endif
-#ifdef RPH
-extern struct obj *mk_named_obj_at();
-#endif
-
 int warnlevel; /* used by movemon and dochugw */
 long lastwarntime;
 int lastwarnlev;
@@ -58,7 +46,6 @@ movemon()
         /* most monsters drown in pools */
         {
             boolean inpool, infountain, iseel, isgremlin;
-            extern struct permonst pm_gremlin;
 
             inpool = (levl[mtmp->mx][mtmp->my].typ == POOL);
             iseel = (mtmp->data->mlet == ';');
@@ -544,7 +531,6 @@ int dest;
 #endif
     register int tmp, tmp2, nk, x, y;
     register struct permonst *mdat = mtmp->data;
-    extern long newuexp();
 #ifdef RPH
     int old_nlth;
     char old_name[BUFSZ];
@@ -573,7 +559,6 @@ int dest;
     nk = 1;            /* in case we cannot find it in mons */
     tmp = mdat - mons; /* index in mons array (if not 'd', '@', ...) */
     if (tmp >= 0 && tmp < CMNUM + 2) {
-        extern char fut_geno[];
         u.nr_killed[tmp]++;
         if ((nk = u.nr_killed[tmp]) > MAXMONNO &&
 #ifdef HARD

@@ -8,11 +8,7 @@ static void m_initinv(/*unknown*/);
 #endif
 void rloc(/*void*/);
 
-extern char fut_geno[];
-extern char *index();
-extern struct obj *mkobj_at(), *mksobj(), *mkobj();
 struct monst zeromonst;
-extern boolean in_mklev;
 
 #ifdef HARD /* used in hell for bigger, badder demons! */
 
@@ -46,7 +42,6 @@ struct permonst green_dragon = {
 struct permonst yellow_dragon = {
     "yellow dragon", 'D', 10, 9, -1, 20, 3, 8, 0
 };
-extern struct permonst pm_gremlin;
 
 /*
  * called with [x,y] = coordinates;

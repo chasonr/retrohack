@@ -9,8 +9,6 @@
 static void setgemprobs(/*unknown*/);
 static int interesting_to_discover(/*unknown*/);
 
-extern char *index();
-
 int
 letindex(let)
 register char let;
@@ -122,7 +120,6 @@ static void
 setgemprobs()
 {
     register int j, first;
-    extern xchar dlevel;
 
     first = bases[letindex(GEM_SYM)];
 
@@ -143,8 +140,6 @@ oinit() /* level dependent initialization */
 {
     setgemprobs();
 }
-
-extern long *alloc();
 
 void
 savenames(fd)
@@ -212,12 +207,10 @@ register int fd;
 int
 dodiscovered() /* free after Robert Viduya */
 {
-    extern char *typename();
     register int i, end;
     int ct = 0;
 #ifdef DGKMOD
     char class = -1;
-    extern char *let_to_name();
 #endif
 
     cornline(0, "Discoveries");

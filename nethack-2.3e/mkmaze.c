@@ -9,9 +9,6 @@ static void walkfrom(/*unknown*/);
 static void move(/*void*/);
 static int okay(/*unknown*/);
 
-extern struct monst *makemon(), *mkmon_at();
-extern struct permonst pm_wizard;
-extern struct obj *mkobj_at(), *mksobj_at();
 struct permonst hell_hound = { "hell hound", 'd', 12, 14, 2, 20, 3, 6, 0 };
 
 void

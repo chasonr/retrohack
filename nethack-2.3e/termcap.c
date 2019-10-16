@@ -16,14 +16,8 @@ void xputs(/*void*/);
 void nh_clear_screen(/*void*/);
 void home(/*void*/);
 
-extern char *tgetstr(), *tgoto(), *getenv();
-extern long *alloc();
-
 #ifndef SYSV
-#ifndef LINT
-extern /* it is defined in libtermlib (libtermcap) */
-#endif
-    short ospeed; /* terminal baudrate; used by tputs */
+short ospeed; /* terminal baudrate; used by tputs */
 #else
 short ospeed = 0; /* gets around "not defined" error message */
 #endif
@@ -150,7 +144,6 @@ end_screen()
 }
 
 /* Cursor movements */
-extern xchar curx, cury;
 
 void
 curs(x, y)

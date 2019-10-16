@@ -14,8 +14,6 @@
  * just read the rumor file if they desire.  -dgk
  */
 long rumors_size;
-extern char *index();
-extern long ftell();
 
 outrumor()
 {
@@ -55,8 +53,6 @@ static void outline();
 static int used();
 
 #define CHARSZ 8 /* number of bits in a char */
-extern long *alloc();
-extern char *index();
 int n_rumors = 0;
 int n_used_rumors = -1;
 char *usedbits;

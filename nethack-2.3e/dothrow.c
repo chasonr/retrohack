@@ -5,14 +5,6 @@
 
 #include "hack.h"
 
-extern struct obj *splitobj(), *addinv();
-extern boolean hmon();
-extern struct monst youmonst;
-extern char *Doname();
-#ifdef KAA
-extern char *xname();
-#endif
-
 struct monst *bhit(), *boomhit();
 static void hitfloor(/*unknown*/);
 static int thitmonst(/*unknown*/);

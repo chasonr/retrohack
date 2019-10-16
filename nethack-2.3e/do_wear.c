@@ -3,9 +3,7 @@
 
 #include "hack.h"
 #include <stdio.h>
-extern char *nomovemsg;
-extern char quitchars[];
-extern char *Doname();
+
 static int marmoroff(/* struct obj *otmp */);
 void ringoff(/*void*/);
 static int dorr(/*unknown*/);

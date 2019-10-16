@@ -8,12 +8,6 @@
 static void break_armor(/*unknown*/);
 static void drop_weapon(/*unknown*/);
 
-extern char genocided[];
-extern char pl_character[PL_CSIZ];
-extern char plname[PL_NSIZ];
-
-extern long newuexp();
-
 void
 polyself()
 {

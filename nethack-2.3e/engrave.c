@@ -4,12 +4,6 @@
 #include <stdlib.h>
 #include "hack.h"
 
-extern char *nomovemsg;
-extern char nul[];
-extern struct obj zeroobj;
-#ifdef KAA
-extern char *xname();
-#endif
 void wipe_engr_at(/*void*/);
 static void del_engr(/*unknown*/);
 static struct engr *engr_at(/*unknown*/);

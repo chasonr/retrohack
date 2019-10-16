@@ -3,8 +3,6 @@
 
 #include "hack.h"
 
-extern char pl_character[];
-
 #ifdef MARKER
 
 static int cost(/*unknown*/);
@@ -69,7 +67,6 @@ register struct obj *pen;
     register struct obj *paper;
     char namebuf[BUFSZ], scrbuf[BUFSZ];
     register struct obj *newscroll;
-    extern struct obj *readobjnam(), *addinv();
     int basecost, actualcost;
     int newquan;
 

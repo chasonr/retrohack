@@ -15,12 +15,6 @@
 static void page_more(/*unknown*/);
 void set_pager(/*void*/);
 
-extern int CO, LI; /* usually COLNO and ROWNO+2 */
-extern char *CD;
-extern char quitchars[];
-extern char *getenv(), *getlogin();
-extern xchar curx;
-extern int getpos();
 static void intruph(int sig);
 
 int
@@ -29,7 +23,6 @@ dowhatis()
     FILE *fp;
     char bufr[BUFSZ + 6];
     register char *buf = &bufr[6], *ep, q;
-    extern char readchar();
 
     if (!(fp = fopen(DATAFILE, "r")))
         pline("Cannot open data file!");
@@ -272,8 +265,6 @@ int
 page_line(s) /* returns 1 if we should quit */
 register char *s;
 {
-    extern char morc;
-
     if (cury == LI - 1) {
         if (!*s)
             return (0); /* suppress blank lines at top */
@@ -451,8 +442,6 @@ boolean silent;
             return (0);
         }
         if (child(1)) {
-            extern char *catmore;
-
             /* Now that child() does a setuid(getuid()) and a chdir(),
                we may not be able to open file fnam anymore, so make
                it stdin. */

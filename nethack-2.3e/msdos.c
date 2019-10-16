@@ -2,8 +2,9 @@
 /* An assortment of MSDOS functions.
  */
 
-#include "hack.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "hack.h"
 
 #ifdef MSDOS
 #include <dos.h>
@@ -91,7 +92,6 @@ static char *getcomspec(warn)
 #include <process.h>
 dosh()
 {
-    extern char orgdir[];
     char *comspec;
 
     if (comspec = getcomspec()) {
@@ -294,7 +294,6 @@ copybones(mode)
     char *frompath, *topath, *dta, *comspec;
     int status;
     long fs;
-    extern saveprompt;
 
     if (!ramdisk)
         return;
@@ -372,7 +371,6 @@ playwoRAMdisk()
 
 saveDiskPrompt(start)
 {
-    extern saveprompt;
     char buf[BUFSIZ], *bp;
     int fd;
 
@@ -441,8 +439,6 @@ comspec_exists()
 void
 gameDiskPrompt()
 {
-    extern saveprompt;
-
     if (saveprompt) {
         if (record_exists() && comspec_exists())
             return;
@@ -467,8 +463,6 @@ read_config_file()
     char tmp_ramdisk[PATHLEN], tmp_levels[PATHLEN];
     char buf[BUFSZ], *bufp;
     FILE *fp, *fopenp();
-    extern char plname[];
-    extern int saveprompt;
 
     tmp_ramdisk[0] = 0;
     tmp_levels[0] = 0;
@@ -760,10 +754,6 @@ char *name, *mode;
 void
 msexit(code)
 {
-#ifdef CHDIR
-    extern char orgdir[];
-#endif
-
 #ifdef DGK
     flushout();
     enable_ctrlP(); /* in case this wasn't done */

@@ -8,16 +8,7 @@
 #include <unistd.h>
 #include "hack.h"
 
-extern struct obj *splitobj(), *addinv();
-extern boolean hmon();
-extern boolean level_exists[];
-extern struct monst youmonst;
-extern char *Doname();
-extern char *nomovemsg;
 int identify();
-#ifdef KAA
-extern char *xname();
-#endif
 static int drop(/* struct obj *obj */);
 void dropx(/*void*/);
 void dropy(/*void*/);
@@ -276,7 +267,6 @@ register boolean at_stairs;
 #endif
         mklev();
     else {
-        extern int hackpid;
 #ifdef DGK
         /* If not currently accessible, swap it in.
          */
@@ -433,8 +423,6 @@ void
 more_experienced(exp, rexp)
 register int exp, rexp;
 {
-    extern char pl_character[];
-
     u.uexp += exp;
     u.urexp += 4 * exp + rexp;
     if (exp)

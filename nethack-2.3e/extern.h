@@ -2,6 +2,7 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "config.h"
+#include "global.h"
 
 /*
  *	I have been told, that in Sys V R3.1, this has to be commented out.
@@ -11,9 +12,7 @@
 #endif
 
 #include "coord.h"
-
-/*** alloc.c ***/
-extern long *alloc();
+#include "alloc.h"
 
 /*** apply.c ***/
 extern void dighole(/*unknown*/);
@@ -35,6 +34,23 @@ extern void pushch(/*unknown*/);
 extern void rhack(/*unknown*/);
 extern void savech(/*unknown*/);
 extern void set_occupation(/*unknown*/);
+extern char sdir[];
+extern schar xdir[];
+extern schar ydir[];
+
+/*** decl.c ***/
+extern char fut_geno[60];
+extern char genocided[60];
+extern boolean in_mklev;
+extern char *nomovemsg;
+extern char nul[40];
+extern char plname[PL_NSIZ];
+extern char quitchars[];
+extern boolean restoring;
+extern boolean stoned;
+extern boolean unweapon;
+extern long wailmsg;
+extern struct monst youmonst;
 
 /*** do.c ***/
 extern int doddrop(/*unknown*/);
@@ -88,6 +104,11 @@ extern void keepdogs(/*unknown*/);
 extern void losedogs(/*unknown*/);
 extern struct monst *makedog(/*unknown*/);
 extern int tamedog(/*unknown*/);
+extern struct monst *mydogs;
+extern struct permonst li_dog;
+extern struct permonst dog;
+extern struct permonst la_dog;
+extern char dogname[63];
 
 /*** dogmove.c ***/
 extern int dog_move(/*unknown*/);
@@ -103,6 +124,8 @@ extern void lesshungry(/*unknown*/);
 extern void morehungry(/*unknown*/);
 extern void newuhs(/*unknown*/);
 extern int poisonous(/*unknown*/);
+extern char POISONOUS[];
+extern char *hu_stat[];
 
 /*** end.c ***/
 extern void charcat(/*unknown*/);
@@ -111,6 +134,8 @@ extern void done(/*unknown*/);
 extern void done1(int sig);
 extern int doquit(void);
 extern void done_in_by(/*unknown*/);
+extern int done_hup;
+extern int done_stopprint;
 
 /*** engrave.c ***/
 extern int doengrave(/*unknown*/);
@@ -130,6 +155,7 @@ extern int hitmm(/*unknown*/);
 extern boolean hmon(/*unknown*/);
 extern void mondied(/*unknown*/);
 extern int thitu(/*unknown*/);
+extern char mlarge[];
 
 /*** fountain.c ***/
 extern int dipfountain(/*unknown*/);
@@ -191,6 +217,8 @@ extern void stackobj(/*unknown*/);
 extern struct trap *t_at(/*unknown*/);
 extern void useup(/*unknown*/);
 extern void useupf(/*unknown*/);
+extern struct wseg *m_atseg;
+extern char inv_order[];
 
 /*** ioctl.c ***/
 extern int getioctls(/*unknown*/);
@@ -204,12 +232,21 @@ extern void mread(/*unknown*/);
 extern void savelev(/*unknown*/);
 extern void savemonchn(/*unknown*/);
 extern void saveobjchn(/*unknown*/);
+extern boolean level_exists[];
 
-/*** main.c ***/
+/*** unixmain.c ***/
 extern void askname(/*unknown*/);
 extern void glo(/*unknown*/);
 extern void impossible(/*unknown*/);
 extern void stop_occupation(/*unknown*/);
+extern int locknum;
+
+/*** unixmain.c and pcmain.c ***/
+extern char SAVEF[];
+extern int hackpid;
+extern char *hname;
+extern int (*occupation)(void);
+extern void (*afternmv)(void);
 
 /*** makemon.c ***/
 extern int enexto(/*unknown*/);
@@ -228,6 +265,8 @@ extern int mhitu(/*unknown*/);
 extern void makelevel(/*unknown*/);
 extern void mktrap(/*unknown*/);
 extern int okdoor(/*unknown*/);
+extern int doorindex;
+extern int nroom;
 
 /*** mkmaze.c ***/
 extern void makemaz(/*unknown*/);
@@ -242,6 +281,7 @@ extern struct obj *mkobj_at(/*unknown*/);
 extern struct obj *mksobj(/*unknown*/);
 extern struct obj *mksobj_at(/*unknown*/);
 extern int weight(/*unknown*/);
+extern struct obj zeroobj;
 
 /*** mkshop.c ***/
 extern struct permonst *courtmon(/*unknown*/);
@@ -276,11 +316,23 @@ extern void setmangry(/*unknown*/);
 extern void unstuck(/*unknown*/);
 extern void xkilled(/*unknown*/);
 extern void youswld(/*unknown*/);
+extern int warnlevel;
 
 /*** monmove.c ***/
 extern int dochug(/*unknown*/);
 extern int dochugw(/*unknown*/);
 extern int m_move(/*unknown*/);
+
+/*** monst.c ***/
+extern struct permonst pm_djinni;
+extern struct permonst pm_eel;
+extern struct permonst pm_ghost;
+extern struct permonst pm_gremlin;
+extern struct permonst pm_mail_daemon;
+extern struct permonst pm_medusa;
+extern struct permonst pm_moe, pm_larry, pm_curly;
+extern struct permonst pm_soldier;
+extern struct permonst pm_wizard;
 
 /*** o_init.c ***/
 extern int dodiscovered(/*unknown*/);
@@ -291,6 +343,8 @@ extern void oinit(/*unknown*/);
 extern int probtype(/*unknown*/);
 extern void restnames(/*unknown*/);
 extern void savenames(/*unknown*/);
+extern int bases[];
+extern char obj_symbols[];
 
 /*** objnam.c ***/
 extern char *aobjnam();
@@ -365,6 +419,7 @@ extern void setclipped(/*unknown*/);
 extern void swallowed(/*unknown*/);
 extern void unpmon(/*unknown*/);
 extern void ustatusline(/*unknown*/);
+extern xchar scrlx, scrhx, scrly, scrhy;
 
 /*** prisym.c ***/
 extern void atl(/*unknown*/);
@@ -438,6 +493,7 @@ extern char *shkname(/*unknown*/);
 extern void shopdig(/*unknown*/);
 extern void splitbill(/*unknown*/);
 extern void subfrombill(/*unknown*/);
+extern struct obj *billobjs;
 
 /*** shknam.c ***/
 extern int saleable(/*unknown*/);
@@ -479,6 +535,9 @@ extern void start_screen(/*unknown*/);
 extern void startup(/*unknown*/);
 extern int xputc(int c);
 extern void xputs(/*unknown*/);
+extern char *CD;
+extern int CO, LI;
+extern short ospeed;
 
 /*** timeout.c ***/
 extern void timeout(/*unknown*/);
@@ -519,7 +578,7 @@ extern void selftouch(/*unknown*/);
 extern void tele(/*unknown*/);
 extern void unplacebc(/*unknown*/);
 
-/*** tty.c ***/
+/*** unixtty.c ***/
 extern void cgetret(/*unknown*/);
 extern int error(/*unknown*/);
 extern void get_ext_cmd(/*unknown*/);
@@ -532,9 +591,13 @@ extern void setftty(/*unknown*/);
 extern void settty(/*unknown*/);
 extern void xwaitforspace(/*unknown*/);
 
+/*** unixtty.c and pctty.c ***/
+extern char morc;
+
 /*** u_init.c ***/
 extern void plnamesuffix(/*unknown*/);
 extern void u_init(/*unknown*/);
+extern char pl_character[PL_CSIZ];
 
 /*** unix.c ***/
 extern void ckmailstatus(/*unknown*/);
@@ -587,6 +650,9 @@ extern void wormhit(/*unknown*/);
 extern void worm_move(/*unknown*/);
 extern void worm_nomove(/*unknown*/);
 extern void wormsee(/*unknown*/);
+extern long wgrowtime[32];
+extern struct wseg *wheads[32];
+extern struct wseg *wsegs[32];
 
 /*** worn.c ***/
 extern void setnotworn(/*unknown*/);

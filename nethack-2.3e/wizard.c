@@ -6,9 +6,6 @@
 
 #include <stdlib.h>
 #include "hack.h"
-extern struct permonst pm_wizard;
-extern struct monst *makemon();
-extern struct obj *carrying(), *mksobj_at();
 
 void aggravate(/*void*/);
 static void clonewiz(/*unknown*/);
@@ -39,7 +36,6 @@ char wizapp[] = "@&DNPTUVXcemntx";
 #ifdef DGKMOD
 #define URETREATING(x, y) \
     (movedist(u.ux, u.uy, x, y) > movedist(u.ux0, u.uy0, x, y))
-extern char mlarge[];
 
 static int
 movedist(x0, x1, y0, y1)
@@ -169,7 +165,6 @@ register struct obj *obj;
     struct objclass *oclass = &objects[obj->otyp];
     char sym = obj->olet;
     int damage;
-    extern char *exclam();
 
     bhitpos.x = x;
     bhitpos.y = y;

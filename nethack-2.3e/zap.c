@@ -4,13 +4,8 @@
 #include <stdlib.h>
 #include "hack.h"
 
-extern struct obj *mkobj_at(), *mksobj_at();
-extern struct monst *makemon(), *mkmon_at(), youmonst;
 struct monst *bhit();
 char *exclam();
-#ifdef KAA
-extern char *xname();
-#endif
 
 void weffects(/*void*/);
 void hit(/*void*/);
@@ -721,7 +716,6 @@ int dx, dy;
     register int i, ct;
     register struct monst *mtmp;
     char sym = ')';
-    extern schar xdir[], ydir[];
 
     bhitpos.x = u.ux;
     bhitpos.y = u.uy;
@@ -1294,7 +1288,6 @@ makewish() /* Separated as there are now 3 places you can wish at. */
 {
     char buf[BUFSZ];
     register struct obj *otmp;
-    extern struct obj *readobjnam(), *addinv();
     int wishquan, mergquan;
 
     pline("You may wish for an object. What do you want? ");

@@ -53,9 +53,6 @@ int dowipe();
 int rndobjsym(), rndmonsym();
 char *hcolor(), *defmonnam();
 
-extern char *occtxt;
-extern int (*occupation)();
-
 #ifdef DGKMOD
 int dotogglepickup(), doMSCversion();
 #ifdef DEBUG
@@ -103,7 +100,6 @@ int time;
 #define BSIZE 20
 static char pushq[BSIZE], saveq[BSIZE];
 static int phead, ptail, shead, stail;
-extern int in_doagain;
 
 char
 popch()
@@ -263,8 +259,6 @@ struct ext_func_tab extcmdlist[] = {
     { "?",         "get this list of extended commands", doextlist },
     { (char *) 0, (char *) 0,  donull }
 };
-
-extern char *parse(), quitchars[];
 
 void
 rhack(cmd)

@@ -2,7 +2,6 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include "hack.h"
-extern struct monst *makemon();
 #include "edog.h"
 #include "mkroom.h"
 

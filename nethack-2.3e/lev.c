@@ -14,18 +14,9 @@ void savemonchn(/*void*/);
 static void savegoldchn(/*unknown*/);
 static void savetrapchn(/*unknown*/);
 void mread(/*void*/);
-extern struct monst *restmonchn();
-extern struct obj *restobjchn();
-extern struct obj *billobjs;
-extern char SAVEF[];
-extern int hackpid;
-extern xchar dlevel;
-extern char nul[];
 
 #ifndef NOWORM
 #include "wseg.h"
-extern struct wseg *wsegs[32], *wheads[32];
-extern long wgrowtime[32];
 #endif
 
 #ifdef DGK
@@ -341,7 +332,6 @@ xchar lev;
     {
         long tmoves = (moves > omoves) ? moves - omoves : 0;
         register struct monst *mtmp, *mtmp2;
-        extern char genocided[];
 
         for (mtmp = fmon; mtmp; mtmp = mtmp2) {
             long newhp; /* tmoves may be very large */
@@ -422,7 +412,6 @@ register char *buf;
 register unsigned len;
 {
     register int rlen;
-    extern boolean restoring;
 
     rlen = read(fd, buf, (int) len);
     if (rlen != len) {
@@ -438,8 +427,6 @@ register unsigned len;
 void
 mklev()
 {
-    extern boolean in_mklev;
-
     if (getbones())
         return;
 

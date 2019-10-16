@@ -18,6 +18,7 @@
 #define itoa itoa_
 #endif
 
+#include "global.h"
 #include "extern.h"
 
 #define Null(type) ((struct type *) 0)
@@ -31,7 +32,6 @@ extern coord bhitpos; /* place where thrown weapon falls to the ground */
 #include "gold.h"
 #include "monst.h" /* uses coord */
 #include "trap.h"
-#include "global.h"
 
 #define plur(x) (((x) == 1) ? "" : "s")
 #define min(x, y) ((x) < (y) ? (x) : (y))
@@ -61,7 +61,6 @@ extern coord bhitpos; /* place where thrown weapon falls to the ground */
     (((x1) - (x2)) * ((x1) - (x2)) + ((y1) - (y2)) * ((y1) - (y2)))
 #endif
 
-#define PL_CSIZ 20 /* sizeof pl_character */
 #ifdef HARD
 #define MAX_CARR_CAP 120 /* so that boulders can be heavier */
 #else

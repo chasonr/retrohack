@@ -3,9 +3,8 @@
 
 #include <stdio.h>
 #include "hack.h"
-#ifdef SPELLS
-extern char *nomovemsg;
 
+#ifdef SPELLS
 static int cursed_book(/*unknown*/);
 #ifdef HARD
 static void decrnuses(/*unknown*/);
@@ -414,7 +413,6 @@ int
 dovspell()
 {
     register int max, i;
-    extern char morc;
     char buf[BUFSZ], any[BUFSZ];
 
     if (spl_book[0].sp_id == NO_SPELL) {

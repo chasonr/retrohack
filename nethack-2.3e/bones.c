@@ -5,10 +5,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include "hack.h"
-extern char plname[PL_NSIZ];
-extern long somegold();
-extern struct monst *makemon();
-extern struct permonst pm_ghost;
+
 static void spill_obj(/*unknown*/);
 
 #ifdef DGK

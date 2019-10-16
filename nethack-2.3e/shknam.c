@@ -7,8 +7,6 @@
 #include "eshk.h"
 #include "mkroom.h"
 
-extern struct monst *makemon();
-extern struct obj *mkobj_at(), *mksobj_at();
 static void findname(/*unknown*/);
 
 static char *shkliquors[] = {
@@ -301,7 +299,6 @@ struct mkroom *sroom;
         /* Said to happen sometimes, but I've never seen it. */
         if (wizard) {
             register int j = sroom->doorct;
-            extern int doorindex;
 
             pline("Where is shopdoor?");
             pline("Room at (%d,%d),(%d,%d).", sroom->lx, sroom->ly, sroom->hx,
