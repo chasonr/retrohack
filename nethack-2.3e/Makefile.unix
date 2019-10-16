@@ -39,10 +39,10 @@ HACKCSRC = alloc.c apply.c bones.c cmd.c decl.c do.c do_name.c do_wear.c\
 
 CSOURCES = $(HACKCSRC) makedefs.c
 
-HSOURCES = config.h date.h edog.h eshk.h extern.h flag.h func_tab.h\
+HSOURCES = config.h date_in.h edog.h eshk.h extern.h flag.h func_tab.h\
 	gen.h gold.h hack.h mfndpos.h mkroom.h monst.h msdos.h\
 	obj.h objclass.h objects.h onames.h permonst.h rm.h\
-	spell.h trap.h wseg.h you.h
+	spell.h trap_in.h wseg.h you.h
 
 SOURCES = $(CSOURCES) $(HSOURCES)
 
@@ -87,7 +87,7 @@ data:	config.h data.base makedefs
 date.h:	$(SOURCES) makedefs
 	./makedefs -D
 
-trap.h:	config.h makedefs
+trap.h:	config.h trap_in.h makedefs
 	./makedefs -t
 
 onames.h:	makedefs objects.h
