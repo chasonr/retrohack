@@ -3,7 +3,7 @@
 #include "hack.h"
 #include <stdio.h>
 #ifdef UNIX
-static char SCCS_Id[] = "@(#)hack.c	2.3\t88/02/18";
+/*static char SCCS_Id[] = "@(#)hack.c	2.3\t88/02/18";*/
 #endif
 extern char news0();
 extern char *nomovemsg;

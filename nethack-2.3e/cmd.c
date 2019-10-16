@@ -22,7 +22,7 @@ static char unctrl(/*unknown*/);
 
 #ifdef THEOLOGY
 int dosacrifice();
-#endif;
+#endif
 
 #ifdef WIZARD
 static int wiz_attributes(/*unknown*/);
@@ -237,41 +237,31 @@ struct func_tab cmdlist[] = {
 
 struct ext_func_tab extcmdlist[] = {
 #ifdef KAA
-    "breathe",   "breathe fire like a red dragon",
-    dobreathe,
+    { "breathe",   "breathe fire like a red dragon", dobreathe },
 #endif
 #ifdef SPELLS
-    "cast",      "cast a spell",
-    docast,
+    { "cast",      "cast a spell", docast },
 #endif
-    "dip",       "dip an object into something",
-    dodip,
+    { "dip",       "dip an object into something", dodip },
 #ifdef PRAYERS
 #ifdef THEOLOGY
-    "sacrifice", "offer a sacrifice to the gods",
-    dosacrifice,
+    { "sacrifice", "offer a sacrifice to the gods", dosacrifice },
 #endif
-    "pray",      "pray to the gods for help",
-    dopray,
+    { "pray",      "pray to the gods for help", dopray },
 #endif
 #ifdef KAA
-    "remove",    "remove a cursed item",
-    doremove,
+    { "remove",    "remove a cursed item", doremove },
 #endif
 #ifdef NEWCLASS
-    "rub",       "rub a lamp",
-    dorub,       "sit",
-    "sit down",  dosit,
-    "turn",      "turn undead",
-    doturn,
+    { "rub",       "rub a lamp",  dorub },
+    { "sit",       "sit down",    dosit },
+    { "turn",      "turn undead", doturn },
 #endif
 #if defined(KOPS) && defined(KAA)
-    "wipe",      "wipe your face off",
-    dowipe,
+    { "wipe",      "wipe your face off", dowipe },
 #endif
-    "?",         "get this list of extended commands",
-    doextlist,   (char *) 0,
-    (char *) 0,  donull
+    { "?",         "get this list of extended commands", doextlist },
+    { (char *) 0, (char *) 0,  donull }
 };
 
 extern char *parse(), quitchars[];

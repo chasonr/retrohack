@@ -611,11 +611,12 @@ do_it:
     for (zy = seely; zy <= seehy; zy++)
         for (zx = seelx; zx <= seehx; zx++) {
             levl[zx][zy].lit = on;
-            if (!Blind && dist(zx, zy) > 2)
+            if (!Blind && dist(zx, zy) > 2) {
                 if (on)
                     prl(zx, zy);
                 else
                     nosee(zx, zy);
+            }
         }
     if (!on)
         seehx = 0;

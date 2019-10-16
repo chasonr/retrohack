@@ -20,7 +20,9 @@ makemaz()
     int x, y;
     register int zx, zy;
     coord mm;
+#ifndef RPH
     boolean al = (dlevel >= 30 && !flags.made_amulet);
+#endif
 
     for (x = 2; x < COLNO - 1; x++)
         for (y = 2; y < ROWNO - 1; y++)

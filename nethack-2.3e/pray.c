@@ -93,8 +93,6 @@ in_trouble()
 static void
 fix_worst_trouble()
 {
-    char *tmp, *hcolor();
-
     switch (in_trouble()) {
     case TROUBLE_STONED:
         pline("You feel more limber.");
@@ -253,7 +251,7 @@ dosacrifice()
             u.ugangr -= ((value / 800) * 4);
             if (u.ugangr < 0)
                 u.ugangr = 0;
-            if (u.ugangr != saved_anger)
+            if (u.ugangr != saved_anger) {
                 if (u.ugangr) {
                     if (Hallucination)
                         pline("The gods seem %s.", hcolor());
@@ -265,6 +263,7 @@ dosacrifice()
                     else
                         pline("The gods seem mollified.");
                 }
+            }
             if ((int) u.uluck < 0)
                 u.uluck = 0;
         } else if (u.ublesscnt > 0) {

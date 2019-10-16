@@ -112,7 +112,7 @@ char *s;
     nh_clear_screen();
     end_screen();
     if (s)
-        printf(s);
+        printf("%s", s);
     (void) fflush(stdout);
     if (STTY(&inittyb) < 0)
         perror("Hack (settty)");
@@ -410,11 +410,12 @@ register char *bufp;
             com_index = -1;
 
             while (extcmdlist[index].ef_txt != (char *) 0) {
-                if (!strncmp(obufp, extcmdlist[index].ef_txt, strlen(obufp)))
+                if (!strncmp(obufp, extcmdlist[index].ef_txt, strlen(obufp))) {
                     if (com_index == -1) /* No matches yet*/
                         com_index = index;
                     else /* More than 1 match */
                         com_index = -2;
+                }
                 index++;
             }
             if (com_index >= 0) {
@@ -442,4 +443,4 @@ register char *bufp;
             nh_bell();
     }
 }
-#endif COM_COMPL
+#endif /*COM_COMPL*/

@@ -229,11 +229,11 @@ register struct obj *obj;
             /* Cream pies must disappear if they hit or miss. */
             {
                 int hit, blindinc, thitu();
-                if (!(hit = thitu(
+                if ((!(hit = thitu(
                           8,
                           (obj->otyp != CREAM_PIE) ? rnd(oclass->wldam) : 0,
                           oclass->oc_name))
-                        && obj->otyp != CREAM_PIE
+                        && obj->otyp != CREAM_PIE)
 #else
             if (!thitu(8, rnd(oclass->wldam), oclass->oc_name)
 #endif /* KOPS */

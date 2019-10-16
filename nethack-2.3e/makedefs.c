@@ -1,7 +1,7 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* makedefs.c - NetHack version 2.3 */
 
-static char SCCS_Id[] = "@(#)makedefs.c	2.3\t88/02/18";
+/*static char SCCS_Id[] = "@(#)makedefs.c	2.3\t88/02/18";*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -149,7 +149,6 @@ struct hline {
 void
 do_rumors()
 {
-    struct hline *c_line;
     char infile[30];
     FILE *freopen();
 
@@ -459,24 +458,17 @@ newobj()
 
 struct inherent {
     char *attrib, *monsters;
-} abilities[] = { "Regeneration",
-                  "TVi",
-                  "See_invisible",
-                  "I",
-                  "Poison_resistance",
-                  "abcghikqsuvxyADFQSVWXZ&",
-                  "Fire_resistance",
-                  "gD&",
-                  "Cold_resistance",
-                  "gFY",
-                  "Shock_resistance",
-                  "g;",
-                  "Teleportation",
-                  "LNt",
-                  "Teleport_control",
-                  "t",
-                  "",
-                  "" };
+} abilities[] = {
+    { "Regeneration", "TVi" },
+    { "See_invisible", "I" },
+    { "Poison_resistance", "abcghikqsuvxyADFQSVWXZ&" },
+    { "Fire_resistance", "gD&" },
+    { "Cold_resistance", "gFY" },
+    { "Shock_resistance", "g;" },
+    { "Teleportation", "LNt" },
+    { "Teleport_control", "t" },
+    { "", "" }
+};
 
 static int
 specprop(name, count)

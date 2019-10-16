@@ -93,7 +93,7 @@ register struct obj *obj;
     }
 #endif
 #ifdef SINKS
-    if ((obj->olet == RING_SYM) && IS_SINK(levl[u.ux][u.uy].typ))
+    if ((obj->olet == RING_SYM) && IS_SINK(levl[u.ux][u.uy].typ)) {
         if (u.uswallow) {
             freeinv(obj);
             mpickobj(u.ustuck, obj);
@@ -102,6 +102,7 @@ register struct obj *obj;
             dosinkring(obj);
             return (1);
         }
+    }
 #endif
     pline("You dropped %s.", doname(obj));
     dropx(obj);
@@ -376,7 +377,7 @@ wipeoff()
         u.ucreamed -= 4;
     if (u.ucreamed > 0) {
         Blinded -= 4;
-        if (Blind <= 1) {
+        if (!Blinded) {
             pline("You've got the glop off.");
             u.ucreamed = 0;
             Blinded = 1;

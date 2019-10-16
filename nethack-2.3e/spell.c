@@ -413,7 +413,7 @@ losespells()
 int
 dovspell()
 {
-    register int max, i, side;
+    register int max, i;
     extern char morc;
     char buf[BUFSZ], any[BUFSZ];
 

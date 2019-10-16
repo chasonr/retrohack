@@ -44,18 +44,14 @@ init_uhunger()
 struct {
     char *txt;
     int nut;
-} tintxts[] = { "It contains salmon - not bad!",
-                60,
-                "It contains first quality peaches - what a surprise!",
-                40,
-                "It contains apple juice - perhaps not what you hoped for.",
-                20,
-                "It contains some nondescript substance, tasting awfully.",
-                500,
-                "It contains rotten meat. You vomit.",
-                -50,
-                "It turns out to be empty.",
-                0 };
+} tintxts[] = {
+    { "It contains salmon - not bad!", 60 },
+    { "It contains first quality peaches - what a surprise!", 40 },
+    { "It contains apple juice - perhaps not what you hoped for.", 20 },
+    { "It contains some nondescript substance, tasting awfully.", 500 },
+    { "It contains rotten meat. You vomit.", -50 },
+    { "It turns out to be empty.", 0 }
+};
 #define TTSZ SIZE(tintxts)
 
 static struct {

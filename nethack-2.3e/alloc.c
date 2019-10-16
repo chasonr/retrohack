@@ -25,8 +25,6 @@ unsigned n;
 #include <stdlib.h>
 #include "panic.h"
 
-static long *enlarge(/*unknown*/);
-
 long *
 alloc(lth)
 register unsigned lth;
@@ -37,19 +35,5 @@ register unsigned lth;
         panic("Cannot get %d bytes", lth);
     return ((long *) ptr);
 }
-
-#ifndef DGK
-long *
-enlarge(ptr, lth)
-register char *ptr;
-register unsigned lth;
-{
-    register char *nptr;
-
-    if (!(nptr = realloc(ptr, lth)))
-        panic("Cannot reallocate %d bytes", lth);
-    return ((long *) nptr);
-}
-#endif
 
 #endif /* LINT */

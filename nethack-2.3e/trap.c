@@ -805,11 +805,12 @@ level_tele()
 #else
         newlevel = rnd(dlevel + 3); /* 5 - 24 */
 #endif
-        if (dlevel == newlevel)
+        if (dlevel == newlevel) {
             if (!xdnstair)
                 newlevel--;
             else
                 newlevel++;
+        }
     }
     if (newlevel >= 30) {
         if (newlevel > MAXLEVEL)

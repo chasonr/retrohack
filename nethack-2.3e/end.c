@@ -80,7 +80,7 @@ register struct monst *mtmp;
     extern char *eos(), *shkname();
 
     pline("You die ...");
-    Sprintf(buf, "");
+    strcpy(buf, "");
     if (mtmp->minvis)
         Sprintf(eos(buf), "invisible ");
     if (Hallucination)
@@ -306,9 +306,9 @@ die:
                 u.urexp += i;
 #ifndef DGKMOD
                 if (!done_stopprint)
-                    printf("\t%s (worth %d Zorkmids),\n",
+                    printf("\t%s (worth %ld Zorkmids),\n",
 #else
-                printf("        %s (worth %d Zorkmids),\n",
+                printf("        %s (worth %ld Zorkmids),\n",
 #endif
                            doname(otmp), i);
                 if (otmp->spe >= 0) {

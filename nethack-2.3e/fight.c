@@ -752,7 +752,7 @@ register struct monst *mtmp;
         }
     }
 #ifdef KAA
-    if (malive)
+    if (malive) {
         if (u.usym == 'N' && mtmp->minvent) {
             struct obj *otmp, *addinv();
             otmp = mtmp->minvent;
@@ -764,8 +764,10 @@ register struct monst *mtmp;
             u.ugold += mtmp->mgold;
             mtmp->mgold = 0;
             pline("Your purse feels heavier.");
-        } else if (u.usym == 'Q')
+        } else if (u.usym == 'Q') {
             rloc(mtmp);
+        }
+    }
 #endif
     if (malive && mdat->mlet == 'E' && canseemon(mtmp) && !mtmp->mcan
         && rn2(3)) {

@@ -97,9 +97,7 @@ doremring()
             }
         }
         /* NOTREACHED */
-#ifdef LINT
     return (0);
-#endif
 }
 
 static int

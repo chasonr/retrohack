@@ -320,7 +320,7 @@ int so;
         if (t1->maxlvl != t1->level)
             Sprintf(eos(linebuf), " [max %d]", t1->maxlvl);
         if (quit && t1->death[4])
-            Sprintf(eos(linebuf), t1->death + 4);
+            Sprintf(eos(linebuf), "%s", t1->death + 4);
     }
     if (killed)
         Sprintf(eos(linebuf), " by %s%s",
@@ -337,7 +337,7 @@ int so;
 #ifdef KJSMODS
         int lngr = strlen(linebuf);
 #endif
-        Sprintf(hpbuf, (t1->hp > 0) ? nh_itoa(t1->hp) : "-");
+        Sprintf(hpbuf, "%s", (t1->hp > 0) ? nh_itoa(t1->hp) : "-");
         hppos = COLNO - 7 - strlen(hpbuf);
 #ifdef KJSMODS
         if (lngr >= hppos)

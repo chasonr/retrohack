@@ -308,15 +308,18 @@ char *argv[];
             if (flags.time)
                 flags.botl = 1;
 #ifdef KAA
-            if (u.mtimedone)
-                if (u.mh < 1)
+            if (u.mtimedone) {
+                if (u.mh < 1) {
                     rehumanize();
-                else
+                } else
 #endif
+                {
                     if (u.uhp < 1) {
-                    pline("You die...");
-                    done("died");
+                        pline("You die...");
+                        done("died");
+                    }
                 }
+            }
             if (u.uhp * 10 < u.uhpmax && moves - wailmsg > 50) {
                 wailmsg = moves;
 #ifdef KAA

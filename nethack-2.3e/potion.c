@@ -602,7 +602,7 @@ dodip()
             useup(potion);
             if (obj->spe < 7)
                 obj->spe++; /* %% */
-            sprintf(buf, xname(potion));
+            sprintf(buf, "%s", xname(potion));
             pline("The %s forms a coating on the %s.", buf, xname(obj));
         }
     }

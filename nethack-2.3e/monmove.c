@@ -4,7 +4,6 @@
 #include "hack.h"
 #include "mfndpos.h"
 #include "panic.h"
-#define NULL (char *) 0
 
 extern struct obj *mksobj_at();
 extern int warnlevel; /* defined in mon.c */
@@ -284,7 +283,7 @@ not_special:
      */
     if (msym == '@' ||
 #ifdef RPH
-        uwep && !strcmp(ONAME(uwep), "Excalibur") ||
+        (uwep && !strcmp(ONAME(uwep), "Excalibur")) ||
 #endif
         ('a' <= msym && msym <= 'z')) {
         extern coord *gettrack();

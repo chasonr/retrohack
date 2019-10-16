@@ -712,7 +712,6 @@ subfrombill(obj)
 register struct obj *obj;
 {
     long ltmp;
-    register int tmp;
     register struct obj *otmp;
     register struct bill_x *bp;
     if (!inshop()
@@ -751,11 +750,6 @@ register struct obj *obj;
         return;
     if (ESHK(shopkeeper)->billct == BILLSZ
         || !saleable(rooms[ESHK(shopkeeper)->shoproom].rtype - SHOPBASE, obj)
-        /*
-                  ((tmp =
-           shtypes[rooms[ESHK(shopkeeper)->shoproom].rtype-SHOPBASE].symb) &&
-           tmp != obj->olet)
-        */
         || index("_0", obj->olet)) {
         pline("%s seems not interested.", Monnam(shopkeeper));
 #ifdef DGKMOD

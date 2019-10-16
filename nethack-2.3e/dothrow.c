@@ -238,8 +238,8 @@ register struct obj *obj;
             mon = 0;
         else
             miss("enormous rock", mon);
-    } else if (obj->otyp == CREAM_PIE && (u.ulevel > rn2(10))
-               || u.ustuck == mon) {
+    } else if (obj->otyp == CREAM_PIE &&
+               ((u.ulevel > rn2(10)) || u.ustuck == mon)) {
         pline("The cream pie splashes over %s%s!", monnam(mon),
               index("aEfgy", mon->data->mlet) ? "" : "'s face");
         obfree(obj, (struct obj *) 0);
