@@ -40,7 +40,7 @@ static char *limit();
 #define RUMOR_FILE "rumors"
 #define DATA_FILE "data"
 
-static char in_line[256], outline[256];
+static char in_line[256];
 
 static void do_traps(/*void*/);
 static void do_rumors(/*void*/);
@@ -138,11 +138,6 @@ do_traps()
     fclose(inp_file);
     fclose(out_file);
 }
-
-static struct hline {
-    struct hline *next;
-    char *line;
-} * f_line;
 
 static void
 do_rumors()
