@@ -266,7 +266,7 @@ thitmonst(struct monst *mon, struct obj *obj)
                 change_luck(1);
                 strcat(buf, addluck);
             }
-            pline(buf);
+            pline("%s", buf);
             mpickobj(mon, obj);
             rloc(mon);
             return (1);

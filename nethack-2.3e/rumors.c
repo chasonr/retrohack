@@ -94,7 +94,7 @@ outline(register FILE *rumf)
     if ((ep = index(line, '\n')) != 0)
         *ep = 0;
     pline("This cookie has a scrap of paper inside! It reads: ");
-    pline(line);
+    pline("%s", line);
 }
 
 void

@@ -124,7 +124,7 @@ dowhatis(void)
 #endif
                         (void) strncpy(buf + 1, "       ", 7);
                     }
-                    pline(buf);
+                    pline("%s", buf);
                     if (ep[-1] == ';') {
                         pline("More info? ");
                         if (readchar() == 'y') {
@@ -346,7 +346,7 @@ cornline(int mode, const char *text)
 
     /* --- now we really do it --- */
     if (mode == 2 && linect == 1) /* topline only */
-        pline(texthead->line_text);
+        pline("%s", texthead->line_text);
     else if (mode == 2) {
         register int curline, lth;
 

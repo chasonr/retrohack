@@ -355,7 +355,7 @@ strange_feeling(struct obj *obj, const char *txt)
         pline("You have a %s feeling for a moment, then it passes.",
               Hallucination ? "normal" : "strange");
     else
-        pline(txt);
+        pline("%s", txt);
     if (!objects[obj->otyp].oc_name_known && !objects[obj->otyp].oc_uname)
         docall(obj);
     useup(obj);

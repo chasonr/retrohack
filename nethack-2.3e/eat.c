@@ -72,7 +72,7 @@ opentin(void)
     useup(tin.tin);
     r = rn2(2 * TTSZ);
     if (r < TTSZ) {
-        pline(tintxts[r].txt);
+        pline("%s", tintxts[r].txt);
         lesshungry(tintxts[r].nut);
         /* check for vomiting added by GAN 01/16/87 */
         if (tintxts[r].nut < 0 && Sick) {

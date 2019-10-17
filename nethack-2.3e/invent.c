@@ -618,7 +618,7 @@ nextclass:
         if (ckfn && !(*ckfn)(otmp))
             continue;
         if (!allflag) {
-            pline(xprname(otmp, ilet));
+            pline("%s", xprname(otmp, ilet));
             addtopl(" [nyaq]? ");
             sym = readchar();
         } else
@@ -665,7 +665,7 @@ obj_to_let(register struct obj *obj) /* should of course only be called for thin
 void
 prinv(register struct obj *obj)
 {
-    pline(xprname(obj, obj_to_let(obj)));
+    pline("%s", xprname(obj, obj_to_let(obj)));
 }
 
 static char *

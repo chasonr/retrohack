@@ -385,7 +385,7 @@ main(int argc, char *argv[])
         }
         if (multi < 0) {
             if (!++multi) {
-                pline(nomovemsg ? nomovemsg : "You can move again.");
+                pline("%s", nomovemsg ? nomovemsg : "You can move again.");
                 nomovemsg = 0;
                 if (afternmv)
                     (*afternmv)();

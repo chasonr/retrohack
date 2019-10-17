@@ -94,7 +94,7 @@ stoned_dialogue(void)
     register long i = (Stoned & TIMEOUT);
 
     if (i > 0 && i <= SIZE(stoned_texts))
-        pline(stoned_texts[SIZE(stoned_texts) - i]);
+        pline("%s", stoned_texts[SIZE(stoned_texts) - i]);
     if (i == 5)
         Fast = 0;
     if (i == 3)
