@@ -7,7 +7,7 @@
 static void stealarm(void);
 
 long /* actually returns something that fits in an int */
-somegold()
+somegold(void)
 {
     return ((u.ugold < 100)
                 ? u.ugold
@@ -15,8 +15,7 @@ somegold()
 }
 
 void
-stealgold(mtmp)
-register struct monst *mtmp;
+stealgold(register struct monst *mtmp)
 {
     register struct gold *gold = g_at(u.ux, u.uy);
     register long tmp;
@@ -72,8 +71,7 @@ stealarm(void)
 /* (or at least, when N should flee now) */
 /* avoid stealing the object stealoid */
 int
-steal(mtmp)
-struct monst *mtmp;
+steal(struct monst *mtmp)
 {
     register struct obj *otmp;
     register int tmp;
@@ -169,17 +167,14 @@ struct monst *mtmp;
 }
 
 void
-mpickobj(mtmp, otmp)
-register struct monst *mtmp;
-register struct obj *otmp;
+mpickobj(struct monst *mtmp, struct obj *otmp)
 {
     otmp->nobj = mtmp->minvent;
     mtmp->minvent = otmp;
 }
 
 int
-stealamulet(mtmp)
-register struct monst *mtmp;
+stealamulet(register struct monst *mtmp)
 {
     register struct obj *otmp;
 
@@ -199,9 +194,7 @@ register struct monst *mtmp;
 
 /* release the objects the killed animal has stolen */
 void
-relobj(mtmp, show)
-register struct monst *mtmp;
-register int show;
+relobj(struct monst *mtmp, int show)
 {
     register struct obj *otmp, *otmp2;
 

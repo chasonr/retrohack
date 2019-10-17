@@ -5,14 +5,14 @@
 #include "mkroom.h" /* not really used */
 #include "panic.h"
 
-static void walkfrom(/*unknown*/);
-static void move(/*void*/);
-static int okay(/*unknown*/);
+static void walkfrom(int x, int y);
+static void move(int *x, int *y, int dir);
+static int okay(int x, int y, int dir);
 
 static struct permonst hell_hound = { "hell hound", 'd', 12, 14, 2, 20, 3, 6, 0 };
 
 void
-makemaz()
+makemaz(void)
 {
     int x, y;
     register int zx, zy;
@@ -123,8 +123,7 @@ makemaz()
  * the program.  This iterative version uses the mimumum amount of stack
  * that is totally safe.
  */
-walkfrom(x, y)
-int x, y;
+walkfrom(int x, int y)
 {
 #define CELLS (ROWNO * COLNO) / 4            /* a maze cell is 4 squares */
     char mazex[CELLS + 1], mazey[CELLS + 1]; /* char's are OK */
@@ -160,8 +159,7 @@ int x, y;
 #else
 
 void
-walkfrom(x, y)
-int x, y;
+walkfrom(int x, int y)
 {
     register int q, a, dir;
     int dirs[4];
@@ -183,9 +181,7 @@ int x, y;
 #endif /* DGK */
 
 static void
-move(x, y, dir)
-register int *x, *y;
-register int dir;
+move(int *x, int *y, int dir)
 {
     switch (dir) {
     case 0:
@@ -204,9 +200,7 @@ register int dir;
 }
 
 int
-okay(x, y, dir)
-int x, y;
-register int dir;
+okay(int x, int y, int dir)
 {
     move(&x, &y, dir);
     move(&x, &y, dir);
@@ -218,8 +212,7 @@ register int dir;
 }
 
 int
-mazexy(cc)
-coord *cc;
+mazexy(coord *cc)
 {
     cc->x = 3 + 2 * rn2(COLNO / 2 - 2);
     cc->y = 3 + 2 * rn2(ROWNO / 2 - 2);

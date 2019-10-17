@@ -5,9 +5,9 @@
 #include "hack.h"
 #include "panic.h"
 
-static void monstone(/*unknown*/);
+static void monstone(struct monst *mdef);
 #ifdef STOOGES
-static void stoogejoke(/*unknown*/);
+static void stoogejoke(void);
 #endif
 
 static boolean far_noise;
@@ -54,8 +54,7 @@ static char random_joke[][30] = { "Why I ought a ...",
 
 /* hitmm returns 0 (miss), 1 (hit), or 2 (kill) */
 int
-hitmm(magr, mdef)
-register struct monst *magr, *mdef;
+hitmm(struct monst *magr, struct monst *mdef)
 {
     register struct permonst *pa = magr->data, *pd = mdef->data;
     int hit;
@@ -185,8 +184,7 @@ register struct monst *magr, *mdef;
 
 /* drop (perhaps) a cadaver and remove monster */
 void
-mondied(mdef)
-register struct monst *mdef;
+mondied(register struct monst *mdef)
 {
     register struct permonst *pd = mdef->data;
 #ifdef KOPS
@@ -222,8 +220,7 @@ register struct monst *mdef;
 
 /* drop a rock and remove monster */
 static void
-monstone(mdef)
-register struct monst *mdef;
+monstone(register struct monst *mdef)
 {
     if (index(mlarge, mdef->data->mlet))
         mksobj_at(ENORMOUS_ROCK, mdef->mx, mdef->my);
@@ -237,8 +234,7 @@ register struct monst *mdef;
 }
 
 int
-fightm(mtmp)
-register struct monst *mtmp;
+fightm(register struct monst *mtmp)
 {
     register struct monst *mon;
 
@@ -253,9 +249,7 @@ register struct monst *mtmp;
 
 /* u is hit by sth, but not a monster */
 int
-thitu(tlev, dam, name)
-register int tlev, dam;
-register char *name;
+thitu(int tlev, int dam, char *name)
 {
     char buf[BUFSZ];
 
@@ -282,10 +276,9 @@ char mlarge[] = "bCDdegIlmnoPSsTUwY',&9";
 char mlarge[] = "bCDdegIlmnoPSsTUwY',&";
 #endif
 
-boolean hmon(mon, obj, thrown) /* return TRUE if mon still alive */
-register struct monst *mon;
-register struct obj *obj;
-register int thrown;
+/* return TRUE if mon still alive */
+boolean
+hmon(struct monst *mon, struct obj *obj, int thrown)
 {
     register int tmp;
     boolean hittxt = FALSE;
@@ -567,8 +560,7 @@ register int thrown;
 /* try to attack; return FALSE if monster evaded */
 /* u.dx and u.dy must be set */
 int
-attack(mtmp)
-register struct monst *mtmp;
+attack(register struct monst *mtmp)
 {
     schar tmp;
     boolean malive = TRUE;
@@ -740,7 +732,7 @@ register struct monst *mtmp;
 #ifdef KAA
     if (malive) {
         if (u.usym == 'N' && mtmp->minvent) {
-            struct obj *otmp, *addinv();
+            struct obj *otmp;
             otmp = mtmp->minvent;
             mtmp->minvent = otmp->nobj;
             otmp = addinv(otmp);
@@ -771,7 +763,7 @@ register struct monst *mtmp;
 
 #ifdef STOOGES
 static void
-stoogejoke()
+stoogejoke(void)
 { /* have the stooges say something funny */
     pline("'%s'", random_joke[rn2(RAND_JOKE)]);
 }

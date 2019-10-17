@@ -14,8 +14,7 @@ static const char *breathe[] = {
  *	  returns 1 if monster dies (e.g. 'y', 'F'), 0 otherwise
  */
 int
-mhitu(mtmp)
-register struct monst *mtmp;
+mhitu(register struct monst *mtmp)
 {
     register struct permonst *mdat = mtmp->data;
     register int tmp, ctmp;
@@ -177,7 +176,7 @@ register struct monst *mtmp;
     case 'F':
         if (mtmp->mcan)
             break;
-        kludge("%s explodes!", Monnam(mtmp));
+        kludge("%s explodes!", Monnam(mtmp), "");
         if (Cold_resistance)
             pline("You don't seem affected by it.");
         else {
@@ -305,7 +304,7 @@ register struct monst *mtmp;
         if (hitu(mtmp, rnd(6)) && tmp && /* hits with both paws */
             !u.ustuck && rn2(2)) {
             u.ustuck = mtmp;
-            kludge("%s has grabbed you!", Monnam(mtmp));
+            kludge("%s has grabbed you!", Monnam(mtmp), "");
             losehp_m(d(2, 8), mtmp);
         } else if (u.ustuck == mtmp) {
             losehp_m(d(2, 8), mtmp);
@@ -458,9 +457,7 @@ register struct monst *mtmp;
 }
 
 int
-hitu(mtmp, dam)
-register struct monst *mtmp;
-register int dam;
+hitu(struct monst *mtmp, int dam)
 {
     register int tmp, res;
 
@@ -529,10 +526,8 @@ register int dam;
 
 #ifdef HARD
 int
-demon_talk(mtmp) /* returns 1 if we pay him off. */
-register struct monst *mtmp;
+demon_talk(register struct monst *mtmp) /* returns 1 if we pay him off. */
 {
-    char *xmonnam(), *Xmonnam();
     int demand, offer;
 
     if (uwep && !strcmp(ONAME(uwep), "Excalibur")) {
@@ -601,8 +596,7 @@ register struct monst *mtmp;
 #endif
 
 int
-demon_hit(mtmp)
-register struct monst *mtmp;
+demon_hit(register struct monst *mtmp)
 {
     register struct obj *otmp;
     int onum, nobj = 0, ml = mtmp->data->mlevel;

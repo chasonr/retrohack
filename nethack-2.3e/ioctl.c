@@ -15,7 +15,7 @@ static struct termio termio;
 #endif
 
 void
-getioctls()
+getioctls(void)
 {
 #ifdef BSD
     (void) ioctl(fileno(stdin), (int) TIOCGLTC, (char *) &ltchars);
@@ -26,7 +26,7 @@ getioctls()
 }
 
 void
-setioctls()
+setioctls(void)
 {
 #ifdef BSD
     (void) ioctl(fileno(stdin), (int) TIOCSLTC, (char *) &ltchars);
@@ -37,7 +37,7 @@ setioctls()
 }
 
 #ifdef SUSPEND /* implies BSD */
-dosuspend()
+dosuspend(void)
 {
 #include <signal.h>
 #ifdef SIGTSTP

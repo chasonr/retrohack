@@ -7,15 +7,15 @@
 #include <stdlib.h>
 #include "hack.h"
 
-static void clonewiz(/*unknown*/);
+static void clonewiz(struct monst *mtmp);
 #ifdef DGKMOD
-static struct obj *m_carrying(/*unknown*/);
+static struct obj *m_carrying(struct monst *mtmp, int type);
 #endif
-static int movedist(/*unknown*/);
-static void m_throw(/*unknown*/);
-static void m_useup(/*unknown*/);
-static int nasty(/*unknown*/);
-static void resurrect(/*unknown*/);
+static int movedist(int x0, int x1, int y0, int y1);
+static void m_throw(int x, int y, int dx, int dy, int range, struct obj *obj);
+static void m_useup(struct monst *mon, struct obj *obj);
+static int nasty(void);
+static void resurrect(void);
 
 #if defined(HARD) || defined(DGKMOD)
 #ifdef SAC
@@ -37,8 +37,7 @@ static char wizapp[] = "@&DNPTUVXcemntx";
     (movedist(u.ux, u.uy, x, y) > movedist(u.ux0, u.uy0, x, y))
 
 static int
-movedist(x0, x1, y0, y1)
-int x0, x1, y0, y1;
+movedist(int x0, int x1, int y0, int y1)
 {
     register int absdx, absdy;
 
@@ -51,7 +50,7 @@ int x0, x1, y0, y1;
 
 /* If he has found the Amulet, make the wizard appear after some time */
 void
-amulet()
+amulet(void)
 {
     register struct obj *otmp;
     register struct monst *mtmp;
@@ -72,8 +71,7 @@ amulet()
 }
 
 int
-wiz_hit(mtmp)
-register struct monst *mtmp;
+wiz_hit(register struct monst *mtmp)
 {
     /* if we have stolen or found the amulet, we disappear */
     if (mtmp->minvent && mtmp->minvent->olet == AMULET_SYM
@@ -120,9 +118,7 @@ hithim:
 /* Check if a monster is carrying a particular item.
  */
 struct obj *
-m_carrying(mtmp, type)
-struct monst *mtmp;
-int type;
+m_carrying(struct monst *mtmp, int type)
 {
     register struct obj *otmp;
 
@@ -135,9 +131,7 @@ int type;
 /* Remove an item from the monster's inventory.
  */
 static void
-m_useup(mon, obj)
-struct monst *mon;
-struct obj *obj;
+m_useup(struct monst *mon, struct obj *obj)
 {
     struct obj *otmp, *prev;
 
@@ -156,9 +150,8 @@ struct obj *obj;
 }
 
 static void
-m_throw(x, y, dx, dy, range, obj)
-register int x, y, dx, dy, range; /* direction and range */
-register struct obj *obj;
+m_throw(int x, int y, int dx, int dy, int range, /* direction and range */
+        register struct obj *obj)
 {
     register struct monst *mtmp;
     struct objclass *oclass = &objects[obj->otyp];
@@ -222,7 +215,7 @@ register struct obj *obj;
 #ifdef KOPS
             /* Cream pies must disappear if they hit or miss. */
             {
-                int hit, blindinc, thitu();
+                int hit, blindinc;
                 if ((!(hit = thitu(
                           8,
                           (obj->otyp != CREAM_PIE) ? rnd(oclass->wldam) : 0,
@@ -270,8 +263,7 @@ register struct obj *obj;
  * zap, etc).
  */
 int
-inrange(mtmp)
-register struct monst *mtmp;
+inrange(register struct monst *mtmp)
 {
     register schar tx, ty;
 #ifdef DGKMOD
@@ -436,7 +428,7 @@ register struct monst *mtmp;
 }
 
 void
-aggravate()
+aggravate(void)
 {
     register struct monst *mtmp;
 
@@ -448,8 +440,7 @@ aggravate()
 }
 
 static void
-clonewiz(mtmp)
-register struct monst *mtmp;
+clonewiz(register struct monst *mtmp)
 {
     register struct monst *mtmp2;
 
@@ -463,11 +454,10 @@ register struct monst *mtmp;
 }
 
 static int
-nasty()
+nasty(void)
 {
 #ifdef HARD
     register struct monst *mtmp;
-    struct monst *mkmon_at();
     register int i, nastynum, tmp;
 
     nastynum = sizeof(nasties) - 1;
@@ -488,7 +478,7 @@ nasty()
 /*	Here, we make trouble for the poor shmuck who actually	*/
 /*	managed to do in the Wizard.				*/
 void
-intervene()
+intervene(void)
 {
     switch (rn2(6)) {
     case 0:
@@ -512,8 +502,7 @@ intervene()
 }
 
 void
-wizdead(mtmp)
-register struct monst *mtmp;
+wizdead(register struct monst *mtmp)
 {
     flags.no_of_wizards--;
     if (!u.udemigod) {
@@ -529,7 +518,7 @@ register struct monst *mtmp;
 
 /*	Let's resurrect the wizard, for some unexpected fun.	*/
 static void
-resurrect()
+resurrect(void)
 {
     register struct monst *mtmp;
 

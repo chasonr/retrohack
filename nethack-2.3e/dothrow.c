@@ -5,12 +5,12 @@
 
 #include "hack.h"
 
-static void hitfloor(/*unknown*/);
-static int thitmonst(/*unknown*/);
-static int throwit(/*unknown*/);
+static void hitfloor(struct obj *obj);
+static int thitmonst(struct monst *mon, struct obj *obj);
+static int throwit(struct obj *obj);
 
 int
-dothrow()
+dothrow(void)
 {
     register struct obj *obj;
 
@@ -50,8 +50,7 @@ dothrow()
 }
 
 static int
-throwit(obj)
-register struct obj *obj;
+throwit(register struct obj *obj)
 {
     register struct monst *mon;
 
@@ -148,8 +147,7 @@ register struct obj *obj;
 }
 
 static void
-hitfloor(obj)
-register struct obj *obj;
+hitfloor(register struct obj *obj)
 {
     pline("%s hits the floor.", Doname(obj));
     if (obj->otyp == EXPENSIVE_CAMERA) {
@@ -178,9 +176,7 @@ register struct obj *obj;
 }
 
 static int
-thitmonst(mon, obj)
-register struct monst *mon;
-register struct obj *obj;
+thitmonst(struct monst *mon, struct obj *obj)
 {
     register int tmp;
 

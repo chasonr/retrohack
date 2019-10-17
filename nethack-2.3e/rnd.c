@@ -1,5 +1,6 @@
 /*	SCCS Id: @(#)rnd.c	2.3	87/12/12
  */
+#include <stdlib.h>
 #include "config.h"
 /* rand() is either random() or lrand48() - see config.h. */
 #ifdef UNIX
@@ -10,29 +11,25 @@
 #endif
 
 int
-rn1(x, y) /* y <= rn1(x,y) < (y+x) */
-register int x, y;
+rn1(int x, int y) /* y <= rn1(x,y) < (y+x) */
 {
     return (RND(x) + y);
 }
 
 int
-rn2(x) /* 0 <= rn2(x) < x */
-register int x;
+rn2(int x) /* 0 <= rn2(x) < x */
 {
     return (RND(x));
 }
 
 int
-rnd(x) /* 1 <= rnd(x) <= x */
-register int x;
+rnd(int x) /* 1 <= rnd(x) <= x */
 {
     return (RND(x) + 1);
 }
 
 int
-d(n, x) /* n <= d(n,x) <= (n*x) */
-register int n, x;
+d(int n, int x) /* n <= d(n,x) <= (n*x) */
 {
     register int tmp = n;
 
@@ -42,8 +39,7 @@ register int n, x;
 }
 
 int
-rne(x) /* by stewr 870807 */
-register int x;
+rne(int x) /* by stewr 870807 */
 {
     register int tmp = 1;
     while (!rn2(x))
@@ -52,8 +48,7 @@ register int x;
 }
 
 int
-rnz(i)
-int i;
+rnz(int i)
 {
     register long x = i;
     register long tmp = 1000;

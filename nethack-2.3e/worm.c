@@ -8,15 +8,14 @@
 #include "wseg.h"
 #include "panic.h"
 
-static void remseg(/*unknown*/);
+static void remseg(struct wseg *wtmp);
 
 struct wseg *wsegs[32]; /* linked list, tail first */
 struct wseg *wheads[32];
 long wgrowtime[32];
 
 int
-getwn(mtmp)
-struct monst *mtmp;
+getwn(struct monst *mtmp)
 {
     register int tmp;
     for (tmp = 1; tmp < 32; tmp++)
@@ -29,8 +28,7 @@ struct monst *mtmp;
 
 /* called to initialize a worm unless cut in half */
 void
-initworm(mtmp)
-struct monst *mtmp;
+initworm(struct monst *mtmp)
 {
     register struct wseg *wtmp;
     register int tmp = mtmp->wormno;
@@ -45,8 +43,7 @@ struct monst *mtmp;
 }
 
 void
-worm_move(mtmp)
-struct monst *mtmp;
+worm_move(struct monst *mtmp)
 {
     register struct wseg *wtmp, *whd;
     register int tmp = mtmp->wormno;
@@ -78,8 +75,7 @@ struct monst *mtmp;
 }
 
 void
-worm_nomove(mtmp)
-register struct monst *mtmp;
+worm_nomove(register struct monst *mtmp)
 {
     register int tmp;
     register struct wseg *wtmp;
@@ -95,8 +91,7 @@ register struct monst *mtmp;
 }
 
 void
-wormdead(mtmp)
-register struct monst *mtmp;
+wormdead(register struct monst *mtmp)
 {
     register int tmp = mtmp->wormno;
     register struct wseg *wtmp, *wtmp2;
@@ -111,8 +106,7 @@ register struct monst *mtmp;
 }
 
 void
-wormhit(mtmp)
-register struct monst *mtmp;
+wormhit(register struct monst *mtmp)
 {
     register int tmp = mtmp->wormno;
     register struct wseg *wtmp;
@@ -123,8 +117,7 @@ register struct monst *mtmp;
 }
 
 void
-wormsee(tmp)
-register unsigned tmp;
+wormsee(register unsigned tmp)
 {
     register struct wseg *wtmp = wsegs[tmp];
     if (!wtmp)
@@ -137,8 +130,7 @@ register unsigned tmp;
 }
 
 void
-pwseg(wtmp)
-register struct wseg *wtmp;
+pwseg(register struct wseg *wtmp)
 {
     if (!wtmp->wdispl) {
         atl(wtmp->wx, wtmp->wy, '~');
@@ -147,10 +139,8 @@ register struct wseg *wtmp;
 }
 
 void
-cutworm(mtmp, x, y, weptyp)
-register struct monst *mtmp;
-register xchar x, y;
-register uchar weptyp; /* uwep->otyp or 0 */
+cutworm(struct monst *mtmp, xchar x, xchar y,
+        uchar weptyp) /* uwep->otyp or 0 */
 {
     register struct wseg *wtmp, *wtmp2;
     register struct monst *mtmp2;
@@ -222,8 +212,7 @@ register uchar weptyp; /* uwep->otyp or 0 */
 }
 
 void
-remseg(wtmp)
-register struct wseg *wtmp;
+remseg(register struct wseg *wtmp)
 {
     if (wtmp->wdispl)
         newsym(wtmp->wx, wtmp->wy);

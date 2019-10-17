@@ -10,7 +10,7 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-static void nocmov(/*unknown*/);
+static void nocmov(int x, int y);
 
 #ifndef SYSV
 short ospeed; /* terminal baudrate; used by tputs */
@@ -32,7 +32,7 @@ static char tgotobuf[20];
 #endif /* MSDOS */
 
 void
-startup()
+startup(void)
 {
     register char *term;
     register char *tptr;
@@ -119,7 +119,7 @@ startup()
 }
 
 void
-start_screen()
+start_screen(void)
 {
     xputs(TI);
     xputs(VS);
@@ -132,7 +132,7 @@ start_screen()
 }
 
 void
-end_screen()
+end_screen(void)
 {
     nh_clear_screen();
     xputs(VE);
@@ -142,8 +142,7 @@ end_screen()
 /* Cursor movements */
 
 void
-curs(x, y)
-register int x, y; /* not xchar: perhaps xchar is unsigned and
+curs(int x, int y) /* not xchar: perhaps xchar is unsigned and
                       curx-x would be unsigned as well */
 {
     if (y == cury && x == curx)
@@ -165,8 +164,7 @@ register int x, y; /* not xchar: perhaps xchar is unsigned and
 }
 
 static void
-nocmov(x, y)
-int x, y;
+nocmov(int x, int y)
 {
     if (cury > y) {
         if (UP) {
@@ -214,8 +212,7 @@ int x, y;
 }
 
 void
-cmov(x, y)
-register int x, y;
+cmov(int x, int y)
 {
     xputs(tgoto(CM, x - 1, y - 1));
     cury = y;
@@ -223,15 +220,13 @@ register int x, y;
 }
 
 int
-xputc(c)
-int c;
+xputc(int c)
 {
     return fputc(c, stdout);
 }
 
 void
-xputs(s)
-char *s;
+xputs(char *s)
 {
 #if defined(MSDOS) && !defined(TERMLIB)
     fputs(s, stdout);
@@ -241,7 +236,7 @@ char *s;
 }
 
 void
-cl_end()
+cl_end(void)
 {
     if (CE)
         xputs(CE);
@@ -259,14 +254,14 @@ cl_end()
 }
 
 void
-nh_clear_screen()
+nh_clear_screen(void)
 {
     xputs(CL);
     home();
 }
 
 void
-home()
+home(void)
 {
     if (HO)
         xputs(HO);
@@ -278,28 +273,28 @@ home()
 }
 
 void
-standoutbeg()
+standoutbeg(void)
 {
     if (SO)
         xputs(SO);
 }
 
 void
-standoutend()
+standoutend(void)
 {
     if (SE)
         xputs(SE);
 }
 
 void
-backsp()
+backsp(void)
 {
     xputs(BC);
     curx--;
 }
 
 void
-nh_bell()
+nh_bell(void)
 {
 #ifdef DGKMOD
     if (flags.silent)
@@ -315,7 +310,7 @@ static short tmspc10[] = { /* from termcap */
 };
 
 void
-delay_output()
+delay_output(void)
 {
     /* delay 50 ms - could also use a 'nap'-system call */
     /* BUG: if the padding character is visible, as it is on the 5620
@@ -353,7 +348,7 @@ delay_output()
 }
 
 void
-cl_eos() /* free after Robert Viduya */
+cl_eos(void) /* free after Robert Viduya */
 {        /* must only be called with curx = 1 */
 
     if (CD)
@@ -395,7 +390,7 @@ cl_eos() /* free after Robert Viduya */
 #define HILITE_MONSTER RED
 #define HILITE_OBJECT YELLOW
 
-init_hilite()
+init_hilite(void)
 {
     register int backg, len, mfore, ofore;
 

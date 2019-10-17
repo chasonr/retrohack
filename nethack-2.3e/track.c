@@ -11,14 +11,14 @@ static int utcnt = 0;
 static int utpnt = 0;
 
 void
-initrack()
+initrack(void)
 {
     utcnt = utpnt = 0;
 }
 
 /* add to track */
 void
-settrack()
+settrack(void)
 {
     if (utcnt < UTSZ)
         utcnt++;
@@ -30,8 +30,7 @@ settrack()
 }
 
 coord *
-gettrack(x, y)
-register int x, y;
+gettrack(int x, int y)
 {
     register int i, cnt, dist;
     coord tc;

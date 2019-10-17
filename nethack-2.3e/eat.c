@@ -9,10 +9,10 @@ char POISONOUS[] = "ADKSVabhks&";
 #else
 char POISONOUS[] = "ADKSVabhks";
 #endif
-static void choke(/*unknown*/);
-static int eatcorpse(/*unknown*/);
+static void choke(struct objclass *food);
+static int eatcorpse(struct obj *otmp);
 static void Meatdone(void);
-static int opentin(/*unknown*/);
+static int opentin(void);
 static void unfaint(void);
 
 /* hunger texts used on bottom line (each 8 chars long) */
@@ -30,7 +30,7 @@ const char *hu_stat[] = {
 };
 
 void
-init_uhunger()
+init_uhunger(void)
 {
     u.uhunger = 900;
     u.uhs = NOT_HUNGRY;
@@ -55,7 +55,7 @@ static struct {
 } tin;
 
 static int
-opentin()
+opentin(void)
 {
     register int r;
 
@@ -101,7 +101,7 @@ Meatdone(void)
 }
 
 int
-doeat()
+doeat(void)
 {
     register struct obj *otmp;
     register struct objclass *ftmp;
@@ -328,7 +328,7 @@ eatx:
 
 /* called in main.c */
 void
-gethungry()
+gethungry(void)
 {
     --u.uhunger;
     if (moves % 2) {
@@ -351,8 +351,7 @@ gethungry()
 
 /* called after vomiting and after performing feats of magic */
 void
-morehungry(num)
-register int num;
+morehungry(register int num)
 {
     u.uhunger -= num;
     newuhs(TRUE);
@@ -360,8 +359,7 @@ register int num;
 
 /* called after eating something (and after drinking fruit juice) */
 void
-lesshungry(num)
-register int num;
+lesshungry(register int num)
 {
     u.uhunger += num;
     if (u.uhunger >= 2000)
@@ -389,8 +387,7 @@ unfaint(void)
 }
 
 void
-newuhs(incr)
-boolean incr;
+newuhs(boolean incr)
 {
     register int newhs, h = u.uhunger;
 
@@ -461,8 +458,7 @@ boolean incr;
     (char) ((otyp >= DEAD_ACID_BLOB) ? 'a' + (otyp - DEAD_ACID_BLOB) \
                                      : '@' + (otyp - DEAD_HUMAN))
 int
-poisonous(otmp)
-register struct obj *otmp;
+poisonous(register struct obj *otmp)
 {
 #ifdef KAA
     if (otmp->otyp == DEAD_DEMON)
@@ -473,8 +469,7 @@ register struct obj *otmp;
 
 /* returns 1 if some text was printed */
 static int
-eatcorpse(otmp)
-register struct obj *otmp;
+eatcorpse(register struct obj *otmp)
 {
 #ifdef KAA
     register char let;
@@ -627,8 +622,7 @@ register struct obj *otmp;
  * choke() returns if you don't choke, kills you if you do.
  */
 static void
-choke(food)
-register struct objclass *food;
+choke(register struct objclass *food)
 {
     /* only happens if you were satiated */
     if (u.uhs != SATIATED)

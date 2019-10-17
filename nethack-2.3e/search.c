@@ -4,7 +4,7 @@
 #include "hack.h"
 
 int
-findit() /* returns number of things found */
+findit(void) /* returns number of things found */
 {
     int num;
     register xchar zx, zy;
@@ -54,7 +54,7 @@ findit() /* returns number of things found */
 }
 
 int
-dosearch()
+dosearch(void)
 {
     register xchar x, y;
     register struct trap *trap;
@@ -123,7 +123,7 @@ dosearch()
 }
 
 int
-doidtrap()
+doidtrap(void)
 {
     register struct trap *trap;
     register int x, y;
@@ -145,8 +145,7 @@ doidtrap()
 }
 
 void
-wakeup(mtmp)
-register struct monst *mtmp;
+wakeup(register struct monst *mtmp)
 {
     mtmp->msleep = 0;
     setmangry(mtmp);
@@ -156,8 +155,7 @@ register struct monst *mtmp;
 
 /* NOTE: we must check if(mtmp->mimic) before calling this routine */
 void
-seemimic(mtmp)
-register struct monst *mtmp;
+seemimic(register struct monst *mtmp)
 {
     mtmp->mimic = 0;
     mtmp->mappearance = 0;

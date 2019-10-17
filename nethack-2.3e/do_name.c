@@ -6,15 +6,12 @@
 #include "hack.h"
 #include "panic.h"
 
-static const char *rndmonnam();
-static void do_oname(/*unknown*/);
-static char *visctrl(/*unknown*/);
+static const char *rndmonnam(void);
+static void do_oname(struct obj *obj);
+static char *visctrl(char c);
 
 int
-getpos(cc, force, goal)
-coord *cc;
-int force;
-char *goal;
+getpos(coord *cc, int force, char *goal)
 {
     register int cx, cy, i, c;
     pline("(For instructions type a ?)");
@@ -51,7 +48,7 @@ char *goal;
 }
 
 int
-do_mname()
+do_mname(void)
 {
     char buf[BUFSZ];
     coord cc;
@@ -117,8 +114,7 @@ do_mname()
  * when  obj  is in the inventory.
  */
 static void
-do_oname(obj)
-register struct obj *obj;
+do_oname(register struct obj *obj)
 {
     char buf[BUFSZ];
 
@@ -137,9 +133,7 @@ register struct obj *obj;
 }
 
 void
-oname(obj, buf)
-register struct obj *obj;
-char *buf;
+oname(struct obj *obj, char *buf)
 {
     register struct obj *otmp, *otmp2;
     register int lth;
@@ -174,7 +168,7 @@ char *buf;
 }
 
 int
-ddocall()
+ddocall(void)
 {
     register struct obj *obj;
     char ch;
@@ -210,8 +204,7 @@ ddocall()
 }
 
 void
-docall(obj)
-register struct obj *obj;
+docall(register struct obj *obj)
 {
     char buf[BUFSZ];
     struct obj otemp;
@@ -250,9 +243,7 @@ static const char *ghostnames[] = {
 };
 
 char *
-xmonnam(mtmp, vb)
-register struct monst *mtmp;
-int vb;
+xmonnam(struct monst *mtmp, int vb)
 {
     static char buf[BUFSZ]; /* %% */
     if (mtmp->mnamelth && !vb) {
@@ -293,22 +284,19 @@ int vb;
 }
 
 char *
-lmonnam(mtmp)
-register struct monst *mtmp;
+lmonnam(register struct monst *mtmp)
 {
     return (xmonnam(mtmp, 1));
 }
 
 char *
-monnam(mtmp)
-register struct monst *mtmp;
+monnam(register struct monst *mtmp)
 {
     return (xmonnam(mtmp, 0));
 }
 
 char *
-Monnam(mtmp)
-register struct monst *mtmp;
+Monnam(register struct monst *mtmp)
 {
     register char *bp = monnam(mtmp);
     if ('a' <= *bp && *bp <= 'z')
@@ -317,9 +305,7 @@ register struct monst *mtmp;
 }
 
 char *
-amonnam(mtmp, adj)
-register struct monst *mtmp;
-register char *adj;
+amonnam(struct monst *mtmp, char *adj)
 {
     register char *bp = monnam(mtmp);
     static char buf[BUFSZ]; /* %% */
@@ -331,9 +317,7 @@ register char *adj;
 }
 
 char *
-Amonnam(mtmp, adj)
-register struct monst *mtmp;
-register char *adj;
+Amonnam(struct monst *mtmp, char *adj)
 {
     register char *bp = amonnam(mtmp, adj);
 
@@ -342,8 +326,7 @@ register char *adj;
 }
 
 char *
-Xmonnam(mtmp)
-register struct monst *mtmp;
+Xmonnam(register struct monst *mtmp)
 {
     register char *bp = Monnam(mtmp);
     if (!strncmp(bp, "The ", 4)) {
@@ -360,8 +343,7 @@ register struct monst *mtmp;
 }
 
 char *
-defmonnam(mtmp)
-register struct monst *mtmp;
+defmonnam(register struct monst *mtmp)
 {
     register char *bp = Xmonnam(mtmp);
     if (!strncmp(bp, "A ", 2) || !strncmp(bp, "An ", 3))
@@ -370,7 +352,7 @@ register struct monst *mtmp;
 }
 
 static const char *
-rndmonnam()
+rndmonnam(void)
 { /* Random name of monster type, if hallucinating */
     int x;
     if ((x = rn2(CMNUM + 2)) != CMNUM + 1)
@@ -379,8 +361,7 @@ rndmonnam()
 }
 
 static char *
-visctrl(c)
-char c;
+visctrl(char c)
 {
     static char ccc[3];
     if (c < 040) {

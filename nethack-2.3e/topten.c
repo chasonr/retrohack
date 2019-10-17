@@ -9,12 +9,8 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-static const char *ordin(/*unknown*/);
-static int outentry(/*unknown*/);
-static void outheader(/*unknown*/);
-
 #define Sprintf (void) sprintf
-static char *nh_itoa();
+static char *nh_itoa(int a);
 
 #define newttentry() (struct toptenentry *) alloc(sizeof(struct toptenentry))
 #define NAMSZ 10
@@ -37,8 +33,12 @@ static struct toptenentry {
     char date[7]; /* yymmdd */
 } * tt_head;
 
+static const char *ordin(int n);
+static int outentry(int rank, struct toptenentry *t1, int so);
+static void outheader(void);
+
 void
-topten()
+topten(void)
 {
     int uid = getuid();
     int rank, rank0 = -1, rank1 = 0;
@@ -246,7 +246,7 @@ unlock:;
 }
 
 static void
-outheader()
+outheader(void)
 {
     char linebuf[BUFSZ];
     register char *bp;
@@ -264,10 +264,7 @@ outheader()
 
 /* so>0: standout line; so=0: ordinary line; so<0: no output, return lth */
 static int
-outentry(rank, t1, so)
-int rank;
-register struct toptenentry *t1;
-int so;
+outentry(int rank, struct toptenentry *t1, int so)
 {
     boolean quit = FALSE, killed = FALSE, starv = FALSE;
     char linebuf[BUFSZ];
@@ -365,8 +362,7 @@ int so;
 }
 
 static char *
-nh_itoa(a)
-int a;
+nh_itoa(int a)
 {
     static char buf[12];
     Sprintf(buf, "%d", a);
@@ -374,8 +370,7 @@ int a;
 }
 
 static const char *
-ordin(n)
-int n;
+ordin(int n)
 {
     register int d = n % 10;
     return ((d == 0 || d > 3 || n / 10 == 1)
@@ -384,8 +379,7 @@ int n;
 }
 
 char *
-eos(s)
-register char *s;
+eos(register char *s)
 {
     while (*s)
         s++;
@@ -398,9 +392,7 @@ register char *s;
  * if argc == -1).
  */
 void
-prscore(argc, argv)
-int argc;
-char **argv;
+prscore(int argc, char **argv)
 {
     char **players = NULL;
     int playerct;

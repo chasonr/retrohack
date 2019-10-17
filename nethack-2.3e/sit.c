@@ -5,9 +5,8 @@
 
 #ifdef NEWCLASS
 int
-dosit()
+dosit(void)
 {
-    struct obj *sobj_at();
     register int cnt;
 
     if (Levitation) {
@@ -140,7 +139,7 @@ dosit()
 
 #if defined(NEWCLASS) || defined(PRAYERS) || defined(HARD)
 void
-rndcurse()
+rndcurse(void)
 { /* curse a few inventory items at random! */
 
     int nobj = 0;
@@ -160,7 +159,7 @@ rndcurse()
 #endif
 
 void
-attrcurse()
+attrcurse(void)
 { /* remove a random INTRINSIC ability */
     switch (rnd(10)) {
     case 1:

@@ -28,35 +28,34 @@
 #endif
 #include "hack.h" /* mainly for index() which depends on BSD */
 
-static void newmail(/*void*/);
-static void mdrush(/*void*/);
-static struct tm *getlt();
-static int veryold();
+static void newmail(void);
+static void mdrush(struct monst *md, boolean away);
+static struct tm *getlt(void);
+static int veryold(int fd);
 
 void
-setrandom()
+setrandom(void)
 {
     (void) srand((int) time((time_t *) 0));
 }
 
 static struct tm *
-getlt()
+getlt(void)
 {
     time_t date;
-    struct tm *localtime();
 
     (void) time(&date);
     return (localtime(&date));
 }
 
 int
-getyear()
+getyear(void)
 {
     return (1900 + getlt()->tm_year);
 }
 
 char *
-getdate()
+getdate(void)
 {
     static char datestr[7];
     register struct tm *lt = getlt();
@@ -71,7 +70,7 @@ getdate()
 }
 
 int
-phase_of_the_moon() /* 0-7, with 0: new, 4: full */
+phase_of_the_moon(void) /* 0-7, with 0: new, 4: full */
 {                   /* moon period: 29.5306 days */
     /* year: 365.2422 days */
     register struct tm *lt = getlt();
@@ -87,7 +86,7 @@ phase_of_the_moon() /* 0-7, with 0: new, 4: full */
 }
 
 int
-night()
+night(void)
 {
     register int hour = getlt()->tm_hour;
 
@@ -95,7 +94,7 @@ night()
 }
 
 int
-midnight()
+midnight(void)
 {
     return (getlt()->tm_hour == 0);
 }
@@ -103,8 +102,7 @@ midnight()
 static struct stat buf, hbuf;
 
 void
-gethdate(name)
-char *name;
+gethdate(char *name)
 {
 /* old version - for people short of space */
 /*
@@ -148,8 +146,7 @@ char *name;
 }
 
 int
-uptodate(fd)
-int fd;
+uptodate(int fd)
 {
     if (fstat(fd, &buf)) {
         pline("Cannot get status of saved level? ");
@@ -164,8 +161,7 @@ int fd;
 
 /* see whether we should throw away this xlock file */
 static int
-veryold(fd)
-int fd;
+veryold(int fd)
 {
     register int i;
     time_t date;
@@ -205,7 +201,7 @@ int fd;
 }
 
 void
-getlock()
+getlock(void)
 {
     register int i = 0, fd;
 
@@ -317,7 +313,7 @@ static char *mailbox;
 static long laststattime;
 
 void
-getmailstatus()
+getmailstatus(void)
 {
     if (!(mailbox = getenv("MAIL")))
         return;
@@ -332,7 +328,7 @@ getmailstatus()
 }
 
 void
-ckmailstatus()
+ckmailstatus(void)
 {
     if (!mailbox
 #ifdef MAILCKFREQ
@@ -356,7 +352,7 @@ ckmailstatus()
 }
 
 static void
-newmail()
+newmail(void)
 {
     /* produce a scroll of mail */
     register struct obj *obj;
@@ -384,9 +380,7 @@ newmail()
 
 /* make md run through the cave */
 static void
-mdrush(md, away)
-register struct monst *md;
-boolean away;
+mdrush(struct monst *md, boolean away)
 {
     register int uroom = inroom(u.ux, u.uy);
     if (uroom >= 0) {
@@ -443,7 +437,7 @@ boolean away;
 }
 
 void
-readmail()
+readmail(void)
 {
 #ifdef DEF_MAILREADER /* This implies that UNIX is defined */
     register const char *mr = 0;
@@ -464,8 +458,7 @@ readmail()
 #endif /* MAIL */
 
 void
-regularize(s) /* normalize file name - we don't like ..'s or /'s */
-register char *s;
+regularize(char *s) /* normalize file name - we don't like ..'s or /'s */
 {
     register char *lp;
 

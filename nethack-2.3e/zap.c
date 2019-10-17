@@ -4,16 +4,16 @@
 #include <stdlib.h>
 #include "hack.h"
 
-static void rloco(/*unknown*/);
-static void boil_potions(/*unknown*/);
-static void freeze_potions(/*unknown*/);
-static void burn_scrolls(/*unknown*/);
-static void bhitm(/*unknown*/);
-static int bhito(/*unknown*/);
-static int burn_floor_scrolls(/*unknown*/);
-static uchar dirlet(/*unknown*/);
-static int revive(/*unknown*/);
-static int zhit(/*unknown*/);
+static void rloco(struct obj *obj);
+static void boil_potions(void);
+static void freeze_potions(void);
+static void burn_scrolls(void);
+static void bhitm(struct monst *mtmp, struct obj *otmp);
+static int bhito(struct obj *obj, struct obj *otmp);
+static int burn_floor_scrolls(int x, int y);
+static uchar dirlet(int dx, int dy);
+static int revive(struct obj *obj);
+static int zhit(struct monst *mon, int type);
 
 static const char *fl[] = {
     "magic missile", /* Wands must be 0-9 */
@@ -53,9 +53,7 @@ static const char *fl[] = {
 /* Routines for IMMEDIATE wands and spells. */
 /* bhitm: monster mtmp was hit by the effect of wand or spell otmp */
 static void
-bhitm(mtmp, otmp)
-register struct monst *mtmp;
-register struct obj *otmp;
+bhitm(struct monst *mtmp, struct obj *otmp)
 {
     wakeup(mtmp);
     switch (otmp->otyp) {
@@ -130,9 +128,10 @@ register struct obj *otmp;
     }
 }
 
+/* object obj was hit by the effect of wand otmp */
+/* returns TRUE if sth was done */
 static int
-bhito(obj, otmp) /* object obj was hit by the effect of wand otmp */
-register struct obj *obj, *otmp; /* returns TRUE if sth was done */
+bhito(struct obj *obj, struct obj *otmp)
 {
     register int res = TRUE;
 #ifdef DGKMOD
@@ -232,8 +231,7 @@ register struct obj *obj, *otmp; /* returns TRUE if sth was done */
  * added by GAN 11/03/86
  */
 int
-zappable(wand)
-register struct obj *wand;
+zappable(register struct obj *wand)
 {
     if (wand->spe < 0 || (wand->spe == 0 && rn2(121)))
         return (0);
@@ -250,8 +248,7 @@ register struct obj *wand;
  * added by GAN 11/03/86
  */
 void
-zapnodir(wand)
-register struct obj *wand;
+zapnodir(register struct obj *wand)
 {
     switch (wand->otyp) {
     case WAN_LIGHT:
@@ -284,7 +281,7 @@ register struct obj *wand;
 }
 
 int
-dozap()
+dozap(void)
 {
     register struct obj *obj;
     int damage;
@@ -323,8 +320,7 @@ dozap()
 #define makeknown(x) objects[x].oc_name_known = 1
 
 int
-zapyourself(obj)
-register struct obj *obj;
+zapyourself(register struct obj *obj)
 {
     struct obj *otmp;
     int damage = 0;
@@ -466,8 +462,7 @@ register struct obj *obj;
 
 /* called for various wand and spell effects - M. Stephenson */
 void
-weffects(obj)
-register struct obj *obj;
+weffects(register struct obj *obj)
 {
     xchar zx, zy;
 
@@ -606,8 +601,7 @@ register struct obj *obj;
 }
 
 const char *
-exclam(force)
-register int force;
+exclam(register int force)
 {
     /* force == 0 occurs e.g. with sleep ray */
     /* note that large force is usual with wands so that !! would
@@ -616,10 +610,8 @@ register int force;
 }
 
 void
-hit(str, mtmp, force)
-register char *str;
-register struct monst *mtmp;
-register char *force; /* usually either "." or "!" */
+hit(char *str, struct monst *mtmp,
+    char *force) /* usually either "." or "!" */
 {
     if (!cansee(mtmp->mx, mtmp->my))
         pline("The %s hits it.", str);
@@ -628,9 +620,7 @@ register char *force; /* usually either "." or "!" */
 }
 
 void
-miss(str, mtmp)
-register char *str;
-register struct monst *mtmp;
+miss(char *str, struct monst *mtmp)
 {
     if (!cansee(mtmp->mx, mtmp->my))
         pline("The %s misses it.", str);
@@ -647,11 +637,11 @@ register struct monst *mtmp;
 /* check !u.uswallow before calling bhit() */
 
 struct monst *
-bhit(ddx, ddy, range, sym, fhitm, fhito, obj)
-register int ddx, ddy, range; /* direction and range */
-char sym;                   /* symbol displayed on path */
-int (*fhitm)(), (*fhito)(); /* fns called when mon/obj hit */
-struct obj *obj;            /* 2nd arg to fhitm/fhito */
+bhit(int ddx, int ddy, int range, /* direction and range */
+     char sym,                   /* symbol displayed on path */
+     int (*fhitm)(struct monst *, struct obj *),
+     int (*fhito)(struct obj *, struct obj *), /* fns called when mon/obj hit */
+     struct obj *obj)            /* 2nd arg to fhitm/fhito */
 {
     register struct monst *mtmp;
     register struct obj *otmp;
@@ -703,8 +693,7 @@ struct obj *obj;            /* 2nd arg to fhitm/fhito */
 }
 
 struct monst *
-boomhit(dx, dy)
-int dx, dy;
+boomhit(int dx, int dy)
 {
     register int i, ct;
     register struct monst *mtmp;
@@ -758,8 +747,7 @@ int dx, dy;
 }
 
 static uchar
-dirlet(dx, dy)
-register int dx, dy;
+dirlet(int dx, int dy)
 {
     return (dx == dy) ? '\\' : (dx && dy) ? '/' : dx ? HWALL_SYM : VWALL_SYM;
 }
@@ -771,10 +759,7 @@ register int dx, dy;
 /* type == -10 to -19 : dragon breathing at you  */
 /* called with dx = dy = 0 with vertical bolts */
 void
-buzz(type, sx, sy, dx, dy)
-register int type;
-register xchar sx, sy;
-register int dx, dy;
+buzz(int type, xchar sx, xchar sy, int dx, int dy)
 {
     int abstype = (type == 20) ? 1 : abs(type) % 10;
     int txttype =
@@ -974,9 +959,7 @@ register int dx, dy;
 }
 
 static int
-zhit(mon, type) /* returns damage to mon */
-register struct monst *mon;
-register int type;
+zhit(struct monst *mon, int type) /* returns damage to mon */
 {
     register int tmp = 0;
 
@@ -1053,8 +1036,7 @@ register int type;
     (char) ((otyp >= DEAD_ACID_BLOB) ? 'a' + (otyp - DEAD_ACID_BLOB) \
                                      : '@' + (otyp - DEAD_HUMAN))
 static int
-revive(obj)
-register struct obj *obj;
+revive(register struct obj *obj)
 {
     register struct monst *mtmp = NULL;
     register int let;
@@ -1102,8 +1084,7 @@ register struct obj *obj;
 }
 
 static void
-rloco(obj)
-register struct obj *obj;
+rloco(register struct obj *obj)
 {
     register int tx, ty, otx, oty;
 
@@ -1119,9 +1100,10 @@ register struct obj *obj;
         newsym(otx, oty);
 }
 
+/* fractured by pick-axe or wand of striking */
+/* no texts here! */
 void
-fracture_rock(obj)        /* fractured by pick-axe or wand of striking */
-register struct obj *obj; /* no texts here! */
+fracture_rock(struct obj *obj)
 {
     /* unpobj(obj); */
     obj->otyp = ROCK;
@@ -1133,7 +1115,7 @@ register struct obj *obj; /* no texts here! */
 }
 
 static void
-boil_potions()
+boil_potions(void)
 {
     register struct obj *obj, *obj2;
     register int scrquan, i;
@@ -1156,7 +1138,7 @@ boil_potions()
 }
 
 static void
-freeze_potions()
+freeze_potions(void)
 {
     register struct obj *obj, *obj2;
     register int scrquan, i;
@@ -1178,7 +1160,7 @@ freeze_potions()
 }
 
 static void
-burn_scrolls()
+burn_scrolls(void)
 {
     register struct obj *obj, *obj2;
     register int cnt = 0;
@@ -1208,10 +1190,7 @@ burn_scrolls()
 }
 
 int
-resist(mtmp, olet, damage, tell)
-register struct monst *mtmp;
-register char olet;
-register int damage, tell;
+resist(struct monst *mtmp, char olet, int damage, int tell)
 {
     register int resisted = 0;
 #ifdef HARD
@@ -1254,8 +1233,7 @@ register int damage, tell;
  * return the number of scrolls burned
  */
 static int
-burn_floor_scrolls(x, y)
-int x, y;
+burn_floor_scrolls(int x, int y)
 {
     register struct obj *obj, *obj2;
     register int scrquan, i;
@@ -1277,7 +1255,7 @@ int x, y;
 }
 
 void
-makewish() /* Separated as there are now 3 places you can wish at. */
+makewish(void) /* Separated as there are now 3 places you can wish at. */
 {
     char buf[BUFSZ];
     register struct obj *otmp;

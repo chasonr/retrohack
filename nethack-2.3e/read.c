@@ -4,12 +4,12 @@
 #include <stdlib.h>
 #include "hack.h"
 
-static int monstersym(/*unknown*/);
+static int monstersym(char ch);
 
 static boolean known;
 
 int
-doread()
+doread(void)
 {
     register struct obj *scroll;
     register boolean confused = (Confusion != 0);
@@ -64,8 +64,7 @@ doread()
 }
 
 int
-seffects(sobj)
-register struct obj *sobj;
+seffects(register struct obj *sobj)
 {
     register boolean confused = (Confusion != 0);
 
@@ -508,8 +507,7 @@ register struct obj *sobj;
 }
 
 int
-identify(otmp) /* also called by newmail() */
-register struct obj *otmp;
+identify(register struct obj *otmp) /* also called by newmail() */
 {
     objects[otmp->otyp].oc_name_known = 1;
 #ifdef KAA
@@ -525,8 +523,7 @@ register struct obj *otmp;
 }
 
 void
-litroom(on)
-register boolean on;
+litroom(register boolean on)
 {
     register int num, zx, zy;
 
@@ -616,8 +613,7 @@ do_it:
 
 /* Test whether we may genocide all monsters with symbol  ch  */
 static int
-monstersym(ch) /* arnold@ucsfcgl */
-register char ch;
+monstersym(char ch) /* arnold@ucsfcgl */
 {
     register struct permonst *mp;
 
@@ -641,7 +637,7 @@ register char ch;
 }
 
 void
-do_genocide()
+do_genocide(void)
 {
     char buf[BUFSZ];
     register struct monst *mtmp, *mtmp2;
@@ -687,7 +683,7 @@ do_genocide()
 }
 
 void
-do_mapping()
+do_mapping(void)
 {
     register struct rm *lev;
     register int num, zx, zy;
@@ -723,7 +719,7 @@ do_mapping()
 }
 
 int
-destroy_arm()
+destroy_arm(void)
 {
     if (uarm) {
         pline("Your armor turns to dust and falls to the floor!");

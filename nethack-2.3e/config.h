@@ -97,11 +97,9 @@
 
 #ifdef BSD
 /* Use the high quality random number routines. */
-extern long random();
 #define rand() random()
 #define srand(seed) srandom(seed)
 #else
-extern long lrand48();
 #define rand() lrand48()
 #define srand(seed) srand48(seed)
 #endif

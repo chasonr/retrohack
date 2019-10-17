@@ -12,9 +12,7 @@ static struct worn {
              { W_BALL, &uball },  { W_CHAIN, &uchain }, { 0, 0 } };
 
 void
-setworn(obj, mask)
-register struct obj *obj;
-long mask;
+setworn(struct obj *obj, long mask)
 {
     register struct worn *wp;
     register struct obj *oobj;
@@ -45,8 +43,7 @@ long mask;
 
 /* called e.g. when obj is destroyed */
 void
-setnotworn(obj)
-register struct obj *obj;
+setnotworn(register struct obj *obj)
 {
     register struct worn *wp;
 

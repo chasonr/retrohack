@@ -2,6 +2,7 @@
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
 #include <signal.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -14,7 +15,7 @@ int done_stopprint;
 int done_hup;
 static void done_hangup(int sig);
 static void done_intr(int sig);
-static int with_amulet(/*unknown*/);
+static int with_amulet(void);
 
 int
 doquit(void)
@@ -70,8 +71,7 @@ done_hangup(int sig)
 #endif
 
 void
-done_in_by(mtmp)
-register struct monst *mtmp;
+done_in_by(register struct monst *mtmp)
 {
     static char buf[BUFSZ];
 
@@ -102,10 +102,10 @@ register struct monst *mtmp;
 static boolean panicking;
 
 void
-panic(str, a1, a2, a3, a4, a5, a6)
-char *str;
-int a1, a2, a3, a4, a5, a6;
+panic(const char *str, ...)
 {
+    va_list args;
+
     if (panicking++)
         abort(); /* avoid loops - this should never happen*/
                  /* was exit(1) */
@@ -119,7 +119,9 @@ int a1, a2, a3, a4, a5, a6;
     dosave0(0);
 #endif
     fputs(" ERROR:  ", stdout);
-    printf(str, a1, a2, a3, a4, a5, a6);
+    va_start(args, str);
+    vprintf(str, args);
+    va_end(args);
     more(); /* contains a fflush() */
 #ifdef WIZARD
 #ifdef UNIX
@@ -134,8 +136,7 @@ int a1, a2, a3, a4, a5, a6;
    "burned", "starved" or "tricked" */
 /* Be careful not to call panic from here! */
 void
-done(st1)
-register const char *st1;
+done(register const char *st1)
 {
 #ifdef DIAGS
     char c;
@@ -354,7 +355,7 @@ die:
     exit(0);
 }
 void
-clearlocks()
+clearlocks(void)
 {
 #ifdef DGK
     eraseall(levels, alllevels);
@@ -384,8 +385,7 @@ nh_hangup(int sig)
 
 /* it is the callers responsibility to check that there is room for c */
 void
-charcat(s, c)
-register char *s, c;
+charcat(char *s, char *c)
 {
     while (*s)
         s++;
@@ -395,7 +395,7 @@ register char *s, c;
 
 #ifdef KJSMODS
 int
-with_amulet()
+with_amulet(void)
 {
     register struct obj *otmp;
     for (otmp = invent; otmp; otmp = otmp->nobj) {

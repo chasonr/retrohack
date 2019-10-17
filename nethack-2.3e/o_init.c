@@ -6,12 +6,11 @@
 #include "objects.h"
 #include "panic.h"
 
-static void setgemprobs(/*unknown*/);
-static int interesting_to_discover(/*unknown*/);
+static void setgemprobs(void);
+static int interesting_to_discover(int i);
 
 int
-letindex(let)
-register char let;
+letindex(register char let)
 {
     register int i = 0;
     register char ch;
@@ -22,7 +21,7 @@ register char let;
 }
 
 void
-init_objects()
+init_objects(void)
 {
     register int i, j, first, last, sum, end;
     register char let;
@@ -105,8 +104,7 @@ init_objects()
 }
 
 int
-probtype(let)
-register char let;
+probtype(register char let)
 {
     register int i = bases[letindex(let)];
     register int prob = rn2(100);
@@ -118,7 +116,7 @@ register char let;
 }
 
 static void
-setgemprobs()
+setgemprobs(void)
 {
     register int j, first;
 
@@ -137,14 +135,13 @@ setgemprobs()
 }
 
 void
-oinit() /* level dependent initialization */
+oinit(void) /* level dependent initialization */
 {
     setgemprobs();
 }
 
 void
-savenames(fd)
-register int fd;
+savenames(register int fd)
 {
     register int i;
     unsigned len;
@@ -165,8 +162,7 @@ register int fd;
 }
 
 void
-restnames(fd)
-register int fd;
+restnames(register int fd)
 {
     register int i;
     unsigned len;
@@ -206,7 +202,7 @@ register int fd;
 }
 
 int
-dodiscovered() /* free after Robert Viduya */
+dodiscovered(void) /* free after Robert Viduya */
 {
     register int i, end;
     int ct = 0;
@@ -239,15 +235,14 @@ dodiscovered() /* free after Robert Viduya */
 }
 
 static int
-interesting_to_discover(i)
-register int i;
+interesting_to_discover(register int i)
 {
     return (objects[i].oc_uname != NULL
             || (objects[i].oc_name_known && objects[i].oc_descr != NULL));
 }
 
 int
-init_corpses()
+init_corpses(void)
 {
 #ifdef SPIDERS
     objects[DEAD_GIANT_SPIDER].oc_name = "dead giant spider";

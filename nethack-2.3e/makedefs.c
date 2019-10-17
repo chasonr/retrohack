@@ -3,6 +3,7 @@
 
 /*static char SCCS_Id[] = "@(#)makedefs.c	2.3\t88/02/18";*/
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -21,14 +22,14 @@
 #define WRMODE "w+"
 #endif
 
-static int do_objs();
-static int skipuntil();
-static int getentry();
-static int duplicate();
-static int specprop();
-static int letter();
-static int digit();
-static char *limit();
+static int do_objs(void);
+static int skipuntil(char *s);
+static int getentry(int *skip);
+static int duplicate(void);
+static int specprop(FILE *out_file, char *name, int count);
+static int letter(char ch);
+static int digit(char ch);
+static char *limit(char *name);
 
 /* construct definitions of object constants */
 #define OBJ_FILE "objects.h"
@@ -42,17 +43,15 @@ static char *limit();
 
 static char in_line[256];
 
-static void do_traps(/*void*/);
-static void do_rumors(/*void*/);
-static void do_date(/*void*/);
-static void do_data(/*void*/);
-static void newobj(/*void*/);
-static void capitalize(/*void*/);
+static void do_traps(void);
+static void do_rumors(void);
+static void do_date(void);
+static void do_data(void);
+static void newobj(void);
+static void capitalize(char *sp);
 
 int
-main(argc, argv)
-int argc;
-char *argv[];
+main(int argc, char *argv[])
 {
     char *option;
 
@@ -90,7 +89,7 @@ char *argv[];
 }
 
 static void
-do_traps()
+do_traps(void)
 {
     int ntrap;
     FILE *inp_file, *out_file;
@@ -140,7 +139,7 @@ do_traps()
 }
 
 static void
-do_rumors()
+do_rumors(void)
 {
     char infile[30];
     FILE *inp_file, *out_file;
@@ -186,7 +185,7 @@ do_rumors()
 }
 
 static void
-do_date()
+do_date(void)
 {
     long clock;
     char cbuf[30], *c;
@@ -218,7 +217,7 @@ do_date()
 }
 
 static void
-do_data()
+do_data(void)
 {
     char tmpfile[30];
     FILE *inp_file, *out_file;
@@ -340,7 +339,7 @@ static struct objdef {
 } * more, *current;
 
 static int
-do_objs()
+do_objs(void)
 {
     register int index = 0;
     register int propct = 0;
@@ -427,8 +426,7 @@ do_objs()
 static char temp[32];
 
 static char *
-limit(name) /* limit a name to 30 characters length */
-char *name;
+limit(char *name) /* limit a name to 30 characters length */
 {
     strncpy(temp, name, 30);
     temp[30] = 0;
@@ -436,7 +434,7 @@ char *name;
 }
 
 static void
-newobj()
+newobj(void)
 {
     more = current;
     current = (struct objdef *) alloc(sizeof(struct objdef));
@@ -458,10 +456,7 @@ static struct inherent {
 };
 
 static int
-specprop(out_file, name, count)
-FILE *out_file;
-char *name;
-int count;
+specprop(FILE *out_file, char *name, int count)
 {
     int i;
     char *tname;
@@ -484,7 +479,7 @@ static char line[LINSZ], *lp = line, *lp0 = line, *lpe = line;
 static int xeof;
 
 static void
-readline()
+readline(void)
 {
     register int n = read(fd, lp0, (line + LINSZ) - lp0);
     if (n < 0) {
@@ -497,7 +492,7 @@ readline()
 }
 
 static char
-nextchar()
+nextchar(void)
 {
     if (lp == lpe) {
         readline();
@@ -507,8 +502,7 @@ nextchar()
 }
 
 static int
-skipuntil(s)
-char *s;
+skipuntil(char *s)
 {
     register char *sp0, *sp1;
 loop:
@@ -544,8 +538,7 @@ loop:
 }
 
 static int
-getentry(skip)
-int *skip;
+getentry(int *skip)
 {
     int inbraces = 0, inparens = 0, stringseen = 0, commaseen = 0;
     int prefix = 0;
@@ -658,7 +651,7 @@ int *skip;
 }
 
 static int
-duplicate()
+duplicate(void)
 {
     char s[STRSZ];
     register char *c;
@@ -676,23 +669,20 @@ duplicate()
 }
 
 static void
-capitalize(sp)
-register char *sp;
+capitalize(register char *sp)
 {
     if ('a' <= *sp && *sp <= 'z')
         *sp += 'A' - 'a';
 }
 
 static int
-letter(ch)
-register char ch;
+letter(register char ch)
 {
     return (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z'));
 }
 
 static int
-digit(ch)
-register char ch;
+digit(register char ch)
 {
     return ('0' <= ch && ch <= '9');
 }
@@ -702,14 +692,16 @@ register char ch;
 static boolean panicking = 0;
 
 int
-panic(str, a1, a2, a3, a4, a5, a6)
-char *str;
-int a1, a2, a3, a4, a5, a6;
+panic(const char *str, ...)
 {
+    va_list args;
+
     if (panicking++)
         exit(1); /* avoid loops - this should never happen*/
     fputs(" ERROR:  ", stderr);
-    fprintf(stderr, str, a1, a2, a3, a4, a5, a6);
+    va_start(args, str);
+    vfprintf(stderr, str, args);
+    va_end(args);
 #ifdef DEBUG
 #ifdef UNIX
     if (!fork())

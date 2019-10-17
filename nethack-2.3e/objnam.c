@@ -9,12 +9,11 @@
 #define Strcpy (void) strcpy
 #define PREFIX 15
 
-static char *sitoa(/*unknown*/);
-static char *strprepend(/*unknown*/);
+static char *sitoa(int a);
+static char *strprepend(char *s, char *pref);
 
 static char *
-strprepend(s, pref)
-register char *s, *pref;
+strprepend(char *s, char *pref)
 {
     register int i = strlen(pref);
     if (i > PREFIX) {
@@ -27,8 +26,7 @@ register char *s, *pref;
 }
 
 static char *
-sitoa(a)
-int a;
+sitoa(int a)
 {
     static char buf[13];
     Sprintf(buf, (a < 0) ? "%d" : "+%d", a);
@@ -36,8 +34,7 @@ int a;
 }
 
 char *
-typename(otyp)
-register int otyp;
+typename(register int otyp)
 {
     static char buf[BUFSZ];
     register struct objclass *ocl = &objects[otyp];
@@ -92,8 +89,7 @@ register int otyp;
 }
 
 char *
-xname(obj)
-register struct obj *obj;
+xname(register struct obj *obj)
 {
     static char bufr[BUFSZ];
     register char *buf = &(bufr[PREFIX]); /* leave room for "17 -3 " */
@@ -291,8 +287,7 @@ nopl:
 }
 
 char *
-doname(obj)
-register struct obj *obj;
+doname(register struct obj *obj)
 {
     char prefix[PREFIX];
     register char *bp = xname(obj);
@@ -370,8 +365,7 @@ register struct obj *obj;
 
 /* used only in fight.c (thitu) */
 void
-setan(str, buf)
-register char *str, *buf;
+setan(char *str, char *buf)
 {
     if (index(vowels, *str))
         Sprintf(buf, "an %s", str);
@@ -380,9 +374,7 @@ register char *str, *buf;
 }
 
 char *
-aobjnam(otmp, verb)
-register struct obj *otmp;
-register char *verb;
+aobjnam(struct obj *otmp, char *verb)
 {
     register char *bp = xname(otmp);
     char prefix[PREFIX];
@@ -407,8 +399,7 @@ register char *verb;
 }
 
 char *
-Doname(obj)
-register struct obj *obj;
+Doname(register struct obj *obj)
 {
     register char *s = doname(obj);
 
@@ -441,8 +432,7 @@ static char wrpsym[] = {
 };
 
 struct obj *
-readobjnam(bp)
-register char *bp;
+readobjnam(register char *bp)
 {
     register char *p;
     register int i;

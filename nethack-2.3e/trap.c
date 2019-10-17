@@ -5,12 +5,12 @@
 #include <stdlib.h>
 #include "hack.h"
 
-static void vtele(/*unknown*/);
-static void teleds(/*unknown*/);
+static void vtele(void);
+static void teleds(int nux, int nuy);
 #ifdef NEWTRAPS
-static void domagictrap(/*unknown*/);
+static void domagictrap(void);
 #endif
-static int teleok(/*unknown*/);
+static int teleok(int x, int y);
 
 char vowels[] = "aeiou";
 
@@ -58,8 +58,7 @@ const char *traps[] = {
 };
 
 struct trap *
-maketrap(x, y, typ)
-register int x, y, typ;
+maketrap(int x, int y, int typ)
 {
     register struct trap *ttmp;
 
@@ -75,8 +74,7 @@ register int x, y, typ;
 }
 
 void
-dotrap(trap)
-register struct trap *trap;
+dotrap(register struct trap *trap)
 {
     register int ttype = trap->ttyp;
     register struct monst *mtmp;
@@ -357,8 +355,7 @@ register struct trap *trap;
 }
 
 int
-mintrap(mtmp)
-register struct monst *mtmp;
+mintrap(register struct monst *mtmp)
 {
     register struct trap *trap = t_at(mtmp->mx, mtmp->my);
     register int wasintrap = mtmp->mtrapped;
@@ -534,8 +531,7 @@ register struct monst *mtmp;
 }
 
 void
-selftouch(arg)
-char *arg;
+selftouch(char *arg)
 {
     if (uwep && uwep->otyp == DEAD_COCKATRICE) {
         pline("%s touch the dead cockatrice.", arg);
@@ -547,7 +543,7 @@ char *arg;
 }
 
 void
-float_up()
+float_up(void)
 {
     if (u.utrap) {
         if (u.utraptype == TT_PIT) {
@@ -563,7 +559,7 @@ float_up()
 }
 
 void
-float_down()
+float_down(void)
 {
     register struct trap *trap;
 
@@ -589,7 +585,7 @@ float_down()
 #include "mkroom.h"
 
 static void
-vtele()
+vtele(void)
 {
     register struct mkroom *croom;
 
@@ -609,7 +605,7 @@ vtele()
 
 #ifdef BVH
 int
-has_amulet()
+has_amulet(void)
 {
     register struct obj *otmp;
 
@@ -621,7 +617,7 @@ has_amulet()
 #endif
 
 void
-tele()
+tele(void)
 {
     coord cc;
     register int nux, nuy;
@@ -664,8 +660,7 @@ tele()
 }
 
 static void
-teleds(nux, nuy)
-register int nux, nuy;
+teleds(int nux, int nuy)
 {
     if (Punished)
         unplacebc();
@@ -690,8 +685,7 @@ register int nux, nuy;
 }
 
 static int
-teleok(x, y)
-register int x, y;
+teleok(int x, int y)
 { /* might throw him into a POOL
    * removed by GAN 10/20/86
    */
@@ -710,7 +704,7 @@ register int x, y;
 }
 
 int
-dotele()
+dotele(void)
 {
     if ((!index("LNt", u.usym)) &&
 #ifdef WIZARD
@@ -734,8 +728,7 @@ dotele()
 }
 
 void
-placebc(attach)
-int attach;
+placebc(int attach)
 {
     if (!uchain || !uball) {
         impossible("Where are your chain and ball??");
@@ -754,7 +747,7 @@ int attach;
 }
 
 void
-unplacebc()
+unplacebc(void)
 {
     if (!carried(uball)) {
         freeobj(uball);
@@ -765,7 +758,7 @@ unplacebc()
 }
 
 void
-level_tele()
+level_tele(void)
 {
     register int newlevel;
 
@@ -844,7 +837,7 @@ level_tele()
 #ifdef NEWTRAPS
 
 static void
-domagictrap()
+domagictrap(void)
 {
     register int fate = rnd(20);
 
@@ -959,7 +952,7 @@ domagictrap()
 #endif /* NEWTRAPS */
 
 void
-drown()
+drown(void)
 {
     pline("You fall into a pool!");
     pline("You can't swim!");

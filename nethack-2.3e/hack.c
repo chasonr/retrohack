@@ -7,11 +7,11 @@
 /*static char SCCS_Id[] = "@(#)hack.c	2.3\t88/02/18";*/
 #endif
 
-static void movobj(/*unknown*/);
+static void movobj(struct obj *obj, int ox, int oy);
 #ifdef SINKS
-static void dosinkfall(/*unknown*/);
+static void dosinkfall(void);
 #endif
-static int inv_cnt(/*unknown*/);
+static int inv_cnt(void);
 
 /* called on movement:
         1. when throwing ball+chain far away
@@ -19,7 +19,7 @@ static int inv_cnt(/*unknown*/);
         3. when walking out of a lit room
  */
 void
-unsee()
+unsee(void)
 {
     register int x, y;
     register struct rm *lev;
@@ -62,9 +62,8 @@ unsee()
         in wizard.c: seeoff(0)	- hit by a cream pie.
  */
 void
-seeoff(mode) /* 1 to redo @, 0 to leave them */
-int mode;    /* 1 means misc movement, 0 means blindness */
-{
+seeoff(int mode) /* 1 to redo @, 0 to leave them */
+{                /* 1 means misc movement, 0 means blindness */
     register int x, y;
     register struct rm *lev;
 
@@ -90,13 +89,12 @@ int mode;    /* 1 means misc movement, 0 means blindness */
 }
 
 static int
-moverock()
+moverock(void)
 {
     register xchar rx, ry;
     register struct obj *otmp;
     register struct trap *ttmp;
     register struct monst *mtmp;
-    struct monst *m_at();
 
     while ((otmp = sobj_at(ENORMOUS_ROCK, u.ux + u.dx, u.uy + u.dy)) != NULL) {
         rx = u.ux + 2 * u.dx;
@@ -180,7 +178,7 @@ moverock()
 }
 
 void
-domove()
+domove(void)
 {
     register struct monst *mtmp = NULL;
     register struct rm *tmpr, *ust;
@@ -387,9 +385,7 @@ domove()
 }
 
 static void
-movobj(obj, ox, oy)
-register struct obj *obj;
-register int ox, oy;
+movobj(struct obj *obj, int ox, int oy)
 {
     /* Some dirty programming to get display right */
     freeobj(obj);
@@ -401,7 +397,7 @@ register int ox, oy;
 }
 
 int
-dopickup()
+dopickup(void)
 {
     /* uswallow case added by GAN 01/29/87 */
     if (u.uswallow) {
@@ -422,8 +418,7 @@ dopickup()
 }
 
 void
-pickup(all)
-int all;
+pickup(int all)
 {
     register struct gold *gold;
     register struct obj *obj, *obj2;
@@ -709,7 +704,7 @@ int all;
 /* turn around a corner if that is the only way we can proceed */
 /* do not turn left or right twice */
 void
-lookaround()
+lookaround(void)
 {
     register int x, y, i, x0 = 0, y0 = 0, m0 = 0, i0 = 9;
     register int corrct = 0, noturn = 0;
@@ -823,7 +818,7 @@ lookaround()
 /* something like lookaround, but we are not running */
 /* react only to monsters that might hit us */
 int
-monster_nearby()
+monster_nearby(void)
 {
     register int x, y;
     register struct monst *mtmp;
@@ -842,8 +837,8 @@ monster_nearby()
 }
 
 #ifdef QUEST
-cansee(x, y)
-xchar x, y;
+int
+cansee(xchar x, xchar y)
 {
     register int dx, dy, adx, ady, sdx, sdy, dmax, d;
     if (Blind)
@@ -895,8 +890,7 @@ register int x, y;
 #else
 
 int
-cansee(x, y)
-xchar x, y;
+cansee(xchar x, xchar y)
 {
     if (Blind || u.uswallow)
         return (0);
@@ -910,14 +904,13 @@ xchar x, y;
 #endif /* QUEST */
 
 int
-sgn(a)
-register int a;
+sgn(register int a)
 {
     return ((a > 0) ? 1 : (a == 0) ? 0 : -1);
 }
 
 #ifdef QUEST
-setsee()
+setsee(void)
 {
     register x, y;
 
@@ -935,7 +928,7 @@ setsee()
 #else
 
 void
-setsee()
+setsee(void)
 {
     register int x, y;
 
@@ -982,8 +975,7 @@ setsee()
 #endif /* QUEST */
 
 void
-nomul(nval)
-register int nval;
+nomul(register int nval)
 {
 #ifdef DGKMOD
     if (multi < nval)
@@ -997,7 +989,7 @@ register int nval;
 }
 
 int
-abon()
+abon(void)
 {
 #ifdef KAA
     if (u.usym != '@')
@@ -1020,7 +1012,7 @@ abon()
 }
 
 int
-dbon()
+dbon(void)
 {
     if (u.usym != '@')
         return (0);
@@ -1044,8 +1036,7 @@ dbon()
 }
 
 void
-losestr(num) /* may kill you; cause may be poison or monster like 'A' */
-register int num;
+losestr(int num) /* may kill you; cause may be poison or monster like 'A' */
 {
     u.ustr -= num;
     while (u.ustr < 3) {
@@ -1057,9 +1048,7 @@ register int num;
 }
 
 void
-losehp(n, knam)
-register int n;
-register char *knam;
+losehp(int n, char *knam)
 {
 #ifdef KAA
     if (u.mtimedone) {
@@ -1084,9 +1073,7 @@ register char *knam;
 }
 
 void
-losehp_m(n, mtmp)
-register int n;
-register struct monst *mtmp;
+losehp_m(int n, struct monst *mtmp)
 {
 #ifdef KAA
     if (u.mtimedone) {
@@ -1104,7 +1091,7 @@ register struct monst *mtmp;
 }
 
 void
-losexp() /* hit by V or W */
+losexp(void) /* hit by V or W */
 {
     register int num;
 
@@ -1132,7 +1119,7 @@ losexp() /* hit by V or W */
 }
 
 int
-inv_weight()
+inv_weight(void)
 {
     register struct obj *otmp = invent;
     register int wt = (u.ugold + 500) / 1000;
@@ -1186,7 +1173,7 @@ inv_weight()
 }
 
 static int
-inv_cnt()
+inv_cnt(void)
 {
     register struct obj *otmp = invent;
     register int ct = 0;
@@ -1198,14 +1185,13 @@ inv_cnt()
 }
 
 long
-newuexp()
+newuexp(void)
 {
     return (10 * (1L << (u.ulevel - 1)));
 }
 
 void
-change_luck(n)
-register schar n;
+change_luck(register schar n)
 {
     u.uluck += n;
     if (u.uluck < 0 && u.uluck < LUCKMIN)
@@ -1216,7 +1202,7 @@ register schar n;
 
 #ifdef SINKS
 static void
-dosinkfall()
+dosinkfall(void)
 {
     register struct obj *obj;
     pline("You crash to the floor!");

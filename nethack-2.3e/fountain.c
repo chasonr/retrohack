@@ -35,20 +35,21 @@
 /* Code for drinking from fountains.   */
 /* Scott R. Turner, srt@ucla, 10/27/86 */
 
+#include <stdlib.h>
 #include "hack.h"
 
 #ifdef FOUNTAINS
-static void dofindgem(/*unknown*/);
-static void dogushforth(/*unknown*/);
-static void dowaterdemon(/*unknown*/);
-static void dowaternymph(/*unknown*/);
-static void dowatersnakes(/*unknown*/);
+static void dofindgem(void);
+static void dogushforth(void);
+static void dowaterdemon(void);
+static void dowaternymph(void);
+static void dowatersnakes(void);
 
 #define somex() ((int) (rand() % (croom->hx - croom->lx + 1)) + croom->lx)
 #define somey() ((int) (rand() % (croom->hy - croom->ly + 1)) + croom->ly)
 
 static void
-dowatersnakes() /* Fountain of snakes! */
+dowatersnakes(void) /* Fountain of snakes! */
 {
     register int num = rnd(6);
     if (!index(genocided, 'S')) {
@@ -60,7 +61,7 @@ dowatersnakes() /* Fountain of snakes! */
 }
 
 static void
-dowaterdemon() /* Water demon */
+dowaterdemon(void) /* Water demon */
 {
     register struct monst *mtmp;
 
@@ -77,7 +78,7 @@ dowaterdemon() /* Water demon */
 }
 
 static void
-dowaternymph() /* Water Nymph */
+dowaternymph(void) /* Water Nymph */
 {
     register struct monst *mtmp;
     if ((mtmp = mkmon_at('N', u.ux, u.uy))) {
@@ -90,7 +91,7 @@ dowaternymph() /* Water Nymph */
 #include "mkroom.h"
 
 static void
-dogushforth() /* Gushing forth in this room */
+dogushforth(void) /* Gushing forth in this room */
 {
     register int num = rnd(10);
     register xchar mx, my;
@@ -130,7 +131,7 @@ dogushforth() /* Gushing forth in this room */
 }
 
 static void
-dofindgem() /* Find a gem in the sparkling waters. */
+dofindgem(void) /* Find a gem in the sparkling waters. */
 {
     if (!Blind)
         pline("You spot a gem in the sparkling waters!");
@@ -138,7 +139,7 @@ dofindgem() /* Find a gem in the sparkling waters. */
 }
 
 void
-dryup()
+dryup(void)
 {
     if (!rn2(3) && (levl[u.ux][u.uy].typ == FOUNTAIN)) {
         pline("The fountain dries up!");
@@ -149,7 +150,7 @@ dryup()
 }
 
 void
-drinkfountain()
+drinkfountain(void)
 {
     /* What happens when you drink from a fountain? */
     register int fate = rnd(30);
@@ -253,8 +254,7 @@ drinkfountain()
 }
 
 int
-dipfountain(obj)
-register struct obj *obj;
+dipfountain(register struct obj *obj)
 {
     register int fate = rnd(30);
 

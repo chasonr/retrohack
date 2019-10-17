@@ -6,9 +6,7 @@
 #include "panic.h"
 
 void
-atl(x, y, ch)
-register int x, y;
-int ch;
+atl(int x, int y, int ch)
 {
     register struct rm *crm = &levl[x][y];
 
@@ -24,8 +22,7 @@ int ch;
 }
 
 void
-on_scr(x, y)
-register int x, y;
+on_scr(int x, int y)
 {
     if (x < scrlx)
         scrlx = x;
@@ -45,8 +42,7 @@ register int x, y;
 */
 
 void
-tmp_at(x, y)
-int x, y;
+tmp_at(int x, int y)
 {
     static schar prevx, prevy;
     static char let;
@@ -77,8 +73,7 @@ int x, y;
 
 /* like the previous, but the symbols are first erased on completion */
 void
-Tmp_at(x, y)
-int x, y;
+Tmp_at(int x, int y)
 {
     static char let;
     static xchar cnt;
@@ -118,13 +113,13 @@ int x, y;
 }
 
 void
-curs_on_u()
+curs_on_u(void)
 {
     curs(u.ux, u.uy + 2);
 }
 
 void
-pru()
+pru(void)
 {
     if (u.udispl && (Invisible || u.udisx != u.ux || u.udisy != u.uy))
         /* if(! levl[u.udisx][u.udisy].new) */
@@ -148,8 +143,7 @@ pru()
 
 /* print a position that is visible for @ */
 void
-prl(x, y)
-int x, y;
+prl(int x, int y)
 {
     register struct rm *room;
     register struct monst *mtmp;
@@ -195,8 +189,7 @@ int x, y;
 }
 
 char
-news0(x, y)
-register xchar x, y;
+news0(xchar x, xchar y)
 {
     register struct obj *otmp;
     register struct trap *ttmp;
@@ -279,8 +272,7 @@ register xchar x, y;
 }
 
 void
-newsym(x, y)
-register int x, y;
+newsym(int x, int y)
 {
     atl(x, y, news0(x, y));
 }
@@ -288,8 +280,7 @@ register int x, y;
 /* used with wand of digging (or pick-axe): fill scrsym and force display */
 /* also when a POOL evaporates */
 void
-mnewsym(x, y)
-register int x, y;
+mnewsym(int x, int y)
 {
     register struct rm *room;
     char newscrsym;
@@ -305,8 +296,7 @@ register int x, y;
 }
 
 void
-nosee(x, y)
-register int x, y;
+nosee(int x, int y)
 {
     register struct rm *room;
 
@@ -322,8 +312,7 @@ register int x, y;
 
 #ifndef QUEST
 void
-prl1(x, y)
-register int x, y;
+prl1(int x, int y)
 {
     if (u.dx) {
         if (u.dy) {
@@ -345,8 +334,7 @@ register int x, y;
 }
 
 void
-nose1(x, y)
-register int x, y;
+nose1(int x, int y)
 {
     if (u.dx) {
         if (u.dy) {
@@ -369,8 +357,7 @@ register int x, y;
 #endif /* QUEST */
 
 int
-vism_at(x, y)
-register int x, y;
+vism_at(int x, int y)
 {
     register struct monst *mtmp;
 
@@ -384,8 +371,8 @@ register int x, y;
 }
 
 #ifdef NEWSCR
-pobj(obj)
-register struct obj *obj;
+void
+pobj(register struct obj *obj)
 {
     register int show =
         (!obj->oinvis || See_invisible) && cansee(obj->ox, obj->oy);
@@ -406,8 +393,7 @@ register struct obj *obj;
 #endif /* NEWSCR */
 
 void
-unpobj(obj)
-register struct obj *obj;
+unpobj(register struct obj *obj)
 {
     /* 	if(obj->odispl){
                     if(!vism_at(obj->odx, obj->ody))

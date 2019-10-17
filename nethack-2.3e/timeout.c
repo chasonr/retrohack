@@ -3,10 +3,10 @@
 
 #include "hack.h"
 
-static void stoned_dialogue(/*unknown*/);
+static void stoned_dialogue(void);
 
 void
-timeout()
+timeout(void)
 {
     register struct prop *upp;
 #ifdef KAA
@@ -89,7 +89,7 @@ static const char *stoned_texts[] = {
 };
 
 void
-stoned_dialogue()
+stoned_dialogue(void)
 {
     register long i = (Stoned & TIMEOUT);
 

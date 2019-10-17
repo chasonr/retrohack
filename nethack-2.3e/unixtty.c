@@ -6,6 +6,7 @@
  * arnold@ucsf-cgl, wcs@bo95b, cbcephus!pds and others.
  */
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "extern.h"
@@ -72,8 +73,8 @@ static char erase_char, kill_char;
 static boolean settty_needed = FALSE;
 static struct termstruct inittyb, curttyb;
 
-static int end_of_input();
-static void setctty(/*void*/);
+static int end_of_input(void);
+static void setctty(void);
 
 /*
  * Get initial state of terminal, set ospeed (for termcap routines)
@@ -81,7 +82,7 @@ static void setctty(/*void*/);
  * Called by startup() in termcap.c and after returning from ! or ^Z
  */
 void
-gettty()
+gettty(void)
 {
     if (GTTY(&inittyb) < 0)
         perror("Hack (gettty)");
@@ -101,8 +102,7 @@ gettty()
 
 /* reset terminal to original state */
 void
-settty(s)
-char *s;
+settty(char *s)
 {
     nh_clear_screen();
     end_screen();
@@ -117,14 +117,14 @@ char *s;
 }
 
 void
-setctty()
+setctty(void)
 {
     if (STTY(&curttyb) < 0)
         perror("Hack (setctty)");
 }
 
 void
-setftty()
+setftty(void)
 {
     register int ef = 0;                /* desired value of flags & ECHO */
     register int cf = CBRKON(CBRKMASK); /* desired value of flags & CBREAK */
@@ -156,13 +156,15 @@ setftty()
 /* fatal error */
 /*VARARGS1*/
 int
-error(s, x, y)
-char *s;
-int x, y;
+error(const char *s, ...)
 {
+    va_list args;
+
     if (settty_needed)
         settty((char *) 0);
-    printf(s, x, y);
+    va_start(args, s);
+    vprintf(s, args);
+    va_end(args);
     putchar('\n');
     exit(1);
 }
@@ -174,8 +176,7 @@ int x, y;
  * resulting string is "\033".
  */
 void
-getlin(bufp)
-register char *bufp;
+getlin(register char *bufp)
 {
     register char *obufp = bufp;
     register int c;
@@ -221,14 +222,13 @@ register char *bufp;
 }
 
 void
-getret()
+getret(void)
 {
     cgetret("");
 }
 
 void
-cgetret(s)
-register char *s;
+cgetret(register char *s)
 {
     putsym('\n');
     if (flags.standout)
@@ -244,8 +244,7 @@ register char *s;
 char morc; /* tell the outside world what char he used */
 
 void
-xwaitforspace(s)
-register char *s; /* chars allowed besides space or return */
+xwaitforspace(register char *s) /* chars allowed besides space or return */
 {
     register int c;
 
@@ -267,7 +266,7 @@ register char *s; /* chars allowed besides space or return */
 static int last_multi;
 
 char *
-parse()
+parse(void)
 {
     static char in_line[COLNO];
     register int foo;
@@ -324,7 +323,7 @@ parse()
 }
 
 char
-readchar()
+readchar(void)
 {
     register int sym;
 
@@ -354,7 +353,7 @@ readchar()
 }
 
 static int
-end_of_input()
+end_of_input(void)
 {
     settty("End of input?\n");
     clearlocks();
@@ -367,8 +366,7 @@ end_of_input()
  * This is just a modified getlin().   -jsb
  */
 void
-get_ext_cmd(bufp)
-register char *bufp;
+get_ext_cmd(register char *bufp)
 {
     register char *obufp = bufp;
     register int c;

@@ -295,7 +295,7 @@ char *argv[];
 }
 
 static void
-moveloop()
+moveloop(void)
 {
     char ch;
     int abort;
@@ -495,8 +495,8 @@ moveloop()
 /* This function is unnecessary and incompatible with the #define
  * of glo(x) in config.h -dgk
  */
-glo(foo)
-register foo;
+void
+glo(register int foo)
 {
     /* construct the string  xlock.n  */
     register char *tf;
@@ -513,7 +513,7 @@ register foo;
  * explicitly (-w implies wizard) or by askname.
  * It may still contain a suffix denoting pl_character.
  */
-askname()
+askname(void)
 {
     register int c, ct;
     printf("\nWho are you? ");
@@ -591,7 +591,7 @@ boolean wr;
 }
 #endif /* CHDIR */
 
-stop_occupation()
+stop_occupation(void)
 {
     if (occupation) {
         pline("You stop %s.", occtxt);
@@ -606,7 +606,7 @@ stop_occupation()
 #ifdef DGK
 struct finfo zfinfo = ZFINFO;
 
-zero_finfo()
+zero_finfo(void)
 { /* zero "fileinfo" array to prevent crashes on level change */
     int i;
 

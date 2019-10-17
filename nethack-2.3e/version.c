@@ -6,7 +6,7 @@
 #include "hack.h"
 
 int
-doversion()
+doversion(void)
 {
 #ifdef BETA
     pline("%s Net%s Beta Version %s - last build %s.",
@@ -37,7 +37,7 @@ doversion()
         goto quit;
 
 int
-doMSCversion()
+doMSCversion(void)
 {
     char buf[BUFSZ];
 

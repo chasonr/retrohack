@@ -10,23 +10,23 @@
 #include <dos.h>
 
 void
-flushout()
+flushout(void)
 {
     (void) fflush(stdout);
 }
 
-getuid()
+getuid(void)
 {
     return 1;
 }
 
 char *
-getlogin()
+getlogin(void)
 {
     return ((char *) NULL);
 }
 #ifdef REDO
-tgetch()
+tgetch(void)
 {
     char ch, popch();
     static char DOSgetch(), BIOSgetch();
@@ -43,7 +43,7 @@ tgetch()
     return ((ch == '\r') ? '\n' : ch);
 }
 #else /* REDO */
-tgetch()
+tgetch(void)
 {
     char ch;
     static char DOSgetch(), BIOSgetch();
@@ -61,7 +61,7 @@ tgetch()
 
 #define DIRECT_INPUT 0x7
 static char
-DOSgetch()
+DOSgetch(void)
 {
     union REGS regs;
 
@@ -90,7 +90,7 @@ static char *getcomspec(warn)
 
 #ifdef SHELL
 #include <process.h>
-dosh()
+dosh(void)
 {
     char *comspec;
 
@@ -141,7 +141,7 @@ static struct {
 #define KEYBRD_BIOS 0x16
 
 static char
-BIOSgetch()
+BIOSgetch(void)
 {
     unsigned char scan, shift, ch;
     union REGS regs;
@@ -188,7 +188,7 @@ int level;
 #define FREESPACE 0x36
 
 static char
-switchar()
+switchar(void)
 {
     union REGS regs;
 
@@ -216,8 +216,7 @@ long freediskspace(path) char *path;
 /* Functions to get filenames using wildcards
  */
 static
-findfirst(path)
-char *path;
+findfirst(char *path)
 {
     union REGS regs;
     struct SREGS sregs;
@@ -231,7 +230,7 @@ char *path;
 }
 
 static
-findnext()
+findnext(void)
 {
     union REGS regs;
 
@@ -243,7 +242,7 @@ findnext()
 #ifndef __TURBOC__
 /* Get disk transfer area, Turbo C already has getdta */
 static char *
-getdta()
+getdta(void)
 {
     union REGS regs;
     struct SREGS sregs;
@@ -258,8 +257,7 @@ getdta()
 #endif
 
 long
-filesize(file)
-char *file;
+filesize(char *file)
 {
     char *dta;
 
@@ -288,7 +286,7 @@ char *path, *files;
 /* Rewritten for version 3.3 to be faster
  */
 void
-copybones(mode)
+copybones(int mode)
 {
     char from[PATHLEN], to[PATHLEN], last[13], copy[8];
     char *frompath, *topath, *dta, *comspec;
@@ -353,7 +351,7 @@ copybones(mode)
     }
 }
 
-playwoRAMdisk()
+playwoRAMdisk(void)
 {
     msmsg("Do you wish to play without a RAMdisk (y/n) ? ");
 
@@ -369,7 +367,8 @@ playwoRAMdisk()
     return;
 }
 
-saveDiskPrompt(start)
+int
+saveDiskPrompt(int start)
 {
     char buf[BUFSIZ], *bp;
     int fd;
@@ -421,7 +420,7 @@ static record_exists()
 
 /* Return 1 if the comspec was found */
 static
-comspec_exists()
+comspec_exists(void)
 {
     int fd;
     char *comspec;
@@ -437,7 +436,7 @@ comspec_exists()
 /* Prompt for game disk, then check for record file.
  */
 void
-gameDiskPrompt()
+gameDiskPrompt(void)
 {
     if (saveprompt) {
         if (record_exists() && comspec_exists())
@@ -458,7 +457,7 @@ gameDiskPrompt()
 
 /* Read configuration */
 void
-read_config_file()
+read_config_file(void)
 {
     char tmp_ramdisk[PATHLEN], tmp_levels[PATHLEN];
     char buf[BUFSZ], *bufp;
@@ -589,7 +588,7 @@ read_config_file()
 /* Set names for bones[] and lock[]
  */
 void
-set_lock_and_bones()
+set_lock_and_bones(void)
 {
     if (!ramdisk) {
         strcpy(levels, permbones);
@@ -607,8 +606,7 @@ set_lock_and_bones()
  * be room for the \
  */
 void
-append_slash(name)
-char *name;
+append_slash(char *name)
 {
     char *ptr;
 
@@ -622,8 +620,7 @@ char *name;
 }
 
 void
-getreturn(str)
-char *str;
+getreturn(char *str)
 {
     int ch;
 
@@ -645,8 +642,7 @@ long a1, a2, a3;
  */
 #define SELECTDISK 0x0E
 void
-chdrive(str)
-char *str;
+chdrive(char *str)
 {
     char *ptr;
     union REGS inregs;
@@ -676,7 +672,7 @@ char *str;
 
 static unsigned old_stdin, old_stdout, ioctl();
 
-disable_ctrlP()
+disable_ctrlP(void)
 {
     if (!flags.rawio)
         return;
@@ -688,7 +684,7 @@ disable_ctrlP()
         ioctl(STDOUT, SETBITS, old_stdout | RAW);
 }
 
-enable_ctrlP()
+enable_ctrlP(void)
 {
     if (!flags.rawio)
         return;
@@ -752,7 +748,7 @@ char *name, *mode;
  */
 #undef exit
 void
-msexit(code)
+msexit(int code)
 {
 #ifdef DGK
     flushout();

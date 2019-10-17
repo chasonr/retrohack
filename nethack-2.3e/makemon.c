@@ -4,7 +4,7 @@
 #include "hack.h"
 
 #ifdef DGKMOD
-static void m_initinv(/*unknown*/);
+static void m_initinv(struct monst *mtmp);
 #endif
 
 static struct monst zeromonst;
@@ -52,9 +52,7 @@ static struct permonst yellow_dragon = {
  *	(the one at [x,y]).
  */
 struct monst *
-makemon(ptr, x, y)
-register struct permonst *ptr;
-int x, y;
+makemon(struct permonst *ptr, int x, int y)
 {
     register struct monst *mtmp;
     register int nleft, deep, ct;
@@ -277,8 +275,7 @@ gotmon:
 #ifdef DGKMOD
 /* Give some monsters an initial inventory to use */
 static void
-m_initinv(mtmp)
-struct monst *mtmp;
+m_initinv(struct monst *mtmp)
 {
     struct obj *otmp;
 
@@ -362,9 +359,7 @@ struct monst *mtmp;
 #endif
 
 int
-enexto(cc, xx, yy)
-coord *cc;
-register xchar xx, yy;
+enexto(coord *cc, xchar xx, xchar yy)
 {
     register xchar x, y;
     coord foo[15], *tfoo;
@@ -411,8 +406,7 @@ foofull:
 }
 
 int
-goodpos(x, y) /* used only in mnexto and rloc */
-int x, y;
+goodpos(int x, int y) /* used only in mnexto and rloc */
 {
     return (!(x < 1 || x > COLNO - 2 || y < 1 || y > ROWNO - 2 || m_at(x, y)
               || !ACCESSIBLE(levl[x][y].typ) || (x == u.ux && y == u.uy)
@@ -420,8 +414,7 @@ int x, y;
 }
 
 void
-rloc(mtmp)
-struct monst *mtmp;
+rloc(struct monst *mtmp)
 {
     register int tx, ty;
     register char ch = mtmp->data->mlet;
@@ -448,9 +441,7 @@ struct monst *mtmp;
 }
 
 struct monst *
-mkmon_at(let, x, y)
-char let;
-register int x, y;
+mkmon_at(char let, int x, int y)
 {
     register int ct;
     register struct permonst *ptr;

@@ -8,52 +8,62 @@
 int shlevel = 0;
 struct monst *shopkeeper = 0;
 struct obj *billobjs = 0;
-obfree(obj, merge)
-register struct obj *obj, *merge;
+void
+obfree(struct obj *obj, struct obj *merge)
 {
     free((char *) obj);
 }
-inshop()
+int
+inshop(void)
 {
     return (0);
 }
-addtobill()
+void
+addtobill(void)
 {
 }
-subfrombill()
+void
+subfrombill(void)
 {
 }
-splitbill()
+void
+splitbill(struct obj *obj, struct obj *otmp)
 {
 }
-dopay()
-{
-    return (0);
-}
-paybill()
-{
-}
-doinvbill()
+int
+dopay(void)
 {
     return (0);
 }
-shkdead()
+void
+paybill(void)
 {
 }
-shkcatch()
-{
-    return (0);
-}
-shk_move()
+int
+doinvbill(int mode)
 {
     return (0);
 }
-replshk(mtmp, mtmp2)
-struct monst *mtmp, *mtmp2;
+void
+shkdead(struct monst *mtmp)
+{
+}
+int
+shkcatch(register struct obj *obj)
+{
+    return (0);
+}
+int
+shk_move(register struct monst *shkp)
+{
+    return (0);
+}
+void
+replshk(struct monst *mtmp, struct monst *mtmp2)
 {
 }
 char *
-shkname()
+shkname(struct monst *mtmp)
 {
     return ("");
 }
@@ -67,7 +77,7 @@ shkname()
 #define NOTANGRY(mon) mon->mpeaceful
 #define ANGRY(mon) !NOTANGRY(mon)
 
-static struct obj *bp_to_obj(/*unknown*/);
+static struct obj *bp_to_obj(struct bill_x *bp);
 
 /* Descriptor of current shopkeeper. Note that the bill need not be
    per-shopkeeper, since it is valid only when in a shop. */
@@ -78,9 +88,11 @@ struct obj *billobjs;   /* objects on bill with bp->useup */
 /* only accessed here and by save & restore */
 static long int total;     /* filled by addupbill() */
 static long int followmsg; /* last time of follow message */
-static void setpaid();
-static void findshk();
-static int dopayobj(), getprice(), realhunger();
+static void setpaid(void);
+static void findshk(int roomno);
+static int dopayobj(struct bill_x *bp);
+static int getprice(struct obj *obj);
+static int realhunger(void);
 
 /*
         invariants: obj->unpaid iff onbill(obj) [unless bp->useup]
@@ -88,15 +100,13 @@ static int dopayobj(), getprice(), realhunger();
  */
 
 char *
-shkname(mtmp) /* called in do_name.c */
-register struct monst *mtmp;
+shkname(struct monst *mtmp) /* called in do_name.c */
 {
     return (ESHK(mtmp)->shknam);
 }
 
 void
-shkdead(mtmp) /* called in mon.c */
-register struct monst *mtmp;
+shkdead(struct monst *mtmp) /* called in mon.c */
 {
     register struct eshk *eshk = ESHK(mtmp);
 
@@ -110,8 +120,7 @@ register struct monst *mtmp;
 }
 
 void
-replshk(mtmp, mtmp2)
-register struct monst *mtmp, *mtmp2;
+replshk(struct monst *mtmp, struct monst *mtmp2)
 {
     if (mtmp == shopkeeper) {
         shopkeeper = mtmp2;
@@ -120,7 +129,7 @@ register struct monst *mtmp, *mtmp2;
 }
 
 static void
-setpaid()
+setpaid(void)
 {   /* caller has checked that shopkeeper exists */
     /* either we paid or left the shop or he just died */
     register struct obj *obj;
@@ -145,7 +154,7 @@ setpaid()
 }
 
 static void
-addupbill()
+addupbill(void)
 {   /* delivers result in total */
     /* caller has checked that shopkeeper exists */
     register int ct = ESHK(shopkeeper)->billct;
@@ -158,7 +167,7 @@ addupbill()
 }
 
 int
-inshop()
+inshop(void)
 {
     register int roomno = inroom(u.ux, u.uy);
 
@@ -284,8 +293,7 @@ inshop()
 }
 
 static void
-findshk(roomno)
-register int roomno;
+findshk(register int roomno)
 {
     register struct monst *mtmp;
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
@@ -307,8 +315,7 @@ register int roomno;
 }
 
 static struct bill_x *
-onbill(obj)
-register struct obj *obj;
+onbill(register struct obj *obj)
 {
     register struct bill_x *bp;
     if (!shopkeeper)
@@ -326,8 +333,7 @@ register struct obj *obj;
 
 /* called with two args on merge */
 void
-obfree(obj, merge)
-register struct obj *obj, *merge;
+obfree(struct obj *obj, struct obj *merge)
 {
     register struct bill_x *bp = onbill(obj);
     register struct bill_x *bpm;
@@ -355,9 +361,7 @@ register struct obj *obj, *merge;
 }
 
 static void
-pay(tmp, shkp)
-long tmp;
-register struct monst *shkp;
+pay(long tmp, struct monst *shkp)
 {
     long robbed = ESHK(shkp)->robbed;
 
@@ -373,7 +377,7 @@ register struct monst *shkp;
 }
 
 int
-dopay()
+dopay(void)
 {
     long ltmp;
     register struct bill_x *bp;
@@ -508,8 +512,7 @@ dopay()
 /*        0 if not enough money */
 /*       -1 if object could not be found (but was paid) */
 static int
-dopayobj(bp)
-register struct bill_x *bp;
+dopayobj(register struct bill_x *bp)
 {
     register struct obj *obj;
     long ltmp;
@@ -558,7 +561,7 @@ register struct bill_x *bp;
 
 /* routine called after dying (or quitting) with nonempty bill */
 void
-paybill()
+paybill(void)
 {
     if (shlevel == dlevel && shopkeeper && ESHK(shopkeeper)->billct) {
         addupbill();
@@ -579,8 +582,7 @@ paybill()
 
 /* find obj on one of the lists */
 struct obj *
-bp_to_obj(bp)
-register struct bill_x *bp;
+bp_to_obj(register struct bill_x *bp)
 {
     register struct obj *obj;
     register struct monst *mtmp;
@@ -602,8 +604,7 @@ register struct bill_x *bp;
 
 /* called in hack.c when we pickup an object */
 void
-addtobill(obj)
-register struct obj *obj;
+addtobill(register struct obj *obj)
 {
     register struct bill_x *bp;
     char buf[40];
@@ -671,8 +672,7 @@ register struct obj *obj;
 }
 
 void
-splitbill(obj, otmp)
-register struct obj *obj, *otmp;
+splitbill(struct obj *obj, struct obj *otmp)
 {
     /* otmp has been split off from obj */
     register struct bill_x *bp;
@@ -705,8 +705,7 @@ register struct obj *obj, *otmp;
 }
 
 void
-subfrombill(obj)
-register struct obj *obj;
+subfrombill(register struct obj *obj)
 {
     long ltmp;
     register struct obj *otmp;
@@ -782,8 +781,7 @@ register struct obj *obj;
 }
 
 int
-doinvbill(mode)
-int mode; /* 0: deliver count 1: paged */
+doinvbill(int mode) /* 0: deliver count 1: paged */
 {
     register struct bill_x *bp;
     register struct obj *obj;
@@ -847,8 +845,7 @@ quit:
 }
 
 static int
-getprice(obj)
-register struct obj *obj;
+getprice(register struct obj *obj)
 {
     register int tmp, ac;
     switch (obj->olet) {
@@ -952,7 +949,7 @@ register struct obj *obj;
 }
 
 static int
-realhunger()
+realhunger(void)
 { /* not completely foolproof */
     register int tmp = u.uhunger;
     register struct obj *otmp = invent;
@@ -965,8 +962,7 @@ realhunger()
 }
 
 int
-shkcatch(obj)
-register struct obj *obj;
+shkcatch(register struct obj *obj)
 {
     register struct monst *shkp = shopkeeper;
 
@@ -986,8 +982,7 @@ register struct obj *obj;
  * shk_move: return 1: he moved  0: he didnt  -1: let m_move do it
  */
 int
-shk_move(shkp)
-register struct monst *shkp;
+shk_move(register struct monst *shkp)
 {
     register struct monst *mtmp;
     register struct permonst *mdat = shkp->data;
@@ -1162,11 +1157,11 @@ register struct monst *shkp;
 }
 #endif /* QUEST */
 
+/*	New version to speed things up.
+ *	Compiler dependant, may not always work.
+ */
 int
-online(x, y) /*	New version to speed things up.
-              *	Compiler dependant, may not always work.
-              */
-register xchar x, y;
+online(xchar x, xchar y)
 {
     return ((x -= u.ux) == 0 || (y -= u.uy) == 0 || x == y || (x += y) == 0);
 }
@@ -1179,8 +1174,7 @@ register xchar x, y;
 
 /* Does this monster follow me downstairs? */
 int
-follower(mtmp)
-register struct monst *mtmp;
+follower(register struct monst *mtmp)
 {
     return (mtmp->mtame || index("1TVWZi&, ", mtmp->data->mlet)
             || (mtmp->isshk && ESHK(mtmp)->following));
@@ -1188,8 +1182,7 @@ register struct monst *mtmp;
 
 /* He is digging in the shop. */
 void
-shopdig(fall)
-register int fall;
+shopdig(register int fall)
 {
     if (!fall) {
         if (u.utraptype == TT_PIT)

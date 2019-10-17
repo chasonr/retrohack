@@ -6,9 +6,9 @@
 #include "mfndpos.h"
 #include "panic.h"
 
-static void dmonsfree(/*unknown*/);
-static int ishuman(/*unknown*/);
-static int restrap(/*unknown*/);
+static void dmonsfree(void);
+static int ishuman(struct monst *mtmp);
+static int restrap(struct monst *mtmp);
 
 int warnlevel; /* used by movemon and dochugw */
 static long lastwarntime;
@@ -16,7 +16,7 @@ static int lastwarnlev;
 static const char *warnings[] = { "white", "pink", "red", "ruby", "purple", "black" };
 
 void
-movemon()
+movemon(void)
 {
     register struct monst *mtmp;
     register int fr;
@@ -127,15 +127,13 @@ movemon()
 }
 
 void
-justswld(mtmp, name)
-register struct monst *mtmp;
-char *name;
+justswld(struct monst *mtmp, char *name)
 {
     mtmp->mx = u.ux;
     mtmp->my = u.uy;
     u.ustuck = mtmp;
     pmon(mtmp);
-    kludge("%s swallows you!", name);
+    kludge("%s swallows you!", name, "");
     more();
     seeoff(1);
     u.uswallow = 1;
@@ -144,14 +142,11 @@ char *name;
 }
 
 void
-youswld(mtmp, dam, die, name)
-register struct monst *mtmp;
-register int dam, die;
-char *name;
+youswld(struct monst *mtmp, int dam, int die, char *name)
 {
     if (mtmp != u.ustuck)
         return;
-    kludge("%s digests you!", name);
+    kludge("%s digests you!", name, "");
     u.uhp -= dam;
     if (u.uswldtim++ >= die) { /* a3 */
         pline("It totally digests you!");
@@ -164,8 +159,7 @@ char *name;
 
 #ifdef ROCKMOLE
 void
-meatgold(mtmp)
-register struct monst *mtmp;
+meatgold(register struct monst *mtmp)
 {
     register struct gold *gold;
     register int pile;
@@ -197,8 +191,7 @@ register struct monst *mtmp;
 #endif /* ROCKMOLE */
 
 void
-mpickgold(mtmp)
-register struct monst *mtmp;
+mpickgold(register struct monst *mtmp)
 {
     register struct gold *gold;
     while ((gold = g_at(mtmp->mx, mtmp->my)) != NULL) {
@@ -211,8 +204,7 @@ register struct monst *mtmp;
 
 /* Now includes giants which pick up enormous rocks.  KAA */
 void
-mpickgems(mtmp)
-register struct monst *mtmp;
+mpickgems(register struct monst *mtmp)
 {
     register struct obj *otmp;
     for (otmp = fobj; otmp; otmp = otmp->nobj)
@@ -237,10 +229,7 @@ register struct monst *mtmp;
 
 /* return number of acceptable neighbour positions */
 int
-mfndpos(mon, poss, info, flag)
-register struct monst *mon;
-coord poss[9];
-long info[9], flag;
+mfndpos(struct monst *mon, coord poss[9], long info[9], long flag)
 {
     register int x, y, nx, ny, cnt = 0, ntyp;
     register struct monst *mtmp;
@@ -350,15 +339,13 @@ nexttry: /* eels prefer the water, but if there is no water nearby,
 }
 
 int
-dist(x, y)
-int x, y;
+dist(int x, int y)
 {
     return ((x - u.ux) * (x - u.ux) + (y - u.uy) * (y - u.uy));
 }
 
 void
-poisoned(string, pname)
-register char *string, *pname;
+poisoned(char *string, char *pname)
 {
     register int i, plural;
 
@@ -395,8 +382,7 @@ register char *string, *pname;
 }
 
 void
-mondead(mtmp)
-register struct monst *mtmp;
+mondead(register struct monst *mtmp)
 {
     relobj(mtmp, 1);
     unpmon(mtmp);
@@ -435,8 +421,7 @@ register struct monst *mtmp;
 
 /* called when monster is moved to larger structure */
 void
-replmon(mtmp, mtmp2)
-register struct monst *mtmp, *mtmp2;
+replmon(struct monst *mtmp, struct monst *mtmp2)
 {
     relmon(mtmp);
     monfree(mtmp);
@@ -451,8 +436,7 @@ register struct monst *mtmp, *mtmp2;
 }
 
 void
-relmon(mon)
-register struct monst *mon;
+relmon(register struct monst *mon)
 {
     register struct monst *mtmp;
 
@@ -473,15 +457,14 @@ register struct monst *mon;
 static struct monst *fdmon; /* chain of dead monsters, need not to be saved */
 
 void
-monfree(mtmp)
-register struct monst *mtmp;
+monfree(register struct monst *mtmp)
 {
     mtmp->nmon = fdmon;
     fdmon = mtmp;
 }
 
 static void
-dmonsfree()
+dmonsfree(void)
 {
     register struct monst *mtmp;
     while ((mtmp = fdmon) != NULL) {
@@ -491,8 +474,7 @@ dmonsfree()
 }
 
 void
-unstuck(mtmp)
-register struct monst *mtmp;
+unstuck(register struct monst *mtmp)
 {
     if (u.ustuck == mtmp) {
         if (u.uswallow) {
@@ -507,16 +489,13 @@ register struct monst *mtmp;
 }
 
 void
-killed(mtmp)
-register struct monst *mtmp;
+killed(register struct monst *mtmp)
 {
     xkilled(mtmp, 1);
 }
 
 void
-xkilled(mtmp, dest)
-register struct monst *mtmp;
-int dest;
+xkilled(struct monst *mtmp, int dest)
 /* Dest=1, normal; dest=0, don't print message; dest=2, don't drop corpse
    either; dest=3, message but no corpse */
 {
@@ -752,20 +731,19 @@ int dest;
 }
 
 void
-kludge(str, arg)
-register char *str, *arg;
+kludge(const char *str, const char *arg1, const char *arg2)
 {
     if (Blind) {
         if (*str == '%')
-            pline(str, "It");
+            pline(str, "It", arg2);
         else
-            pline(str, "it");
+            pline(str, "it", arg2);
     } else
-        pline(str, arg);
+        pline(str, arg1, arg2);
 }
 
 void
-rescham() /* force all chameleons to become normal */
+rescham(void) /* force all chameleons to become normal */
 {
     register struct monst *mtmp;
 
@@ -779,7 +757,7 @@ rescham() /* force all chameleons to become normal */
 #ifdef DGKMOD
 /* Let the chameleons change again -dgk */
 void
-restartcham()
+restartcham(void)
 {
     register struct monst *mtmp;
 
@@ -789,11 +767,10 @@ restartcham()
 }
 #endif
 
+/* make a chameleon look like a new monster */
+/* returns 1 if the monster actually changed */
 int
-newcham(mtmp, mdat) /* make a chameleon look like a new monster */
-                    /* returns 1 if the monster actually changed */
-register struct monst *mtmp;
-register struct permonst *mdat;
+newcham(struct monst *mtmp, struct permonst *mdat)
 {
     register int mhp, hpn, hpd;
 
@@ -858,8 +835,7 @@ register struct permonst *mdat;
 }
 
 void
-mnexto(mtmp) /* Make monster mtmp next to you (if possible) */
-struct monst *mtmp;
+mnexto(struct monst *mtmp) /* Make monster mtmp next to you (if possible) */
 {
     coord mm;
     enexto(&mm, u.ux, u.uy);
@@ -869,15 +845,13 @@ struct monst *mtmp;
 }
 
 static int
-ishuman(mtmp)
-register struct monst *mtmp;
+ishuman(register struct monst *mtmp)
 {
     return (mtmp->data->mlet == '@');
 }
 
 void
-setmangry(mtmp)
-register struct monst *mtmp;
+setmangry(register struct monst *mtmp)
 {
     if (!mtmp->mpeaceful)
         return;
@@ -891,19 +865,18 @@ register struct monst *mtmp;
 /* not one hundred procent correct: now a snake may hide under an
    invisible object */
 int
-canseemon(mtmp)
-register struct monst *mtmp;
+canseemon(register struct monst *mtmp)
 {
     return ((!mtmp->minvis || See_invisible)
             && (!mtmp->mhide || !o_at(mtmp->mx, mtmp->my))
             && cansee(mtmp->mx, mtmp->my));
 }
 
+/* awaken monsters while in the same room.
+ * return a 1 if they have been woken.
+ */
 int
-disturb(mtmp) /* awaken monsters while in the same room.
-               * return a 1 if they have been woken.
-               */
-register struct monst *mtmp;
+disturb(register struct monst *mtmp)
 {
     /* wake up, or get out of here. */
     /* ettins are hard to surprise */
@@ -926,11 +899,11 @@ register struct monst *mtmp;
 }
 
 #ifdef HARD
+/* unwatched mimics and piercers may hide again,
+ * if so, a 1 is returned.
+ */
 static int
-restrap(mtmp) /* unwatched mimics and piercers may hide again,
-               * if so, a 1 is returned.
-               */
-register struct monst *mtmp;
+restrap(register struct monst *mtmp)
 {
     if (mtmp->data->mlet == 'M' && !mtmp->mimic && !mtmp->cham && !mtmp->mcan
         && !cansee(mtmp->mx, mtmp->my) && !rn2(3)) {

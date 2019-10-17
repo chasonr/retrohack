@@ -3,11 +3,13 @@
 /* main.c - (Unix) version */
 
 #include <signal.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include "hack.h"
+#include "vpline.h"
 
 #ifdef QUEST
 #define gamename "NetQuest"
@@ -15,11 +17,11 @@
 #define gamename "NetHack"
 #endif
 
-void (*afternmv)();
-int (*occupation)();
+void (*afternmv)(void);
+int (*occupation)(void);
 
 #ifdef CHDIR
-static void chdirx(/* char *dir, boolean wr */);
+static void chdirx(const char *dir, boolean wr);
 #endif
 
 int hackpid; /* current pid */
@@ -31,13 +33,11 @@ char SAVEF[PL_NSIZ + 11] = "save/"; /* save/99999player */
 char *hname;                        /* name of the game (argv[0] of call) */
 static char obuf[BUFSIZ];           /* BUFSIZ is defined in stdio.h */
 
-static void whoami(/*void*/);
-static int newgame();
+static void whoami(void);
+static int newgame(void);
 
 int
-main(argc, argv)
-int argc;
-char *argv[];
+main(int argc, char *argv[])
 {
     register int fd;
 #ifdef CHDIR
@@ -449,8 +449,7 @@ char *argv[];
 }
 
 void
-glo(foo)
-register int foo;
+glo(register int foo)
 {
     /* construct the string  xlock.n  */
     register char *tf;
@@ -467,7 +466,7 @@ register int foo;
  * It may still contain a suffix denoting pl_character.
  */
 void
-askname()
+askname(void)
 {
     register int c, ct;
     printf("\nWho are you? ");
@@ -495,19 +494,19 @@ askname()
 
 /*VARARGS1*/
 void
-impossible(s, x1, x2)
-register char *s;
-int x1, x2;
+impossible(const char *s, ...)
 {
-    pline(s, x1, x2);
+    va_list args;
+
+    va_start(args, s);
+    vpline(s, args);
+    va_end(args);
     pline("Program in disorder - perhaps you'd better Quit.");
 }
 
 #ifdef CHDIR
 static void
-chdirx(dir, wr)
-const char *dir;
-boolean wr;
+chdirx(const char *dir, boolean wr)
 {
 #ifdef SECURE
     if (dir /* User specified directory? */
@@ -548,7 +547,7 @@ boolean wr;
 #endif /* CHDIR */
 
 void
-stop_occupation()
+stop_occupation(void)
 {
     if (occupation) {
         pline("You stop %s.", occtxt);
@@ -561,7 +560,7 @@ stop_occupation()
 }
 
 static void
-whoami()
+whoami(void)
 {
     /*
      * Who am i? Algorithm: 1. Use name as specified in HACKOPTIONS
@@ -588,7 +587,7 @@ whoami()
 }
 
 static int
-newgame()
+newgame(void)
 {
     fobj = fcobj = invent = 0;
     fmon = fallen_down = 0;

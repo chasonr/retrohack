@@ -5,14 +5,13 @@
 
 #ifdef MARKER
 
-static int cost(/*unknown*/);
+static int cost(struct obj *scroll);
 
 /*
  * returns basecost of a scroll
  */
 static int
-cost(scroll)
-register struct obj *scroll;
+cost(register struct obj *scroll)
 {
     switch (scroll->otyp) {
 #ifdef MAIL
@@ -61,8 +60,7 @@ register struct obj *scroll;
 }
 
 int
-dowrite(pen)
-register struct obj *pen;
+dowrite(register struct obj *pen)
 {
     register struct obj *paper;
     char namebuf[BUFSZ], scrbuf[BUFSZ];

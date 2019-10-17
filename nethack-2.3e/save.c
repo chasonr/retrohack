@@ -10,7 +10,7 @@
 #include "panic.h"
 
 int
-dosave()
+dosave(void)
 {
     nh_clear_screen();
     fflush(stdout);
@@ -32,8 +32,7 @@ nh_hangup(int sig)
 
 /* returns 1 if save successful */
 int
-dosave0(hu)
-int hu;
+dosave0(int hu)
 {
     register int fd, ofd;
     int tmp; /* not register ! */
@@ -159,8 +158,7 @@ again:
 }
 
 int
-dorecover(fd)
-register int fd;
+dorecover(register int fd)
 {
     register int nfd;
     int tmp;      /* not a register ! */
@@ -316,8 +314,7 @@ register int fd;
 }
 
 struct obj *
-restobjchn(fd)
-register int fd;
+restobjchn(register int fd)
 {
     register struct obj *otmp, *otmp2;
     register struct obj *first = 0;
@@ -348,8 +345,7 @@ register int fd;
 }
 
 struct monst *
-restmonchn(fd)
-register int fd;
+restmonchn(register int fd)
 {
     register struct monst *mtmp, *mtmp2;
     register struct monst *first = 0;

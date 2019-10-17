@@ -25,13 +25,13 @@
 
 static struct stat buf, hbuf;
 
-setrandom()
+setrandom(void)
 {
     (void) srand((int) time((time_t *) 0));
 }
 
 struct tm *
-getlt()
+getlt(void)
 {
     time_t date;
     struct tm *localtime();
@@ -40,13 +40,13 @@ getlt()
     return (localtime(&date));
 }
 
-getyear()
+getyear(void)
 {
     return (1900 + getlt()->tm_year);
 }
 
 char *
-getdate()
+getdate(void)
 {
     static char datestr[7];
     register struct tm *lt = getlt();
@@ -60,7 +60,7 @@ getdate()
     return (datestr);
 }
 
-phase_of_the_moon() /* 0-7, with 0: new, 4: full */
+phase_of_the_moon(void) /* 0-7, with 0: new, 4: full */
 {                   /* moon period: 29.5306 days */
     /* year: 365.2422 days */
     register struct tm *lt = getlt();
@@ -75,20 +75,20 @@ phase_of_the_moon() /* 0-7, with 0: new, 4: full */
     return ((((((diy + epact) * 6) + 11) % 177) / 22) & 7);
 }
 
-night()
+night(void)
 {
     register int hour = getlt()->tm_hour;
 
     return (hour < 6 || hour > 21);
 }
 
-midnight()
+midnight(void)
 {
     return (getlt()->tm_hour == 0);
 }
 
-gethdate(name)
-char *name;
+void
+gethdate(char *name)
 {
 /* old version - for people short of space */
 /*
@@ -132,7 +132,8 @@ char *name;
           (np = rindex(name, '/')) ? np + 1 : name);
 }
 
-uptodate(fd)
+int
+uptodate(int fd)
 {
     if (fstat(fd, &buf)) {
         pline("Cannot get status of saved level? ");
@@ -145,8 +146,8 @@ uptodate(fd)
     return (1);
 }
 
-regularize(s) /* normalize file name - we don't like ..'s or /'s */
-register char *s;
+void
+regularize(register char *s) /* normalize file name - we don't like ..'s or /'s */
 {
     register char *lp;
 

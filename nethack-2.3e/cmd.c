@@ -5,26 +5,26 @@
 #include "func_tab.h"
 #include "hack.h"
 
-static int doextcmd(/*unknown*/);
-static int doextlist(/*unknown*/);
-static char lowc(/*unknown*/);
-static int timed_occupation(/*unknown*/);
-static char unctrl(/*unknown*/);
+static int doextcmd(void);
+static int doextlist(void);
+static char lowc(char sym);
+static int timed_occupation(void);
+static char unctrl(char sym);
 
 #ifdef WIZARD
-static int wiz_attributes(/*unknown*/);
-static int wiz_detect(/*unknown*/);
-static int wiz_identify(/*unknown*/);
-static int wiz_map(/*unknown*/);
-static int wiz_wish(/*unknown*/);
+static int wiz_attributes(void);
+static int wiz_detect(void);
+static int wiz_identify(void);
+static int wiz_map(void);
+static int wiz_wish(void);
 #endif
 
 #ifdef DGKMOD
-static int (*timed_occ_fn)();
+static int (*timed_occ_fn)(void);
 
 /* Count down by decrementing multi */
 static int
-timed_occupation()
+timed_occupation(void)
 {
     (*timed_occ_fn)();
     if (multi > 0)
@@ -36,10 +36,7 @@ timed_occupation()
  * function times out by its own means.
  */
 void
-set_occupation(fn, txt, time)
-int (*fn)();
-char *txt;
-int time;
+set_occupation(int (*fn)(void), char *txt, int time)
 {
     if (time) {
         occupation = timed_occupation;
@@ -63,7 +60,7 @@ static char pushq[BSIZE], saveq[BSIZE];
 static int phead, ptail, shead, stail;
 
 char
-popch()
+popch(void)
 {
     /* If occupied, return 0, letting tgetch know a character should
      * be read from the keyboard.  If the character read is not the
@@ -80,8 +77,7 @@ popch()
 
 /* A ch == 0 resets the pushq */
 void
-pushch(ch)
-char ch;
+pushch(char ch)
 {
     if (!ch)
         phead = ptail = 0;
@@ -93,8 +89,7 @@ char ch;
  * replaying a previous command.
  */
 void
-savech(ch)
-char ch;
+savech(char ch)
 {
     if (!in_doagain) {
         if (!ch)
@@ -222,8 +217,7 @@ struct ext_func_tab extcmdlist[] = {
 };
 
 void
-rhack(cmd)
-register char *cmd;
+rhack(register char *cmd)
 {
     register struct func_tab *tlist = cmdlist;
     boolean firsttime = FALSE;
@@ -347,7 +341,7 @@ register char *cmd;
 }
 
 static int
-doextcmd() /* here after # - now read a full-word command */
+doextcmd(void) /* here after # - now read a full-word command */
 {
     char buf[BUFSZ];
     register struct ext_func_tab *efp = extcmdlist;
@@ -371,7 +365,7 @@ doextcmd() /* here after # - now read a full-word command */
 }
 
 static int
-doextlist() /* here after #? - now list all full-word commands */
+doextlist(void) /* here after #? - now list all full-word commands */
 {
     register struct ext_func_tab *efp = extcmdlist;
     char buf[BUFSZ];
@@ -395,15 +389,13 @@ quit:
 }
 
 static char
-lowc(sym)
-char sym;
+lowc(char sym)
 {
     return ((sym >= 'A' && sym <= 'Z') ? sym + 'a' - 'A' : sym);
 }
 
 static char
-unctrl(sym)
-char sym;
+unctrl(char sym)
 {
     return ((sym >= ('A' & 037) && sym <= ('Z' & 037)) ? sym + 0140 : sym);
 }
@@ -415,8 +407,7 @@ schar ydir[10] = { 0, -1, -1, -1, 0, 1, 1, 1, 0, 0 };
 static schar zdir[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 1, -1 };
 
 int
-movecmd(sym) /* also sets u.dz, but returns false for <> */
-char sym;
+movecmd(char sym) /* also sets u.dz, but returns false for <> */
 {
     register char *dp;
 
@@ -430,8 +421,7 @@ char sym;
 }
 
 int
-getdir(s)
-boolean s;
+getdir(boolean s)
 {
     char dirsym;
 
@@ -460,7 +450,7 @@ boolean s;
 }
 
 void
-confdir()
+confdir(void)
 {
     register int x = rn2(8);
     u.dx = xdir[x];
@@ -468,7 +458,7 @@ confdir()
 }
 
 #ifdef QUEST
-finddir()
+finddir(void)
 {
     register int i, ui = u.di;
     for (i = 0; i <= 8; i++) {
@@ -514,8 +504,7 @@ register x, y;
 #endif /* QUEST */
 
 int
-isok(x, y)
-register int x, y;
+isok(int x, int y)
 {
     /* x corresponds to curx, so x==1 is the first column. Ach. %% */
     return (x >= 1 && x <= COLNO - 1 && y >= 0 && y <= ROWNO - 1);
@@ -523,7 +512,7 @@ register int x, y;
 
 #ifdef WIZARD
 static int
-wiz_wish() /* Unlimited wishes for wizard mode by Paul Polderman */
+wiz_wish(void) /* Unlimited wishes for wizard mode by Paul Polderman */
 {
     if (!wizard) {
         pline("Alas! You are not allowed to make a wish.");
@@ -534,7 +523,7 @@ wiz_wish() /* Unlimited wishes for wizard mode by Paul Polderman */
 }
 
 static int
-wiz_identify()
+wiz_identify(void)
 {
     struct obj *obj;
 
@@ -549,7 +538,7 @@ wiz_identify()
 }
 
 static int
-wiz_map()
+wiz_map(void)
 {
     if (wizard)
         do_mapping();
@@ -559,7 +548,7 @@ wiz_map()
 }
 
 static int
-wiz_detect()
+wiz_detect(void)
 {
     if (wizard) {
         if (!findit())
@@ -570,7 +559,7 @@ wiz_detect()
 }
 
 static int
-wiz_attributes()
+wiz_attributes(void)
 {
     char buf[BUFSZ];
 

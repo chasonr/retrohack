@@ -3,21 +3,31 @@
 
 #include <stdlib.h>
 #include "hack.h"
+
 #ifdef QUEST
-setgd(/* mtmp */) /* struct monst *mtmp; */
+void
+setgd(void)
 {
 }
-gd_move()
+
+int
+gd_move(void)
 {
     return (2);
 }
-gddead(mtmp) struct monst *mtmp;
+
+void
+gddead(void)
 {
 }
-replgd(mtmp, mtmp2) struct monst *mtmp, *mtmp2;
+
+void
+replgd(struct monst *mtmp, struct monst *mtmp2)
 {
 }
-invault()
+
+void
+invault(void)
 {
 }
 
@@ -47,7 +57,7 @@ static int gdlevel;
 #define EGD ((struct egd *) (&(guard->mextra[0])))
 
 static void
-restfakecorr()
+restfakecorr(void)
 {
     register int fcx, fcy, fcbeg;
     register struct rm *crm;
@@ -71,7 +81,7 @@ restfakecorr()
 }
 
 static int
-goldincorridor()
+goldincorridor(void)
 {
     register int fci;
 
@@ -82,7 +92,7 @@ goldincorridor()
 }
 
 void
-setgd()
+setgd(void)
 {
     register struct monst *mtmp;
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
@@ -95,7 +105,7 @@ setgd()
 }
 
 void
-invault()
+invault(void)
 {
     register int tmp = inroom(u.ux, u.uy);
     if (tmp < 0 || rooms[tmp].rtype != VAULT) {
@@ -188,7 +198,7 @@ invault()
 }
 
 int
-gd_move()
+gd_move(void)
 {
     register int x, y, dx, dy, gx, gy, nx, ny, typ;
     register struct fakecorridor *fcp;
@@ -292,14 +302,13 @@ newpos:
 }
 
 void
-gddead()
+gddead(void)
 {
     guard = 0;
 }
 
 void
-replgd(mtmp, mtmp2)
-register struct monst *mtmp, *mtmp2;
+replgd(struct monst *mtmp, struct monst *mtmp2)
 {
     if (mtmp == guard)
         guard = mtmp2;

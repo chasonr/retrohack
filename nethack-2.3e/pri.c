@@ -7,12 +7,12 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-static void cornbot(/*unknown*/);
+static void cornbot(int lth);
 
 xchar scrlx, scrhx, scrly, scrhy; /* corners of new area on screen */
 
 void
-swallowed()
+swallowed(void)
 {
     char ulook[] = "|@|";
     ulook[1] = u.usym;
@@ -33,7 +33,7 @@ swallowed()
 }
 
 void
-setclipped()
+setclipped(void)
 {
     error("Hack needs a screen of size at least %d by %d.\n", ROWNO + 2,
           COLNO);
@@ -48,9 +48,7 @@ static int DECgraphics; /* The graphics mode toggle */
 #endif
 
 void
-at(x, y, ch)
-register xchar x, y;
-char ch;
+at(xchar x, xchar y, char ch)
 {
 #ifndef LINT
     /* if xchar is unsigned, lint will complain about  if(x < 0)  */
@@ -104,21 +102,21 @@ char ch;
 }
 
 void
-prme()
+prme(void)
 {
     if (!Invisible)
         at(u.ux, u.uy, u.usym);
 }
 
 int
-doredraw()
+doredraw(void)
 {
     docrt();
     return (0);
 }
 
 void
-docrt()
+docrt(void)
 {
     register int x, y;
     register struct rm *room;
@@ -211,8 +209,7 @@ docrt()
 }
 
 void
-docorner(xmin, ymax)
-register int xmin, ymax;
+docorner(int xmin, int ymax)
 {
     register int x, y;
     register struct rm *room;
@@ -267,7 +264,7 @@ register int xmin, ymax;
 /* Trolls now regenerate thanks to KAA */
 
 void
-seeobjs()
+seeobjs(void)
 {
     register struct obj *obj, *obj2;
     for (obj = fobj; obj; obj = obj2) {
@@ -300,7 +297,7 @@ seeobjs()
 }
 
 void
-seemons()
+seemons(void)
 {
     register struct monst *mtmp;
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
@@ -316,8 +313,7 @@ seemons()
 }
 
 void
-pmon(mon)
-register struct monst *mon;
+pmon(register struct monst *mon)
 {
     register int show = (Blind && Telepat) || canseemon(mon);
     if (mon->mdispl) {
@@ -350,8 +346,7 @@ register struct monst *mon;
 }
 
 void
-unpmon(mon)
-register struct monst *mon;
+unpmon(register struct monst *mon)
 {
     if (mon->mdispl) {
         newsym(mon->mdx, mon->mdy);
@@ -360,7 +355,7 @@ register struct monst *mon;
 }
 
 void
-nscr()
+nscr(void)
 {
     register int x, y;
     register struct rm *room;
@@ -382,8 +377,7 @@ nscr()
 /* 100 suffices for bot(); no relation with COLNO */
 static char oldbot[100], newbot[100];
 static void
-cornbot(lth)
-register int lth;
+cornbot(register int lth)
 {
     if (lth < sizeof(oldbot)) {
         oldbot[lth] = 0;
@@ -392,7 +386,7 @@ register int lth;
 }
 
 void
-bot()
+bot(void)
 {
     register char *ob = oldbot, *nb = newbot;
     register int i;
@@ -495,8 +489,7 @@ bot()
 
 #if defined(WAN_PROBING) || defined(KAA)
 void
-mstatusline(mtmp)
-register struct monst *mtmp;
+mstatusline(register struct monst *mtmp)
 {
     pline("Status of %s: ", monnam(mtmp));
     pline("Level %-2d  Gold %-5lu  Hp %3d(%d)", mtmp->data->mlevel,
@@ -507,7 +500,7 @@ register struct monst *mtmp;
 }
 
 void
-ustatusline()
+ustatusline(void)
 {
     pline("Status of %s%s ", (Badged) ? "Officer " : "", plname);
     pline("Level %d, gold %lu, hit points %d(%d), AC %d.",
@@ -521,7 +514,7 @@ ustatusline()
 #endif
 
 void
-cls()
+cls(void)
 {
     if (flags.toplin == 1)
         more();
@@ -533,7 +526,7 @@ cls()
 }
 
 int
-rndmonsym()
+rndmonsym(void)
 {
     register int x;
     if ((x = rn2(58)) < 26)
@@ -561,7 +554,7 @@ rndmonsym()
 }
 
 int
-rndobjsym()
+rndobjsym(void)
 {
     const char *rndsym = ")[!?%/=*($`";
     return *(rndsym + rn2(11));
@@ -606,7 +599,7 @@ static const char *hcolors[] = {
 };
 
 const char *
-hcolor()
+hcolor(void)
 {
     return hcolors[rn2(35)];
 }
@@ -614,8 +607,8 @@ hcolor()
 #ifdef MSDOSCOLOR
 /* what if a level character is the same as an object/monster? */
 
-hilite(let)
-char let;
+void
+hilite(char let)
 {
     char *isobjct = index(obj_symbols, let);
     int ismnst();
@@ -637,8 +630,7 @@ char let;
 }
 
 int
-ismnst(let)
-char let;
+ismnst(char let)
 {
     register int ct;
     register struct permonst *ptr;

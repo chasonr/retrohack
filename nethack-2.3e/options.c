@@ -6,15 +6,15 @@
 #include "config.h"
 #include "hack.h"
 
-static void nmcpy(/*unknown*/);
-static void option_help(/*unknown*/);
+static void nmcpy(char *dest, char *source, int maxlen);
+static void option_help(void);
 
 #ifdef SORTING
 static boolean set_order;
 #endif
 
 void
-initoptions()
+initoptions(void)
 {
     register char *opts;
 
@@ -45,9 +45,7 @@ initoptions()
 }
 
 void
-parseoptions(opts, from_env)
-register char *opts;
-boolean from_env;
+parseoptions(char *opts, boolean from_env)
 {
     register char *op, *op2;
     unsigned num;
@@ -347,7 +345,7 @@ bad:
 }
 
 int
-doset()
+doset(void)
 {
     char buf[BUFSZ];
 
@@ -418,7 +416,7 @@ doset()
 
 #ifdef DGKMOD
 int
-dotogglepickup()
+dotogglepickup(void)
 {
     flags.pickup = !flags.pickup;
     pline("Pickup: %s.", flags.pickup ? "ON" : "OFF");
@@ -427,9 +425,7 @@ dotogglepickup()
 #endif
 
 static void
-nmcpy(dest, source, maxlen)
-char *dest, *source;
-int maxlen;
+nmcpy(char *dest, char *source, int maxlen)
 {
     char *cs, *cd;
     int count;
@@ -457,7 +453,7 @@ static const char *packorder =
     goto quit
 
 static void
-option_help()
+option_help(void)
 {
     char buf[BUFSZ];
 

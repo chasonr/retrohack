@@ -8,17 +8,17 @@
 #include <unistd.h>
 #include "hack.h"
 
-static int drop(/* struct obj *obj */);
-static void dosinkring(/*unknown*/);
+static int drop(struct obj *obj);
+static void dosinkring(struct obj *obj);
 #ifdef SINKS
-static void trycall(/*unknown*/);
+static void trycall(struct obj *obj);
 #endif
 #if defined(KAA) && defined(KOPS)
-static int wipeoff(/*unknown*/);
+static int wipeoff(void);
 #endif
 
 int
-dodrop()
+dodrop(void)
 {
     if (u.ugold)
         return (drop(getobj("0$#", "drop")));
@@ -27,8 +27,7 @@ dodrop()
 }
 
 static int
-drop(obj)
-register struct obj *obj;
+drop(register struct obj *obj)
 {
     if (!obj)
         return (0);
@@ -98,16 +97,14 @@ register struct obj *obj;
 
 /* Called in several places - should not produce texts */
 void
-dropx(obj)
-register struct obj *obj;
+dropx(register struct obj *obj)
 {
     freeinv(obj);
     dropy(obj);
 }
 
 void
-dropy(obj)
-register struct obj *obj;
+dropy(register struct obj *obj)
 {
     if (obj->otyp == CRYSKNIFE)
         obj->otyp = WORM_TOOTH;
@@ -136,13 +133,13 @@ register struct obj *obj;
 
 /* drop several things */
 int
-doddrop()
+doddrop(void)
 {
     return (ggetobj("drop", drop, 0));
 }
 
 int
-dodown()
+dodown(void)
 {
     if (u.ux != xdnstair || u.uy != ydnstair) {
         pline("You can't go down here.");
@@ -162,7 +159,7 @@ dodown()
 }
 
 int
-doup()
+doup(void)
 {
     if (u.ux != xupstair || u.uy != yupstair) {
         pline("You can't go up here.");
@@ -182,9 +179,7 @@ doup()
 }
 
 void
-goto_level(newlevel, at_stairs)
-register int newlevel;
-register boolean at_stairs;
+goto_level(int newlevel, boolean at_stairs)
 {
     register int fd;
     register boolean up = (newlevel < dlevel);
@@ -348,14 +343,14 @@ register boolean at_stairs;
 }
 
 int
-donull()
+donull(void)
 {
     return (1); /* Do nothing, but let other things happen */
 }
 
 #if defined(KAA) && defined(KOPS)
 static int
-wipeoff()
+wipeoff(void)
 {
     if (u.ucreamed < 4)
         u.ucreamed = 0;
@@ -377,7 +372,7 @@ wipeoff()
 }
 
 int
-dowipe()
+dowipe(void)
 {
     if (u.ucreamed) {
 #ifdef DGKMOD
@@ -396,9 +391,7 @@ dowipe()
 /* split obj so that it gets size num */
 /* remainder is put in the object structure delivered by this call */
 struct obj *
-splitobj(obj, num)
-register struct obj *obj;
-register int num;
+splitobj(struct obj *obj, int num)
 {
     register struct obj *otmp;
     otmp = newobj(0);
@@ -416,8 +409,7 @@ register int num;
 }
 
 void
-more_experienced(exp, rexp)
-register int exp, rexp;
+more_experienced(int exp, int rexp)
 {
     u.uexp += exp;
     u.urexp += 4 * exp + rexp;
@@ -428,9 +420,7 @@ register int exp, rexp;
 }
 
 void
-set_wounded_legs(side, timex)
-register long side;
-register int timex;
+set_wounded_legs(long side, int timex)
 {
     if (!Wounded_legs || (Wounded_legs & TIMEOUT))
         Wounded_legs |= side + timex;
@@ -439,7 +429,7 @@ register int timex;
 }
 
 void
-heal_legs()
+heal_legs(void)
 {
     if (Wounded_legs) {
         if ((Wounded_legs & BOTH_SIDES) == BOTH_SIDES)
@@ -452,16 +442,14 @@ heal_legs()
 
 #ifdef SINKS
 static void
-trycall(obj)
-register struct obj *obj;
+trycall(register struct obj *obj)
 {
     if (!objects[obj->otyp].oc_name_known && !objects[obj->otyp].oc_uname)
         docall(obj);
 }
 
 static void
-dosinkring(obj) /* obj is a ring being dropped over a kitchen sink */
-register struct obj *obj;
+dosinkring(register struct obj *obj) /* obj is a ring being dropped over a kitchen sink */
 {
     register struct obj *otmp, *otmp2;
     register short eaten;

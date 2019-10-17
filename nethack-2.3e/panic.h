@@ -3,6 +3,7 @@
 #ifndef PANIC_H
 #define PANIC_H
 
-extern void panic(/*unknown*/);
+__attribute__((format(printf, 1, 2)))
+extern void panic(const char *str, ...);
 
 #endif

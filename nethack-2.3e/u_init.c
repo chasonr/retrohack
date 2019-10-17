@@ -9,10 +9,6 @@
 #define void int
 #endif
 
-static void ini_inv(/*unknown*/);
-static int role_index(/*unknown*/);
-static void wiz_inv(/*unknown*/);
-
 #define Strcpy (void) strcpy
 #define Strcat (void) strcat
 #define UNDEF_TYP 0
@@ -175,8 +171,14 @@ static struct trobj Priest[] = { { CHAIN_MAIL, 0, ARMOR_SYM, 1, 1 },
                           { 0, 0, 0, 0, 0 } };
 #endif /* NEWCLASS */
 
+static void ini_inv(struct trobj *trop);
+static int role_index(char pc);
+#ifdef WIZARD
+static void wiz_inv(void);
+#endif
+
 void
-u_init()
+u_init(void)
 {
     register int i;
     char exper = 'y', pc;
@@ -474,8 +476,7 @@ got_suffix:
 }
 
 static void
-ini_inv(trop)
-register struct trobj *trop;
+ini_inv(register struct trobj *trop)
 {
     register struct obj *obj;
 
@@ -555,7 +556,7 @@ register struct trobj *trop;
 
 #ifdef WIZARD
 static void
-wiz_inv()
+wiz_inv(void)
 {
     register struct trobj *trop = &Extra_objs[0];
     register char *ep = getenv("INVENT");
@@ -579,7 +580,7 @@ wiz_inv()
 #endif /* WIZARD */
 
 void
-plnamesuffix()
+plnamesuffix(void)
 {
     register char *p;
     if ((p = rindex(plname, '-')) != NULL) {
@@ -594,8 +595,7 @@ plnamesuffix()
 }
 
 static int
-role_index(pc)
-char pc;
+role_index(char pc)
 {   /* must be called only from u_init() */
     /* so that rolesyms[] is defined */
     register char *cp;

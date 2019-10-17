@@ -6,8 +6,7 @@
 #include "panic.h"
 
 int
-dochugw(mtmp)
-register struct monst *mtmp;
+dochugw(register struct monst *mtmp)
 {
     register int x = mtmp->mx;
     register int y = mtmp->my;
@@ -26,8 +25,7 @@ register struct monst *mtmp;
 
 /* returns 1 if monster died moving, 0 otherwise */
 int
-dochug(mtmp)
-register struct monst *mtmp;
+dochug(register struct monst *mtmp)
 {
     register struct permonst *mdat;
     register int tmp = 0, nearby, scared, onscary;
@@ -136,9 +134,7 @@ register struct monst *mtmp;
 }
 
 int
-m_move(mtmp, after)
-register struct monst *mtmp;
-int after;
+m_move(struct monst *mtmp, int after)
 {
 #ifndef REGBUG
     register

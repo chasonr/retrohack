@@ -7,7 +7,7 @@
 #include "eshk.h"
 #include "mkroom.h"
 
-static void findname(/*unknown*/);
+static void findname(char *nampt, const char *nlp[]);
 
 static const char *shkliquors[] = {
     /* Ukraine */
@@ -220,9 +220,7 @@ struct shclass shtypes[] = {
 
 /* make an object of the appropriate type for a shop square */
 static void
-mkshobj_at(shp, sx, sy)
-struct shclass *shp;
-int sx, sy;
+mkshobj_at(struct shclass *shp, int sx, int sy)
 {
     register int i, j;
     register struct monst *mtmp;
@@ -252,9 +250,7 @@ int sx, sy;
 
 /* extract a shopkeeper name for the given shop type */
 static void
-findname(nampt, nlp)
-char *nampt;
-const char *nlp[];
+findname(char *nampt, const char *nlp[])
 {
     register int i;
 
@@ -273,9 +269,7 @@ const char *nlp[];
 
     /* create a new shopkeeper in the given room */
 static int
-shkinit(shp, sroom)
-struct shclass *shp;
-struct mkroom *sroom;
+shkinit(struct shclass *shp, struct mkroom *sroom)
 {
     register int sh, sx, sy;
     struct monst *shk;
@@ -339,9 +333,7 @@ struct mkroom *sroom;
 
 /* stock a newly-created room with artifacts */
 void
-stock_room(shp, sroom)
-struct shclass *shp;
-register struct mkroom *sroom;
+stock_room(struct shclass *shp, struct mkroom *sroom)
 {
     /*
      * Someday soon we'll dispatch on the dist field of shclass to do
@@ -371,10 +363,9 @@ register struct mkroom *sroom;
      */
 }
 
+/* does "shop" stock this item type */
 int
-saleable(nshop, obj) /* does "shop" stock this item type */
-register int nshop;
-register struct obj *obj;
+saleable(int nshop, struct obj *obj)
 {
     int i;
 

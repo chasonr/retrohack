@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include "hack.h"
 
-static void del_engr(/*unknown*/);
-static struct engr *engr_at(/*unknown*/);
 static struct engr {
     struct engr *nxt_engr;
     char *engr_txt;
@@ -23,6 +21,9 @@ static struct engr {
 #define POLY 4 /* temporary type - for polymorphing engraving */
 #endif
 } * head_engr;
+
+static void del_engr(struct engr *ep);
+static struct engr *engr_at(xchar x, xchar y);
 
 /* random engravings */
 #ifdef KAA
@@ -44,8 +45,7 @@ static char random_engr[][30] =
 #endif
 
 static struct engr *
-engr_at(x, y)
-register xchar x, y;
+engr_at(xchar x, xchar y)
 {
     register struct engr *ep = head_engr;
     while (ep) {
@@ -57,9 +57,7 @@ register xchar x, y;
 }
 
 int
-sengr_at(s, x, y)
-register char *s;
-register xchar x, y;
+sengr_at(char *s, xchar x, xchar y)
 {
     register struct engr *ep = engr_at(x, y);
     register char *t;
@@ -80,16 +78,14 @@ register xchar x, y;
 }
 
 void
-u_wipe_engr(cnt)
-register int cnt;
+u_wipe_engr(register int cnt)
 {
     if (!u.uswallow && !Levitation)
         wipe_engr_at(u.ux, u.uy, cnt);
 }
 
 void
-wipe_engr_at(x, y, cnt)
-register xchar x, y, cnt;
+wipe_engr_at(xchar x, xchar y, xchar cnt)
 {
     register struct engr *ep = engr_at(x, y);
     register int lth, pos;
@@ -119,8 +115,7 @@ register xchar x, y, cnt;
 }
 
 void
-read_engr_at(x, y)
-register int x, y;
+read_engr_at(int x, int y)
 {
     register struct engr *ep = engr_at(x, y);
     register int canfeel;
@@ -157,9 +152,7 @@ register int x, y;
 }
 
 void
-make_engr_at(x, y, s)
-register int x, y;
-register char *s;
+make_engr_at(int x, int y, char *s)
 {
     register struct engr *ep;
 
@@ -181,7 +174,7 @@ register char *s;
  *	freehand - returns true if player has a free hand
  */
 int
-freehand()
+freehand(void)
 {
     return (
         !uwep || !uwep->cursed
@@ -194,7 +187,7 @@ freehand()
 }
 
 int
-doengrave()
+doengrave(void)
 {
     register int len, tmp;
     register char *sp, *sptmp;
@@ -543,8 +536,7 @@ doengrave()
 }
 
 void
-save_engravings(fd)
-int fd;
+save_engravings(int fd)
 {
     register struct engr *ep = head_engr;
     while (ep) {
@@ -564,8 +556,7 @@ int fd;
 }
 
 void
-rest_engravings(fd)
-int fd;
+rest_engravings(int fd)
 {
     register struct engr *ep;
     unsigned lth;
@@ -583,8 +574,7 @@ int fd;
 }
 
 static void
-del_engr(ep)
-register struct engr *ep;
+del_engr(register struct engr *ep)
 {
     register struct engr *ept;
     if (ep == head_engr)

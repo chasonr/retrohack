@@ -5,21 +5,21 @@
 #include <stdlib.h>
 #include "hack.h"
 
-static void addrs(/*unknown*/);
-static void addrsx(/*unknown*/);
-static void dosdoor(/*unknown*/);
-static void makecorridors(/*unknown*/);
-static void join(/*unknown*/);
-static void make_niches(/*unknown*/);
-static void makevtele(/*unknown*/);
-static void makeniche(/*unknown*/);
-static void mkfount(/*unknown*/);
-static void mksink(/*unknown*/);
-static int comp(/*unknown*/);
-static void dodoor(/*unknown*/);
-static int finddpos(/*unknown*/);
-static int maker(/*unknown*/);
-static int makerooms(/*unknown*/);
+static void addrs(int lowx, int lowy, int hix, int hiy);
+static void addrsx(int lx, int ly, int hx, int hy, boolean discarded);
+static void dosdoor(int x, int y, struct mkroom *aroom, int type);
+static void makecorridors(void);
+static void join(int a, int b);
+static void make_niches(void);
+static void makevtele(void);
+static void makeniche(int trap_type);
+static void mkfount(int mazeflag, struct mkroom *croom);
+static void mksink(struct mkroom *croom);
+static int  comp(struct mkroom *x, struct mkroom *y);
+static void dodoor(int x, int y, struct mkroom *aroom);
+static int  finddpos(coord *cc, int xl, int yl, int xh, int yh);
+static int  maker(schar lowx, schar ddx, schar lowy, schar ddy);
+static int  makerooms(void);
 
 #define somex() ((int) (rand() % (croom->hx - croom->lx + 1)) + croom->lx)
 #define somey() ((int) (rand() % (croom->hy - croom->ly + 1)) + croom->ly)
@@ -44,7 +44,7 @@ static int rscnt, rsmax; /* 0..rscnt-1: currently under consideration */
                          /* rscnt..rsmax: discarded */
 
 void
-makelevel()
+makelevel(void)
 {
     register struct mkroom *croom, *troom;
     register unsigned tryct;
@@ -241,7 +241,7 @@ makelevel()
 }
 
 int
-makerooms()
+makerooms(void)
 {
     register struct rectangle *rsp;
     register int lx, ly, hx, hy, lowx, lowy, hix, hiy, dx, dy;
@@ -315,8 +315,7 @@ makerooms()
 }
 
 void
-addrs(lowx, lowy, hix, hiy)
-register int lowx, lowy, hix, hiy;
+addrs(int lowx, int lowy, int hix, int hiy)
 {
     register struct rectangle *rsp;
     register int lx, ly, hx, hy, xlim, ylim;
@@ -351,9 +350,8 @@ register int lowx, lowy, hix, hiy;
 }
 
 void
-addrsx(lx, ly, hx, hy, discarded)
-register int lx, ly, hx, hy;
-boolean discarded; /* piece of a discarded area */
+addrsx(int lx, int ly, int hx, int hy,
+       boolean discarded) /* piece of a discarded area */
 {
     register struct rectangle *rsp;
 
@@ -385,8 +383,7 @@ boolean discarded; /* piece of a discarded area */
 }
 
 static int
-comp(x, y)
-register struct mkroom *x, *y;
+comp(struct mkroom *x, struct mkroom *y)
 {
     if (x->lx < y->lx)
         return (-1);
@@ -394,9 +391,7 @@ register struct mkroom *x, *y;
 }
 
 static int
-finddpos(cc, xl, yl, xh, yh)
-coord *cc;
-int xl, yl, xh, yh;
+finddpos(coord *cc, int xl, int yl, int xh, int yh)
 {
     register int x, y;
 
@@ -425,8 +420,7 @@ gotit:
 
 /* see whether it is allowable to create a door at [x,y] */
 int
-okdoor(x, y)
-register int x, y;
+okdoor(int x, int y)
 {
     if (levl[x - 1][y].typ == DOOR || levl[x + 1][y].typ == DOOR
         || levl[x][y + 1].typ == DOOR || levl[x][y - 1].typ == DOOR
@@ -439,9 +433,7 @@ register int x, y;
 }
 
 static void
-dodoor(x, y, aroom)
-register int x, y;
-register struct mkroom *aroom;
+dodoor(int x, int y, struct mkroom *aroom)
 {
     if (doorindex >= DOORMAX) {
         impossible("DOORMAX exceeded?");
@@ -453,10 +445,7 @@ register struct mkroom *aroom;
 }
 
 void
-dosdoor(x, y, aroom, type)
-register int x, y;
-register struct mkroom *aroom;
-register int type;
+dosdoor(int x, int y, struct mkroom *aroom, int type)
 {
     register struct mkroom *broom;
     register int tmp;
@@ -482,8 +471,7 @@ register int type;
 
 /* Only called from makerooms() */
 int
-maker(lowx, ddx, lowy, ddy)
-schar lowx, ddx, lowy, ddy;
+maker(schar lowx, schar ddx, schar lowy, schar ddy)
 {
     register struct mkroom *croom;
     register int x, y, hix = lowx + ddx, hiy = lowy + ddy;
@@ -572,7 +560,7 @@ chk:
 }
 
 void
-makecorridors()
+makecorridors(void)
 {
     register int a, b;
 
@@ -597,8 +585,7 @@ makecorridors()
 }
 
 void
-join(a, b)
-register int a, b;
+join(int a, int b)
 {
     coord cc, tt;
     register int tx, ty, xx, yy;
@@ -739,7 +726,7 @@ register int a, b;
 }
 
 void
-make_niches()
+make_niches(void)
 {
     register int ct = rnd(nroom / 2 + 1);
 #ifdef NEWCLASS
@@ -762,7 +749,7 @@ make_niches()
 }
 
 void
-makevtele()
+makevtele(void)
 {
     makeniche(TELEP_TRAP);
 }
@@ -812,8 +799,7 @@ static const char *engravings[] = {
 };
 
 void
-makeniche(trap_type)
-int trap_type;
+makeniche(int trap_type)
 {
     register struct mkroom *aroom;
     register struct rm *rm;
@@ -869,16 +855,7 @@ int trap_type;
 
 /* make a trap somewhere (in croom if mazeflag = 0) */
 void
-mktrap(num, mazeflag, croom)
-#ifndef REGBUG
-    register
-#endif
-    int num,
-    mazeflag;
-#ifndef REGBUG
-register
-#endif
-    struct mkroom *croom;
+mktrap(int num, int mazeflag, struct mkroom *croom)
 {
 #ifndef REGBUG
     register
@@ -1012,9 +989,7 @@ register
 
 #ifdef FOUNTAINS
 void
-mkfount(mazeflag, croom)
-register struct mkroom *croom;
-register int mazeflag;
+mkfount(int mazeflag, struct mkroom *croom)
 {
     register xchar mx, my;
     register int tryct = 0;
@@ -1046,8 +1021,7 @@ register int mazeflag;
 
 #ifdef SINKS
 void
-mksink(croom)
-register struct mkroom *croom;
+mksink(register struct mkroom *croom)
 {
     register xchar mx, my;
     register int tryct = 0;

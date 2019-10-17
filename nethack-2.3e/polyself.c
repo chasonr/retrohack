@@ -5,11 +5,11 @@
 
 #ifdef KAA
 
-static void break_armor(/*unknown*/);
-static void drop_weapon(/*unknown*/);
+static void break_armor(char turninto);
+static void drop_weapon(char turninto);
 
 void
-polyself()
+polyself(void)
 {
     char buf[BUFSZ];
     int tmp, tmp2, mntmp;
@@ -146,8 +146,7 @@ gotone:
 }
 
 static void
-break_armor(turninto)
-char turninto;
+break_armor(char turninto)
 {
     struct obj *otmp;
     if (uarm) {
@@ -200,8 +199,7 @@ char turninto;
 }
 
 static void
-drop_weapon(turninto)
-char turninto;
+drop_weapon(char turninto)
 {
     struct obj *otmp;
     if ((otmp = uwep) != NULL) {
@@ -214,28 +212,25 @@ char turninto;
 }
 
 int
-cantwield(c) /* creature type c cannot wield a weapon */
-char c;
+cantwield(char c) /* creature type c cannot wield a weapon */
 {
     return (!!index("abcdfgjklpqrsuvxyABEFJPRS',", c));
 }
 
 int
-cantweararm(c) /* creature type c cannot wear armor */
-char c;
+cantweararm(char c) /* creature type c cannot wear armor */
 {
     return (!index("@nGHIKLNOTVWZ&',", c));
 }
 
 int
-humanoid(c) /* creature type c has hands */
-char c;
+humanoid(char c) /* creature type c has hands */
 {
     return (!!index("@ehintCGHIKLMNOQTVWZ&", c));
 }
 
 void
-rehumanize()
+rehumanize(void)
 {
     u.mh = u.mhmax = u.mtimedone = 0;
     u.ustr = u.mstr;
@@ -257,7 +252,7 @@ rehumanize()
 }
 
 int
-dobreathe()
+dobreathe(void)
 {
     if (u.usym == 'D') {
         if (!getdir(1))
@@ -273,7 +268,7 @@ dobreathe()
 }
 
 int
-doremove()
+doremove(void)
 {
     if (!Punished) {
         pline("You do not have a ball attached to your leg!");

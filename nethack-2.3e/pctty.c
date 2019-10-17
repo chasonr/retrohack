@@ -17,7 +17,7 @@ static char erase_char, kill_char;
  * and switch off tab expansion if necessary.
  * Called by startup() in termcap.c and after returning from ! or ^Z
  */
-gettty()
+gettty(void)
 {
     erase_char = '\b';
     kill_char = 21; /* cntl-U */
@@ -28,8 +28,8 @@ gettty()
 }
 
 /* reset terminal to original state */
-settty(s)
-char *s;
+void
+settty(char *s)
 {
     end_screen();
     if (s)
@@ -58,8 +58,8 @@ char *s;
  * Reading can be interrupted by an escape ('\033') - now the
  * resulting string is "\033".
  */
-getlin(bufp)
-register char *bufp;
+void
+getlin(register char *bufp)
 {
     register char *obufp = bufp;
     register int c;
@@ -104,13 +104,13 @@ register char *bufp;
     }
 }
 
-getret()
+getret(void)
 {
     cgetret("");
 }
 
-cgetret(s)
-register char *s;
+void
+cgetret(register char *s)
 {
     putsym('\n');
     if (flags.standout)
@@ -125,8 +125,8 @@ register char *s;
 
 char morc; /* tell the outside world what char he used */
 
-xwaitforspace(s)
-register char *s; /* chars allowed besides space or return */
+void
+xwaitforspace(register char *s) /* chars allowed besides space or return */
 {
     register int c;
 
@@ -147,7 +147,7 @@ register char *s; /* chars allowed besides space or return */
 static int last_multi;
 
 char *
-parse()
+parse(void)
 {
     static char inline[COLNO];
     register foo;
@@ -212,7 +212,7 @@ parse()
 }
 
 char
-readchar()
+readchar(void)
 {
     register int sym;
 
@@ -227,8 +227,8 @@ readchar()
  * when enough character have been entered to make a unique command.
  * This is just a modified getlin().   -jsb
  */
-get_ext_cmd(bufp)
-register char *bufp;
+void
+get_ext_cmd(register char *bufp)
 {
     register char *obufp = bufp;
     register int c;

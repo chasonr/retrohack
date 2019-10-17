@@ -5,22 +5,21 @@
 #include "hack.h"
 
 #ifdef SPELLS
-static int cursed_book(/*unknown*/);
+static int cursed_book(int level);
 #ifdef HARD
-static void decrnuses(/*unknown*/);
-static int spelluses(/*unknown*/);
+static void decrnuses(int spell);
+static int spelluses(int spell);
 #endif
-static int getspell(/*unknown*/);
-static int spellet(/*unknown*/);
-static int spellev(/*unknown*/);
-static int spellid(/*unknown*/);
-static const char *spellname(/*unknown*/);
+static int getspell(void);
+static int spellet(int spl);
+static int spellev(int spl);
+static int spellid(int spl);
+static const char *spellname(int spl);
 
 int
-doxcribe()
+doxcribe(void)
 {
     register struct obj *book;
-    struct obj *getobj();
     register boolean confused = (Confusion != 0);
     register boolean oops;
     register schar delay;
@@ -138,8 +137,7 @@ doxcribe()
 }
 
 static int
-cursed_book(level)
-register int level;
+cursed_book(register int level)
 {
     switch (rn2(level)) {
     case 0:
@@ -191,12 +189,11 @@ register int level;
 }
 
 int
-docast()
+docast(void)
 {
     register int spell, energy, damage;
     register boolean confused = (Confusion != 0);
     register struct obj *pseudo;
-    struct obj *mksobj();
 
     spell = getspell();
     if (!spell)
@@ -317,7 +314,6 @@ docast()
         break;
     case SPE_CREATE_FAMILIAR: {
         register struct monst *mtmp;
-        struct monst *makedog();
 
         mtmp = makedog();
         if (mtmp) {
@@ -342,7 +338,7 @@ docast()
 }
 
 static int
-getspell()
+getspell(void)
 {
     register int max, ilet, i;
     char lets[BUFSZ], buf[BUFSZ];
@@ -389,7 +385,7 @@ getspell()
 }
 
 void
-losespells()
+losespells(void)
 {
     register boolean confused = (Confusion != 0);
     register int n, nzap, i;
@@ -410,7 +406,7 @@ losespells()
 }
 
 int
-dovspell()
+dovspell(void)
 {
     register int max, i;
     char buf[BUFSZ], any[BUFSZ];
@@ -443,8 +439,7 @@ dovspell()
 }
 
 static int
-spellet(spl)
-int spl;
+spellet(int spl)
 {
     if (spl < 27)
         return ('a' + spl - 1);
@@ -453,36 +448,31 @@ int spl;
 }
 
 static int
-spellev(spl)
-int spl;
+spellev(int spl)
 {
     return (spl_book[spl - 1].sp_lev);
 }
 
 static const char *
-spellname(spl)
-int spl;
+spellname(int spl)
 {
     return (objects[spl_book[spl - 1].sp_id].oc_name);
 }
 
 static int
-spellid(spl)
-int spl;
+spellid(int spl)
 {
     return (spl_book[spl - 1].sp_id);
 }
 
 #ifdef HARD
 static int
-spelluses(spell)
-int spell;
+spelluses(int spell)
 {
     return (spl_book[spell - 1].sp_uses);
 }
 static void
-decrnuses(spell)
-int spell;
+decrnuses(int spell)
 {
     spl_book[spell - 1].sp_uses--;
 }

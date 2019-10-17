@@ -11,7 +11,6 @@ struct trap {
 };
 
 extern struct trap *ftrap;
-struct trap *t_at();
 #define newtrap() (struct trap *) alloc(sizeof(struct trap))
 
 /* Standard Hack traps. */

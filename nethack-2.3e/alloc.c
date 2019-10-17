@@ -11,8 +11,7 @@
 */
 #include <stdio.h>
 long *
-alloc(n)
-unsigned n;
+alloc(unsigned n)
 {
     long dummy = ftell(stderr);
     if (n)
@@ -27,8 +26,7 @@ unsigned n;
 #include "panic.h"
 
 long *
-alloc(lth)
-register unsigned lth;
+alloc(register unsigned lth)
 {
     register char *ptr;
 

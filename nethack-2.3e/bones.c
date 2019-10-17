@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include "hack.h"
 
-static void spill_obj(/*unknown*/);
+static void spill_obj(struct obj *obj);
 
 #ifdef DGK
 char bones[FILENAME];
@@ -16,7 +16,7 @@ char bones[] = "bones_xx";
 
 /* save bones and possessions of a deceased adventurer */
 void
-savebones()
+savebones(void)
 {
     register int fd;
     register struct obj *otmp;
@@ -124,8 +124,7 @@ savebones()
  * "spill" object out of box onto floor
  */
 static void
-spill_obj(obj)
-struct obj *obj;
+spill_obj(struct obj *obj)
 {
     struct obj *otmp;
 
@@ -143,7 +142,7 @@ struct obj *obj;
 }
 
 int
-getbones()
+getbones(void)
 {
     register int fd, x, y, ok;
     /* wizard check added by GAN 02/05/87 */

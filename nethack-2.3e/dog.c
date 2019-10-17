@@ -14,10 +14,10 @@ struct permonst li_dog = { "little dog",       'd', 2, 18, 6, 0, 1, 6,
 struct permonst dog = { "dog", 'd', 4, 16, 5, 0, 1, 6, sizeof(struct edog) };
 struct permonst la_dog = { "large dog",        'd', 6, 15, 4, 0, 2, 4,
                            sizeof(struct edog) };
-static void initedog(/*unknown*/);
+static void initedog(struct monst *mtmp);
 
 struct monst *
-makedog()
+makedog(void)
 {
     register struct monst *mtmp = makemon(&li_dog, u.ux, u.uy);
     if (!mtmp)
@@ -39,8 +39,7 @@ makedog()
 }
 
 static void
-initedog(mtmp)
-register struct monst *mtmp;
+initedog(register struct monst *mtmp)
 {
     mtmp->mtame = mtmp->mpeaceful = 1;
 #ifdef WALKIES
@@ -60,7 +59,7 @@ struct monst *fallen_down = 0; /* monsters that fell through a trapdoor */
 /* they will appear on the next level @ goes to, even if he goes up! */
 
 void
-losedogs()
+losedogs(void)
 {
     register struct monst *mtmp;
     while ((mtmp = mydogs) != NULL) {
@@ -81,7 +80,7 @@ losedogs()
 }
 
 void
-keepdogs()
+keepdogs(void)
 {
     register struct monst *mtmp;
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
@@ -110,8 +109,7 @@ keepdogs()
 }
 
 void
-fall_down(mtmp)
-register struct monst *mtmp;
+fall_down(register struct monst *mtmp)
 {
     relmon(mtmp);
     mtmp->nmon = fallen_down;
@@ -128,8 +126,7 @@ register struct monst *mtmp;
 
 /* return quality of food; the lower the better */
 int
-dogfood(obj)
-register struct obj *obj;
+dogfood(register struct obj *obj)
 {
     switch (obj->olet) {
     case FOOD_SYM:
@@ -156,8 +153,7 @@ register struct obj *obj;
 
 /* return roomnumber or -1 */
 int
-inroom(x, y)
-xchar x, y;
+inroom(xchar x, xchar y)
 {
 #ifndef QUEST
     register struct mkroom *croom = &rooms[0];
@@ -172,9 +168,7 @@ xchar x, y;
 }
 
 int
-tamedog(mtmp, obj)
-register struct monst *mtmp;
-register struct obj *obj;
+tamedog(struct monst *mtmp, struct obj *obj)
 {
     register struct monst *mtmp2;
 

@@ -4,19 +4,18 @@
 #include "hack.h"
 #include <stdio.h>
 
-static int marmoroff(/* struct obj *otmp */);
-static int dorr(/*unknown*/);
-static int cursed();
+static int marmoroff(struct obj *otmp);
+static int dorr(struct obj *otmp);
+static int cursed(struct obj *otmp);
 
 void
-off_msg(otmp)
-register struct obj *otmp;
+off_msg(register struct obj *otmp)
 {
     pline("You were wearing %s.", doname(otmp));
 }
 
 int
-doremarm()
+doremarm(void)
 {
     register struct obj *otmp;
     if (!uarm && !uarmh && !uarms && !uarmg
@@ -64,7 +63,7 @@ doremarm()
 }
 
 int
-doremring()
+doremring(void)
 {
     if (!uleft && !uright) {
         pline("Not wearing any ring.");
@@ -98,8 +97,7 @@ doremring()
 }
 
 static int
-dorr(otmp)
-register struct obj *otmp;
+dorr(register struct obj *otmp)
 {
     if (cursed(otmp))
         return (0);
@@ -109,8 +107,7 @@ register struct obj *otmp;
 }
 
 static int
-cursed(otmp)
-register struct obj *otmp;
+cursed(register struct obj *otmp)
 {
     if (otmp->cursed) {
         pline("You can't. It appears to be cursed.");
@@ -120,8 +117,7 @@ register struct obj *otmp;
 }
 
 int
-armoroff(otmp)
-register struct obj *otmp;
+armoroff(register struct obj *otmp)
 {
     register int delay = -objects[otmp->otyp].oc_delay;
     if (cursed(otmp))
@@ -146,7 +142,7 @@ register struct obj *otmp;
 }
 
 int
-doweararm()
+doweararm(void)
 {
     register struct obj *otmp;
     register int delay;
@@ -242,7 +238,7 @@ doweararm()
 }
 
 int
-dowearring()
+dowearring(void)
 {
     register struct obj *otmp;
     long mask = 0;
@@ -320,8 +316,7 @@ dowearring()
 }
 
 void
-ringoff(obj)
-register struct obj *obj;
+ringoff(register struct obj *obj)
 {
     register long mask;
     mask = obj->owornmask & W_RING;
@@ -367,7 +362,7 @@ register struct obj *obj;
 }
 
 void
-find_ac()
+find_ac(void)
 {
     register int uac = 10;
 #ifdef KAA
@@ -401,7 +396,7 @@ find_ac()
 }
 
 void
-glibr()
+glibr(void)
 {
     register struct obj *otmp;
     int xfl = 0;
@@ -441,7 +436,7 @@ glibr()
 }
 
 struct obj *
-some_armor()
+some_armor(void)
 {
     register struct obj *otmph = uarm;
     if (uarmh && (!otmph || !rn2(4)))
@@ -456,7 +451,7 @@ some_armor()
 }
 
 void
-corrode_armor()
+corrode_armor(void)
 {
     register struct obj *otmph = some_armor();
     if (otmph) {
@@ -476,8 +471,7 @@ corrode_armor()
 }
 
 static int
-remarm(obj)
-register struct obj *obj;
+remarm(register struct obj *obj)
 {
     if (!obj || obj->olet != '[')
         return (0);
@@ -486,8 +480,7 @@ register struct obj *obj;
 }
 
 static int
-marmoroff(otmp)
-register struct obj *otmp;
+marmoroff(register struct obj *otmp)
 {
     register int delay = -objects[otmp->otyp].oc_delay;
     if (cursed(otmp))
@@ -501,7 +494,7 @@ register struct obj *otmp;
 }
 
 int
-doddoremarm()
+doddoremarm(void)
 {
     return (ggetobj("take off", remarm, 0));
 }

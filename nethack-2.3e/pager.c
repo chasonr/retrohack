@@ -12,12 +12,11 @@
 #include <sys/wait.h>
 #include "hack.h"
 
-static void page_more(/*unknown*/);
-
+static void page_more(FILE *fp, int strip);
 static void intruph(int sig);
 
 int
-dowhatis()
+dowhatis(void)
 {
     FILE *fp;
     char bufr[BUFSZ + 6];
@@ -153,9 +152,8 @@ intruph(int sig)
 
 /* simple pager, also used from dohelp() */
 static void
-page_more(fp, strip)
-FILE *fp;
-int strip; /* nr of chars to be stripped from each line (0 or 1) */
+page_more(FILE *fp,
+          int strip) /* nr of chars to be stripped from each line (0 or 1) */
 {
     register char *bufr, *ep;
 #ifdef DGK
@@ -211,14 +209,14 @@ static boolean whole_screen = TRUE;
 #define PAGMIN 12 /* minimum # of lines for page below level map */
 
 void
-set_whole_screen()
+set_whole_screen(void)
 { /* called in termcap as soon as LI is known */
     whole_screen = (LI - ROWNO - 2 <= PAGMIN || !CD);
 }
 
 #ifdef NEWS
 int
-readnews()
+readnews(void)
 {
     register int ret;
 
@@ -230,8 +228,7 @@ readnews()
 #endif
 
 void
-set_pager(mode)
-register int mode; /* 0: open  1: wait+close  2: close */
+set_pager(register int mode) /* 0: open  1: wait+close  2: close */
 {
     static boolean so;
     if (mode == 0) {
@@ -261,8 +258,7 @@ register int mode; /* 0: open  1: wait+close  2: close */
 }
 
 int
-page_line(s) /* returns 1 if we should quit */
-register char *s;
+page_line(register char *s) /* returns 1 if we should quit */
 {
     if (cury == LI - 1) {
         if (!*s)
@@ -303,9 +299,7 @@ register char *s;
  */
 
 void
-cornline(mode, text)
-int mode;
-char *text;
+cornline(int mode, char *text)
 {
     static struct line {
         struct line *next_line;
@@ -412,7 +406,7 @@ cleanup:
 }
 
 int
-dohelp()
+dohelp(void)
 {
     char c;
 
@@ -424,10 +418,9 @@ dohelp()
     return (0);
 }
 
+/* return: 0 - cannot open fnam; 1 - otherwise */
 int
-page_file(fnam, silent) /* return: 0 - cannot open fnam; 1 - otherwise */
-register char *fnam;
-boolean silent;
+page_file(char *fnam, boolean silent)
 {
 #ifdef DEF_PAGER /* this implies that UNIX is defined */
     {
@@ -480,7 +473,7 @@ boolean silent;
 #ifdef UNIX
 #ifdef SHELL
 int
-dosh()
+dosh(void)
 {
     register char *str;
     if (child(0)) {
@@ -496,8 +489,7 @@ dosh()
 #endif /* SHELL */
 
 int
-child(wt)
-int wt;
+child(int wt)
 {
     register int f = fork();
     if (f == 0) {           /* child */

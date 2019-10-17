@@ -5,11 +5,11 @@
 #include "hack.h"
 
 #ifdef PRAYERS
-static int angrygods(/*unknown*/);
+static int angrygods(void);
 #endif
-static void fix_worst_trouble(/*unknown*/);
-static int in_trouble(/*unknown*/);
-static int pleased(/*unknown*/);
+static void fix_worst_trouble(void);
+static int in_trouble(void);
+static int pleased(void);
 
 #ifdef PRAYERS
 #ifdef THEOLOGY
@@ -41,7 +41,7 @@ but that's really hard.
  */
 
 static int
-in_trouble()
+in_trouble(void)
 {
     /* Borrowed from eat.c */
 
@@ -88,7 +88,7 @@ in_trouble()
 }
 
 static void
-fix_worst_trouble()
+fix_worst_trouble(void)
 {
     switch (in_trouble()) {
     case TROUBLE_STONED:
@@ -178,7 +178,7 @@ fix_worst_trouble()
                                      : '@' + (otyp - DEAD_HUMAN))
 
 int
-dosacrifice()
+dosacrifice(void)
 {
     register struct obj *otmp;
     register struct objclass *ftmp;
@@ -299,7 +299,7 @@ dosacrifice()
 #endif
 
 int
-dopray()
+dopray(void)
 { /* M. Stephenson (1.0.3b) */
 #ifdef PRAYERS
 #ifdef THEOLOGY
@@ -336,7 +336,7 @@ dopray()
 
 #ifdef PRAYERS
 static int
-angrygods()
+angrygods(void)
 {
     register int tmp;
 
@@ -385,7 +385,7 @@ angrygods()
 }
 
 static int
-pleased()
+pleased(void)
 {
     const char *tmp;
 #ifdef THEOLOGY
@@ -543,7 +543,7 @@ pleased()
 #endif /* PRAYERS */
 #ifdef NEWCLASS
 int
-doturn()
+doturn(void)
 { /* Knights & Priest(esse)s only please */
 
     register struct monst *mtmp;

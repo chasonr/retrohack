@@ -15,7 +15,8 @@
  */
 long rumors_size;
 
-outrumor()
+void
+outrumor(void)
 {
     char line[COLNO];
     char *endp;
@@ -47,10 +48,10 @@ outrumor()
 }
 
 #else
-static void init_rumors(/*unknown*/);
-static int skipline(/*unknown*/);
-static void outline();
-static int used();
+static void init_rumors(FILE *rumf);
+static int skipline(FILE *rumf);
+static void outline(FILE *rumf);
+static int used(int i);
 
 #define CHARSZ 8 /* number of bits in a char */
 static int n_rumors = 0;
@@ -58,8 +59,7 @@ static int n_used_rumors = -1;
 static char *usedbits;
 
 static void
-init_rumors(rumf)
-register FILE *rumf;
+init_rumors(register FILE *rumf)
 {
     register int i;
     n_used_rumors = 0;
@@ -73,8 +73,7 @@ register FILE *rumf;
 }
 
 static int
-skipline(rumf)
-register FILE *rumf;
+skipline(register FILE *rumf)
 {
     char line[COLNO];
     while (1) {
@@ -86,8 +85,7 @@ register FILE *rumf;
 }
 
 static void
-outline(rumf)
-register FILE *rumf;
+outline(register FILE *rumf)
 {
     char line[COLNO];
     register char *ep;
@@ -100,7 +98,7 @@ register FILE *rumf;
 }
 
 void
-outrumor()
+outrumor(void)
 {
     register int rn, i;
     register FILE *rumf;
@@ -127,8 +125,7 @@ none:
 }
 
 static int
-used(i)
-register int i;
+used(register int i)
 {
     return (usedbits[i / CHARSZ] & (1 << (i % CHARSZ)));
 }

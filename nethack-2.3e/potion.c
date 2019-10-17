@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include "hack.h"
 
-static void ghost_from_bottle(/*unknown*/);
+static void ghost_from_bottle(void);
 
 static int nothing, unkn;
 
 int
-dodrink()
+dodrink(void)
 {
     register struct obj *otmp;
     register int retval;
@@ -60,8 +60,7 @@ use_it:
 }
 
 int
-peffects(otmp)
-register struct obj *otmp;
+peffects(register struct obj *otmp)
 {
     register struct obj *objs;
     register struct monst *mtmp;
@@ -306,9 +305,7 @@ register struct obj *otmp;
 }
 
 void
-healup(nhp, nxtra, curesick, cureblind)
-int nhp, nxtra;
-register boolean curesick, cureblind;
+healup(int nhp, int nxtra, boolean curesick, boolean cureblind)
 {
 #ifdef KAA
     if (u.mtimedone & nhp) {
@@ -331,7 +328,7 @@ register boolean curesick, cureblind;
 }
 
 void
-pluslvl()
+pluslvl(void)
 {
     register int num;
 
@@ -352,9 +349,7 @@ pluslvl()
 }
 
 void
-strange_feeling(obj, txt)
-register struct obj *obj;
-register char *txt;
+strange_feeling(struct obj *obj, char *txt)
 {
     if (flags.beginner)
         pline("You have a %s feeling for a moment, then it passes.",
@@ -371,9 +366,7 @@ static const char *bottlenames[] = {
 };
 
 void
-potionhit(mon, obj)
-register struct monst *mon;
-register struct obj *obj;
+potionhit(struct monst *mon, struct obj *obj)
 {
     register const char *botlnam = bottlenames[rn2(SIZE(bottlenames))];
     boolean uclose, isyou = (mon == &youmonst);
@@ -464,8 +457,7 @@ register struct obj *obj;
 }
 
 void
-potionbreathe(obj)
-register struct obj *obj;
+potionbreathe(register struct obj *obj)
 {
     switch (obj->otyp) {
     case POT_RESTORE_STRENGTH:
@@ -535,7 +527,7 @@ register struct obj *obj;
  * --   become a jug? Etc.
  */
 int
-dodip()
+dodip(void)
 {
     register struct obj *potion, *obj;
 #ifdef KAA
@@ -600,7 +592,7 @@ dodip()
 }
 
 static void
-ghost_from_bottle()
+ghost_from_bottle(void)
 {
     register struct monst *mtmp;
 
@@ -615,7 +607,7 @@ ghost_from_bottle()
 }
 
 void
-djinni_from_bottle()
+djinni_from_bottle(void)
 {
     register struct monst *mtmp;
 
@@ -660,8 +652,7 @@ djinni_from_bottle()
 }
 
 void
-gainstr(inc)
-register int inc;
+gainstr(register int inc)
 {
     if (inc)
         u.ustr++;

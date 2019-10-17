@@ -42,11 +42,3 @@ extern coord doors[DOORMAX];
 #define SHOPBASE 9 /* everything above this is a shop */
 
 #define IS_SHOP(x) ((x).rtype >= SHOPBASE)
-
-/* mkshop.c entry points (should become mkroom.c in next major release) */
-extern void mkroom();          /* make and stock a room of a given type */
-extern boolean nexttodoor();   /* TRUE if adjacent to a door */
-extern boolean has_dnstairs(); /* TRUE if given room has a down staircase */
-extern boolean has_upstairs(); /* TRUE if given room has an up staircase */
-extern int dist2();            /* Euclidean square-of-distance function */
-extern struct permonst *courtmon(); /* generate a court monster */

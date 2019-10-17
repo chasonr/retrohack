@@ -6,25 +6,27 @@
 #include "hack.h"
 #include "mkroom.h"
 #include "panic.h"
-static struct monst *bchit();
-static int next_to(/*unknown*/);
+static struct monst *bchit(int ddx, int ddy, int range, char sym);
+static int next_to(struct monst *mtmp);
 
 #ifdef KAA
-static int use_stethoscope();
+static int use_stethoscope(void);
 #endif
 #ifdef WALKIES
-static int use_leash(/* struct obj *obj */);
+static int use_leash(struct obj *obj);
 #endif
-static void use_camera(), use_ice_box(), use_whistle();
-static void use_magic_whistle();
-static int use_pick_axe();
+static void use_camera(struct obj *obj);
+static void use_ice_box(struct obj *obj);
+static void use_whistle(struct obj *obj);
+static void use_magic_whistle(struct obj *obj);
+static int use_pick_axe(struct obj *obj);
 #ifdef RPH
-static void use_mirror();
+static void use_mirror(struct obj *obj);
 #endif
-static void use_lamp();
+static void use_lamp(struct obj *obj);
 
 int
-doapply()
+doapply(void)
 {
     register struct obj *obj;
     register int res = 1;
@@ -130,8 +132,7 @@ doapply()
 
 /* ARGSUSED */
 static void
-use_camera(obj)
-/* register */ struct obj *obj;
+use_camera(struct obj *obj)
 {
     register struct monst *mtmp;
     if (!getdir(1)) { /* ask: in what direction? */
@@ -192,7 +193,7 @@ use_camera(obj)
    not take any time; however, unless it did, the stethoscope would be
    almost useless. */
 static int
-use_stethoscope()
+use_stethoscope(void)
 {
     register struct monst *mtmp;
     register struct rm *lev;
@@ -251,8 +252,7 @@ static struct obj
     *current_ice_box; /* a local variable of use_ice_box, to be
                       used by its local procedures in/ck_ice_box */
 static int
-in_ice_box(obj)
-register struct obj *obj;
+in_ice_box(register struct obj *obj)
 {
     if (obj == current_ice_box
         || (Punished && (obj == uball || obj == uchain))) {
@@ -284,15 +284,13 @@ register struct obj *obj;
 }
 
 static int
-ck_ice_box(obj)
-register struct obj *obj;
+ck_ice_box(register struct obj *obj)
 {
     return (obj->o_cnt_id == current_ice_box->o_id);
 }
 
 static void
-out_ice_box(obj)
-register struct obj *obj;
+out_ice_box(register struct obj *obj)
 {
     register struct obj *otmp;
     if (obj == fcobj)
@@ -309,8 +307,7 @@ register struct obj *obj;
 }
 
 static void
-use_ice_box(obj)
-register struct obj *obj;
+use_ice_box(register struct obj *obj)
 {
     register int cnt = 0;
     register struct obj *otmp;
@@ -336,9 +333,7 @@ register struct obj *obj;
 }
 
 static struct monst *
-bchit(ddx, ddy, range, sym)
-register int ddx, ddy, range;
-char sym;
+bchit(int ddx, int ddy, int range, char sym)
 {
     register struct monst *mtmp = (struct monst *) 0;
     register int bchx = u.ux, bchy = u.uy;
@@ -365,8 +360,7 @@ char sym;
 
 /* ARGSUSED */
 static void
-use_whistle(obj)
-struct obj *obj;
+use_whistle(struct obj *obj)
 {
     register struct monst *mtmp = fmon;
     pline("You produce a high whistling sound.");
@@ -383,8 +377,7 @@ struct obj *obj;
 
 /* ARGSUSED */
 static void
-use_magic_whistle(obj)
-struct obj *obj;
+use_magic_whistle(struct obj *obj)
 {
     register struct monst *mtmp = fmon;
     pline("You produce a strange whistling sound.");
@@ -398,8 +391,7 @@ struct obj *obj;
 #ifdef WALKIES
 /* ARGSUSED */
 static int
-use_leash(obj)
-struct obj *obj;
+use_leash(struct obj *obj)
 {
     register struct monst *mtmp = fmon;
 
@@ -441,8 +433,7 @@ struct obj *obj;
 }
 
 static int
-next_to(mtmp)
-register struct monst *mtmp;
+next_to(register struct monst *mtmp)
 {
     return ((abs(u.ux - mtmp->mx) <= 1) && (abs(u.uy - mtmp->my) <= 1));
 }
@@ -454,7 +445,7 @@ static coord dig_pos;
 static boolean dig_down;
 
 static int
-dig()
+dig(void)
 {
     register struct rm *lev;
     register int dpx = dig_pos.x, dpy = dig_pos.y;
@@ -525,13 +516,13 @@ dig()
 
 /* When will hole be finished? Very rough indication used by shopkeeper. */
 int
-holetime()
+holetime(void)
 {
     return ((occupation == dig) ? (250 - dig_effort) / 20 : -1);
 }
 
 void
-dighole()
+dighole(void)
 {
     register struct trap *ttmp = t_at(u.ux, u.uy);
 
@@ -558,8 +549,7 @@ dighole()
 }
 
 static int
-use_pick_axe(obj)
-struct obj *obj;
+use_pick_axe(struct obj *obj)
 {
     char dirsyms[12];
     register char *dsp = dirsyms, *sdp = sdir;
@@ -692,8 +682,7 @@ struct obj *obj;
 
 #ifdef RPH
 static void
-use_mirror(obj)
-struct obj *obj;
+use_mirror(struct obj *obj)
 {
     register struct monst *mtmp;
     register char mlet;
@@ -794,8 +783,7 @@ struct obj *obj;
 #endif
 
 static void
-use_lamp(obj)
-struct obj *obj;
+use_lamp(struct obj *obj)
 {
     if (obj->spe <= 0 || obj->otyp == MAGIC_LAMP) {
         pline("This lamp has no oil.");
@@ -806,7 +794,7 @@ struct obj *obj;
 }
 
 int
-dorub()
+dorub(void)
 {
     if (!(carrying(LAMP) || carrying(MAGIC_LAMP))) {
         pline("You do not have a lamp!");

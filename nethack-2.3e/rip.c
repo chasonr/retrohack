@@ -7,7 +7,7 @@
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-static void center(/*void*/);
+static void center(int line, char *text);
 
 static char rip[][50] = {
     "                       ----------",
@@ -28,7 +28,7 @@ static char rip[][50] = {
 };
 
 void
-outrip()
+outrip(void)
 {
     register char const *dpx;
     char buf[BUFSZ];
@@ -98,9 +98,7 @@ outrip()
 }
 
 static void
-center(line, text)
-int line;
-char *text;
+center(int line, char *text)
 {
     register char *ip, *op;
     ip = text;

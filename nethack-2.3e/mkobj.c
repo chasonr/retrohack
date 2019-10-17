@@ -11,8 +11,7 @@ static char mkobjstr[] = "))[[!!!!????%%%%/=**))[[!!!!????%%%%/=**(%";
 #endif
 
 struct obj *
-mkobj_at(let, x, y)
-register int let, x, y;
+mkobj_at(int let, int x, int y)
 {
     register struct obj *otmp = mkobj(let);
     otmp->ox = x;
@@ -23,8 +22,7 @@ register int let, x, y;
 }
 
 struct obj *
-mksobj_at(otyp, x, y)
-register int otyp, x, y;
+mksobj_at(int otyp, int x, int y)
 {
     register struct obj *otmp = mksobj(otyp);
     otmp->ox = x;
@@ -34,11 +32,9 @@ register int otyp, x, y;
 }
 
 #ifdef RPH
+/* used for named corpses */
 struct obj *
-mk_named_obj_at(let, x, y, nm, lth) /* used for named corpses */
-register int let, x, y;
-char *nm;
-register int lth;
+mk_named_obj_at(int let, int x, int y, char *nm, int lth)
 {
     register struct obj *otmp;
     register struct obj *obj2;
@@ -61,8 +57,7 @@ register int lth;
 #endif
 
 struct obj *
-mkobj(let)
-int let;
+mkobj(int let)
 {
     int realtype;
     switch (let) {
@@ -95,8 +90,7 @@ int let;
 struct obj zeroobj;
 
 struct obj *
-mksobj(otyp)
-register int otyp;
+mksobj(register int otyp)
 {
     register struct obj *otmp;
     char let = objects[otyp].oc_olet;
@@ -209,24 +203,20 @@ register int otyp;
 }
 
 int
-letter(c)
-int c;
+letter(int c)
 {
     return (('@' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
 }
 
 int
-weight(obj)
-register struct obj *obj;
+weight(register struct obj *obj)
 {
     register int wt = objects[obj->otyp].oc_weight;
     return (wt ? wt * obj->quan : (obj->quan + 1) / 2);
 }
 
 void
-mkgold(num, x, y)
-register long num;
-int x, y;
+mkgold(long num, int x, int y)
 {
     register struct gold *gold;
     register long amount = (num ? num : 1 + (rnd(dlevel + 2) * rnd(30)));

@@ -4,6 +4,6 @@
 #define ALLOC_H
 
 /*** alloc.c ***/
-extern long *alloc();
+extern long *alloc(unsigned lth);
 
 #endif

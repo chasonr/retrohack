@@ -1,15 +1,17 @@
 /*	SCCS Id: @(#)topl.c	2.0	87/09/15 */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "hack.h"
+#include "vpline.h"
 #ifdef GENIX
 #define void int /* jhn - mod to prevent compiler from bombing */
 #endif
 
-static void redotoplin(/*unknown*/);
-static void xmore(/*unknown*/);
+static void redotoplin(void);
+static void xmore(char *s);
 
 static char toplines[BUFSIZ];
 static xchar tlx, tly; /* set by pline; used by addtopl */
@@ -21,7 +23,7 @@ static struct topl {
 #define OTLMAX 20 /* max nr of old toplines remembered */
 
 int
-doredotopl()
+doredotopl(void)
 {
     if (last_redone_topl)
         last_redone_topl = last_redone_topl->next_topl;
@@ -35,7 +37,7 @@ doredotopl()
 }
 
 static void
-redotoplin()
+redotoplin(void)
 {
     home();
     if (index(toplines, '\n'))
@@ -50,7 +52,7 @@ redotoplin()
 }
 
 void
-remember_topl()
+remember_topl(void)
 {
     register struct topl *tl;
     register int cnt = OTLMAX;
@@ -76,8 +78,7 @@ remember_topl()
 }
 
 void
-addtopl(s)
-char *s;
+addtopl(char *s)
 {
     curs(tlx, tly);
     if (tlx + strlen(s) > CO)
@@ -89,8 +90,7 @@ char *s;
 }
 
 static void
-xmore(s)
-char *s; /* allowed chars besides space/return */
+xmore(char *s) /* allowed chars besides space/return */
 {
     if (flags.toplin) {
         curs(tlx, tly);
@@ -114,20 +114,19 @@ char *s; /* allowed chars besides space/return */
 }
 
 void
-more()
+more(void)
 {
     xmore("");
 }
 
 void
-cmore(s)
-register char *s;
+cmore(register char *s)
 {
     xmore(s);
 }
 
 void
-clrlin()
+clrlin(void)
 {
     if (flags.toplin) {
         home();
@@ -140,11 +139,18 @@ clrlin()
 }
 
 /*VARARGS1*/
-/* Because the modified mstatusline has 9 arguments KAA */
 void
-pline(line, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)
-register char *line,
-    *arg1, *arg2, *arg3, *arg4, *arg5, *arg6, *arg7, *arg8, *arg9;
+pline(const char *line, ...)
+{
+    va_list args;
+
+    va_start(args, line);
+    vpline(line, args);
+    va_end(args);
+}
+
+void
+vpline(const char *line, va_list args)
 {
     char pbuf[BUFSZ];
     register char *bp = pbuf, *tl;
@@ -155,8 +161,7 @@ register char *line,
     if (!index(line, '%'))
         (void) strcpy(pbuf, line);
     else
-        (void) sprintf(pbuf, line, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-                       arg8, arg9);
+        (void) vsprintf(pbuf, line, args);
     if (flags.toplin == 1 && !strcmp(pbuf, toplines))
         return;
     nscr(); /* %% */
@@ -207,8 +212,7 @@ register char *line,
 }
 
 void
-putsym(c)
-char c;
+putsym(char c)
 {
     switch (c) {
     case '\b':
@@ -230,8 +234,7 @@ char c;
 }
 
 void
-putstr(s)
-register char *s;
+putstr(register char *s)
 {
     while (*s)
         putsym(*s++);

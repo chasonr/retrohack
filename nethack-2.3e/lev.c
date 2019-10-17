@@ -8,8 +8,8 @@
 #include "mkroom.h"
 #include "panic.h"
 
-static void savegoldchn(/*unknown*/);
-static void savetrapchn(/*unknown*/);
+static void savegoldchn(int fd, struct gold *gold);
+static void savetrapchn(int fd, struct trap *trap);
 
 #ifndef NOWORM
 #include "wseg.h"
@@ -24,9 +24,8 @@ boolean level_exists[MAXLEVEL + 1];
 #endif
 
 #ifdef DGK
-savelev(fd, lev, mode)
-int fd, mode;
-xchar lev;
+int
+savelev(int fd, xchar lev, int mode)
 {
     if (mode & COUNT) {
         count_only = TRUE;
@@ -47,13 +46,12 @@ xchar lev;
     return TRUE;
 }
 
-savelev0(fd, lev)
+void
+savelev0(int fd, int lev)
 #else
 void
-savelev(fd, lev)
+savelev(int fd, xchar lev)
 #endif
-int fd;
-xchar lev;
 {
 #ifndef NOWORM
     register struct wseg *wtmp, *wtmp2;
@@ -113,10 +111,7 @@ xchar lev;
 }
 
 void
-bwrite(fd, loc, num)
-register int fd;
-register char *loc;
-register unsigned num;
+bwrite(int fd, char *loc, unsigned num)
 {
 #ifdef DGK
     bytes_counted += num;
@@ -129,9 +124,7 @@ register unsigned num;
 }
 
 void
-saveobjchn(fd, otmp)
-register int fd;
-register struct obj *otmp;
+saveobjchn(int fd, struct obj *otmp)
 {
     register struct obj *otmp2;
     unsigned xl;
@@ -152,9 +145,7 @@ register struct obj *otmp;
 }
 
 void
-savemonchn(fd, mtmp)
-register int fd;
-register struct monst *mtmp;
+savemonchn(int fd, struct monst *mtmp)
 {
     register struct monst *mtmp2;
     unsigned xl;
@@ -177,9 +168,7 @@ register struct monst *mtmp;
 }
 
 void
-savegoldchn(fd, gold)
-register int fd;
-register struct gold *gold;
+savegoldchn(int fd, struct gold *gold)
 {
     register struct gold *gold2;
     while (gold) {
@@ -195,9 +184,7 @@ register struct gold *gold;
 }
 
 void
-savetrapchn(fd, trap)
-register int fd;
-register struct trap *trap;
+savetrapchn(int fd, struct trap *trap)
 {
     register struct trap *trap2;
     while (trap) {
@@ -213,9 +200,7 @@ register struct trap *trap;
 }
 
 void
-getlev(fd, pid, lev)
-int fd, pid;
-xchar lev;
+getlev(int fd, int pid, xchar lev)
 {
     register struct gold *gold;
     register struct trap *trap;
@@ -402,10 +387,7 @@ xchar lev;
 }
 
 void
-mread(fd, buf, len)
-register int fd;
-register char *buf;
-register unsigned len;
+mread(int fd, char *buf, unsigned len)
 {
     register int rlen;
 
@@ -421,7 +403,7 @@ register unsigned len;
 }
 
 void
-mklev()
+mklev(void)
 {
     if (getbones())
         return;
@@ -432,7 +414,8 @@ mklev()
 }
 
 #ifdef DGK
-swapin_file(lev)
+boolean
+swapin_file(int lev)
 {
     char to[PATHLEN], from[PATHLEN];
 
@@ -455,7 +438,7 @@ swapin_file(lev)
     return TRUE;
 }
 
-swapout_oldest()
+swapout_oldest(void)
 {
     char to[PATHLEN], from[PATHLEN];
     int i, oldest;

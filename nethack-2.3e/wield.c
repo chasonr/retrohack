@@ -4,14 +4,13 @@
 #include "hack.h"
 
 void
-setuwep(obj)
-register struct obj *obj;
+setuwep(register struct obj *obj)
 {
     setworn(obj, W_WEP);
 }
 
 int
-dowield()
+dowield(void)
 {
     register struct obj *wep;
     register int res = 0;
@@ -67,7 +66,7 @@ dowield()
 }
 
 void
-corrode_weapon()
+corrode_weapon(void)
 {
     if (!uwep || uwep->olet != WEAPON_SYM)
         return; /* %% */
@@ -81,9 +80,7 @@ corrode_weapon()
 }
 
 int
-chwepon(otmp, amount)
-register struct obj *otmp;
-register int amount;
+chwepon(struct obj *otmp, int amount)
 {
     register const char *color = (amount < 0) ? "black" : "green";
     register const char *time;
@@ -130,8 +127,8 @@ register int amount;
     return (1);
 }
 
-int welded(obj)
-register struct obj *obj;
+int
+welded(struct obj *obj)
 {
     return (obj && obj == uwep && obj->cursed
             && (obj->olet == WEAPON_SYM || obj->otyp == HEAVY_IRON_BALL

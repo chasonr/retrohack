@@ -17,15 +17,14 @@
 #include "hack.h"
 #include "mkroom.h"
 
-static void mkshop();
-static void mkzoo(/* int type */);
-static struct permonst *morguemon();
-static void mkswamp();
-static int sq(/* int a */);
+static void mkshop(void);
+static void mkzoo(int type);
+static struct permonst *morguemon(void);
+static void mkswamp(void);
+static int sq(int a);
 
 static boolean
-isbig(sroom)
-register struct mkroom *sroom;
+isbig(register struct mkroom *sroom)
 {
     register int area = (sroom->hx - sroom->lx) * (sroom->hy - sroom->ly);
     return (area > 20);
@@ -33,8 +32,7 @@ register struct mkroom *sroom;
 
 /* make and stock a room of a given type */
 void
-mkroom(roomtype)
-int roomtype;
+mkroom(int roomtype)
 {
     if (roomtype >= SHOPBASE)
         mkshop(); /* someday, we should be able to specify shop type */
@@ -64,7 +62,7 @@ int roomtype;
 }
 
 static void
-mkshop()
+mkshop(void)
 {
     register struct mkroom *sroom;
     int roomno, i = -1;
@@ -154,17 +152,13 @@ gottype:
 }
 
 static void
-mkzoo(type)
-int type;
+mkzoo(int type)
 {
     register struct mkroom *sroom;
     register struct monst *mon;
     register int sh, sx, sy, i;
     int goldlim = 500 * dlevel;
     int moct = 0;
-#ifdef NEWCLASS
-    struct permonst *courtmon();
-#endif
 
     i = nroom;
     for (sroom = &rooms[rn2(nroom)];; sroom++) {
@@ -238,7 +232,7 @@ int type;
 }
 
 static struct permonst *
-morguemon()
+morguemon(void)
 {
     register int i = rn2(100), hd = rn2(dlevel);
 
@@ -250,7 +244,7 @@ morguemon()
 }
 
 static void
-mkswamp() /* Michiel Huisjes & Fred de Wilde */
+mkswamp(void) /* Michiel Huisjes & Fred de Wilde */
 {
     register struct mkroom *sroom;
     register int sx, sy, i, eelct = 0;
@@ -278,8 +272,7 @@ mkswamp() /* Michiel Huisjes & Fred de Wilde */
 }
 
 boolean
-nexttodoor(sx, sy)
-register int sx, sy;
+nexttodoor(int sx, int sy)
 {
     register int dx, dy;
     register struct rm *lev;
@@ -292,31 +285,27 @@ register int sx, sy;
 }
 
 boolean
-has_dnstairs(sroom)
-register struct mkroom *sroom;
+has_dnstairs(register struct mkroom *sroom)
 {
     return (sroom->lx <= xdnstair && xdnstair <= sroom->hx
             && sroom->ly <= ydnstair && ydnstair <= sroom->hy);
 }
 
 boolean
-has_upstairs(sroom)
-register struct mkroom *sroom;
+has_upstairs(register struct mkroom *sroom)
 {
     return (sroom->lx <= xupstair && xupstair <= sroom->hx
             && sroom->ly <= yupstair && yupstair <= sroom->hy);
 }
 
 int
-dist2(x0, y0, x1, y1)
-int x0, y0, x1, y1;
+dist2(int x0, int y0, int x1, int y1)
 {
     return ((x0 - x1) * (x0 - x1) + (y0 - y1) * (y0 - y1));
 }
 
 static int
-sq(a)
-int a;
+sq(int a)
 {
     return (a * a);
 }
@@ -324,7 +313,7 @@ int a;
 
 #ifdef NEWCLASS
 struct permonst *
-courtmon()
+courtmon(void)
 {
     int i = rn2(60) + rn2(3 * dlevel);
 

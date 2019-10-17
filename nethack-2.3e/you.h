@@ -18,7 +18,7 @@ struct prop {
 #define BOTH_SIDES (LEFT_SIDE | RIGHT_SIDE)
 
     long p_flgs;
-    void (*p_tofn)(); /* called after timeout */
+    void (*p_tofn)(void); /* called after timeout */
 };
 
 struct you {

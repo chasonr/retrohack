@@ -4,13 +4,13 @@
 
 struct func_tab {
     const char f_char;
-    int (*f_funct)();
+    int (*f_funct)(void);
     const char *f_text;
 };
 
 struct ext_func_tab {
     const char *ef_txt, *ef_desc;
-    int (*ef_funct)();
+    int (*ef_funct)(void);
 };
 
 extern struct ext_func_tab extcmdlist[];
