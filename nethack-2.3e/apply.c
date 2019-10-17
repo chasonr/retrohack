@@ -289,7 +289,7 @@ ck_ice_box(register struct obj *obj)
     return (obj->o_cnt_id == current_ice_box->o_id);
 }
 
-static void
+static int
 out_ice_box(register struct obj *obj)
 {
     register struct obj *otmp;
@@ -304,6 +304,7 @@ out_ice_box(register struct obj *obj)
     current_ice_box->owt -= obj->owt;
     obj->age = moves - obj->age; /* simulated point of time */
     (void) addinv(obj);
+    return (1);
 }
 
 static void

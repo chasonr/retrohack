@@ -15,7 +15,7 @@ static void makevtele(void);
 static void makeniche(int trap_type);
 static void mkfount(int mazeflag, struct mkroom *croom);
 static void mksink(struct mkroom *croom);
-static int  comp(struct mkroom *x, struct mkroom *y);
+static int  comp(const void *x_, const void *y_);
 static void dodoor(int x, int y, struct mkroom *aroom);
 static int  finddpos(coord *cc, int xl, int yl, int xh, int yh);
 static int  maker(schar lowx, schar ddx, schar lowy, schar ddy);
@@ -383,8 +383,10 @@ addrsx(int lx, int ly, int hx, int hy,
 }
 
 static int
-comp(struct mkroom *x, struct mkroom *y)
+comp(const void *x_, const void *y_)
 {
+    const struct mkroom *x = (const struct mkroom *)x_;
+    const struct mkroom *y = (const struct mkroom *)y_;
     if (x->lx < y->lx)
         return (-1);
     return (x->lx > y->lx);

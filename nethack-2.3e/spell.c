@@ -322,7 +322,7 @@ docast(void)
 #ifndef RPH
                            &mons[dlevel + 14 + rn2(CMNUM - 14 - dlevel)]);
 #else
-                           (struct pemonst *) 0);
+                           (struct permonst *) 0);
 #endif
             if (confused)
                 mtmp->mtame = mtmp->mpeaceful = 0;

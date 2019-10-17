@@ -639,7 +639,7 @@ miss(const char *str, struct monst *mtmp)
 struct monst *
 bhit(int ddx, int ddy, int range, /* direction and range */
      char sym,                   /* symbol displayed on path */
-     int (*fhitm)(struct monst *, struct obj *),
+     void (*fhitm)(struct monst *, struct obj *),
      int (*fhito)(struct obj *, struct obj *), /* fns called when mon/obj hit */
      struct obj *obj)            /* 2nd arg to fhitm/fhito */
 {

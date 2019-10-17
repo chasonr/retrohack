@@ -385,7 +385,7 @@ nh_hangup(int sig)
 
 /* it is the callers responsibility to check that there is room for c */
 void
-charcat(char *s, char *c)
+charcat(char *s, char c)
 {
     while (*s)
         s++;

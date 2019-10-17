@@ -88,7 +88,7 @@ throwit(register struct obj *obj)
                    (obj->otyp == ICE_BOX)
                        ? 1
                        : (!Punished || obj != uball) ? 8 : !u.ustuck ? 5 : 1,
-                   obj->olet, (int (*)()) 0, (int (*)()) 0, obj);
+                   obj->olet, (void (*)()) 0, (int (*)()) 0, obj);
     }
     if (mon) {
         /* awake monster if sleeping */

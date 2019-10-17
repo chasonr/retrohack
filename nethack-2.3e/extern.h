@@ -135,7 +135,7 @@ extern char POISONOUS[];
 extern const char *hu_stat[];
 
 /*** end.c ***/
-extern void charcat(char *s, char *c);
+extern void charcat(char *s, char c);
 extern void clearlocks(void);
 extern void done(const char *st1);
 extern void done1(int sig);
@@ -679,7 +679,7 @@ extern int dowrite(struct obj *pen);
 
 /*** zap.c ***/
 extern struct monst *bhit(int ddx, int ddy, int range, char sym,
-                          int (*fhitm)(struct monst *, struct obj *),
+                          void (*fhitm)(struct monst *, struct obj *),
                           int (*fhito)(struct obj *, struct obj *),
                           struct obj *obj);
 extern struct monst *boomhit(int dx, int dy);
