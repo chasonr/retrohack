@@ -102,7 +102,7 @@ gettty(void)
 
 /* reset terminal to original state */
 void
-settty(char *s)
+settty(const char *s)
 {
     nh_clear_screen();
     end_screen();
@@ -228,7 +228,7 @@ getret(void)
 }
 
 void
-cgetret(register char *s)
+cgetret(const char *s)
 {
     putsym('\n');
     if (flags.standout)
@@ -244,7 +244,7 @@ cgetret(register char *s)
 char morc; /* tell the outside world what char he used */
 
 void
-xwaitforspace(register char *s) /* chars allowed besides space or return */
+xwaitforspace(const char *s) /* chars allowed besides space or return */
 {
     register int c;
 

@@ -1048,7 +1048,7 @@ losestr(int num) /* may kill you; cause may be poison or monster like 'A' */
 }
 
 void
-losehp(int n, char *knam)
+losehp(int n, const char *knam)
 {
 #ifdef KAA
     if (u.mtimedone) {

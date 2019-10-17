@@ -365,7 +365,7 @@ doname(register struct obj *obj)
 
 /* used only in fight.c (thitu) */
 void
-setan(char *str, char *buf)
+setan(const char *str, char *buf)
 {
     if (index(vowels, *str))
         Sprintf(buf, "an %s", str);
@@ -374,7 +374,7 @@ setan(char *str, char *buf)
 }
 
 char *
-aobjnam(struct obj *otmp, char *verb)
+aobjnam(struct obj *otmp, const char *verb)
 {
     register char *bp = xname(otmp);
     char prefix[PREFIX];

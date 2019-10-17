@@ -345,7 +345,7 @@ dist(int x, int y)
 }
 
 void
-poisoned(char *string, char *pname)
+poisoned(const char *string, const char *pname)
 {
     register int i, plural;
 

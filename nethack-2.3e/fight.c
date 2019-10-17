@@ -249,7 +249,7 @@ fightm(register struct monst *mtmp)
 
 /* u is hit by sth, but not a monster */
 int
-thitu(int tlev, int dam, char *name)
+thitu(int tlev, int dam, const char *name)
 {
     char buf[BUFSZ];
 

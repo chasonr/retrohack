@@ -57,7 +57,7 @@ engr_at(xchar x, xchar y)
 }
 
 int
-sengr_at(char *s, xchar x, xchar y)
+sengr_at(const char *s, xchar x, xchar y)
 {
     register struct engr *ep = engr_at(x, y);
     register char *t;
@@ -152,7 +152,7 @@ read_engr_at(int x, int y)
 }
 
 void
-make_engr_at(int x, int y, char *s)
+make_engr_at(int x, int y, const char *s)
 {
     register struct engr *ep;
 

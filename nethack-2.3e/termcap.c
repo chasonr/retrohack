@@ -226,7 +226,7 @@ xputc(int c)
 }
 
 void
-xputs(char *s)
+xputs(const char *s)
 {
 #if defined(MSDOS) && !defined(TERMLIB)
     fputs(s, stdout);

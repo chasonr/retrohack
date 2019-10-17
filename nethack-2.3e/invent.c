@@ -315,7 +315,7 @@ mkgoldobj(register long q)
  *	&zeroobj		explicitly no object (as in w-).
  */
 struct obj *
-getobj(char *let, char *word)
+getobj(const char *let, const char *word)
 {
     register struct obj *otmp;
     register char ilet, ilet1, ilet2;
@@ -500,7 +500,7 @@ ckunpaid(register struct obj *otmp)
 /* interactive version of getobj - used for Drop and Identify */
 /* return the number of times fn was called successfully */
 int
-ggetobj(char *word, int (*fn)(struct obj *), int max)
+ggetobj(const char *word, int (*fn)(struct obj *), int max)
 {
     char buf[BUFSZ];
     register char *ip;

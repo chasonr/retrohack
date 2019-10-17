@@ -531,7 +531,7 @@ mintrap(register struct monst *mtmp)
 }
 
 void
-selftouch(char *arg)
+selftouch(const char *arg)
 {
     if (uwep && uwep->otyp == DEAD_COCKATRICE) {
         pline("%s touch the dead cockatrice.", arg);

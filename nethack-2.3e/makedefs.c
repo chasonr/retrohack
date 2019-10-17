@@ -23,7 +23,7 @@
 #endif
 
 static int do_objs(void);
-static int skipuntil(char *s);
+static int skipuntil(const char *s);
 static int getentry(int *skip);
 static int duplicate(void);
 static int specprop(FILE *out_file, char *name, int count);
@@ -502,9 +502,10 @@ nextchar(void)
 }
 
 static int
-skipuntil(char *s)
+skipuntil(const char *s)
 {
-    register char *sp0, *sp1;
+    const char *sp0;
+    char *sp1;
 loop:
     while (*s != nextchar())
         if (xeof) {

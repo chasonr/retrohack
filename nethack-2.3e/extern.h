@@ -40,7 +40,7 @@ extern char popch(void);
 extern void pushch(char ch);
 extern void rhack(char *cmd);
 extern void savech(char ch);
-extern void set_occupation(int (*fn)(void), char *txt, int time);
+extern void set_occupation(int (*fn)(void), const char *txt, int time);
 extern char sdir[];
 extern schar xdir[];
 extern schar ydir[];
@@ -75,17 +75,17 @@ extern void set_wounded_legs(long side, int timex);
 extern struct obj *splitobj(struct obj *obj, int num);
 
 /*** do_name.c ***/
-extern char *amonnam(struct monst *mtmp, char *adj);
-extern char * Amonnam(struct monst *mtmp, char *adj);
+extern char *amonnam(struct monst *mtmp, const char *adj);
+extern char * Amonnam(struct monst *mtmp, const char *adj);
 extern int ddocall(void);
 extern char *defmonnam(struct monst *mtmp);
 extern void docall(struct obj *obj);
 extern int do_mname(void);
-extern int getpos(coord *cc, int force, char *goal);
+extern int getpos(coord *cc, int force, const char *goal);
 extern char *lmonnam(struct monst *mtmp);
 extern char *monnam(struct monst *mtmp);
 extern char *Monnam(struct monst *mtmp);
-extern void oname(struct obj *obj, char *buf);
+extern void oname(struct obj *obj, const char *buf);
 extern char *xmonnam(struct monst *mtmp, int vb);
 extern char *Xmonnam(struct monst *mtmp);
 
@@ -147,11 +147,11 @@ extern int done_stopprint;
 /*** engrave.c ***/
 extern int doengrave(void);
 extern int freehand(void);
-extern void make_engr_at(int x, int y, char *s);
+extern void make_engr_at(int x, int y, const char *s);
 extern void read_engr_at(int x, int y);
 extern void rest_engravings(int fd);
 extern void save_engravings(int fd);
-extern int sengr_at(char *s, xchar x, xchar y);
+extern int sengr_at(const char *s, xchar x, xchar y);
 extern void u_wipe_engr(int cnt);
 extern void wipe_engr_at(xchar x, xchar y, xchar cnt);
 
@@ -161,7 +161,7 @@ extern int fightm(struct monst *mtmp);
 extern int hitmm(struct monst *magr, struct monst *mdef);
 extern boolean hmon(struct monst *mon, struct obj *obj, int thrown);
 extern void mondied(struct monst *mdef);
-extern int thitu(int tlev, int dam, char *name);
+extern int thitu(int tlev, int dam, const char *name);
 extern char mlarge[];
 
 /*** fountain.c ***/
@@ -178,7 +178,7 @@ extern void domove(void);
 extern int dopickup(void);
 extern int inv_weight(void);
 extern void lookaround(void);
-extern void losehp(int n, char *knam);
+extern void losehp(int n, const char *knam);
 extern void losehp_m(int n, struct monst *mtmp);
 extern void losestr(int num);
 extern void losexp(void);
@@ -213,8 +213,8 @@ extern void freegold(struct gold *gold);
 extern void freeinv(struct obj *obj);
 extern void freeobj(struct obj *obj);
 extern struct gold *g_at(int x, int y);
-extern struct obj *getobj(char *let, char *word);
-extern int ggetobj(char *word, int (*fn)(struct obj *), int max);
+extern struct obj *getobj(const char *let, const char *word);
+extern int ggetobj(const char *word, int (*fn)(struct obj *), int max);
 extern char *let_to_name(char let);
 extern struct monst *m_at(int x, int y);
 extern struct obj *o_at(int x, int y);
@@ -321,7 +321,7 @@ extern void movemon(void);
 extern void mpickgems(struct monst *mtmp);
 extern void mpickgold(struct monst *mtmp);
 extern int newcham(struct monst *mtmp, struct permonst *mdat);
-extern void poisoned(char *string, char *pname);
+extern void poisoned(const char *string, const char *pname);
 extern void relmon(struct monst *mon);
 extern void replmon(struct monst *mtmp, struct monst *mtmp2);
 extern void rescham(void);
@@ -361,11 +361,11 @@ extern int bases[];
 extern char obj_symbols[];
 
 /*** objnam.c ***/
-extern char *aobjnam(struct obj *otmp, char *verb);
+extern char *aobjnam(struct obj *otmp, const char *verb);
 extern char *doname(struct obj *obj);
 extern char *Doname(struct obj *obj);
 extern struct obj *readobjnam(char *bp);
-extern void setan(char *str, char *buf);
+extern void setan(const char *str, char *buf);
 extern char *typename(int otyp);
 extern char *xname(struct obj *obj);
 
@@ -377,12 +377,12 @@ extern void parseoptions(char *opts, boolean from_env);
 
 /*** pager.c ***/
 extern int child(int wt);
-extern void cornline(int mode, char *text);
+extern void cornline(int mode, const char *text);
 extern int dohelp(void);
 extern int dosh(void);
 extern int dowhatis(void);
-extern int page_file(char *fnam, boolean silent);
-extern int page_line(char *s);
+extern int page_file(const char *fnam, boolean silent);
+extern int page_line(const char *s);
 extern int readnews(void);
 extern void set_pager(int mode);
 extern void set_whole_screen(void);
@@ -406,7 +406,7 @@ extern int peffects(struct obj *otmp);
 extern void pluslvl(void);
 extern void potionbreathe(struct obj *obj);
 extern void potionhit(struct monst *mon, struct obj *obj);
-extern void strange_feeling(struct obj *obj, char *txt);
+extern void strange_feeling(struct obj *obj, const char *txt);
 
 /*** pray.c ***/
 extern int dopray(void);
@@ -548,7 +548,7 @@ extern void standoutend(void);
 extern void start_screen(void);
 extern void startup(void);
 extern int xputc(int c);
-extern void xputs(char *s);
+extern void xputs(const char *s);
 extern const char *CD;
 extern int CO, LI;
 extern short ospeed;
@@ -557,14 +557,14 @@ extern short ospeed;
 extern void timeout(void);
 
 /*** topl.c ***/
-extern void addtopl(char *s);
+extern void addtopl(const char *s);
 extern void clrlin(void);
-extern void cmore(char *s);
+extern void cmore(const char *s);
 extern int doredotopl(void);
 extern void more(void);
 __attribute__((format(printf, 1, 2)))
 extern void pline(const char *line, ...);
-extern void putstr(char *s);
+extern void putstr(const char *s);
 extern void putsym(char c);
 extern void remember_topl(void);
 
@@ -589,12 +589,12 @@ extern void level_tele(void);
 extern struct trap *maketrap(int x, int y, int typ);
 extern int mintrap(struct monst *mtmp);
 extern void placebc(int attach);
-extern void selftouch(char *arg);
+extern void selftouch(const char *arg);
 extern void tele(void);
 extern void unplacebc(void);
 
 /*** unixtty.c ***/
-extern void cgetret(char *s);
+extern void cgetret(const char *s);
 __attribute__((format(printf, 1, 2)))
 extern int error(const char *s, ...);
 extern void get_ext_cmd(char *bufp);
@@ -604,8 +604,8 @@ extern void gettty(void);
 extern char *parse(void);
 extern char readchar(void);
 extern void setftty(void);
-extern void settty(char *s);
-extern void xwaitforspace(char *s);
+extern void settty(const char *s);
+extern void xwaitforspace(const char *s);
 
 /*** unixtty.c and pctty.c ***/
 extern char morc;
@@ -687,9 +687,9 @@ extern void buzz(int type, xchar sx, xchar sy, int dx, int dy);
 extern int dozap(void);
 extern const char *exclam(int force);
 extern void fracture_rock(struct obj *obj);
-extern void hit(char *str, struct monst *mtmp, char *force);
+extern void hit(const char *str, struct monst *mtmp, const char *force);
 extern void makewish(void);
-extern void miss(char *str, struct monst *mtmp);
+extern void miss(const char *str, struct monst *mtmp);
 extern int resist(struct monst *mtmp, char olet, int damage, int tell);
 extern void weffects(struct obj *obj);
 extern void zapnodir(struct obj *wand);

@@ -7,7 +7,7 @@
 #include "eshk.h"
 #include "mkroom.h"
 
-static void findname(char *nampt, const char *nlp[]);
+static void findname(char *nampt, char const * const *nlp);
 
 static const char *shkliquors[] = {
     /* Ukraine */
@@ -250,7 +250,7 @@ mkshobj_at(struct shclass *shp, int sx, int sy)
 
 /* extract a shopkeeper name for the given shop type */
 static void
-findname(char *nampt, const char *nlp[])
+findname(char *nampt, char const * const *nlp)
 {
     register int i;
 

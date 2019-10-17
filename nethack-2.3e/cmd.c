@@ -36,7 +36,7 @@ timed_occupation(void)
  * function times out by its own means.
  */
 void
-set_occupation(int (*fn)(void), char *txt, int time)
+set_occupation(int (*fn)(void), const char *txt, int time)
 {
     if (time) {
         occupation = timed_occupation;

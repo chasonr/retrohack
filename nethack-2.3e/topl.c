@@ -11,7 +11,7 @@
 #endif
 
 static void redotoplin(void);
-static void xmore(char *s);
+static void xmore(const char *s);
 
 static char toplines[BUFSIZ];
 static xchar tlx, tly; /* set by pline; used by addtopl */
@@ -78,7 +78,7 @@ remember_topl(void)
 }
 
 void
-addtopl(char *s)
+addtopl(const char *s)
 {
     curs(tlx, tly);
     if (tlx + strlen(s) > CO)
@@ -90,7 +90,7 @@ addtopl(char *s)
 }
 
 static void
-xmore(char *s) /* allowed chars besides space/return */
+xmore(const char *s) /* allowed chars besides space/return */
 {
     if (flags.toplin) {
         curs(tlx, tly);
@@ -120,7 +120,7 @@ more(void)
 }
 
 void
-cmore(register char *s)
+cmore(const char *s)
 {
     xmore(s);
 }
@@ -234,7 +234,7 @@ putsym(char c)
 }
 
 void
-putstr(register char *s)
+putstr(const char *s)
 {
     while (*s)
         putsym(*s++);

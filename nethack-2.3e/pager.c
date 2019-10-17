@@ -258,7 +258,7 @@ set_pager(register int mode) /* 0: open  1: wait+close  2: close */
 }
 
 int
-page_line(register char *s) /* returns 1 if we should quit */
+page_line(const char *s) /* returns 1 if we should quit */
 {
     if (cury == LI - 1) {
         if (!*s)
@@ -299,7 +299,7 @@ page_line(register char *s) /* returns 1 if we should quit */
  */
 
 void
-cornline(int mode, char *text)
+cornline(int mode, const char *text)
 {
     static struct line {
         struct line *next_line;
@@ -420,7 +420,7 @@ dohelp(void)
 
 /* return: 0 - cannot open fnam; 1 - otherwise */
 int
-page_file(char *fnam, boolean silent)
+page_file(const char *fnam, boolean silent)
 {
 #ifdef DEF_PAGER /* this implies that UNIX is defined */
     {

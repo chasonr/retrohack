@@ -349,7 +349,7 @@ pluslvl(void)
 }
 
 void
-strange_feeling(struct obj *obj, char *txt)
+strange_feeling(struct obj *obj, const char *txt)
 {
     if (flags.beginner)
         pline("You have a %s feeling for a moment, then it passes.",

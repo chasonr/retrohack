@@ -11,7 +11,7 @@ static void do_oname(struct obj *obj);
 static char *visctrl(char c);
 
 int
-getpos(coord *cc, int force, char *goal)
+getpos(coord *cc, int force, const char *goal)
 {
     register int cx, cy, i, c;
     pline("(For instructions type a ?)");
@@ -133,20 +133,20 @@ do_oname(register struct obj *obj)
 }
 
 void
-oname(struct obj *obj, char *buf)
+oname(struct obj *obj, const char *buf)
 {
     register struct obj *otmp, *otmp2;
     register int lth;
 
     lth = strlen(buf) + 1;
     if (lth > 63) {
-        buf[62] = 0;
         lth = 63;
     }
     otmp2 = newobj(lth);
     *otmp2 = *obj;
     otmp2->onamelth = lth;
-    (void) strcpy(ONAME(otmp2), buf);
+    (void) memcpy(ONAME(otmp2), buf, lth - 1);
+    ONAME(otmp2)[lth - 1] = '\0';
 
     setworn((struct obj *) 0, obj->owornmask);
     setworn(otmp2, otmp2->owornmask);
@@ -305,7 +305,7 @@ Monnam(register struct monst *mtmp)
 }
 
 char *
-amonnam(struct monst *mtmp, char *adj)
+amonnam(struct monst *mtmp, const char *adj)
 {
     register char *bp = monnam(mtmp);
     static char buf[BUFSZ]; /* %% */
@@ -317,7 +317,7 @@ amonnam(struct monst *mtmp, char *adj)
 }
 
 char *
-Amonnam(struct monst *mtmp, char *adj)
+Amonnam(struct monst *mtmp, const char *adj)
 {
     register char *bp = amonnam(mtmp, adj);
 

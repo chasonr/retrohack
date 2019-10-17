@@ -610,8 +610,8 @@ exclam(register int force)
 }
 
 void
-hit(char *str, struct monst *mtmp,
-    char *force) /* usually either "." or "!" */
+hit(const char *str, struct monst *mtmp,
+    const char *force) /* usually either "." or "!" */
 {
     if (!cansee(mtmp->mx, mtmp->my))
         pline("The %s hits it.", str);
@@ -620,7 +620,7 @@ hit(char *str, struct monst *mtmp,
 }
 
 void
-miss(char *str, struct monst *mtmp)
+miss(const char *str, struct monst *mtmp)
 {
     if (!cansee(mtmp->mx, mtmp->my))
         pline("The %s misses it.", str);
