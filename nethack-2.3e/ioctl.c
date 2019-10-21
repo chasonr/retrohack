@@ -13,6 +13,7 @@ struct ltchars ltchars, ltchars0;
 #include <termio.h> /* also includes part of <sgtty.h> */
 static struct termio termio;
 #endif
+#include "ioctls.h"
 
 void
 getioctls(void)

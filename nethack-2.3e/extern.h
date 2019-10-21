@@ -8,6 +8,8 @@
 #include "global.h"
 #include "coord.h"
 #include "alloc.h"
+#include "rnd.h"
+#include "ioctls.h"
 
 struct obj;
 struct trap;
@@ -228,10 +230,6 @@ extern void useup(struct obj *obj);
 extern void useupf(struct obj *obj);
 extern struct wseg *m_atseg;
 extern char inv_order[];
-
-/*** ioctl.c ***/
-extern int getioctls(void);
-extern int setioctls(void);
 
 /*** lev.c ***/
 extern void bwrite(int fd, char *loc, unsigned num);
@@ -463,14 +461,6 @@ extern int seffects(struct obj *sobj);
 
 /*** rip.c ***/
 extern void outrip(void);
-
-/*** rnd.c ***/
-extern int d(int n, int x);
-extern int rn1(int x, int y);
-extern int rn2(int x);
-extern int rnd(int x);
-extern int rne(int x);
-extern int rnz(int x);
 
 /*** rumors.c ***/
 extern void outrumor(void);

@@ -2,6 +2,7 @@
  */
 #include <stdlib.h>
 #include "config.h"
+#include "rnd.h"
 /* rand() is either random() or lrand48() - see config.h. */
 #ifdef UNIX
 #define RND(x) (rand() % (x))
