@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include "config.h"
 #include "alloc.h"
+#include "panic.h"
 
 #ifdef MSDOS
 #undef exit
@@ -692,7 +693,7 @@ digit(register char ch)
 
 static boolean panicking = 0;
 
-int
+void
 panic(const char *str, ...)
 {
     va_list args;
