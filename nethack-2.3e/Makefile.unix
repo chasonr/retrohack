@@ -17,14 +17,14 @@ LFLAGS =
 TERMLIB = -lcurses
 
 # make NetHack
-GAME     = nethack
+GAME     = nethack23
 GAMEUID  = games
 GAMEGRP  = bin
 
 #	GAMEDIR also appears in config.h as "HACKDIR".
 GAMEDIR  = /usr/games/lib/$(GAME)dir
 SHELLDIR = /usr/games
-MANDIR   = /usr/man/man6
+MANDIR   = /usr/share/man/man6
 MANEXT   = 6
 
 HACKCSRC = alloc.c apply.c bones.c cmd.c decl.c do.c do_name.c do_wear.c\
@@ -144,7 +144,7 @@ install: $(VARAUX) $(GAME)
 	-rm -f $(GAMEDIR)/save/*
 	touch $(GAMEDIR)/perm $(GAMEDIR)/record
 	cp help hh rumors data $(GAMEDIR)
-	cp $(GAME).sh $(SHELLDIR)/$(GAME)
+	cp nethack.sh $(SHELLDIR)/$(GAME)
 	cp $(GAME) $(GAMEDIR)/$(GAME)
 	chown $(GAMEUID) $(SHELLDIR)/$(GAME) $(GAMEDIR)/*
 	chgrp $(GAMEGRP) $(SHELLDIR)/$(GAME) $(GAMEDIR)/*
