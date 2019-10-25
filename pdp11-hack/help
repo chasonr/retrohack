@@ -1,0 +1,99 @@
+	Welcome to HACK!
+
+	Hack is a Dungeons and Dragons like game where you (the adventurer)
+descend into the depths of the dungeon in search of the Amulet of Guyver
+(reputed to be hidden on the twentieth level).  On the way you will find
+useful (or useless) magic items, and assorted monsters.  You attack a monster
+by trying to move into the space a monster is in.
+
+	Unlike most adventure games, which give you a verbal description of
+your location, hack gives you a visual image of the dungeon level you are on.
+
+	Hack uses the following symbols:
+		A to Z and a to z:  monsters.  You can find out what a letter
+represents by saying "whatis (letter)", as in "whatis A", which will tell you
+that 'A' is a giant ant.
+		- and |  These form the walls of a room.
+		.  this is the floor of a room.
+		#  this is a corridor.
+		}  this is a water filled area.
+		>  this is the staircase to the next level.
+		<  the staircase to the previous level.
+		@  You (usually).
+		^  A trap.
+		)  A weapon of some sort.
+		[  A suit of armor.
+		%  A piece of food.
+		/  A wand.
+		=  A ring.
+		?  A scroll.
+		!  A magic potion.
+		$  A pile or pot of gold.
+
+Commands:
+	Hack knows the following commands:
+		help		print this list. (Hack mode: ?)
+		quit		quit the game. (Hack mode: Q)
+		up		go up the staircase. (if you are standing on it)
+				(Hack mode: <)
+		down		go down (just like up).
+				(Hack mode: >)
+		n,s,ne,etc.	go one space in the direction indicated.
+				North is toward the top of the screen.
+		N,S,NE, etc.	Go in that direction until you hit a wall or
+				run into something.
+		invent		Print your inventory.
+				(Hack mode: i)
+		search		search for secret doors and traps in the 
+				locations next to you.
+				(hack mode: s)
+		(return)	rest, do nothing.
+		redraw		redraws the screen, useful if you type too fast
+				or your terminal is too slow.
+				(Hack mode: ^z (control/z))
+		whatis ~	(~ is any symbol printed on your screen)
+				Tell what ~ is.  (For instance 'whatis A'
+				will tell you that A is a giant ant.
+				(Hack mode: /)
+		eat		Eat food.  It will then ask what object you
+				want to eat.
+				(Hack mode: e)
+		wield		Change the weapon you use to attack with.
+				It will ask what you want to wield.
+				(Hack mode: w)
+		drink		Drink a potion.  (Hack mode: q quaff)
+		read		Read a scroll.   (Hack mode: r)
+		remove		Remove your armor or ring.
+				(Hack mode: T takeoff armor; R remove ring)
+		wear		Wear a suit of armor or a ring.
+				(Hack mode: W wear armor; P put on ring)
+		pay		Pay your shopping bill.
+				(Hack mode: p)
+		show            Show all you are wearing on armor and rings.
+				(Hack mode: a)
+		repeat          Repeat last message printed.
+				(Hack mode: A)
+		drop gems       Drop all your gems that you are currently 
+				holding.
+				(Hack mode: G)
+		oneline		Give inventories one line at a time
+				(at the top of your screen).
+				(Hack mode: o)
+
+	You can put a number before a command to repeat it that many times,
+	as in "20 search" or "40" (40 rest).
+	You can also put more than one command on a line by putting commas
+	between them, as in "20 search,2 e,20 search", or 
+	"n,e,n,e,n".
+
+	In hack mode you have the commands h (left), j (down), k (up),
+	l (right), y (nw), u (ne), b (sw), n(se); these move you one step.
+	Also HJKLYUBN - these move you as far as possible in the indicated
+	direction.
+	Also fh, fj etc. - these move you repeatedly in the indicated
+	direction until something interesting happens.
+	Finally FH, FJ etc. - these work like the previous, but branching
+	in a corridor is not considered interesting.
+
+
+	Have Fun, and Good Hacking!

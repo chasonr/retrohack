@@ -1,0 +1,52 @@
+
+Well, here they are, the sources of Hack for pdp11/44 and pdp11/45.
+
+How to install these on your machine.
+This is actually quite simple. Edit the file ``envir.h'' to define the
+local parameters. Edit the Makefile to define the playdir directory
+(default /usr/games). Determine who will be the owner of the game, since
+it has the setuid bits on. 
+After you unshared the shar-files (in a new directory),
+you should have the following files:
+	1) - help data Makefile show.c rnd.c alloc.c
+
+	2) - envir.h hack.armors.h hack.do.vars.h hack.dog.h hack.foods.h 
+	   - hack.h hack.name.h hack.vars.h hack.weapons.h 
+
+	3) - hack.bones.c hack.c hack.debug.c hack.do.c hack.do.misc.c 
+	   - hack.do1.c hack.do_wear.c hack.dog.c hack.eat.c hack.end.c 
+	   - hack.invent.c hack.invinit.c hack.io.c hack.lev.c hack.main.c 
+	   - hack.mkobj.c hack.mon.c hack.mon.do.c hack.monst.c hack.move.c 
+	   - hack.office.c hack.pri.c hack.rip.c hack.save.c hack.savelev.c 
+	   - hack.shk.c hack.str.c hack.worm.c
+
+	4) - mklev.c mklev.make.c mklev.mkobj.c mklev.svlev.c 
+
+Now type ``make'' and the file ``hack'', ``mklev'' and ``show'' will be created.
+Now type make new and the program will be installed in the right place.
+
+One of the main problems of Hack is its size. If you add about 1000 bytes of
+text more, your text segment will be to big. Therefore we saved text wherever 
+this was possible. We removed the function fscanf(), and made the record file
+binary. To show the contents, use the program show (with flag -r).
+
+Some additions we (Fred de Wilde and Michiel Huisjes) made are
+	- The Vault
+	- The Swamp
+	- The Zoo
+	- The Graveyard
+	- Maxlevel = 40
+	- Proper Saving
+	- Several bugs
+	- And many, many more...
+A great bug that still exists is the display of the screen when you're blind.
+Some more bugs are still existing, but you'll find those out while playing.
+
+There is not a manual included with these sources. I suggest you use the
+manual of the distributed version of hack (1.0.1) of CWI. 
+
+Have fun, and good hacking!
+
+				Michiel Huisjes and Fred de Wilde
+				{seismo|decvax|philabs}!mcvac!vu44!ark!huisjes
+								   ...!wilde
