@@ -49,17 +49,17 @@ hack.main.o hack.lev.o hack.debug.o \
 hack.do.misc.o hack.end.o hack.invinit.o: envir.h
 
 hack.invinit.o:
-	cc $(CFLAGS) -c hack.invinit.c
+	$(CC) $(CFLAGS) -c hack.invinit.c
 
 mklev.o: hack.h envir.h
-	cc $(CFLAGS) -c mklev.c
+	$(CC) $(CFLAGS) -c mklev.c
 
 mklev:  $(MKOBJ) $(GOBJ) mklev.svlev.c
-	cc $(CFLAGS) $(MKOBJ) $(GOBJ) -o mklev
+	$(CC) $(CFLAGS) $(MKOBJ) $(GOBJ) -o mklev
 	@echo 'Done mklev'
 
 show: show.c hack.h envir.h
-	cc -O show.c -o show
+	$(CC) $(CFLAGS) show.c -o show
 	@echo 'Done show'
 
 cleanup:
