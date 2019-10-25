@@ -309,8 +309,8 @@ extern char    *wepnam[], *pottyp[], *scrtyp[], *traps[],
                 xdnstair, ydnstair, xupstair, yupstair,
                 seehx, seelx, seehy, seely,
                *save_cm, *killer, dlevel, maxdlevel,
-                dx, dy, buf[], lock[],
-                genocided[60], oldux, olduy, wizard;
+                buf[], lock[],
+                genocided[60], oldux, olduy;
 
 extern unsigned moves;
 
@@ -343,7 +343,6 @@ extern  union PTRS * alloc ();
 #ifdef MKLEV
 
 /*### mklev.make.c ###*/
-extern void delmon();
 extern void makemaz();
 extern void makemon();
 extern void mkgold();
@@ -357,44 +356,17 @@ extern int panic();
 
 /*### mklev.mkobj.c ###*/
 extern void mkobj();
-//0000000000000560 D armors
-//0000000000000600 D foods
-//0000000000000050 D NOTHIN
-//0000000000000028 C oiden
-//0000000000000001 C oldux
-//0000000000000001 C olduy
-//0000000000000078 C potcall
-//0000000000000340 D potcol
-//00000000000003e0 D pottyp
-//0000000000000080 C ringcall
-//0000000000000080 D ringtyp
-//0000000000000000 D rinnam
-//0000000000000078 C scrcall
-//0000000000000240 D scrnam
-//00000000000002c0 D scrtyp
-//0000000000000010 D STOPGLOW
-//00000000000006e0 D traps
-//0000000000000000 D UMISS
-//0000000000000090 C wandcall
-//0000000000000100 D wannam
-//00000000000001a0 D wantyp
-//0000000000000030 D WCLEV
-//0000000000000460 D weapons
 
 /*### mklev.c ###*/
-extern void bwrite();
 extern GOLD_TRAP g_at ();
 extern int main();
 extern MONSTER m_at();
 extern void move();
 extern OBJECT o_at();
 extern int okay();
-extern void savelev();
 //0000000000000008 C croom
 //0000000000000001 C dlevel
 //00000000000000c8 C doors
-//0000000000000001 C dx
-//0000000000000001 C dy
 //0000000000000008 C fgold
 //0000000000000008 C fmon
 //0000000000000008 C fobj
@@ -404,11 +376,9 @@ extern void savelev();
 //0000000000001b80 C levl
 //0000000000000000 D mmon
 //0000000000000004 C nroom
-//0000000000000014 C nul
 //0000000000000078 C rooms
 //0000000000000001 C tx
 //0000000000000001 C ty
-//0000000000000001 C wizard
 //0000000000000001 C xdnstair
 //0000000000000001 C xupstair
 //0000000000000001 C ydnstair
@@ -529,8 +499,7 @@ extern void impossible();
 //0000000000000001 C cury
 //0000000000000004 B dlevel
 //00000000000000c8 C doors
-//0000000000000001 C dx
-//0000000000000001 C dy
+extern char dx, dy;
 //0000000000000038 B fgold
 //0000000000000004 C flags
 //0000000000000040 B fmon
@@ -557,7 +526,7 @@ extern void impossible();
 //0000000000000010 B uleft
 //0000000000000018 B uright
 //0000000000000008 C uwep
-//0000000000000001 C wizard
+extern char wizard;
 //0000000000000001 C xdnstair
 //0000000000000001 C xupstair
 //0000000000000001 C ydnstair

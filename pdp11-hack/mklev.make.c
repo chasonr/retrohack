@@ -45,7 +45,7 @@ extern char     dlevel, *geno, goldseen,
 extern void mktrap();
 extern void mkgold();
 extern void makemon();
-extern void delmon();
+static void delmon();
 static void delgen();
 static int ch_dnstairs();
 static int ch_doors();
@@ -537,7 +537,7 @@ register        MKROOM * mroom;
 			mroom -> ly <= ydnstair && ydnstair <= mroom -> hy);
 }
 
-void
+static void
 delmon (mtmp)
 register        MONSTER mtmp;
 {

@@ -11,14 +11,13 @@
 #define MKLEV
 #include "hack.h"
 
-static char *tfile, *tspe, **args;
-char nul[20];
+static char *tfile, *tspe, **args, nul[20];
 
 static void mkpos();
 static void dodoor();
 static void newloc();
 static void makecor();
-extern void bwrite();
+static void bwrite();
 static int maker();
 
 #include "mklev.svlev.c"
@@ -59,9 +58,8 @@ static int comp ();
 
 char    dlevel, *geno, goldseen,
         xdnstair, xupstair, ydnstair, yupstair,
-        wizard,
-        dx, dy, tx, ty;
-static char nxcor, x, y;
+        tx, ty;
+static char wizard, dx, dy, nxcor, x, y;
  /* For corridors and other things... */
 
 #define RUIN	5

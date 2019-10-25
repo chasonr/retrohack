@@ -2,7 +2,7 @@
  * Mklev.savelev.c
  */
 
-void
+static void
 savelev () {
 	register int    fd;
 	register        MONSTER mtmp, mtmp2;
@@ -54,7 +54,7 @@ savelev () {
 }
 
 /*NOSTRICT*/
-void
+static void
 bwrite (fd, loc, num)
 register int    fd, num;
 register char  *loc;
