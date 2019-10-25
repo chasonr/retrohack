@@ -3,6 +3,7 @@
  */
 
 #define NORMAL_IO
+#define MKLEV
 #include "hack.h"
 #include "hack.vars.h"
 

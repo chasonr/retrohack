@@ -13,6 +13,7 @@
 #define MAZE		6
 
 #define NORMAL_IO
+#define MKLEV
 #include "hack.h"
 
 extern char     mmon[8][8];

@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 #define NORMAL_IO
+#define MKLEV
 #include "hack.h"
 
 static char *tfile, *tspe, **args;
