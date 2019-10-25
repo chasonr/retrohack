@@ -14,7 +14,7 @@
 
 PART levl[80][22];
 
-char    mmon[8][8] = {
+static char mmon[8][8] = {
 	"BGHJKLr",
 	"aEhiOyZ",
 	"AfNpQqv",
@@ -25,18 +25,19 @@ char    mmon[8][8] = {
 	"De'n,P&"
 };
 
-char    stairs[4], mbuf[1000], obuf[BUFSIZ];
+static char stairs[4], mbuf[1000], obuf[BUFSIZ];
 
-unsigned        omoves;
+static unsigned omoves;
 extern char    *setan ();
-extern void mread();
-extern void show();
-extern void pch();
-extern void showrecord();
-extern void delrecord();
-extern void doname();
-extern void getret();
+static void mread();
+static void show();
+static void pch();
+static void showrecord();
+static void delrecord();
+static void doname();
+static void getret();
 
+int
 main (argc, argv)
 int     argc;
 char  **argv;
@@ -139,7 +140,7 @@ char  **argv;
 	}
 }
 
-void
+static void
 mread (fd, buf, n) {
 	register        nn;
 
@@ -149,7 +150,7 @@ mread (fd, buf, n) {
 	}
 }
 
-void
+static void
 show () {
 	register        i, j;
 
@@ -159,24 +160,14 @@ show () {
 	printf ("***     ");
 }
 
-void
+static void
 pch (ch)
 char    ch;
 {
 	putchar (ch ? ch : '_');
 }
 
-char   *
-        alloc (num)
-register        num;
-{
-	register char  *val;
-
-	if (!(val = malloc (num)))
-		error ("Cannot get %d bytes", num);
-	return val;
-}
-
+static void
 error (s) {
 	printf (s);
 	putchar ('\n');
@@ -184,18 +175,18 @@ error (s) {
 	exit (1);
 }
 
-extern char    *itoa ();
+static char *itoa ();
 
 #define	NAMESIZE	 8
 #define	DEATHSIZE	40
 
-struct recitem {
+static struct recitem {
 	long    points;
 	int     level, maxlvl, hp, maxhp;
 	char    str[NAMESIZE + 1], death[DEATHSIZE + 1];
 }               record;
 
-void
+static void
 showrecord () {
 	register        killed;
 	register        place = 0;
@@ -245,9 +236,9 @@ showrecord () {
 	close (rfile);
 }
 
-int     deleted[45];
+static int deleted[45];
 
-void
+static void
 delrecord () {
 	register int    fd, fd2;
 	int     count = 0;
@@ -279,8 +270,8 @@ delrecord () {
 	execl ("/bin/mv", "mv", ".Temp", RECORD, NULL);
 }
 
-char   *
-        itoa (a)
+static char   *
+itoa (a)
 register int    a;
 {
 	static char     buf[8];
@@ -289,7 +280,7 @@ register int    a;
 	return (buf);
 }
 
-void
+static void
 doname (let, buf)
 register char   let;
 register char  *buf;
@@ -337,7 +328,7 @@ register char  *buf;
 	}
 }
 
-void
+static void
 getret () {
 	printf ("AHit j<return>k to continue");
 	fflush (stdout);
