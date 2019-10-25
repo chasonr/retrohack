@@ -349,7 +349,7 @@ register        MONSTER mtmp;
 	u.urexp += tmp << 2;
 	u.uexp += tmp;
 	flags.dexp = 1;
-	while (u.uexp >= 10L * pow (u.ulevel - 1)) {
+	while (u.uexp >= 10L * pow2 (u.ulevel - 1)) {
 		pline (WCLEV, ++u.ulevel);
 		tmp = rnd (10);
 		if (tmp < 3)

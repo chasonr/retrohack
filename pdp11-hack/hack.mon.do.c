@@ -380,7 +380,7 @@ register        MONSTER mtmp;
 					ctmp = rnd (10);
 					u.uhp -= ctmp;
 					u.uhpmax -= ctmp;
-					u.uexp = 10L * pow (u.ulevel - 1) - 1L;
+					u.uexp = 10L * pow2 (u.ulevel - 1) - 1L;
 					flags.dhp = 1;
 					flags.dhpmax = 1;
 					flags.dulev = 1;

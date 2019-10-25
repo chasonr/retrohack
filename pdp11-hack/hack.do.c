@@ -531,7 +531,7 @@ dodrink () {
 			u.uhp += num;
 			if (u.ulevel < 14) {/* a3 */
 				pline ("You feel more experienced.");
-				u.uexp = (10 * pow (u.ulevel - 1)) + 1;
+				u.uexp = (10 * pow2 (u.ulevel - 1)) + 1;
 				pline (WCLEV, ++u.ulevel);
 				flags.dulev = 1;
 				flags.dexp = 1;

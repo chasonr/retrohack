@@ -188,7 +188,7 @@ char    x, y;
 }
 
 long
-        pow (num)
+        pow2 (num)
 register        num;		/* Returns 2^num */
 {
 	return (1 << num);

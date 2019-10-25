@@ -22,7 +22,7 @@
 
 char   *index ();
 
-long    pow ();
+long    pow2 ();
 
 #define BUFSZ   256
 
