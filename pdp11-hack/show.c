@@ -76,8 +76,8 @@ char  **argv;
 		mread (fd, &xl, sizeof (int));
 		printf ("Show Monsters? (%sSpecified) ", omoves ? "Not " : "");
 		fflush (stdout);
-		gets (buffer);
-		if (strcmp (buffer, "y"))
+		fgets (buffer, sizeof(buffer), stdin);
+		if (strchr (buffer, 'y') == NULL)
 			continue;
 		while (xl != -1) {
 			mread (fd, mtmp, xl + sizeof (struct monst));
