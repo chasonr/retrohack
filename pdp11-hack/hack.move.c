@@ -534,7 +534,7 @@ register        nval;
 
 char   *
         parse () {
-	static char     inline[80];
+	static char     in_line[80];
 	register        foo;
 
 	oldux = 0;
@@ -549,20 +549,20 @@ char   *
 		multi += 10 * multi + foo - '0';
 	if (multi) {
 		multi--;
-		save_cm = inline;
+		save_cm = in_line;
 	}
-	inline[0] = foo;
-	inline[1] = 0;
+	in_line[0] = foo;
+	in_line[1] = 0;
 	if (foo == 'f' || foo == 'F') {
-		inline[1] = getchar ();
-		inline[2] = 0;
+		in_line[1] = getchar ();
+		in_line[2] = 0;
 	}
 	if (flags.topl) {
 		home ();
 		cl_end ();
 		flags.topl = 0;
 	}
-	return (inline);
+	return (in_line);
 }
 
 nomove () {

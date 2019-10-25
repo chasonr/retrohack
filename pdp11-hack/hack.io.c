@@ -3,7 +3,7 @@
  */
 
 #include "hack.h"
-#include <sgtty.h>
+#include <termios.h>
 
 short   ospeed;			/* Used by tputs */
 
@@ -47,21 +47,24 @@ getret () {
 hackmode (x)
 register        x;
 {
-	struct sgttyb   ttyp;
+	struct termios ttyp;
+	static struct termios tty_save;
+	static int tty_saved = 0;
 
-	ioctl (1, TIOCGETP, &ttyp);/* Use of basic functions */
-	ospeed = ttyp.sg_ospeed;
 	if (x) {
-		ttyp.sg_flags &= ~ECHO;
-		ttyp.sg_flags |= CBREAK;
+		tcgetattr(1, &ttyp);
+		if (!tty_saved) {
+			tty_save = ttyp;
+			tty_saved = 1;
+		}
+		ospeed = cfgetospeed(&ttyp);
+		cfmakeraw(&ttyp);
+		tcsetattr(1, TCSAFLUSH, &ttyp);
 	}
 	else {
-		ttyp.sg_flags |= ECHO;
-		ttyp.sg_flags &= ~CBREAK;
-	}
-	if (ioctl (1, TIOCSETP, &ttyp) < 0) {
-		printf ("ERROR: Cannot change tty");
-		exit (1);
+		if (tty_saved) {
+			tcsetattr(1, TCSAFLUSH, &tty_save);
+		}
 	}
 }
 

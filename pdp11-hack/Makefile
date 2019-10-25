@@ -4,8 +4,8 @@
 PLAYDIR = /usr/games/playdir
 SAVEDIR = /usr/games/playdir/save
 
-CFLAGS = -O -i
-LIB = -ltermlib
+CFLAGS = -O -w
+LIB = -ltermcap
 
 TARGET = hack
 
