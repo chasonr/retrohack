@@ -275,6 +275,7 @@ normalplay:
 	}
 }
 
+void
 glo (n)
 register        n;		/* Construct the string `hackpid.n' */
 {
@@ -289,6 +290,7 @@ register        n;		/* Construct the string `hackpid.n' */
 	sprintf (lock, "%d.%d", hackpid, n);
 }
 
+void
 impossible () {
 	pline ("Program in disorder - perhaps you'd better Quit");
 }

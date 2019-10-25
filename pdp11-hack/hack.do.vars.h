@@ -2,7 +2,7 @@
  * Hack.do.vars.h
  */
 
-int 	doredraw(),  dodrop(),    dodrink(),    doread(),
+void	doredraw(),  dodrop(),    dodrink(),    doread(),
 	dosearch(),  armwear(),   dowearring(), doremarm(),
 	doremring(), dopay(),     save(),       dowield(),
 	ddoinv(),    dozap(),     m_call(),     doset(),

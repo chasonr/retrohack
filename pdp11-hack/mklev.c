@@ -12,6 +12,12 @@
 
 char   *tfile, *tspe, **args, nul[20];
 
+extern void mkpos();
+extern void dodoor();
+extern void newloc();
+extern void makecor();
+extern void bwrite();
+
 #include "mklev.svlev.c"
 
 char    mmon[8][8] = {
@@ -186,6 +192,7 @@ register        MKROOM * xcoord, *ycoord;
 	return (xcoord -> lx > ycoord -> lx);
 }
 
+void
 mkpos () {
 	if (troom -> hx < 0 || croom -> hx < 0)
 		return;
@@ -233,6 +240,7 @@ mkpos () {
 	dodoor (x, y, croom);
 }
 
+void
 dodoor (doorx, doory, aroom)
 register int    doorx, doory;
 register        MKROOM * aroom;
@@ -272,6 +280,7 @@ register        MKROOM * aroom;
 		broom -> fdoor++;
 }
 
+void
 newloc () {
 	register int    tryct = 0;
 
@@ -297,6 +306,7 @@ newloc () {
 	mkpos ();
 }
 
+void
 move (xdir, ydir, dir)
 register int   *xdir, *ydir, dir;
 {
@@ -387,6 +397,7 @@ char    lowx, hix, lowy, hiy;
 	return 1;
 }
 
+void
 makecor (nx, ny)
 register int    nx, ny;
 {

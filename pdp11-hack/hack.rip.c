@@ -8,6 +8,7 @@
 #include "hack.h"
 
 extern char     plname[];
+extern void center();
 
 static char    *rip[] = {
 	"                       ----------",
@@ -26,6 +27,7 @@ static char    *rip[] = {
 	0
 };
 
+void
 outrip () {
 	register char **dp = rip;
 	register struct tm     *lt;
@@ -50,6 +52,7 @@ outrip () {
 	getret ();
 }
 
+void
 center (line, text)
 register int    line;
 register char  *text;

@@ -41,6 +41,13 @@ extern char     dlevel, *geno, goldseen,
                 dx, dy, tx, ty;
  /* For corridors and other things... */
 
+extern void mktrap();
+extern void mkgold();
+extern void makemon();
+extern void delmon();
+extern void delgen();
+
+void
 makemaz () {
 
 /* This is all Kenny's fault.  He seems to have his x and y reversed */
@@ -108,6 +115,7 @@ makemaz () {
 }
 
 /* Make a trap somewhere (in croom if mazeflag=0) */
+void
 mktrap (num, mazeflag)
 register int    num, mazeflag;
 {
@@ -178,6 +186,7 @@ register int    num, mazeflag;
 	levl[gtmp -> gx][gtmp -> gy].scrsym = num;
 }
 
+void
 mkgold (num, goldx, goldy)
 register int    num;
 {
@@ -199,6 +208,7 @@ register char  *str;
 	abort ();
 }
 
+void
 makemon (sl, monx, mony)
 register int    sl, monx, mony;
 {
@@ -244,6 +254,7 @@ char    shprobs[] = {
 	3, 3, 5, 5, 10, 10, 14, 50
 };				/* Their probabilities */
 
+void
 mkshop () {
 	register        MKROOM * sroom;
 	register int    sh, sx, sy, i;
@@ -276,6 +287,7 @@ mkshop () {
 		}
 }
 
+void
 mkzoo () {
 	register        MKROOM * zroom;
 	register int    zx, zy;
@@ -298,6 +310,7 @@ mkzoo () {
 }
 
 
+void
 mkyard () {
 	register        MKROOM * yroom;
 	register int    yx, yy;
@@ -398,6 +411,7 @@ MONSTER mtmp;
 	return MON;
 }
 
+void
 mkswamp () {
 	register        MKROOM * zroom;
 	register int    zx, zy;
@@ -451,6 +465,7 @@ register int    zx, zy;
 	return status;
 }
 
+void
 mk_knox () {
 	register        MKROOM * kroom;
 	register int    kx, ky;
@@ -511,6 +526,7 @@ register        MKROOM * mroom;
 			mroom -> ly <= ydnstair && ydnstair <= mroom -> hy);
 }
 
+void
 delmon (mtmp)
 register        MONSTER mtmp;
 {
@@ -525,6 +541,7 @@ register        MONSTER mtmp;
 	}
 }
 
+void
 delgen (gtmp, key)
 register        GOLD_TRAP gtmp, key;
 {

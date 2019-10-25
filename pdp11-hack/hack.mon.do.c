@@ -8,7 +8,9 @@
 #include "hack.h"
 
 extern  MONSTER bhit ();
+extern void cmdel();
 
+void
 movemon () {
 	register        MONSTER mtmp, mtmp2;
 
@@ -30,6 +32,7 @@ movemon () {
 	}
 }
 
+void
 justswld (mtmp)
 register        MONSTER mtmp;
 {
@@ -44,6 +47,7 @@ register        MONSTER mtmp;
 	docrt ();
 }
 
+void
 youswld (mtmp, dam, die)
 register        MONSTER mtmp;
 register        dam, die;
@@ -59,6 +63,7 @@ register        dam, die;
 	}
 }
 
+void
 x2hitu (mlev, x, name)
 register        mlev, x;
 register char  *name;		/* a3 */
@@ -421,6 +426,7 @@ register        MONSTER mtmp;
 	return (tmp == 2);
 }
 
+void
 cmdel (mtmp)
 register        MONSTER mtmp;
 {
@@ -431,6 +437,7 @@ register        MONSTER mtmp;
 		newsym (mx, my);
 }
 
+void
 inrange (mtmp)
 register        MONSTER mtmp;
 {

@@ -11,6 +11,12 @@
 
 extern char     WCLEV[], STOPGLOW[];
 
+extern void stlobj();
+extern void relmon();
+extern void unstuck();
+extern void pseebl();
+extern void newcham();
+
 dist (x, y)
 register        x, y;
 {
@@ -33,6 +39,7 @@ register        MONSTER mtmp;
 
 
 /* Puts m next to u, or anywhere if there isn't room there */
+void
 mnexto (mtmp)
 MONSTER mtmp;
 {
@@ -81,6 +88,7 @@ foofull:
 		initworm (mtmp);
 }
 
+void
 rloc (mtmp)
 MONSTER mtmp;
 {
@@ -122,6 +130,7 @@ test (x, y) {
 	return 1;
 }
 
+void
 poisoned (string, pname)
 register char  *string, *pname;
 {
@@ -150,6 +159,7 @@ register char  *string, *pname;
 		killer = pname;
 }
 
+void
 steal (mtmp)
 MONSTER mtmp;
 {
@@ -190,6 +200,7 @@ MONSTER mtmp;
 	stlobj (mtmp, otmp);
 }
 
+void
 stlobj (mtmp, otmp)
 register        MONSTER mtmp;
 register        OBJECT otmp;
@@ -207,6 +218,7 @@ register        OBJECT otmp;
 	}
 }
 
+void
 delmon (mtmp)
 register        MONSTER mtmp;
 {
@@ -223,6 +235,7 @@ register        MONSTER mtmp;
 	free (mtmp);
 }
 
+void
 relmon (mtmp)
 register        MONSTER mtmp;
 {
@@ -237,6 +250,7 @@ register        MONSTER mtmp;
 }
 
 /* Release the objects the killed animal has stolen */
+void
 relobj (mtmp)
 register        MONSTER mtmp;
 {
@@ -278,6 +292,7 @@ register        MONSTER mtmp;
 }
 
 /* a3 */
+void
 unstuck (mtmp)
 register        MONSTER mtmp;
 {
@@ -292,6 +307,7 @@ register        MONSTER mtmp;
 	}
 }
 
+void
 killed (mtmp)
 register        MONSTER mtmp;
 {
@@ -382,18 +398,21 @@ register char  *str, *name, *arg;
 }
 
 /*VARARGS*/
+void
 p2xthe (str, name, arg)
 register char  *str, *name, *arg;
 {
 	psee (NOTEST, 0, 0, str, name, arg);
 }
 
+void
 pseebl (str, name)
 register char  *str, *name;
 {
 	psee (TBLIND, 0, 0, str, name, NULL);
 }
 
+void
 rescham () {			/* Force all chameleons to become normal */
 	register        MONSTER mtmp;
 
@@ -409,6 +428,7 @@ rescham () {			/* Force all chameleons to become normal */
 }
 
 /* Make a chameleon look like a new monster */
+void
 newcham (mtmp, mdat)
 register        MONSTER mtmp;
 register        MONSTDATA mdat;
@@ -510,6 +530,7 @@ somegold () {
 			(u.ugold > 10000L) ? rnd (10000) : rnd ((int) u.ugold));
 }
 
+void
 mkmonat (ptr, x, y)
 register        MONSTDATA ptr;
 register        x, y;

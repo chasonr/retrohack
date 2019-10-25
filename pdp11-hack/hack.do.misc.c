@@ -21,10 +21,18 @@ extern char    *getenv (), UMISS[], WELDED[];
 
 OBJECT loseone ();
 
-int     done1 ();
+void    done1 ();
 
 char    upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
 
+extern void dostairs();
+extern void dosavelev();
+extern void dodown();
+extern void doup();
+extern void docall();
+extern void docurse();
+
+void
 rhack (cmd)
 register char  *cmd;
 {
@@ -75,6 +83,7 @@ register char  *cmd;
 	nomove ();
 }
 
+void
 doredraw () {
 	docrt ();
 	nomove ();
@@ -85,6 +94,7 @@ doredraw () {
  * be a NULL.		(Michiel)
  */
 /*VARARGS*/
+void
 hackexec (num, file, arg1, arg2, arg3, arg4, arg5, arg6)
 register int    num;
 register char  *file, *arg1;
@@ -126,10 +136,12 @@ char   *arg2, *arg3, *arg4, *arg5, *arg6;
 	}
 }
 
+void
 dohelp () {
 	hackexec (1, MORE, HELP, NULL);
 }
 
+void
 dosh () {
 	register char  *str;
 
@@ -139,6 +151,7 @@ dosh () {
 		hackexec (2, "/bin/sh", "-i", NULL);
 }
 
+void
 dowield () {
 	register        OBJECT wep;
 
@@ -157,14 +170,17 @@ dowield () {
 	}
 }
 
+void
 ddodown () {
 	dostairs ("down");
 }
 
+void
 ddoup () {
 	dostairs ("up");
 }
 
+void
 dostairs (dir)
 register char  *dir;
 {
@@ -190,6 +206,7 @@ register char  *dir;
 		docurse ();
 }
 
+void
 dosavelev () {
 	register        fd;
 
@@ -201,6 +218,7 @@ dosavelev () {
 
 extern int      uid;
 
+void
 checklev (dir)			/* Michiel: Geen geknoei */
 register char  *dir;
 {
@@ -211,6 +229,7 @@ register char  *dir;
 	}
 }
 
+void
 dodown () {
 	register        fd;
 
@@ -232,6 +251,7 @@ dodown () {
 	inshop ();
 }
 
+void
 doup () {
 	register        fd;
 
@@ -247,6 +267,7 @@ doup () {
 	u.uy = ydnstair;
 }
 
+void
 m_call () {
 	register        OBJECT obj;
 
@@ -256,6 +277,7 @@ m_call () {
 	flags.move = 0;
 }
 
+void
 docall (obj)
 register        OBJECT obj;
 {
@@ -293,11 +315,13 @@ register        OBJECT obj;
 	*str1 = str;
 }
 
+void
 donull () {
 }
 
 MONSTER bhit ();
 
+void
 dothrow () {
 	register        OBJECT obj;
 	register        MONSTER monst;
@@ -419,6 +443,7 @@ getdir () {
 	return (movecm (buf));
 }
 
+void
 docurse () {
 	register        MONSTER mtmp;
 

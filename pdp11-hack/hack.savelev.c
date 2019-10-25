@@ -2,6 +2,7 @@
  * Hack.savelev.c
  */
 
+void
 savelev (fd) {
 	register        MONSTER mtmp, mtmp2;
 	register        GOLD_TRAP gtmp, gtmp2;
@@ -73,6 +74,7 @@ savelev (fd) {
 	shopkeeper = 0;
 }
 
+void
 bwrite (fd, loc, num)
 register        fd, num;
 register char  *loc;

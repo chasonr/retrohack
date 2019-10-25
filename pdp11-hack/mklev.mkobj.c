@@ -37,6 +37,7 @@ mkwep () {
 
 char    mkobjstr[] = "))[[!!!!????%%%%//=**";
 
+void
 mkobj (let)
 register        let;
 {

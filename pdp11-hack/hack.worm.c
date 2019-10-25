@@ -10,6 +10,8 @@ WORMSEGMENT wsegs[32], wheads[32];
 
 unsigned        wgrowtime[32];
 
+extern void remseg();
+
 getwn (mtmp)
 MONSTER mtmp;
 {
@@ -23,6 +25,7 @@ MONSTER mtmp;
 	return 0;		/* Level infested with worms */
 }
 
+void
 initworm (mtmp)
 MONSTER mtmp;
 {
@@ -38,6 +41,7 @@ MONSTER mtmp;
 	wtmp -> nseg = 0;
 }
 
+void
 worm_move (mtmp)
 MONSTER mtmp;
 {
@@ -66,6 +70,7 @@ MONSTER mtmp;
 	remseg (whd);
 }
 
+void
 worm_nomove (mtmp)
 register        MONSTER mtmp;
 {
@@ -81,6 +86,7 @@ register        MONSTER mtmp;
 	mtmp -> mhp--;		/* Orig_hp not changed! */
 }
 
+void
 wormdead (mtmp)
 register        MONSTER mtmp;
 {
@@ -96,6 +102,7 @@ register        MONSTER mtmp;
 	wsegs[tmp] = 0;
 }
 
+void
 wormhit (mtmp)
 register        MONSTER mtmp;
 {
@@ -109,6 +116,7 @@ register        MONSTER mtmp;
 		hitu (mdat -> mhd, 1, mdat -> mname);
 }
 
+void
 wormsee (tmp)
 register        tmp;
 {
@@ -119,6 +127,7 @@ register        tmp;
 			levlsym (wtmp -> wx, wtmp -> wy, '~');
 }
 
+void
 cutworm (mtmp, x, y, weptyp)
 register        MONSTER mtmp;
 register char   x, y;
@@ -193,6 +202,7 @@ register unsigned       weptyp;
 	panic (CORE, "Cannot find worm segment");
 }
 
+void
 remseg (wtmp)
 register        WORMSEGMENT wtmp;
 {

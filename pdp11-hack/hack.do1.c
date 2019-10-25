@@ -28,6 +28,10 @@ char   *wandeffect[] = {
 char    vaultflag[MAXLEVEL];
 
 MONSTER bhit ();
+extern void buzz();
+extern void zhit();
+extern void show();
+extern void vaultinit();
 
 
 
@@ -36,6 +40,7 @@ MONSTER bhit ();
 
 
 
+void
 dozap () {
 	register        OBJECT obj;
 	register        MONSTER mtmp;
@@ -248,6 +253,7 @@ dozap () {
 	oiden[obj -> otyp] |= WANN;
 }
 
+void
 hit (str, mtmp)
 register char  *str;
 register        MONSTER mtmp;
@@ -256,6 +262,7 @@ register        MONSTER mtmp;
 			mtmp -> data -> mname);
 }
 
+void
 miss (str, mtmp)
 register char  *str;
 register        MONSTER mtmp;
@@ -339,6 +346,7 @@ MONSTER bhit (ddx, ddy, range) {
 	return (0);
 }
 
+void
 buzz (type, sx, sy, ddx, ddy)
 register        sx, sy;
 {
@@ -435,6 +443,7 @@ register        sx, sy;
 	}
 }
 
+void
 zhit (mtmp, type)
 register        MONSTER mtmp;
 register        type;
@@ -476,6 +485,7 @@ register        type;
 	}
 }
 
+void
 dowhatis () {
 	register        fd;
 	register char  *str;
@@ -503,6 +513,7 @@ dowhatis () {
 	}
 }
 
+void
 doshow () {			/* Michiel: Show everything you're wearing */
 	nomove ();
 	show (uarm2);
@@ -512,6 +523,7 @@ doshow () {			/* Michiel: Show everything you're wearing */
 	show (uright);
 }
 
+void
 show (otmp)
 register        OBJECT otmp;
 {
@@ -519,6 +531,7 @@ register        OBJECT otmp;
 		prinv (otmp);
 }
 
+void
 dosearch () {
 	register char   x, y;
 	register        GOLD_TRAP tgen;
@@ -557,6 +570,7 @@ dosearch () {
 			}
 }
 
+void
 doset () {
 	pline ("Give one inventory per line? ");
 	flush ();
@@ -576,6 +590,7 @@ struct permonst treasurer = {
 	"treasurer", '@', 15, 12, -1, 4, 8, 0
 };
 
+void
 vaultinit () {
 	GOLD_TRAP gtmp;
 

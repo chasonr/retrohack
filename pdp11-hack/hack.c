@@ -7,6 +7,7 @@
 #include "hack.h"
 
 extern char     news0 (), *setan ();
+extern void losehp();
 
 extern char     seelx, seehx, seely, seehy;/* Corners of lit room */
  /* l for Low, h for High */
@@ -32,6 +33,7 @@ register char  *str;
 }
 
 /* (a3) mix van setsee() en seeon() */
+void
 setCon (setc) {			/* setc: 1-setsee, 0-seeon (we just went to a
 				   new level) */
 	register        x, y;
@@ -103,6 +105,7 @@ setCon (setc) {			/* setc: 1-setsee, 0-seeon (we just went to a
 	}
 }
 
+void
 unCoff (unc, mode) {
  /* 
   * (a3) mix van unsee() en seeoff()
@@ -191,6 +194,7 @@ register        num;		/* Returns 2^num */
 	return (1 << num);
 }
 
+void
 land () {			/* a3 */
 	do {
 		u.ux = rn2 (80);
@@ -198,6 +202,7 @@ land () {			/* a3 */
 	} while (levl[u.ux][u.uy].typ != ROOM || m_at (u.ux, u.uy));
 }
 
+void
 tele () {
 	unCoff (UNC, 0);	/* Dat was een 1 (a3) */
 	unstuck (u.ustuck);	/* a3 */
@@ -220,6 +225,7 @@ register int    a;
 	return ((a < 0) ? buffer + 1 : buffer);
 }
 
+void
 doname (obj, buffer)
 register        OBJECT obj;
 register char  *buffer;
@@ -402,6 +408,7 @@ dbon () {
 	return 6;		/* 18/00 */
 }
 
+void
 losestr (num)
 register        num;
 {
@@ -415,6 +422,7 @@ register        num;
 	flags.dstr = 1;
 }
 
+void
 losehp (n, knam)
 register        n;
 char   *knam;

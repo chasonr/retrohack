@@ -20,6 +20,9 @@ extern  WORMSEGMENT wsegs[32], wheads[32];
 extern unsigned wgrowtime[32];
 extern struct permonst  pm_ghost;
 
+extern void mread();
+extern void bwrite();
+
 #include "hack.savelev.c"
 
 struct permonst pm_ale = {
@@ -162,6 +165,7 @@ getlev (fd) {
 	return OK;
 }
 
+void
 mread (fd, buffer, len)
 register        fd, len;
 register char  *buffer;
@@ -173,6 +177,7 @@ register char  *buffer;
 				rlen, len, fd);
 }
 
+void
 mklev () {
 	register        fd;
 	char    type[2];

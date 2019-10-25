@@ -15,7 +15,7 @@ extern char     plname[], *itoa (), *setan ();
 
 extern int      billct, rfile;
 
-char    maxdlevel = 0, *strcat ();
+char    maxdlevel = 0;
 
 char   *statxx[] = {
 	"choked",
@@ -26,6 +26,11 @@ char   *statxx[] = {
 	"escaped"
 };
 
+extern void topten();
+extern void clearlocks();
+extern void done();
+
+void
 done1 () {
 	register char   c;
 
@@ -39,6 +44,7 @@ done1 () {
 		hangup ();
 }
 
+void
 done (status)
 register int    status;
 {
@@ -103,6 +109,7 @@ register int    status;
 #define TOPPRINT	15	/* Aantal scores dat wordt afgedrukt */
 #define	TOPLIST		25	/* Length of 'top ten' list */
 
+void
 topten () {
 	int     tmp;
 	struct recitem {
@@ -197,6 +204,7 @@ register int    a;
 	return (buffer);
 }
 
+void
 clearlocks () {
 	register        x;
 

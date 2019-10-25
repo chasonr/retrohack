@@ -11,6 +11,7 @@ extern char     STOPGLOW[], UMISS[], *setan ();
 
 
 extern  OBJECT addinv ();
+extern void nomul();
 
 char    seelx, seehx, seely, seehy;/* Corners of lit room */
  /* l for Low, h for High */
@@ -44,6 +45,7 @@ register char  *cmd;
 }
 
 
+void
 domove () {
 	char    nx, ny, tmpx, tmpy, let;
 	register        MONSTER mtmp;
@@ -473,6 +475,7 @@ M:
 }
 
 /* Stop running if we see something interesting */
+void
 lookaround () {
 	register        x, y, corrct = 0;
 	register        MONSTER mtmp;
@@ -523,6 +526,7 @@ lookaround () {
 		nomul (0);
 }
 
+void
 nomul (nval)
 register        nval;
 {
@@ -568,6 +572,7 @@ char   *
 	return (in_line);
 }
 
+void
 nomove () {
 	multi = 0;
 	flags.move = 0;

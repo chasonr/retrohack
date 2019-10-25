@@ -29,6 +29,13 @@ char    stairs[4], mbuf[1000], obuf[BUFSIZ];
 
 unsigned        omoves;
 extern char    *setan ();
+extern void mread();
+extern void show();
+extern void pch();
+extern void showrecord();
+extern void delrecord();
+extern void doname();
+extern void getret();
 
 main (argc, argv)
 int     argc;
@@ -132,6 +139,7 @@ char  **argv;
 	}
 }
 
+void
 mread (fd, buf, n) {
 	register        nn;
 
@@ -141,6 +149,7 @@ mread (fd, buf, n) {
 	}
 }
 
+void
 show () {
 	register        i, j;
 
@@ -150,6 +159,7 @@ show () {
 	printf ("***     ");
 }
 
+void
 pch (ch)
 char    ch;
 {
@@ -185,6 +195,7 @@ struct recitem {
 	char    str[NAMESIZE + 1], death[DEATHSIZE + 1];
 }               record;
 
+void
 showrecord () {
 	register        killed;
 	register        place = 0;
@@ -236,6 +247,7 @@ showrecord () {
 
 int     deleted[45];
 
+void
 delrecord () {
 	register int    fd, fd2;
 	int     count = 0;
@@ -277,6 +289,7 @@ register int    a;
 	return (buf);
 }
 
+void
 doname (let, buf)
 register char   let;
 register char  *buf;
@@ -324,6 +337,7 @@ register char  *buf;
 	}
 }
 
+void
 getret () {
 	printf ("AHit j<return>k to continue");
 	fflush (stdout);

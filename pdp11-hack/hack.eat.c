@@ -10,6 +10,8 @@ extern char    *nomvmsg;
 unsigned        starved = 0;	/* Michiel: after 30 times fainting you starve
 				   to death */
 
+extern void lesshungry();
+
 char   *hu_stat[4] = {
 	"        ",
 	"Hungry  ",		/* Hunger texts used in main (each 8 chars
@@ -18,6 +20,7 @@ char   *hu_stat[4] = {
 	"Fainting"
 };
 
+void
 doeat () {
 	register        OBJECT otmp;
 	register        FOOD ftmp;
@@ -96,6 +99,7 @@ doeat () {
 	useup (otmp);
 }
 
+void
 lesshungry (num)		/* Eat stg or drink fruit juice */
 register        num;
 {
@@ -124,6 +128,7 @@ Ldohs:
 	u.uhunger = newhunger;
 }
 
+void
 gethungry () {			/* Called in main */
 	--u.uhunger;
 	if ((u.uregen || u.ufeed) && moves % 2)

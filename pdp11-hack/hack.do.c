@@ -19,8 +19,13 @@ char    WELDED[] = "The %s is welded into your hand!";
 
 #define SIZE( x ) 	sizeof( x )/sizeof( x[0] )
 
+extern void litroom();
+extern void nothin();
+extern void dropit();
+
 /* Routines to do various user commands */
 
+void
 doglow (num)
 register        num;
 {
@@ -32,6 +37,7 @@ register        num;
 		"moment" : "while");
 }
 
+void
 doread () {
 	register        OBJECT otmp;
 	register        MONSTER mtmp, mtmp2;
@@ -339,6 +345,7 @@ doread () {
 	useup (otmp);
 }
 
+void
 litroom () {
 	register        zx, zy;
 
@@ -389,6 +396,7 @@ litroom () {
 		}
 }
 
+void
 dodrink () {
 	register        OBJECT otmp, objs;
 	register        MONSTER mtmp;
@@ -555,6 +563,7 @@ dodrink () {
 	useup (otmp);
 }
 
+void
 nothin (obj)
 register        OBJECT obj;
 {
@@ -570,6 +579,7 @@ register        OBJECT obj;
 	useup (obj);
 }
 
+void
 dodrop () {
 	register        OBJECT obj, otmp;
 	register int    num;
@@ -615,6 +625,7 @@ dodrop () {
 	subfrombill (obj);
 }
 
+void
 gemsdrop () {
 	register        OBJECT obj;
 	register        counting = 0;
@@ -658,6 +669,7 @@ char   *string;
 	return (otmp ? 1 : 0);
 }
 
+void
 dropit (obj)
 register        OBJECT obj;
 {

@@ -8,6 +8,10 @@
 #define CURSED		1
 #define NOTCURSED	0
 
+extern void doring();
+extern void dorr();
+
+void
 off_msg (otmp)
 register        OBJECT otmp;
 {
@@ -15,6 +19,7 @@ register        OBJECT otmp;
 	pline ("You were wearing %s.", buf);
 }
 
+void
 doremarm () {
 	register        OBJECT oldarm = uarm;
 
@@ -34,6 +39,7 @@ doremarm () {
 	flags.dac = 1;
 }
 
+void
 doremring () {
 
 	nomove ();
@@ -66,6 +72,7 @@ doremring () {
 		}
 }
 
+void
 dorr (ring)
 register        OBJECT * ring;
 {
@@ -88,6 +95,7 @@ register        OBJECT otmp;
 	return (NOTCURSED);
 }
 
+void
 armwear () {
 	register        OBJECT otmp;
 
@@ -112,6 +120,7 @@ armwear () {
 	flags.dac = 1;
 }
 
+void
 dowearring () {
 	register        OBJECT otmp;
 
@@ -148,6 +157,7 @@ R:
 	prinv (otmp);
 }
 
+void
 doring (obj, eff)
 register        OBJECT obj;
 register        eff;

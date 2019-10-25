@@ -15,7 +15,7 @@ char    xcurses[200];		/* Contain's curser stuff */
 char   *HO, *CL, *CE, *CM, *UP, *BC;
 char    PC;
 extern char    *tgetstr (), *getenv (), *tgoto ();
-int     putch ();
+void    putch ();
  /* Corners of new area on screen */
 extern char     SAVEFILE[];
 
@@ -23,11 +23,23 @@ COORDINATES ou = {
 	-1, 0
 };				/* Coordinates of @ on screen (if ou.x>=0) */
 
-extern char    *getenv (), *hu_stat[4];/* In eat.c */
+extern char    *hu_stat[4];/* In eat.c */
 #ifdef NORMAL_IO
 char    obuf[BUFSIZ];
 #endif NORMAL_IO
+extern void atl();
+extern void on();
+extern void prl();
+extern void newunseen();
+extern void pline();
+extern void nscr();
+extern void donscrt();
+extern void bot();
+extern void curs();
+extern void cl_end();
+extern void home();
 
+void
 startup () {
 	char   *bp = malloc (1024);
 	char   *atcurs = xcurses;
@@ -75,6 +87,7 @@ register char  *str;
 	exit (2);
 }
 
+void
 seeatl (x, y, c)
 register        x, y, c;
 {
@@ -82,6 +95,7 @@ register        x, y, c;
 		atl (x, y, c);
 }
 
+void
 cls () {
 	tputs (CL, 0, putch);
 	curx = 1;
@@ -90,6 +104,7 @@ cls () {
 	flags.topl = 0;
 }
 
+void
 home () {
 	if (HO)
 		tputs (HO, 0, putch);
@@ -99,6 +114,7 @@ home () {
 	cury = 1;
 }
 
+void
 atl (x, y, ch)
 register        x, y;
 {
@@ -113,6 +129,7 @@ register        x, y;
 	on (x, y);
 }
 
+void
 on (x, y)
 register        x, y;
 {
@@ -133,6 +150,7 @@ register        x, y;
 	}
 }
 
+void
 at (x, y, ch)
 register        x, y;
 register char   ch;
@@ -146,15 +164,18 @@ register char   ch;
 	curx++;
 }
 
+void
 prme () {
 	if (!u.uinvis)
 		at (u.ux, u.uy, '@');
 }
 
+void
 pru () {
 	prl (u.ux, u.uy);
 }
 
+void
 prl (x, y) {
 	register        PART * room;
 	register        MONSTER mtmp;
@@ -172,6 +193,7 @@ prl (x, y) {
 		newunseen (x, y);
 }
 
+void
 newunseen (x, y)
 register        x, y;
 {
@@ -250,12 +272,14 @@ register        x, y;
 	return tmp;
 }
 
+void
 newsym (x, y)
 register        x, y;
 {
 	atl (x, y, news0 (x, y));
 }
 
+void
 levlsym (x, y, c)
 register        x, y, c;
 {
@@ -263,6 +287,7 @@ register        x, y, c;
 		newsym (x, y);
 }
 
+void
 nosee (x, y)
 register        x, y;
 {
@@ -280,6 +305,7 @@ register        x, y;
 	}
 }
 
+void
 prl1 (x, y)
 register        x, y;
 {
@@ -302,6 +328,7 @@ register        x, y;
 			prl (x + count, y);
 }
 
+void
 nose1 (x, y)
 register        x, y;
 {
@@ -323,12 +350,14 @@ register        x, y;
 			nosee (x + count, y);
 }
 
+void
 doreprint () {
 	nomove ();
 	pline ("\200");		/* Michiel: Code for repeating last message */
 }
 
 /* VARARGS1 */
+void
 pline (line, arg1, arg2, arg3, arg4)
 register char  *line;
 {
@@ -360,6 +389,7 @@ register char  *line;
 	curx = ++savx;
 }
 
+void
 prustr () {
 	if (u.ustr > 18) {
 		if (u.ustr > 117)
@@ -372,6 +402,7 @@ prustr () {
 	curx += 5;
 }
 
+void
 pmon (mtmp)
 register        MONSTER mtmp;
 {
@@ -379,6 +410,7 @@ register        MONSTER mtmp;
 		seeatl (mtmp -> mx, mtmp -> my, mtmp -> data -> mlet);
 }
 
+void
 docrt () {
 	cls ();
 	if (u.uswallow) {
@@ -395,6 +427,7 @@ docrt () {
 	bot ();
 }
 
+void
 nscr () {
 	register        umv;
 
@@ -405,6 +438,7 @@ nscr () {
 	donscrt (1, umv);
 }
 
+void
 donscrt (mode, umv) {		/* mode: 0- docrt(), 1- nscr()  */
 	register        PART * room;
 	register        x, y, ly, hy, lx, hx;
@@ -460,6 +494,7 @@ donscrt (mode, umv) {		/* mode: 0- docrt(), 1- nscr()  */
 	scrly = 22;
 }
 
+void
 bot () {
 	flags.botl = 0;
 	flags.dhp = 0;
@@ -486,6 +521,7 @@ bot () {
 	curx = 78;
 }
 
+void
 curs (x, y)
 register        x, y;
 {
@@ -497,6 +533,7 @@ register        x, y;
 	curx = x;
 }
 
+void
 cl_end () {
 	if (CE)
 		tputs (CE, 0, putch);
@@ -506,6 +543,7 @@ cl_end () {
 	}
 }
 
+void
 putch (c)
 char    c;
 {

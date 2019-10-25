@@ -13,6 +13,9 @@ extern struct permonst  li_dog, dog, la_dog;
 
 char    SADFEEL[] = "You have a sad feeling for a moment, then it passes";
 
+extern void initedog();
+
+void
 makedog () {
 	if (makemon (&li_dog))
 		return;		/* Dogs were genocided */
@@ -20,6 +23,7 @@ makedog () {
 	initedog (fmon);
 }
 
+void
 initedog (mtmp)
 register        MONSTER mtmp;
 {
@@ -36,6 +40,7 @@ register        MONSTER mtmp;
 
 MONSTER mydogs = 0;
 
+void
 losedogs () {
 	register        MONSTER mtmp;
 
@@ -47,6 +52,7 @@ losedogs () {
 	}
 }
 
+void
 keepdogs (checkdist)
 int     checkdist;
 {

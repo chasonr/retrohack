@@ -9,6 +9,7 @@
 
 short   ospeed;			/* Used by tputs */
 
+void
 getlin (str)
 register char  *str;
 {
@@ -37,6 +38,7 @@ register char  *str;
 	}
 }
 
+void
 getret () {
 	printf ("\nHit space to continue: ");
 	flush ();
@@ -46,6 +48,7 @@ getret () {
  * Put together cbreak-mode and echo --- Michiel
  */
 
+void
 hackmode (x)
 register        x;
 {
@@ -70,6 +73,7 @@ register        x;
 	}
 }
 
+void
 more () {
 	printf (" --More--");
 	flush ();

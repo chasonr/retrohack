@@ -14,6 +14,11 @@ extern  WORMSEGMENT wsegs[32];
 
 extern  OBJECT yourinvent0;
 
+extern void prname();
+extern void doinv();
+extern void ofree();
+extern void freeobj();
+
 OBJECT addinv (obj)
 register        OBJECT obj;
 {
@@ -42,6 +47,7 @@ register        OBJECT obj;
 	return obj;
 }
 
+void
 useup (obj)
 register        OBJECT obj;
 {
@@ -62,6 +68,7 @@ register        OBJECT obj;
 		ofree (obj);
 }
 
+void
 delobj (obj)
 register        OBJECT obj;
 {
@@ -69,6 +76,7 @@ register        OBJECT obj;
 	ofree (obj);
 }
 
+void
 ofree (obj)
 register        OBJECT obj;
 {
@@ -78,6 +86,7 @@ register        OBJECT obj;
 
 /*  Unlink obj from chain starting with fobj  */
 
+void
 freeobj (obj)
 register        OBJECT obj;
 {
@@ -93,6 +102,7 @@ register        OBJECT obj;
 	}
 }
 
+void
 deltrap (trap)
 register        GOLD_TRAP trap;
 {
@@ -226,6 +236,7 @@ register char  *let, *word;
 	return (otmp);
 }
 
+void
 prinv (obj)
 register        OBJECT obj;
 {
@@ -238,6 +249,7 @@ register        OBJECT obj;
 	prname (obj, ilet, 1);
 }
 
+void
 prname (obj, let, onelin)
 register        OBJECT obj;
 register char   let;
@@ -252,6 +264,7 @@ register char   let;
 		printf ("%s\n", li);
 }
 
+void
 ddoinv () {
 	nomove ();
 	if (!invent)
@@ -265,6 +278,7 @@ ddoinv () {
  *
  */
 
+void
 doinv (str, opt)
 register char  *str;
 int     opt;

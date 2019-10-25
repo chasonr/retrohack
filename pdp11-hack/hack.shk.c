@@ -42,12 +42,17 @@ COORDINATES shk, shd;
 
 #define SHOP_NAME               shopnam[rooms[shoproom].rtype - 8]
 
+extern void shopinit();
+extern void setpaid();
+
+void
 shkdead () {
 	shopkeeper = 0;
 	rooms[shoproom].rtype = 0;
 	setpaid ();
 }
 
+void
 setpaid () {
 	register        tmp;
 	register        OBJECT obj;
@@ -60,6 +65,7 @@ setpaid () {
 	billct = 0;
 }
 
+void
 addupbill () {			/* Delivers result in total */
 	register        ct = billct;
 
@@ -117,6 +123,7 @@ register        OBJECT obj;
 	return (NOTONBILL);
 }
 
+void
 dopay () {
 	register unsigned       tmp;
 	char    buffer[BUFSZ];
@@ -197,6 +204,7 @@ dopay () {
 	shopkeeper -> angry = 0;
 }
 
+void
 paybill () {			/* Called after dying (or quitting) with
 				   nonempty bill */
 	if (shopkeeper) {
@@ -215,6 +223,7 @@ paybill () {			/* Called after dying (or quitting) with
 	more ();
 }
 
+void
 addtobill (obj)
 register        OBJECT obj;
 {
@@ -231,6 +240,7 @@ register        OBJECT obj;
 	obj -> unpaid = 1;
 }
 
+void
 subfrombill (obj)
 register        OBJECT obj;
 {
@@ -278,6 +288,7 @@ register        OBJECT obj;
 	pline ("You sold %s and got %d gold pieces.", buf, tmp);
 }
 
+void
 doinvbill () {
 	register unsigned       tmp, cnt = 0;
 
@@ -359,6 +370,7 @@ realhunger () {			/* not completely foolproof (??) */
 	return tmp;
 }
 
+void
 shopinit () {
 	register        MKROOM * sroom = &rooms[shoproom];
 	register        i, j, x, y;
@@ -411,6 +423,7 @@ shopinit () {
 	pmon (shopkeeper);
 }
 
+void
 setangry () {
 	if (shopkeeper -> data -> mlet == '@' && !shopkeeper -> angry) {
 		pline ("The shopkeeper gets angry.");

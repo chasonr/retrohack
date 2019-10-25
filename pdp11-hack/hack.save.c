@@ -27,6 +27,7 @@ extern  COORDINATES shk, shd;
 extern  MONSTER shopkeeper;
 extern  MONSTER mydogs;
 
+void
 save () {
 	register        fd, ofd, tmp;
 	register        OBJECT otmp, otmp2;

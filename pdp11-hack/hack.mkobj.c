@@ -6,6 +6,9 @@
 #include "hack.h"
 #include "hack.vars.h"
 
+extern void savecalls();
+extern void restcalls();
+
 mkfood () {
 	register        FOOD fp;
 	register        i = rn2 (100);
@@ -38,6 +41,7 @@ mkwep () {
 
 char    mkobjstr[] = "))[[!!!!????%%%%//=**";
 
+void
 mkobj (let)
 register        let;
 {
@@ -130,6 +134,7 @@ register        let;
 	}
 }
 
+void
 shufl (base, num)
 register char  *base[];
 register        num;
@@ -145,6 +150,7 @@ register        num;
 	}
 }
 
+void
 shuffle () {
 	shufl (wannam, SIZE (wantyp));
 	shufl (potcol, SIZE (potcol));
@@ -152,6 +158,7 @@ shuffle () {
 	shufl (scrnam, SIZE (scrtyp));
 }
 
+void
 savenames (fd)
 register        fd;
 {
@@ -162,6 +169,7 @@ register        fd;
 	bwrite (fd, rinnam, sizeof rinnam);
 }
 
+void
 restnames (fd)
 register        fd;
 {
@@ -173,6 +181,7 @@ register        fd;
 }
 
 /* Restore the names we have given to things */
+void
 callsrestore (fd)
 register        fd;
 {
@@ -183,6 +192,7 @@ register        fd;
 }
 
 /* Save things we have given names to */
+void
 callssave (fd)
 register        fd;
 {
@@ -192,6 +202,7 @@ register        fd;
 	savecalls (fd, scrcall, SIZE (scrtyp));
 }
 
+void
 savecalls (fd, strings, max)
 char   *strings[];
 register int    max, fd;
@@ -207,6 +218,7 @@ register int    max, fd;
 	}
 }
 
+void
 restcalls (fd, strings, max)
 register int    fd, max;
 char   *strings[];

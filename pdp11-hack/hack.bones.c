@@ -27,6 +27,7 @@ struct permonst pm_ghost = {
 char    bones[] = "bones_xx";
 
 /* Save bones and possessions of a deceased adventurer */
+void
 savebones () {
 	register        fd;
 	register        OBJECT otmp;

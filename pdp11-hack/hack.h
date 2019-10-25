@@ -97,7 +97,7 @@ long    pow ();
 
 typedef struct func_tab {
 	char    f_char;
-	int     (*f_funct) ();
+	void    (*f_funct) ();
 } FUNCTIONS;
 extern  FUNCTIONS list[];
 
