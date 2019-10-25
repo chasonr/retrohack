@@ -2,6 +2,7 @@
  * Hack.worm.c
  */
 
+#include <stdlib.h>
 #include "hack.h"
 
 /* Linked list, tail first */

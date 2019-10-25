@@ -5,6 +5,12 @@
 /* Routines to do various user commands */
 
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/wait.h>
 #include "hack.h"
 #include "hack.do.vars.h"
  /* (MT) has 'do' structures and lists */
@@ -382,7 +388,7 @@ register        OBJECT obj;
 {
 	register        OBJECT otmp;
 
-	if (!index ("/=", obj -> olet) && obj -> quan > 1) {
+	if (!strchr ("/=", obj -> olet) && obj -> quan > 1) {
 		obj -> quan--;
 		otmp = newobj ();
 		*otmp = *obj;

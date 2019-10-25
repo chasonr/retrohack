@@ -2,6 +2,11 @@
  * Hack.do1.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "hack.h"
 
 extern char     NOTHIN[], WAND[];
@@ -112,7 +117,7 @@ dozap () {
 					break;
 
 				case Z_UND_TUR: 
-					if (index (" WVZ&", mtmp -> data -> mlet)) {
+					if (strchr (" WVZ&", mtmp -> data -> mlet)) {
 						mtmp -> mhp -= rnd (8);
 						if (alive (mtmp))
 							mtmp -> mflee = 1;
@@ -441,7 +446,7 @@ register        type;
 			mtmp -> mhp -= d (2, 6);
 			break;
 		case Z_FIRE: 
-			if (index ("Dg", mtmp -> data -> mlet))
+			if (strchr ("Dg", mtmp -> data -> mlet))
 				return;
 			mtmp -> mhp -= d (6, 6);
 			if (mtmp -> data -> mlet == 'Y')
@@ -451,14 +456,14 @@ register        type;
 			mtmp -> mfroz = 1;
 			break;
 		case Z_COLD: 
-			if (index ("Ygf", mtmp -> data -> mlet))
+			if (strchr ("Ygf", mtmp -> data -> mlet))
 				return;
 			if (mtmp -> data -> mlet == 'D')
 				mtmp -> mhp -= 7;
 			mtmp -> mhp -= d (6, 6);
 			break;
 		case Z_DEATH: 
-			if (index ("WVZ ", mtmp -> data -> mlet))
+			if (strchr ("WVZ ", mtmp -> data -> mlet))
 				return;
 			mtmp -> mhp = 0;
 			break;

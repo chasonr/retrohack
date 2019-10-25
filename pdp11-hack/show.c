@@ -2,6 +2,11 @@
  * Showlevel.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 #define NORMAL_IO
 #define SHOW
 #include "hack.h"
@@ -149,8 +154,6 @@ char    ch;
 {
 	putchar (ch ? ch : '_');
 }
-
-extern char    *malloc ();
 
 char   *
         alloc (num)

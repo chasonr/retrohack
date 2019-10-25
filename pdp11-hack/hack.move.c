@@ -2,6 +2,9 @@
  * Hack.move.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "hack.h"
 
 extern char     STOPGLOW[], UMISS[], *setan ();
@@ -33,7 +36,7 @@ register char  *cmd;
 {
 	register char  *dp;
 
-	if (!(dp = index (sdir, *cmd)))
+	if (!(dp = strchr (sdir, *cmd)))
 		return 0;
 	dx = xdir[dp - sdir];
 	dy = ydir[dp - sdir];
@@ -113,7 +116,7 @@ M:
 				tmp--;
 			else if (uwep -> otyp == W_DAGGER)
 				tmp += 2;
-			else if (uwep -> otyp == W_SPEAR && index ("XDne",
+			else if (uwep -> otyp == W_SPEAR && strchr ("XDne",
 						mdat -> mlet))
 				tmp += 2;
 		}

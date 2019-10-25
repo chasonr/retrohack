@@ -4,6 +4,7 @@
 
 /* Contains monster control routines */
 
+#include <string.h>
 #include "hack.h"
 
 extern  MONSTER bhit ();
@@ -85,7 +86,7 @@ register        MONSTER mtmp;
   panic( CORE, "Bad(%d)monster %c", mdat->mhd,
   mdat->mlet );
   */
-	if ((moves % 20 == 0 || index ("ViT", mdat -> mlet)) &&
+	if ((moves % 20 == 0 || strchr ("ViT", mdat -> mlet)) &&
 			mtmp -> mhp < mtmp -> orig_hp)
 		mtmp -> mhp++;	/* Regenerate monsters */
 	if (mtmp -> mfroz)
@@ -112,7 +113,7 @@ register        MONSTER mtmp;
 	if (tmp == 2)
 		return 1;	/* Monster died moving */
 
-	if (!index ("Ea", mdat -> mlet) && dist (mtmp -> mx, mtmp -> my) < 3
+	if (!strchr ("Ea", mdat -> mlet) && dist (mtmp -> mx, mtmp -> my) < 3
 			&& !mtmp -> mtame && mtmp != shopkeeper && u.uhp > 0) {
 		nomul (tmp = 0);
 		if (u.uswallow) {
@@ -120,7 +121,7 @@ register        MONSTER mtmp;
 				if (mdat -> mmove - 12 > rnd (12))
 					tmp = m_move (mtmp, 1);
 		}
-		else if (!index ("&DyF", mdat -> mlet)) {
+		else if (!strchr ("&DyF", mdat -> mlet)) {
 			if (mtmp -> ale && cansee (mtmp -> mx, mtmp -> my)) {
 				mtmp -> invis = 0;
 				pmon (mtmp);
@@ -130,7 +131,7 @@ register        MONSTER mtmp;
 		}
 
 /* Increase chance of hitting (no damage) for L and R */
-		if (index ("LR", mdat -> mlet) && hitu (5, 0, mdat -> mname))
+		if (strchr ("LR", mdat -> mlet) && hitu (5, 0, mdat -> mname))
 			tmp++;
 
 		ctmp = (tmp && !mtmp -> mcan && (!uarm ||
@@ -505,7 +506,7 @@ register        MONSTER mtmp;
 	appr = 1;
 	if (mtmp -> mflee)
 		appr = -1;
-	if (mtmp -> mconf || u.uinvis || (index ("BI", mtmp -> data -> mlet) &&
+	if (mtmp -> mconf || u.uinvis || (strchr ("BI", mtmp -> data -> mlet) &&
 				!rn2 (3)))
 		appr = 0;
 	omx = mtmp -> mx;
@@ -551,7 +552,7 @@ register        MONSTER mtmp;
 			worm_move (mtmp);
 	}
 	else {
-		if (!rn2 (10) && index ("tNL", mtmp -> data -> mlet)) {
+		if (!rn2 (10) && strchr ("tNL", mtmp -> data -> mlet)) {
 			rloc (mtmp);
 			return 0;
 		}

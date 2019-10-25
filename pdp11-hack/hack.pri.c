@@ -2,6 +2,10 @@
  * Hack.pri.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 #include "hack.h"
 
 char    scrlx, scrhx, scrly, scrhy;
@@ -10,7 +14,7 @@ extern short    ospeed;
 char    xcurses[200];		/* Contain's curser stuff */
 char   *HO, *CL, *CE, *CM, *UP, *BC;
 char    PC;
-extern char    *tgetstr (), *getenv (), *tgoto (), *malloc ();
+extern char    *tgetstr (), *getenv (), *tgoto ();
 int     putch ();
  /* Corners of new area on screen */
 extern char     SAVEFILE[];
@@ -331,10 +335,10 @@ register char  *line;
 	char    pbuf[BUFSZ];
 	static char     prevbuf[BUFSZ];
 
-	if (index (line, '\200'))
+	if (strchr (line, '\200'))
 		strcpy (pbuf, prevbuf);
 	else {
-		if (!index (line, '%'))
+		if (!strchr (line, '%'))
 			strcpy (pbuf, line);
 		else
 			sprintf (pbuf, line, arg1, arg2, arg3, arg4);

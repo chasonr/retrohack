@@ -2,6 +2,7 @@
  * hack.eat.c
  */
 
+#include <stdio.h>
 #include "hack.h"
 
 extern char    *nomvmsg;

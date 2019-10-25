@@ -2,6 +2,7 @@
  * Hack.do_wear.c
  */
 
+#include <stdio.h>
 #include "hack.h"
 
 #define CURSED		1

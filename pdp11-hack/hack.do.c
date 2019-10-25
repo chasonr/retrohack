@@ -2,6 +2,9 @@
  * Hack.do.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "hack.h"
 
 extern char     NOTHIN[], WCLEV[], *nomvmsg;
@@ -161,7 +164,7 @@ doread () {
 				flags.topl = 0;
 				getlin (buf);
 			} while (strlen (buf) != 1 || !LETTER (*buf) ||
-					 /* a3 */ index (genocided, *buf));
+					 /* a3 */ strchr (genocided, *buf));
 			strcat (genocided, buf);
 			for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 				mtmp2 = mtmp -> nmon;
@@ -650,7 +653,7 @@ char   *string;
 {
 	register        OBJECT otmp;
 
-	for (otmp = invent; otmp && !index (string, otmp -> olet); otmp =
+	for (otmp = invent; otmp && !strchr (string, otmp -> olet); otmp =
 			otmp -> nobj);
 	return (otmp ? 1 : 0);
 }

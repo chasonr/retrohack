@@ -8,9 +8,14 @@
  * while swallowed or stuck
  */
 
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "hack.h"
 #include "hack.dog.h"
-#include <signal.h>
 
 #define MAXLEVEL	40
 
@@ -117,7 +122,7 @@ save () {
 	}
 
 	close (fd);
-	(*index (lock, '.')) = '\0';/* Remove main lock */
+	(*strchr (lock, '.')) = '\0';/* Remove main lock */
 	unlink (lock);
 	printf ("\n\nSee you around...\n");
 	flush ();

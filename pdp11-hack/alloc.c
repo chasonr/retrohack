@@ -9,9 +9,8 @@
  * The strange return value of alloc is implemented to shut lint up
  */
 
+#include <stdlib.h>
 #include "hack.h"
-
-extern char    *malloc ();
 
 union PTRS ptrs;
 

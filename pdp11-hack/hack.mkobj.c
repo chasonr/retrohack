@@ -2,6 +2,7 @@
  * Hack.mkobj.c
  */
 
+#include <string.h>
 #include "hack.h"
 #include "hack.vars.h"
 

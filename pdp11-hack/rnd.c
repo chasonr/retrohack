@@ -2,6 +2,8 @@
  * Rnd.c
  */
 
+#include <stdlib.h>
+
 #define RND(x)	((rand() >> 3) % x)
 
 rn1 (x, y)

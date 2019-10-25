@@ -3,13 +3,19 @@
  */
 
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
 #include "hack.h"
 
 #define exception( id )	( id == uid )
 #define HUISJES	2201
 #define WILDE	2216
 
-extern char    *hu_stat[4], *getenv (), *malloc (), *parse ();
+extern char    *hu_stat[4], *parse ();
 
 int     rfile;
 

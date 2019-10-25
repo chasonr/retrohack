@@ -4,6 +4,9 @@
 
 /* Contains various monster routines */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "hack.h"
 
 extern char     WCLEV[], STOPGLOW[];
@@ -308,16 +311,16 @@ register        MONSTER mtmp;
 	++tmp;
 	if (mtmp -> data -> ac < 3)
 		tmp += (7 - mtmp -> data -> ac) << 1;
-	if (index ("AcsSDXaeRTVWU&In:P", mtmp -> data -> mlet))
+	if (strchr ("AcsSDXaeRTVWU&In:P", mtmp -> data -> mlet))
 		tmp += mtmp -> data -> mhd << 1;
-	if (index ("DeV&P", mtmp -> data -> mlet))
+	if (strchr ("DeV&P", mtmp -> data -> mlet))
 		tmp += 7 * mtmp -> data -> mhd;
 	if (mtmp -> data -> mhd > 6)
 		tmp += 50;
 	if (mtmp -> ale)
 		tmp += 1000;
 	relobj (mtmp);
-	if ((index ("NTV&", mtmp -> data -> mlet) || !rn2 (5)) && !mtmp -> ale
+	if ((strchr ("NTV&", mtmp -> data -> mlet) || !rn2 (5)) && !mtmp -> ale
 			&& levl[mtmp -> mx][mtmp -> my].typ > SDOOR) {
 	/* Mimic in wall? */
 		mkobj (0);
@@ -436,7 +439,7 @@ register        MONSTDATA mdat;
 	if (mdat -> mlet == 'w' && getwn (mtmp))
 		initworm (mtmp);
 	if (u.uswallow && mtmp == u.ustuck &&
-			!index (",'P", mdat -> mlet)) {
+			!strchr (",'P", mdat -> mlet)) {
 		unstuck (mtmp);
 		mnexto (mtmp);
 	}
@@ -451,10 +454,10 @@ register        MONSTDATA ptr;
 	if (!ptr) {
 		do
 			ptr = &mon[rn2 (dlevel / 3 + 1) % 8][rn2 (7)];
-		while (index (genocided, ptr -> mlet));
+		while (strchr (genocided, ptr -> mlet));
 	}
 	else {
-		if (index (genocided, ptr -> mlet)) {
+		if (strchr (genocided, ptr -> mlet)) {
 			if (!u.ublind)
 				p2xthe ("%s vanishes!", ptr -> mname);
 			return 1;

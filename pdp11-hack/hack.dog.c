@@ -2,6 +2,7 @@
  * Hack.dog.c
  */
 
+#include <string.h>
 #include        "hack.h"
 #include        "hack.dog.h"
 
@@ -307,7 +308,7 @@ register        MONSTER magr, mdef;
 	int     hit;
 	char    tmp, vis;
 
-	if (index ("Eay", magr -> data -> mlet))
+	if (strchr ("Eay", magr -> data -> mlet))
 		return NOMOVE;
 	tmp = pd -> ac + pa -> mhd - 1;
 	if (mdef -> mconf || mdef -> mfroz || mdef -> msleep) {

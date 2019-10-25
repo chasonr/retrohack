@@ -2,8 +2,10 @@
  * Hack.io.c
  */
 
-#include "hack.h"
+#include <stdio.h>
 #include <termios.h>
+#include <unistd.h>
+#include "hack.h"
 
 short   ospeed;			/* Used by tputs */
 

@@ -2,8 +2,13 @@
  * Hack.lev.c
  */
 
-#include "hack.h"
 #include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include "hack.h"
 
 #define MAXLEVEL	40
 #define ERROR		 1
@@ -72,8 +77,8 @@ getlev (fd) {
 			free (stmp);
 /* Regenerate animals if you've been on another level */
 		if (omoves) {
-			if (!index (genocided, mtmp -> data -> mlet)) {
-				if (index ("ViT", mtmp -> data -> mlet))
+			if (!strchr (genocided, mtmp -> data -> mlet)) {
+				if (strchr ("ViT", mtmp -> data -> mlet))
 					mtmp -> mhp += mtmp -> mhp + tmoves;
 				else
 					mtmp -> mhp += tmoves / 20;

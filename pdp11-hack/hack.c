@@ -2,6 +2,8 @@
  * Hack.c
  */
 
+#include <stdio.h>
+#include <string.h>
 #include "hack.h"
 
 extern char     news0 (), *setan ();
@@ -429,7 +431,7 @@ register char  *str;		/* a3 */
 {
 	static char     buffer[BUFSZ];
 
-	sprintf (buffer, "a%s %s", index ("aeiou", *str) ? "n" : "", str);
+	sprintf (buffer, "a%s %s", strchr ("aeiou", *str) ? "n" : "", str);
 	return buffer;
 }
 
@@ -478,7 +480,7 @@ register        OBJECT obj;
 				obj -> otyp <= W_AMMUNITION))
 		tmp = rnd (2);
 	else {
-		if (index (mlarge, monst -> data -> mlet)) {
+		if (strchr (mlarge, monst -> data -> mlet)) {
 			tmp = rnd (weapons[obj -> otyp].wldam);
 			if (obj -> otyp == W_TWOH_SWORD)
 				tmp += d (2, 6);

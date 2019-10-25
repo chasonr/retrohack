@@ -2,6 +2,10 @@
  * Mklev.make.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #define ZOO		1
 #define GRAVEYARD	2
 #define SWAMP		3
@@ -228,7 +232,7 @@ register int    sl, monx, mony;
 			}
 			mtmp -> mhp = rn2 (dlevel / 3 + 1) % 8;
 			mtmp -> orig_hp = rn2 (7);
-		} while (index (geno, mmon[mtmp -> mhp][mtmp -> orig_hp]));
+		} while (strchr (geno, mmon[mtmp -> mhp][mtmp -> orig_hp]));
 	}
 	mtmp -> nmon = fmon;
 	fmon = mtmp;
@@ -353,7 +357,7 @@ mymakemon (monx, mony) {
 			return NOMON;
 		}
 		tmp = putyard (mtmp);
-	} while (index (geno, mmon[mtmp -> mhp][mtmp -> orig_hp]) || tmp);
+	} while (strchr (geno, mmon[mtmp -> mhp][mtmp -> orig_hp]) || tmp);
 	mtmp -> nmon = fmon;
 	fmon = mtmp;
 	return 0;

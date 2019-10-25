@@ -2,6 +2,11 @@
  * Mklev.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 #define NORMAL_IO
 #include "hack.h"
 

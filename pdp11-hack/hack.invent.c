@@ -2,6 +2,9 @@
  * Hack.invent.c
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include	"hack.h"
 
 #define NOT_AT	0
@@ -23,7 +26,7 @@ register        OBJECT obj;
 						obj -> olet == ')' &&
 						obj -> quan + otmp -> quan < 32 &&
 						obj -> spe == otmp -> spe) ||
-					index ("%?!*", otmp -> olet))) {
+					strchr ("%?!*", otmp -> olet))) {
 			otmp -> quan += obj -> quan;
 			ofree (obj);
 			return otmp;
@@ -160,7 +163,7 @@ register char  *let, *word;
 	}
 	ilet = 'a';
 	for (otmp = invent; otmp; otmp = otmp -> nobj) {
-		if (!let || index (let, otmp -> olet))
+		if (!let || strchr (let, otmp -> olet))
 			buffer[foo++] = ilet;
 		if (ilet == 'z')
 			ilet = 'A';
@@ -216,7 +219,7 @@ register char  *let, *word;
 			break;
 		}
 	}
-	if (!allowall && let && !index (let, otmp -> olet)) {
+	if (!allowall && let && !strchr (let, otmp -> olet)) {
 		pline ("That is a silly thing to %s.", word);
 		return (NO_OBJ);
 	}
@@ -273,12 +276,12 @@ int     opt;
 
 	if (!flags.oneline)
 		for (otmp = invent; otmp; otmp = otmp -> nobj)
-			if (!str || index (str, otmp -> olet))
+			if (!str || strchr (str, otmp -> olet))
 				ct++;
 	if (ct > 1)
 		cls ();
 	for (otmp = invent; otmp; otmp = otmp -> nobj) {
-		if (!str || index (str, otmp -> olet)) {
+		if (!str || strchr (str, otmp -> olet)) {
 			prname (otmp, ilet, ct <= 1);
 			count++;
 		}

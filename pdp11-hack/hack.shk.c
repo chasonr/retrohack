@@ -2,6 +2,7 @@
  * Hack.shk.c
  */
 
+#include <stdio.h>
 #include "hack.h"
 
 #define BILLSZ  200
