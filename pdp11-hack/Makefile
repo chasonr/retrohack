@@ -64,7 +64,8 @@ show: show.c hack.h envir.h
 
 cleanup:
 	rm -f $(HOBJ) $(GOBJ) $(PLAYDIR)/show $(PLAYDIR)/makelev \
-	   $(PLAYDIR)/bones_* mklev.mkobj.o mklev.o
+	   $(PLAYDIR)/bones_* mklev.make.o mklev.mkobj.o mklev.o
+	rm -f hack mklev show
 
 install: all 
 	rm -f $(PLAYDIR)/bones_*
