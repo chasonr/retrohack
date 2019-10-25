@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include "hack.h"
 
-short   ospeed;			/* Used by tputs */
+static short ospeed;			/* Used by tputs */
 
 void
 getlin (str)

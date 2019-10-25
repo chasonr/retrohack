@@ -10,13 +10,15 @@
 #define NORMAL_IO
 #include "hack.h"
 
-char   *tfile, *tspe, **args, nul[20];
+static char *tfile, *tspe, **args;
+char nul[20];
 
-extern void mkpos();
-extern void dodoor();
-extern void newloc();
-extern void makecor();
+static void mkpos();
+static void dodoor();
+static void newloc();
+static void makecor();
 extern void bwrite();
+static int maker();
 
 #include "mklev.svlev.c"
 
@@ -45,16 +47,20 @@ MONSTER fmon;
 OBJECT fobj;
 GOLD_TRAP fgold, ftrap;
 
-MKROOM rooms[15], *croom, *troom;
+MKROOM rooms[15], *croom;
+static MKROOM *troom;
 
 COORDINATES doors[DOORMAX];
 
-int     doorindex = 0, nroom, comp ();
+static int doorindex = 0;
+int nroom;
+static int comp ();
 
 char    dlevel, *geno, goldseen,
         xdnstair, xupstair, ydnstair, yupstair,
-        wizard, nxcor, x, y,
+        wizard,
         dx, dy, tx, ty;
+static char nxcor, x, y;
  /* For corridors and other things... */
 
 #define RUIN	5
@@ -184,6 +190,7 @@ jumpout:
 	savelev ();
 }
 
+static int
 comp (xcoord, ycoord)
 register        MKROOM * xcoord, *ycoord;
 {
@@ -192,7 +199,7 @@ register        MKROOM * xcoord, *ycoord;
 	return (xcoord -> lx > ycoord -> lx);
 }
 
-void
+static void
 mkpos () {
 	if (troom -> hx < 0 || croom -> hx < 0)
 		return;
@@ -240,7 +247,7 @@ mkpos () {
 	dodoor (x, y, croom);
 }
 
-void
+static void
 dodoor (doorx, doory, aroom)
 register int    doorx, doory;
 register        MKROOM * aroom;
@@ -280,7 +287,7 @@ register        MKROOM * aroom;
 		broom -> fdoor++;
 }
 
-void
+static void
 newloc () {
 	register int    tryct = 0;
 
@@ -337,6 +344,7 @@ register int    dir;
 	return 1;
 }
 
+static int
 maker (lowx, hix, lowy, hiy)
 char    lowx, hix, lowy, hiy;
 {
@@ -397,7 +405,7 @@ char    lowx, hix, lowy, hiy;
 	return 1;
 }
 
-void
+static void
 makecor (nx, ny)
 register int    nx, ny;
 {

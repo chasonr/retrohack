@@ -12,20 +12,32 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include "hack.h"
+
+static void doredraw();
+static void dohelp();
+static void dosh();
+static void dowield();
+static void ddodown();
+static void ddoup();
+static void m_call();
+static void donull();
+static void dothrow();
+
 #include "hack.do.vars.h"
+
  /* (MT) has 'do' structures and lists */
 
 extern char    *getenv (), UMISS[], WELDED[];
 
 #define MAXLEVEL       40
 
-OBJECT loseone ();
+static OBJECT loseone ();
 
 void    done1 ();
 
 char    upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
 
-extern void dostairs();
+static void dostairs();
 extern void dosavelev();
 extern void dodown();
 extern void doup();
@@ -83,7 +95,7 @@ register char  *cmd;
 	nomove ();
 }
 
-void
+static void
 doredraw () {
 	docrt ();
 	nomove ();
@@ -136,12 +148,12 @@ char   *arg2, *arg3, *arg4, *arg5, *arg6;
 	}
 }
 
-void
+static void
 dohelp () {
 	hackexec (1, MORE, HELP, NULL);
 }
 
-void
+static void
 dosh () {
 	register char  *str;
 
@@ -151,7 +163,7 @@ dosh () {
 		hackexec (2, "/bin/sh", "-i", NULL);
 }
 
-void
+static void
 dowield () {
 	register        OBJECT wep;
 
@@ -170,17 +182,17 @@ dowield () {
 	}
 }
 
-void
+static void
 ddodown () {
 	dostairs ("down");
 }
 
-void
+static void
 ddoup () {
 	dostairs ("up");
 }
 
-void
+static void
 dostairs (dir)
 register char  *dir;
 {
@@ -218,7 +230,7 @@ dosavelev () {
 
 extern int      uid;
 
-void
+static void
 checklev (dir)			/* Michiel: Geen geknoei */
 register char  *dir;
 {
@@ -267,7 +279,7 @@ doup () {
 	u.uy = ydnstair;
 }
 
-void
+static void
 m_call () {
 	register        OBJECT obj;
 
@@ -315,13 +327,13 @@ register        OBJECT obj;
 	*str1 = str;
 }
 
-void
+static void
 donull () {
 }
 
 MONSTER bhit ();
 
-void
+static void
 dothrow () {
 	register        OBJECT obj;
 	register        MONSTER monst;
@@ -407,7 +419,8 @@ dothrow () {
 
 /* Create a new object (at fobj) of multiplicity 1
 				  remove obj from invent if necessary */
-OBJECT loseone (obj)
+static OBJECT
+loseone (obj)
 register        OBJECT obj;
 {
 	register        OBJECT otmp;

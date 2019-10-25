@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "hack.h"
 
-union PTRS ptrs;
+static union PTRS ptrs;
 
 union PTRS *
 alloc (num)

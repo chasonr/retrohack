@@ -14,7 +14,7 @@ extern char     NOTHIN[], WAND[];
 extern  MONSTER shopkeeper;
 MONSTER vaultkeeper;
 
-char   *wandeffect[] = {
+static char *wandeffect[] = {
 	"magic missile",
 	"bolt of fire",
 	"sleep ray",
@@ -29,9 +29,10 @@ char    vaultflag[MAXLEVEL];
 
 MONSTER bhit ();
 extern void buzz();
-extern void zhit();
-extern void show();
-extern void vaultinit();
+static int findit();
+static void zhit();
+static void show();
+static void vaultinit();
 
 
 
@@ -271,7 +272,9 @@ register        MONSTER mtmp;
 			mtmp -> data -> mname);
 }
 
-findit () {
+static int
+findit ()
+{
 	char    num, lx, hx, ly, hy;
 	register char   zx, zy;
 	register        GOLD_TRAP gtmp, gt1;
@@ -443,7 +446,7 @@ register        sx, sy;
 	}
 }
 
-void
+static void
 zhit (mtmp, type)
 register        MONSTER mtmp;
 register        type;
@@ -523,7 +526,7 @@ doshow () {			/* Michiel: Show everything you're wearing */
 	show (uright);
 }
 
-void
+static void
 show (otmp)
 register        OBJECT otmp;
 {
@@ -586,11 +589,11 @@ doset () {
  */
 
 
-struct permonst treasurer = {
+static struct permonst treasurer = {
 	"treasurer", '@', 15, 12, -1, 4, 8, 0
 };
 
-void
+static void
 vaultinit () {
 	GOLD_TRAP gtmp;
 

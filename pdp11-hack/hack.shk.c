@@ -11,7 +11,7 @@
 #define NOTONBILL 0
 #define GDIST(x, y)     ((x - gx)*(x - gx) + (y - gy)*(y - gy) )
 
-struct {
+static struct {
 	OBJECT op;
 unsigned        useup:                 1;
 unsigned        bquan:                 5;
@@ -20,19 +20,21 @@ unsigned        bquan:                 5;
 
 MONSTER shopkeeper;
 
-struct permonst shk_pm = {
+static struct permonst shk_pm = {
 	"shopkeeper", '@', 10, 12, 0, 4, 8, 0
 };
 
-long    robbed = 0, total;
+long    robbed = 0;
+static long total;
 
 /*
  * shoproom = index in rooms; set by inshop()
  * shlevel  = last level we initialized shopkeeper
  */
 
-char    billct = 0, shoproom, shlevel;
-char   *shopnam[] = {
+char    billct = 0, shlevel;
+static char shoproom;
+static char *shopnam[] = {
 	"engagement ring", "walking cane", "antique weapon",
 	"delicatessen", "second hand book", "liquor",
 	"used armor", "assorted antiques"
@@ -43,8 +45,10 @@ COORDINATES shk, shd;
 
 #define SHOP_NAME               shopnam[rooms[shoproom].rtype - 8]
 
-extern void shopinit();
-extern void setpaid();
+static void shopinit();
+static void setpaid();
+static int getprice();
+static int realhunger();
 
 void
 shkdead () {
@@ -53,7 +57,7 @@ shkdead () {
 	setpaid ();
 }
 
-void
+static void
 setpaid () {
 	register        tmp;
 	register        OBJECT obj;
@@ -66,7 +70,7 @@ setpaid () {
 	billct = 0;
 }
 
-void
+static void
 addupbill () {			/* Delivers result in total */
 	register        ct = billct;
 
@@ -316,6 +320,7 @@ doinvbill () {
 		}
 }
 
+static int
 getprice (obj)
 register        OBJECT obj;
 {
@@ -359,6 +364,7 @@ register        OBJECT obj;
 	return (10 * obj -> quan * tmp);
 }
 
+static int
 realhunger () {			/* not completely foolproof (??) */
 	register        tmp = u.uhunger;
 	register        OBJECT otmp = invent;
@@ -371,7 +377,7 @@ realhunger () {			/* not completely foolproof (??) */
 	return tmp;
 }
 
-void
+static void
 shopinit () {
 	register        MKROOM * sroom = &rooms[shoproom];
 	register        i, j, x, y;

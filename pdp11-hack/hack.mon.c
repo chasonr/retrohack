@@ -16,6 +16,7 @@ extern void relmon();
 extern void unstuck();
 extern void pseebl();
 extern void newcham();
+static int test();
 
 dist (x, y)
 register        x, y;
@@ -122,6 +123,7 @@ MONSTER mtmp;
 		initworm (mtmp);
 }
 
+static int
 test (x, y) {
 	if (x <= 0 || x > 78 || y <= 0 || y > 20)
 		return 0;

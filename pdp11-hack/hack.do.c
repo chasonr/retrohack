@@ -20,12 +20,13 @@ char    WELDED[] = "The %s is welded into your hand!";
 #define SIZE( x ) 	sizeof( x )/sizeof( x[0] )
 
 extern void litroom();
-extern void nothin();
-extern void dropit();
+static void nothin();
+static void dropit();
+static int getinventory();
 
 /* Routines to do various user commands */
 
-void
+static void
 doglow (num)
 register        num;
 {
@@ -563,7 +564,7 @@ dodrink () {
 	useup (otmp);
 }
 
-void
+static void
 nothin (obj)
 register        OBJECT obj;
 {
@@ -659,6 +660,7 @@ uwepcursed () {			/* a3,drop or throw uwep */
 	return NOTCURSED;
 }
 
+static int
 getinventory (string)
 char   *string;
 {
@@ -669,7 +671,7 @@ char   *string;
 	return (otmp ? 1 : 0);
 }
 
-void
+static void
 dropit (obj)
 register        OBJECT obj;
 {

@@ -12,12 +12,12 @@
  * };
  */
 
-struct obj arrows0 = {
+static struct obj arrows0 = {
 	(struct obj *)0,
 	W_ARROW, 0, 0, 0, ')', 25, 1, 0, 0	/* 25 +0 arrows */
 };
 
-struct obj bow0 = {
+static struct obj bow0 = {
 	&arrows0,
  	W_BOW, 1, 0, 0, ')', 1, 1, 0, 0		/* +1 bow */
 };
@@ -32,7 +32,7 @@ struct obj uarm0 = {
  	A_RING, 4, 0, 0, '[', 1, 1, 0, 0	/* +1 ring mail */
 };
 
-struct obj food0 = {
+static struct obj food0 = {
 	&uarm0,
  	F_FOOD, 0, 0, 0, '%', 2, 1, 0, 0	/* 2 food rations */
 };

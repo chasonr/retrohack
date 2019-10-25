@@ -9,9 +9,10 @@
 #define NOTCURSED	0
 
 extern void doring();
-extern void dorr();
+static void dorr();
+static int cursed();
 
-void
+static void
 off_msg (otmp)
 register        OBJECT otmp;
 {
@@ -72,7 +73,7 @@ doremring () {
 		}
 }
 
-void
+static void
 dorr (ring)
 register        OBJECT * ring;
 {
@@ -85,6 +86,7 @@ register        OBJECT * ring;
 	off_msg (otmp);
 }
 
+static int
 cursed (otmp)
 register        OBJECT otmp;
 {

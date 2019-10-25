@@ -99,7 +99,6 @@ typedef struct func_tab {
 	char    f_char;
 	void    (*f_funct) ();
 } FUNCTIONS;
-extern  FUNCTIONS list[];
 
 
 
@@ -222,7 +221,6 @@ struct monst {
 };
 typedef struct monst   *MONSTER;
 extern  MONSTER fmon, shopkeeper, vaultkeeper;
-extern struct permonst  treasurer;
 
 MONSTER m_at ();
 

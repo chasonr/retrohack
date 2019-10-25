@@ -44,8 +44,8 @@ char    plname[10], lock[16], wizard,
 
 unsigned        moves = 1;
 
-int     multi = 0, done1 (), hangup (), hackpid;
-int     uid;
+int     multi = 0, done1 (), hangup ();
+static int hackpid, uid;
 
 main (argc, argv)
 char   *argv[];

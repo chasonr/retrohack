@@ -2,19 +2,19 @@
  * Hack.do.vars.h
  */
 
-void	doredraw(),  dodrop(),    dodrink(),    doread(),
+void	dodrop(),    dodrink(),    doread(),
 	dosearch(),  armwear(),   dowearring(), doremarm(),
-	doremring(), dopay(),     save(),       dowield(),
-	ddoinv(),    dozap(),     m_call(),     doset(),
-	dowhatis(),  dohelp(),    doeat(),      ddoup(),
-	ddodown(),   done1(),     donull(),     dothrow(),
-	doshow(),    dosh(),	  doreprint(),  gemsdrop();
+	doremring(), dopay(),     save(),
+	ddoinv(),    dozap(),     doset(),
+	dowhatis(),  doeat(),
+	done1(),
+	doshow(),    doreprint(),  gemsdrop();
 
 #ifdef DEBUG
 int debug();
 #endif DEBUG
 
-FUNCTIONS list[] = {
+static FUNCTIONS list[] = {
 	'\020', doredraw, 	 /* was  '\014' */
 	'A', doreprint,	 /* Michiel: Repeat last message printed */
 #ifdef DEBUG

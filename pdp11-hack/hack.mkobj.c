@@ -6,9 +6,10 @@
 #include "hack.h"
 #include "hack.vars.h"
 
-extern void savecalls();
-extern void restcalls();
+static void savecalls();
+static void restcalls();
 
+static int
 mkfood () {
 	register        FOOD fp;
 	register        i = rn2 (100);
@@ -19,6 +20,7 @@ mkfood () {
 	return (fp - foods);
 }
 
+static int
 mkarm () {
 	register        ARMOR ap;
 	register        i = rn2 (100);
@@ -29,6 +31,7 @@ mkarm () {
 	return (ap - armors);
 }
 
+static int
 mkwep () {
 	register        WEAPON wp;
 	register        i = rn2 (100);
@@ -39,7 +42,7 @@ mkwep () {
 	return (wp - weapons);
 }
 
-char    mkobjstr[] = "))[[!!!!????%%%%//=**";
+static char mkobjstr[] = "))[[!!!!????%%%%//=**";
 
 void
 mkobj (let)
@@ -134,7 +137,7 @@ register        let;
 	}
 }
 
-void
+static void
 shufl (base, num)
 register char  *base[];
 register        num;
@@ -202,7 +205,7 @@ register        fd;
 	savecalls (fd, scrcall, SIZE (scrtyp));
 }
 
-void
+static void
 savecalls (fd, strings, max)
 char   *strings[];
 register int    max, fd;
@@ -218,7 +221,7 @@ register int    max, fd;
 	}
 }
 
-void
+static void
 restcalls (fd, strings, max)
 register int    fd, max;
 char   *strings[];

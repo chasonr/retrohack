@@ -8,24 +8,24 @@
 #include <unistd.h>
 #include "hack.h"
 
-char    scrlx, scrhx, scrly, scrhy;
+static char scrlx, scrhx, scrly, scrhy;
 
 extern short    ospeed;
-char    xcurses[200];		/* Contain's curser stuff */
-char   *HO, *CL, *CE, *CM, *UP, *BC;
-char    PC;
+static char xcurses[200];		/* Contain's curser stuff */
+static char *HO, *CL, *CE, *CM, *UP, *BC;
+static char PC;
 extern char    *tgetstr (), *getenv (), *tgoto ();
-void    putch ();
+static void putch ();
  /* Corners of new area on screen */
 extern char     SAVEFILE[];
 
-COORDINATES ou = {
+static COORDINATES ou = {
 	-1, 0
 };				/* Coordinates of @ on screen (if ou.x>=0) */
 
 extern char    *hu_stat[4];/* In eat.c */
 #ifdef NORMAL_IO
-char    obuf[BUFSIZ];
+static char obuf[BUFSIZ];
 #endif NORMAL_IO
 extern void atl();
 extern void on();
@@ -33,7 +33,7 @@ extern void prl();
 extern void newunseen();
 extern void pline();
 extern void nscr();
-extern void donscrt();
+static void donscrt();
 extern void bot();
 extern void curs();
 extern void cl_end();
@@ -287,7 +287,7 @@ register        x, y, c;
 		newsym (x, y);
 }
 
-void
+static void
 nosee (x, y)
 register        x, y;
 {
@@ -438,7 +438,7 @@ nscr () {
 	donscrt (1, umv);
 }
 
-void
+static void
 donscrt (mode, umv) {		/* mode: 0- docrt(), 1- nscr()  */
 	register        PART * room;
 	register        x, y, ly, hy, lx, hx;
@@ -543,7 +543,7 @@ cl_end () {
 	}
 }
 
-void
+static void
 putch (c)
 char    c;
 {

@@ -24,7 +24,7 @@ struct permonst pm_ghost = {
 
 /* (a3)#define	GHMAX	10 */
 
-char    bones[] = "bones_xx";
+static char bones[] = "bones_xx";
 
 /* Save bones and possessions of a deceased adventurer */
 void

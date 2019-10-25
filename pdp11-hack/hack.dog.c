@@ -11,9 +11,9 @@
 
 extern struct permonst  li_dog, dog, la_dog;
 
-char    SADFEEL[] = "You have a sad feeling for a moment, then it passes";
+static char SADFEEL[] = "You have a sad feeling for a moment, then it passes";
 
-extern void initedog();
+static void initedog();
 
 void
 makedog () {
@@ -23,7 +23,7 @@ makedog () {
 	initedog (fmon);
 }
 
-void
+static void
 initedog (mtmp)
 register        MONSTER mtmp;
 {

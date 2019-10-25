@@ -14,7 +14,7 @@ extern  WORMSEGMENT wsegs[32];
 
 extern  OBJECT yourinvent0;
 
-extern void prname();
+static void prname();
 extern void doinv();
 extern void ofree();
 extern void freeobj();
@@ -249,7 +249,7 @@ register        OBJECT obj;
 	prname (obj, ilet, 1);
 }
 
-void
+static void
 prname (obj, let, onelin)
 register        OBJECT obj;
 register char   let;

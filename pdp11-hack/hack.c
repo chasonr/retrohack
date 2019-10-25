@@ -215,8 +215,8 @@ tele () {
 	inshop ();
 }
 
-char   *
-        sitoa (a)
+static char   *
+sitoa (a)
 register int    a;
 {
 	static char     buffer[8];
@@ -390,6 +390,7 @@ abon () {
 	return 3;
 }
 
+static int
 dbon () {
 	if (u.ustr < 6)
 		return - 1;
@@ -476,7 +477,7 @@ register        OBJECT obj;
 	}
 }
 
-char    mlarge[] = "bCDdegIlmnoPSsTUwY',&";
+static char mlarge[] = "bCDdegIlmnoPSsTUwY',&";
 
 hmon (monst, obj)
 register        MONSTER monst;

@@ -8,7 +8,7 @@
 #include "hack.h"
 
 extern char     plname[];
-extern void center();
+static void center();
 
 static char    *rip[] = {
 	"                       ----------",
@@ -52,7 +52,7 @@ outrip () {
 	getret ();
 }
 
-void
+static void
 center (line, text)
 register int    line;
 register char  *text;

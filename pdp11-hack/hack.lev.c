@@ -25,7 +25,7 @@ extern void bwrite();
 
 #include "hack.savelev.c"
 
-struct permonst pm_ale = {
+static struct permonst pm_ale = {
 	"giant eel", ';', 15, 6, -3, 3, 6, 0
 };
 

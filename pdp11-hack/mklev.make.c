@@ -45,7 +45,12 @@ extern void mktrap();
 extern void mkgold();
 extern void makemon();
 extern void delmon();
-extern void delgen();
+static void delgen();
+static int ch_dnstairs();
+static int ch_doors();
+static int ch_upstairs();
+static int mymakemon();
+static int putyard();
 
 void
 makemaz () {
@@ -249,8 +254,8 @@ register int    sl, monx, mony;
 }
 
 
-char    shtypes[] = "=/)%?![";	/* 8 shoptypes: 7 specialised, 1 mixed */
-char    shprobs[] = {
+static char shtypes[] = "=/)%?![";	/* 8 shoptypes: 7 specialised, 1 mixed */
+static char shprobs[] = {
 	3, 3, 5, 5, 10, 10, 14, 50
 };				/* Their probabilities */
 
@@ -343,6 +348,7 @@ mkyard () {
 #define NOMON	1
 #define MON	0
 
+static int
 mymakemon (monx, mony) {
 	register        MONSTER mtmp;
 	register int    tryct = 0;
@@ -376,6 +382,7 @@ mymakemon (monx, mony) {
 	return 0;
 }
 
+static int
 putyard (mtmp)
 MONSTER mtmp;
 {
@@ -446,6 +453,7 @@ mkswamp () {
 		}
 }
 
+static int
 ch_doors (zx, zy)
 register int    zx, zy;
 {
@@ -512,6 +520,7 @@ mk_knox () {
 	mkgold (tmp, kx, ky);
 }
 
+static int
 ch_upstairs (mroom)
 register        MKROOM * mroom;
 {
@@ -519,6 +528,7 @@ register        MKROOM * mroom;
 			mroom -> ly <= yupstair && yupstair <= mroom -> hy);
 }
 
+static int
 ch_dnstairs (mroom)
 register        MKROOM * mroom;
 {
@@ -541,7 +551,7 @@ register        MONSTER mtmp;
 	}
 }
 
-void
+static void
 delgen (gtmp, key)
 register        GOLD_TRAP gtmp, key;
 {

@@ -10,7 +10,7 @@ WORMSEGMENT wsegs[32], wheads[32];
 
 unsigned        wgrowtime[32];
 
-extern void remseg();
+static void remseg();
 
 getwn (mtmp)
 MONSTER mtmp;
@@ -202,7 +202,7 @@ register unsigned       weptyp;
 	panic (CORE, "Cannot find worm segment");
 }
 
-void
+static void
 remseg (wtmp)
 register        WORMSEGMENT wtmp;
 {

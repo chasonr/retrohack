@@ -17,7 +17,7 @@ extern int      billct, rfile;
 
 char    maxdlevel = 0;
 
-char   *statxx[] = {
+static char *statxx[] = {
 	"choked",
 	"died",
 	"starved",
@@ -26,7 +26,7 @@ char   *statxx[] = {
 	"escaped"
 };
 
-extern void topten();
+static void topten();
 extern void clearlocks();
 extern void done();
 
@@ -109,7 +109,7 @@ register int    status;
 #define TOPPRINT	15	/* Aantal scores dat wordt afgedrukt */
 #define	TOPLIST		25	/* Length of 'top ten' list */
 
-void
+static void
 topten () {
 	int     tmp;
 	struct recitem {

@@ -6,6 +6,7 @@
 #include "hack.h"
 #include "hack.vars.h"
 
+static int
 mkfood () {
 	register        FOOD fp;
 	register        i = rn2 (100);
@@ -16,6 +17,7 @@ mkfood () {
 	return (fp - foods);
 }
 
+static int
 mkarm () {
 	register        ARMOR ap;
 	register        i = rn2 (100);
@@ -26,6 +28,7 @@ mkarm () {
 	return (ap - armors);
 }
 
+static int
 mkwep () {
 	register        WEAPON wp;
 	register        i = rn2 (100);
@@ -35,7 +38,7 @@ mkwep () {
 	return (wp - weapons);
 }
 
-char    mkobjstr[] = "))[[!!!!????%%%%//=**";
+static char mkobjstr[] = "))[[!!!!????%%%%//=**";
 
 void
 mkobj (let)

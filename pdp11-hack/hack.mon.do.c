@@ -9,6 +9,8 @@
 
 extern  MONSTER bhit ();
 extern void cmdel();
+static int dochug();
+static int m_move();
 
 void
 movemon () {
@@ -32,7 +34,7 @@ movemon () {
 	}
 }
 
-void
+static void
 justswld (mtmp)
 register        MONSTER mtmp;
 {
@@ -47,7 +49,7 @@ register        MONSTER mtmp;
 	docrt ();
 }
 
-void
+static void
 youswld (mtmp, dam, die)
 register        MONSTER mtmp;
 register        dam, die;
@@ -63,7 +65,7 @@ register        dam, die;
 	}
 }
 
-void
+static void
 x2hitu (mlev, x, name)
 register        mlev, x;
 register char  *name;		/* a3 */
@@ -75,6 +77,7 @@ register char  *name;		/* a3 */
 				rnd (x), name);
 }
 
+static int
 dochug (mtmp)
 register        MONSTER mtmp;
 {
@@ -437,7 +440,7 @@ register        MONSTER mtmp;
 		newsym (mx, my);
 }
 
-void
+static void
 inrange (mtmp)
 register        MONSTER mtmp;
 {
@@ -465,6 +468,7 @@ register        MONSTER mtmp;
 	}
 }
 
+static int
 m_move (mtmp, after)
 register        MONSTER mtmp;
 {
