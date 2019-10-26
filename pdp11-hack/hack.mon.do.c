@@ -7,8 +7,6 @@
 #include <string.h>
 #include "hack.h"
 
-extern  MONSTER bhit ();
-extern void cmdel();
 static int dochug();
 static int m_move();
 

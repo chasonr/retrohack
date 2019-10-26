@@ -10,14 +10,7 @@
 #define NOT_AT	0
 #define NO_OBJ	0
 
-extern  WORMSEGMENT wsegs[32];
-
-extern  OBJECT yourinvent0;
-
 static void prname();
-extern void doinv();
-extern void ofree();
-extern void freeobj();
 
 OBJECT addinv (obj)
 register        OBJECT obj;

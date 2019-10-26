@@ -28,7 +28,6 @@ static char mmon[8][8] = {
 static char stairs[4], mbuf[1000], obuf[BUFSIZ];
 
 static unsigned omoves;
-extern char    *setan ();
 static void mread();
 static void show();
 static void pch();

@@ -10,34 +10,19 @@
 
 static char scrlx, scrhx, scrly, scrhy;
 
-extern short    ospeed;
 static char xcurses[200];		/* Contain's curser stuff */
 static char *HO, *CL, *CE, *CM, *UP, *BC;
 static char PC;
-extern char    *tgetstr (), *getenv (), *tgoto ();
 static void putch ();
- /* Corners of new area on screen */
-extern char     SAVEFILE[];
 
 static COORDINATES ou = {
 	-1, 0
 };				/* Coordinates of @ on screen (if ou.x>=0) */
 
-extern char    *hu_stat[4];/* In eat.c */
 #ifdef NORMAL_IO
 static char obuf[BUFSIZ];
 #endif NORMAL_IO
-extern void atl();
-extern void on();
-extern void prl();
-extern void newunseen();
-extern void pline();
-extern void nscr();
 static void donscrt();
-extern void bot();
-extern void curs();
-extern void cl_end();
-extern void home();
 
 void
 startup () {

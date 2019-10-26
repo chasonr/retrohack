@@ -9,12 +9,6 @@
 #include <unistd.h>
 #include "hack.h"
 
-#define MAXLEVEL	40
-
-extern char     plname[], *itoa (), *setan ();
-
-extern int      billct, rfile;
-
 char    maxdlevel = 0;
 
 static char *statxx[] = {
@@ -27,8 +21,6 @@ static char *statxx[] = {
 };
 
 static void topten();
-extern void clearlocks();
-extern void done();
 
 void
 done1 () {

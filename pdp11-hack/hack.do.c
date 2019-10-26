@@ -7,19 +7,15 @@
 #include <string.h>
 #include "hack.h"
 
-extern char     NOTHIN[], WCLEV[], *nomvmsg;
-
 char    WELDED[] = "The %s is welded into your hand!";
 
 #define LETTER(ch)      ((ch >= '@' && ch <= 'Z' ) || \
 						       (ch >= 'a' && ch <= 'z'))
 #define CURSED		1
 #define NOTCURSED       0
-#define MAXLEVEL       40
 
 #define SIZE( x ) 	sizeof( x )/sizeof( x[0] )
 
-extern void litroom();
 static void nothin();
 static void dropit();
 static int getinventory();

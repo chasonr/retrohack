@@ -17,16 +17,6 @@
 #include "hack.h"
 #include "hack.dog.h"
 
-#define MAXLEVEL	40
-
-extern char     SAVEFILE[], nul[], upxstairs[MAXLEVEL],
-                upystairs[MAXLEVEL], shlevel, vaultflag[MAXLEVEL];
-extern long     robbed;
-extern unsigned starved;
-extern  COORDINATES shk, shd;
-extern  MONSTER shopkeeper;
-extern  MONSTER mydogs;
-
 void
 save () {
 	register        fd, ofd, tmp;

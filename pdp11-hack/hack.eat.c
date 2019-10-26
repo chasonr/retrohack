@@ -5,12 +5,8 @@
 #include <stdio.h>
 #include "hack.h"
 
-extern char    *nomvmsg;
-
 unsigned        starved = 0;	/* Michiel: after 30 times fainting you starve
 				   to death */
-
-extern void lesshungry();
 
 char   *hu_stat[4] = {
 	"        ",

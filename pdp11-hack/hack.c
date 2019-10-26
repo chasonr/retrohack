@@ -6,12 +6,6 @@
 #include <string.h>
 #include "hack.h"
 
-extern char     news0 (), *setan ();
-extern void losehp();
-
-extern char     seelx, seehx, seely, seehy;/* Corners of lit room */
- /* l for Low, h for High */
-
 #define CANSEE 		1
 #define CANNOTSEE 	0
 #define HITYOU		1

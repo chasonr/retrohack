@@ -15,8 +15,6 @@
 #define HUISJES	2201
 #define WILDE	2216
 
-extern char    *hu_stat[4], *parse ();
-
 int     rfile;
 
 COORDINATES doors[DOORMAX];
@@ -30,9 +28,6 @@ YOU u;
 OBJECT fobj = 0, invent, uwep, uarm,
 uarm2 = 0, uright = 0, uleft = 0;
 
-extern  OBJECT yourinvent0;
-extern struct obj       mace0, uarm0;
-
 char    nul[20];		/* Contains zeros */
 /* Lock contains 'pid'.dlevel */
 char    plname[10], lock[16], wizard,
@@ -44,7 +39,7 @@ char    plname[10], lock[16], wizard,
 
 unsigned        moves = 1;
 
-int     multi = 0, hangup ();
+int     multi = 0;
 static int hackpid, uid;
 
 main (argc, argv)

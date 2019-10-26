@@ -9,9 +9,6 @@
 #include <unistd.h>
 #include "hack.h"
 
-extern char     NOTHIN[], WAND[];
-
-extern  MONSTER shopkeeper;
 MONSTER vaultkeeper;
 
 static char *wandeffect[] = {
@@ -23,12 +20,8 @@ static char *wandeffect[] = {
 	"bolt of confusion"
 };
 
-#define MAXLEVEL	40
-
 char    vaultflag[MAXLEVEL];
 
-MONSTER bhit ();
-extern void buzz();
 static int findit();
 static void zhit();
 static void show();

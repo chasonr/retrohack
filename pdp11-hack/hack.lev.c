@@ -10,18 +10,8 @@
 #include <unistd.h>
 #include "hack.h"
 
-#define MAXLEVEL	40
 #define ERROR		 1
 #define OK		 0
-
-extern char    *itoa (), nul[], upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
-
-extern  WORMSEGMENT wsegs[32], wheads[32];
-extern unsigned wgrowtime[32];
-extern struct permonst  pm_ghost;
-
-extern void mread();
-extern void bwrite();
 
 #include "hack.savelev.c"
 

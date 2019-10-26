@@ -9,13 +9,6 @@
 #include <string.h>
 #include "hack.h"
 
-extern char     WCLEV[], STOPGLOW[];
-
-extern void stlobj();
-extern void relmon();
-extern void unstuck();
-extern void pseebl();
-extern void newcham();
 static int test();
 
 dist (x, y)

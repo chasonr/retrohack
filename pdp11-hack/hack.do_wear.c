@@ -8,7 +8,6 @@
 #define CURSED		1
 #define NOTCURSED	0
 
-extern void doring();
 static void dorr();
 static int cursed();
 

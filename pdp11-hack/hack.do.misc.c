@@ -27,10 +27,6 @@ static void dothrow();
 
  /* (MT) has 'do' structures and lists */
 
-extern char    *getenv (), UMISS[], WELDED[];
-
-#define MAXLEVEL       40
-
 static OBJECT loseone ();
 
 void    done1 ();
@@ -38,11 +34,6 @@ void    done1 ();
 char    upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
 
 static void dostairs();
-extern void dosavelev();
-extern void dodown();
-extern void doup();
-extern void docall();
-extern void docurse();
 
 void
 rhack (cmd)
@@ -227,8 +218,6 @@ dosavelev () {
 	savelev (fd);
 	close (fd);
 }
-
-extern int      uid;
 
 static void
 checklev (dir)			/* Michiel: Geen geknoei */

@@ -9,8 +9,6 @@
 #define UNDEF   127		/* Some large number */
 #define EDOG(mp)        ( (struct edog *)(&(mp->mextra[0])) )
 
-extern struct permonst  li_dog, dog, la_dog;
-
 static char SADFEEL[] = "You have a sad feeling for a moment, then it passes";
 
 static void initedog();

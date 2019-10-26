@@ -15,9 +15,6 @@
 #define NOBONES	0
 #define BONES	1
 
-extern char     plname[10];
-extern  MONSTER shopkeeper;
-
 struct permonst pm_ghost = {
 	"ghost", '\t', 10, 3, -5, 1, 1, sizeof (plname)
 };

@@ -7,7 +7,6 @@
 #include <time.h>
 #include "hack.h"
 
-extern char     plname[];
 static void center();
 
 static char    *rip[] = {

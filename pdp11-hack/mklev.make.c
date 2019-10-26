@@ -16,35 +16,12 @@
 #define MKLEV
 #include "hack.h"
 
-extern char     mmon[8][8];
-
 #define MAZX ((rnd(37) << 1) + 1)
 #define MAZY ((rnd(8) << 1) + 1)
 
 #define somex() rn1( croom->hx - croom->lx + 1, croom->lx )
 #define somey() rn1( croom->hy - croom->ly + 1, croom->ly )
 
-extern  PART levl[80][22];
-
-extern  MONSTER fmon;
-extern  OBJECT fobj;
-extern  GOLD_TRAP fgold, ftrap;
-
-extern  MKROOM rooms[15], *croom;
-
-extern  COORDINATES doors[DOORMAX];
-
-extern int      doorindex, nroom, comp ();
-
-extern char     dlevel, *geno, goldseen,
-                xdnstair, xupstair, ydnstair, yupstair,
-                wizard, nxcor, x, y,
-                dx, dy, tx, ty;
- /* For corridors and other things... */
-
-extern void mktrap();
-extern void mkgold();
-extern void makemon();
 static void delmon();
 static void delgen();
 static int ch_dnstairs();

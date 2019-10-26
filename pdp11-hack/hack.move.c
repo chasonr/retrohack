@@ -7,12 +7,6 @@
 #include <string.h>
 #include "hack.h"
 
-extern char     STOPGLOW[], UMISS[], *setan ();
-
-
-extern  OBJECT addinv ();
-extern void nomul();
-
 char    seelx, seehx, seely, seehy;/* Corners of lit room */
  /* l for Low, h for High */
 

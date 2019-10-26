@@ -106,7 +106,6 @@ struct rm {
 	unsigned        lit:	1;
 };
 typedef struct rm       PART;
-extern  PART levl[80][22];
 
 
 
@@ -115,7 +114,6 @@ struct mkroom {
 	char    lx, hx, ly, hy, rtype, rlit, doorct, fdoor;
 };
 typedef struct mkroom   MKROOM;
-extern  MKROOM rooms[15];
 
 
 
@@ -124,7 +122,6 @@ struct coord {
 	char    x, y;
 };
 typedef struct coord    COORDINATES;
-extern  COORDINATES doors[DOORMAX];
 
 
 
@@ -133,7 +130,6 @@ struct food {
 	int     nutrition;
 };
 typedef struct food    *FOOD;
-extern struct food      foods[];
 
 
 
@@ -141,7 +137,6 @@ struct armor {
 	char   *armnam, prob, delay, a_ac, a_can;
 };
 typedef struct armor   *ARMOR;
-extern struct armor     armors[];
 
 
 
@@ -151,7 +146,6 @@ struct weapon {
 	char   *wepnam, prob, wsdam, wldam;
 };
 typedef struct weapon  *WEAPON;
-extern struct weapon    weapons[];
 
 
 
@@ -161,13 +155,6 @@ struct permonst {
 	unsigned        pxlth;
 };
 typedef struct permonst *MONSTDATA;
-extern struct permonst  mon[8][7];
-#define PM_MIMIC        &mon[5][2]
-#define PM_PIERC        &mon[2][3]
-#define PM_DEMON        &mon[7][6]
-#define PM_CHAM         &mon[6][6]
-
-
 
 
 struct obj {
@@ -183,7 +170,6 @@ struct obj {
 	unsigned        unpaid:	1;
 };
 typedef struct obj     *OBJECT;
-extern  OBJECT fobj, invent, uwep, uarm, uarm2, uleft, uright;
 
 
 
@@ -216,7 +202,6 @@ struct monst {
 	char    mextra[1];
 };
 typedef struct monst   *MONSTER;
-extern  MONSTER fmon, shopkeeper, vaultkeeper;
 
 
 struct wseg {
@@ -235,7 +220,6 @@ struct gen {
 	unsigned        gflag;
 };
 typedef struct gen     *GOLD_TRAP;
-extern  GOLD_TRAP fgold, ftrap;
 
 
 struct flag {
@@ -258,7 +242,6 @@ struct flag {
 	unsigned        dscr:		1;
 };
 typedef struct flag     FLAG;
-extern  FLAG flags;
 
 struct you {
 	char    ux, uy, ustr, ustrmax, udaminc, uac;
@@ -297,24 +280,7 @@ struct you {
 	MONSTER ustuck;
 };
 typedef struct you      YOU;
-extern  YOU u;
 
-
-
-extern char    *wepnam[], *pottyp[], *scrtyp[], *traps[],
-               *wantyp[], *ringtyp[], *potcol[], *scrnam[],
-               *wannam[], *rinnam[], wdam[], oiden[],
-               *potcall[], *scrcall[], *wandcall[], *ringcall[],
-                curx, cury, savx,
-                xdnstair, ydnstair, xupstair, yupstair,
-                seehx, seelx, seehy, seely,
-               *save_cm, *killer, dlevel, maxdlevel,
-                buf[], lock[],
-                genocided[60], oldux, olduy;
-
-extern unsigned moves;
-
-extern  multi;
 
 #define newmonst(xl)    (alloc( xl + sizeof(struct monst) )->Mtmp )
 #define newobj()        (alloc( sizeof(struct obj) )->Otmp )
@@ -327,6 +293,8 @@ extern  multi;
 #define TRAP_NULL	(struct gen *)NULL
 #define MON_NULL	(struct monst *)NULL
 #define STOLE_NULL	(struct stole *)NULL
+
+#define MAXLEVEL	40
 
 #ifndef SHOW
 union PTRS {
@@ -364,31 +332,24 @@ extern MONSTER m_at();
 extern void move();
 extern OBJECT o_at();
 extern int okay();
-//0000000000000008 C croom
-//0000000000000001 C dlevel
-//00000000000000c8 C doors
-//0000000000000008 C fgold
-//0000000000000008 C fmon
-//0000000000000008 C fobj
-//0000000000000008 C ftrap
-//0000000000000008 C geno
-//0000000000000001 C goldseen
-//0000000000001b80 C levl
-//0000000000000000 D mmon
-//0000000000000004 C nroom
-//0000000000000078 C rooms
-//0000000000000001 C tx
-//0000000000000001 C ty
-//0000000000000001 C xdnstair
-//0000000000000001 C xupstair
-//0000000000000001 C ydnstair
-//0000000000000001 C yupstair
+extern char mmon[8][8];
+extern PART levl[80][22];
+extern MONSTER fmon;
+extern OBJECT fobj;
+extern GOLD_TRAP fgold, ftrap;
+extern MKROOM rooms[15], *croom;
+extern COORDINATES doors[DOORMAX];
+extern int nroom;
+extern char *geno;
+extern char dlevel, goldseen,
+            xdnstair, ydnstair, xupstair, yupstair,
+            tx, ty;
 
 #else /* MKLEV */
 /*### hack.bones.c ###*/
 extern int getbones();
 extern void savebones();
-//0000000000000000 D pm_ghost
+extern struct permonst pm_ghost;
 
 /*### hack.debug.c ###*/
 
@@ -402,8 +363,8 @@ extern void dowhatis();
 extern void dozap();
 extern void hit();
 extern void miss();
-//0000000000000028 C vaultflag
-//0000000000000008 C vaultkeeper
+extern MONSTER vaultkeeper;
+extern char vaultflag[MAXLEVEL];
 
 /*### hack.dog.c ###*/
 extern int dog_move();
@@ -413,7 +374,7 @@ extern void keepdogs();
 extern void losedogs();
 extern void makedog();
 extern int tamedog();
-//0000000000000000 B mydogs
+extern MONSTER mydogs;
 
 /*### hack.do.misc.c ###*/
 extern void docall();
@@ -424,8 +385,7 @@ extern void doup();
 extern int getdir();
 extern void hackexec();
 extern void rhack();
-//0000000000000028 C upxstairs
-//0000000000000028 C upystairs
+extern char upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
 
 /*### hack.do.c ###*/
 extern void dodrink();
@@ -434,7 +394,7 @@ extern void doread();
 extern void gemsdrop();
 extern void litroom();
 extern int uwepcursed();
-//0000000000000000 D WELDED
+extern char WELDED[];
 
 /*### hack.do_wear.c ###*/
 extern void armwear();
@@ -447,8 +407,8 @@ extern void dowearring();
 extern void doeat();
 extern void gethungry();
 extern void lesshungry();
-//0000000000000000 D hu_stat
-//0000000000000000 B starved
+extern unsigned starved;
+extern char *hu_stat[4];
 
 /*### hack.end.c ###*/
 extern void clearlocks();
@@ -456,7 +416,7 @@ extern void done();
 extern void done1();
 extern int hangup();
 extern char *itoa();
-//0000000000000000 B maxdlevel
+extern char maxdlevel;
 
 /*### hack.invent.c ###*/
 extern OBJECT addinv();
@@ -474,9 +434,9 @@ extern void prinv();
 extern void useup();
 
 /*### hack.invinit.c ###*/
-//0000000000000050 D mace0
-//0000000000000030 D uarm0
-//0000000000000000 D yourinvent0
+extern struct obj mace0;
+extern struct obj uarm0;
+extern struct obj *yourinvent0;
 
 /*### hack.io.c ###*/
 extern void getlin();
@@ -494,43 +454,29 @@ extern void savelev();
 /*### hack.main.c ###*/
 extern void glo();
 extern void impossible();
-//0000000000000100 C buf
-//0000000000000001 C curx
-//0000000000000001 C cury
-//0000000000000004 B dlevel
-//00000000000000c8 C doors
-extern char dx, dy;
-//0000000000000038 B fgold
-//0000000000000004 C flags
-//0000000000000040 B fmon
-//0000000000000028 B fobj
-//0000000000000030 B ftrap
-//000000000000003c C genocided
-//0000000000000008 C invent
-//0000000000000008 C killer
-//0000000000001b80 C levl
-//0000000000000010 C lock
-//0000000000000000 D moves
-//0000000000000000 B multi
-//0000000000000008 C nomvmsg
-//0000000000000014 C nul
-//000000000000000a C plname
-//0000000000000004 C rfile
-//0000000000000078 C rooms
-//0000000000000008 B save_cm
-//0000000000000020 D SAVEFILE
-//0000000000000001 C savx
-//0000000000000040 C u
-//0000000000000008 C uarm
-//0000000000000020 B uarm2
-//0000000000000010 B uleft
-//0000000000000018 B uright
-//0000000000000008 C uwep
-extern char wizard;
-//0000000000000001 C xdnstair
-//0000000000000001 C xupstair
-//0000000000000001 C ydnstair
-//0000000000000001 C yupstair
+extern int rfile;
+extern COORDINATES doors[DOORMAX];
+extern PART levl[80][22];
+extern MKROOM rooms[15];
+extern MONSTER fmon;
+extern GOLD_TRAP fgold, ftrap;
+extern FLAG flags;
+extern YOU u;
+extern OBJECT fobj, invent, uwep, uarm, uarm2, uleft, uright;
+extern char nul[20];		/* Contains zeros */
+extern char plname[10], lock[],
+           *save_cm,
+           *killer,
+           *nomvmsg,
+            buf[],
+            genocided[60],
+            SAVEFILE[37];
+extern char wizard, curx, cury, savx,
+            xdnstair, ydnstair, xupstair, yupstair,
+            dlevel,
+            dx, dy;
+extern unsigned moves;
+extern int multi;
 
 /*### hack.mkobj.c ###*/
 extern void callsrestore();
@@ -539,29 +485,24 @@ extern void mkobj();
 extern void restnames();
 extern void savenames();
 extern void shuffle();
-//0000000000000560 D armors
-//0000000000000600 D foods
-//0000000000000050 D NOTHIN
-//0000000000000028 C oiden
-//0000000000000001 C oldux
-//0000000000000001 C olduy
-//0000000000000078 C potcall
-//0000000000000340 D potcol
-//00000000000003e0 D pottyp
-//0000000000000080 C ringcall
-//0000000000000080 D ringtyp
-//0000000000000000 D rinnam
-//0000000000000078 C scrcall
-//0000000000000240 D scrnam
-//00000000000002c0 D scrtyp
-//0000000000000010 D STOPGLOW
-//00000000000006e0 D traps
-//0000000000000000 D UMISS
-//0000000000000090 C wandcall
-//0000000000000100 D wannam
-//00000000000001a0 D wantyp
-//0000000000000030 D WCLEV
-//0000000000000460 D weapons
+extern struct armor     armors[];
+extern struct food      foods[];
+extern char oiden[];
+extern char oldux, olduy;
+extern char *potcall[];
+extern char *potcol[];
+extern char *pottyp[];
+extern char *ringcall[];
+extern char *ringtyp[];
+extern char *rinnam[];
+extern char *scrcall[];
+extern char *scrnam[];
+extern char *scrtyp[];
+extern char *traps[];
+extern char *wandcall[];
+extern char *wannam[];
+extern char *wantyp[];
+extern struct weapon    weapons[];
 
 /*### hack.mon.do.c ###*/
 extern void cmdel();
@@ -590,10 +531,14 @@ extern void stlobj();
 extern void unstuck();
 
 /*### hack.monst.c ###*/
-//0000000000000020 D dog
-//0000000000000000 D la_dog
-//0000000000000040 D li_dog
-//0000000000000060 D mon
+extern struct permonst li_dog;
+extern struct permonst dog;
+extern struct permonst la_dog;
+extern struct permonst mon[8][7];
+#define PM_MIMIC       &mon[5][2]
+#define PM_PIERC       &mon[2][3]
+#define PM_DEMON       &mon[7][6]
+#define PM_CHAM        &mon[6][6]
 
 /*### hack.move.c ###*/
 extern void domove();
@@ -602,10 +547,8 @@ extern int movecm();
 extern void nomove();
 extern void nomul();
 extern char *parse();
-//0000000000000001 C seehx
-//0000000000000001 C seehy
-//0000000000000001 C seelx
-//0000000000000001 C seely
+/* Corners of lit room; l for Low, h for High */
+extern char seehx, seelx, seehy, seely;
 
 /*### hack.c ###*/
 extern int abon();
@@ -675,12 +618,10 @@ extern void setangry();
 extern void shkdead();
 extern int shk_move();
 extern void subfrombill();
-//0000000000000000 B billct
-//0000000000000008 B robbed
-//0000000000000002 C shd
-//0000000000000002 C shk
-//0000000000000001 C shlevel
-//0000000000000008 C shopkeeper
+extern MONSTER shopkeeper;
+extern long robbed;
+extern char billct, shlevel;
+extern COORDINATES shd, shk;
 
 /*### hack.str.c ###*/
 
@@ -693,9 +634,14 @@ extern void wormhit();
 extern void worm_move();
 extern void worm_nomove();
 extern void wormsee();
-//0000000000000080 C wgrowtime
-//0000000000000100 C wheads
-//0000000000000100 C wsegs
+extern WORMSEGMENT wsegs[32], wheads[32];
+extern unsigned wgrowtime[32];
+
+/*### hack.vars.h ###*/
+extern char NOTHIN[];
+extern char STOPGLOW[];
+extern char UMISS[];
+extern char WCLEV[];
 #endif /* MKLEV */
 
 /*### rnd.c ###*/
