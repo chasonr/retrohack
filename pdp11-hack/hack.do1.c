@@ -11,7 +11,7 @@
 
 MONSTER vaultkeeper;
 
-static char *wandeffect[] = {
+static const char * const wandeffect[] = {
 	"magic missile",
 	"bolt of fire",
 	"sleep ray",
@@ -249,14 +249,14 @@ dozap (void)
 }
 
 void
-hit (char *str, MONSTER mtmp)
+hit (const char *str, MONSTER mtmp)
 {
 	psee (THEIT2, mtmp -> mx, mtmp -> my, "%s hits %s", str,
 			mtmp -> data -> mname);
 }
 
 void
-miss (char *str, MONSTER mtmp)
+miss (const char *str, MONSTER mtmp)
 {
 	psee (THEIT2, mtmp -> mx, mtmp -> my, "%s misses %s", str,
 			mtmp -> data -> mname);

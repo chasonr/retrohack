@@ -124,7 +124,7 @@ test (int x, int y)
 }
 
 void
-poisoned (char *string, char *pname)
+poisoned (const char *string, const char *pname)
 {
 	pseebl ("%s was poisoned!", string);
 	if (u.upres) {
@@ -351,9 +351,9 @@ killed (MONSTER mtmp)
 
 /*VARARGS*/
 int
-psee (int mode, int x, int y, char *str, char *name, char *arg)/* Str bevat %s */
+psee (int mode, int x, int y, const char *str, const char *name, const char *arg)/* Str bevat %s */
 {
-	char   *a1, *a2;
+	const char *a1, *a2;
 
 	a1 = "the %s";
 	a2 = "the %s";
@@ -382,13 +382,13 @@ psee (int mode, int x, int y, char *str, char *name, char *arg)/* Str bevat %s *
 }
 
 void
-p2xthe (char *str, char *name)
+p2xthe (const char *str, const char *name)
 {
 	psee (NOTEST, 0, 0, str, name, NULL);
 }
 
 void
-pseebl (char *str, char *name)
+pseebl (const char *str, const char *name)
 {
 	psee (TBLIND, 0, 0, str, name, NULL);
 }

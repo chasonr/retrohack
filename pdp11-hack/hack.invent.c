@@ -147,7 +147,7 @@ g_at (int x, int y, GOLD_TRAP ptr)
 }
 
 OBJECT
-getobj (char *let, char *word)
+getobj (const char *let, const char *word)
 {
 	register        OBJECT otmp;
 	register char   ilet, ilet1, ilet2;
@@ -265,7 +265,7 @@ ddoinv (void)
  */
 
 void
-doinv (char *str, int opt)
+doinv (const char *str, int opt)
 {
 	register        OBJECT otmp;
 	register char   ilet = 'a';

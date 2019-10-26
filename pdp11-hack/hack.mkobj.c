@@ -140,9 +140,10 @@ mkobj (int let)
 }
 
 static void
-shufl (char *base[], int num)
+shufl (const char *base[], int num)
 {
-	char  **tmp, *tmp1;
+	const char **tmp;
+	const char *tmp1;
 	int     curnum;
 
 	for (curnum = num - 1; curnum > 0; curnum--) {

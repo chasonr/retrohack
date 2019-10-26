@@ -8,7 +8,7 @@
 unsigned        starved = 0;	/* Michiel: after 30 times fainting you starve
 				   to death */
 
-char   *hu_stat[4] = {
+const char * const hu_stat[4] = {
 	"        ",
 	"Hungry  ",		/* Hunger texts used in main (each 8 chars
 				   long) */

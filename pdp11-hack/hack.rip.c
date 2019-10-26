@@ -7,9 +7,9 @@
 #include <time.h>
 #include "hack.h"
 
-static void center (int line, char *text);
+static char *center (const char *line, const char *text);
 
-static char    *rip[] = {
+static const char * const rip[] = {
 	"                       ----------",
 	"                      /          \\",
 	"                     /    REST    \\",
@@ -29,35 +29,46 @@ static char    *rip[] = {
 void
 outrip (void)
 {
-	register char **dp = rip;
-	register struct tm     *lt;
-	long    date;
+	unsigned dp;
+	struct tm *lt;
+	time_t  date;
 	char    buffer[BUFSZ];
 
 	time (&date);
-	lt = localtime (&date);
 	cls ();
-	strcpy (buffer, plname);
-	center (6, buffer);
-	sprintf (buffer, "%ld Au", u.ugold);
-	center (7, buffer);
-	strcpy (buffer, killer);
-	center (9, buffer);
-	sprintf (buffer, "19%2d", lt -> tm_year);
-	center (10, buffer);
 	curs (1, 8);
-	while (*dp)
-		printf ("%s\n", *dp++);
+	for (dp = 0; rip[dp] != NULL; ++dp) {
+		switch (dp) {
+		case 6:
+			sprintf (buffer, "%s", plname);
+			break;
+		case 7:
+			sprintf (buffer, "%ld Au", u.ugold);
+			break;
+		case 9:
+			sprintf (buffer, "%s", killer);
+			break;
+		case 10:
+			lt = localtime (&date);
+			sprintf (buffer, "%04d", lt -> tm_year + 1900);
+			break;
+		default:
+			buffer[0] = '\0';
+			break;
+		}
+		printf ("%s\n", center(rip[dp], buffer));
+	}
 	getret ();
 }
 
-static void
-center (int line, char *text)
+static char *
+center (const char *line, const char *text)
 {
-	register char  *ip, *op;
+	static char buf[80];
+	char *op;
 
-	ip = text;
-	op = &rip[line][28 - ((strlen (text) + 1) >> 1)];
-	while (*ip)
-		*op++ = *ip++;
+	sprintf (buf, "%s", line);
+	op = &buf[28 - ((strlen (text) + 1) >> 1)];
+	memcpy (op, text, strlen (text));
+	return buf;
 }

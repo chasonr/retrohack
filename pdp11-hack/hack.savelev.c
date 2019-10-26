@@ -76,7 +76,7 @@ savelev (int fd)
 }
 
 void
-bwrite (int fd, void *loc, int num)
+bwrite (int fd, const void *loc, int num)
 {
 	if (write (fd, loc, num) != num)
 		panic (CORE, "Cannot write %d bytes to file #%d", num,

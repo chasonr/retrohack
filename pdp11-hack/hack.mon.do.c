@@ -63,7 +63,7 @@ youswld (MONSTER mtmp, int dam, int die)
 }
 
 static void
-x2hitu (int mlev, int x, char *name)		/* a3 */
+x2hitu (int mlev, int x, const char *name)		/* a3 */
 {
 	register int    i;
 

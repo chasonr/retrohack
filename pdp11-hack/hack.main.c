@@ -31,9 +31,10 @@ uarm2 = 0, uright = 0, uleft = 0;
 char    nul[20];		/* Contains zeros */
 /* Lock contains 'pid'.dlevel */
 char    plname[10], lock[16],
-       *save_cm = 0, *killer, *nomvmsg,
+       *save_cm = 0,
         buf[BUFSZ], genocided[60],
         SAVEFILE[37] = SAVEDIR;
+const char *killer, *nomvmsg;
 signed char wizard, curx, cury, savx,
             xupstair, yupstair, xdnstair, ydnstair,
             dlevel = 0,

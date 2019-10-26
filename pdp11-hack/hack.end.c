@@ -11,7 +11,7 @@
 
 signed char maxdlevel = 0;
 
-static char *statxx[] = {
+static const char * const statxx[] = {
 	"choked",
 	"died",
 	"starved",
@@ -46,6 +46,7 @@ do_quit (void)
 void
 done (int status)
 {
+	static char killer_buf[BUFSZ];
 	if (wizard && status != QUIT && status != ESCAPED) {
 		u.ustr = (u.ustrmax += 2);
 		u.uhp = (u.uhpmax += 10);
@@ -73,7 +74,8 @@ done (int status)
 	printf ("Goodbye %s...\n\n", plname);
 	u.urexp += u.ugold;
 	if (status == DIED) {
-		strcpy (killer, setan (killer));
+		strcpy (killer_buf, setan (killer));
+		killer = killer_buf;
 		u.urexp -= u.ugold / 10;
 	}
 	else

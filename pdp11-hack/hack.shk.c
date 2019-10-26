@@ -34,7 +34,7 @@ static long total;
 
 signed char billct = 0, shlevel;
 static signed char shoproom;
-static char *shopnam[] = {
+static const char * const shopnam[] = {
 	"engagement ring", "walking cane", "antique weapon",
 	"delicatessen", "second hand book", "liquor",
 	"used armor", "assorted antiques"

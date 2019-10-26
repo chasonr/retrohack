@@ -131,7 +131,7 @@ typedef struct coord    COORDINATES;
 
 
 struct food {
-	char   *foodnam;
+	const char *foodnam;
 	signed char prob, delay;
 	int     nutrition;
 };
@@ -140,7 +140,7 @@ typedef struct food    *FOOD;
 
 
 struct armor {
-	char   *armnam;
+	const char *armnam;
 	signed char prob, delay, a_ac, a_can;
 };
 typedef struct armor   *ARMOR;
@@ -150,7 +150,7 @@ typedef struct armor   *ARMOR;
 
 
 struct weapon {
-	char   *wepnam;
+	const char *wepnam;
 	signed char prob, wsdam, wldam;
 };
 typedef struct weapon  *WEAPON;
@@ -159,7 +159,7 @@ typedef struct weapon  *WEAPON;
 
 
 struct permonst {
-	char   *mname;
+	const char *mname;
 	signed char mlet, mhd, mmove, ac, damn, damd;
 	unsigned        pxlth;
 };
@@ -373,8 +373,8 @@ extern void doset (void);
 extern void doshow (void);
 extern void dowhatis (void);
 extern void dozap (void);
-extern void hit (char *str, MONSTER mtmp);
-extern void miss (char *str, MONSTER mtmp);
+extern void hit (const char *str, MONSTER mtmp);
+extern void miss (const char *str, MONSTER mtmp);
 extern MONSTER vaultkeeper;
 extern char vaultflag[MAXLEVEL];
 
@@ -422,7 +422,7 @@ extern void doeat (void);
 extern void gethungry (void);
 extern void lesshungry (int num);
 extern unsigned starved;
-extern char *hu_stat[4];
+extern const char * const hu_stat[4];
 
 /*### hack.end.c ###*/
 extern void clearlocks (void);
@@ -440,10 +440,10 @@ extern OBJECT addinv (OBJECT obj);
 extern void ddoinv (void);
 extern void delobj (OBJECT obj);
 extern void deltrap (GOLD_TRAP trap);
-extern void doinv (char *str, int opt);
+extern void doinv (const char *str, int opt);
 extern void freeobj (OBJECT obj);
 extern GOLD_TRAP g_at (int x, int y, GOLD_TRAP ptr);
-extern OBJECT getobj (char *let, char *word);
+extern OBJECT getobj (const char *let, const char *word);
 extern MONSTER m_at (int x, int y);
 extern OBJECT o_at (int x, int y);
 extern void ofree (OBJECT obj);
@@ -481,11 +481,10 @@ extern OBJECT fobj, invent, uwep, uarm, uarm2, uleft, uright;
 extern char nul[20];		/* Contains zeros */
 extern char plname[10], lock[],
            *save_cm,
-           *killer,
-           *nomvmsg,
             buf[],
             genocided[60],
             SAVEFILE[37];
+extern const char *killer, *nomvmsg;
 extern signed char wizard, curx, cury, savx,
                    xdnstair, ydnstair, xupstair, yupstair,
                    dlevel,
@@ -503,20 +502,6 @@ extern void shuffle (void);
 extern struct armor     armors[];
 extern struct food      foods[];
 extern char oiden[];
-extern signed char oldux, olduy;
-extern char *potcall[];
-extern char *potcol[];
-extern char *pottyp[];
-extern char *ringcall[];
-extern char *ringtyp[];
-extern char *rinnam[];
-extern char *scrcall[];
-extern char *scrnam[];
-extern char *scrtyp[];
-extern char *traps[];
-extern char *wandcall[];
-extern char *wannam[];
-extern char *wantyp[];
 extern struct weapon    weapons[];
 
 /*### hack.mon.do.c ###*/
@@ -531,10 +516,10 @@ extern int makemon (MONSTDATA ptr);
 extern void mkmonat (MONSTDATA ptr, int x, int y);
 extern void mnexto (MONSTER mtmp);
 extern void newcham (MONSTER mtmp, MONSTDATA mdat);
-extern void p2xthe (char *str, char *name);
-extern void poisoned (char *string, char *pname);
-extern int psee (int mode, int x, int y, char *str, char *name, char *arg);
-extern void pseebl (char *str, char *name);
+extern void p2xthe (const char *str, const char *name);
+extern void poisoned (const char *string, const char *pname);
+extern int psee (int mode, int x, int y, const char *str, const char *name, const char *arg);
+extern void pseebl (const char *str, const char *name);
 extern void relmon (MONSTER mtmp);
 extern void relobj (MONSTER mtmp);
 extern void rescham (void);
@@ -570,14 +555,14 @@ extern int abon (void);
 extern int alive (MONSTER monst);
 extern int cansee (signed char x, signed char y);
 extern void doname (OBJECT obj, char *buffer);
-extern int hitu (int mlev, int dam, char *name);
+extern int hitu (int mlev, int dam, const char *name);
 extern int hmon (MONSTER monst, OBJECT obj);
 extern void land (void);
-extern void losehp (int n, char *knam);
+extern void losehp (int n, const char *knam);
 extern void losestr (int num);
 extern char *lowc (char *str);
 extern long pow2 (int num);
-extern char *setan (char *str);
+extern char *setan (const char *str);
 extern void setCon (int setc);
 extern void tele (void);
 extern void unCoff (int unc, int mode);
@@ -624,7 +609,7 @@ extern int dorecover (int fd);
 extern void save (void);
 
 /*### hack.savelev.c ###*/
-extern void bwrite (int fd, void *loc, int num);
+extern void bwrite (int fd, const void *loc, int num);
 extern void savelev (int fd);
 
 /*### hack.shk.c ###*/
@@ -659,10 +644,25 @@ extern WORMSEGMENT wsegs[32], wheads[32];
 extern unsigned wgrowtime[32];
 
 /*### hack.vars.h ###*/
-extern char NOTHIN[];
-extern char STOPGLOW[];
-extern char UMISS[];
-extern char WCLEV[];
+extern const char NOTHIN[];
+extern const char STOPGLOW[];
+extern const char UMISS[];
+extern const char WCLEV[];
+extern const char *traps[];
+extern const char *pottyp[];
+extern const char *potcol[];
+extern char *potcall[];
+extern const char *scrtyp[];
+extern const char *scrnam[];
+extern char *scrcall[];
+extern const char *wantyp[];
+extern const char *wannam[];
+extern char *wandcall[];
+extern const char *ringtyp[];
+extern const char *rinnam[];
+extern char *ringcall[];
+extern signed char oldux, olduy;
+
 #endif /* MKLEV */
 
 /*### rnd.c ###*/

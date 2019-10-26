@@ -31,7 +31,7 @@ static OBJECT loseone (OBJECT obj);
 
 char    upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
 
-static void dostairs (char *dir);
+static void dostairs (const char *dir);
 
 void
 rhack (char *cmd)
@@ -186,7 +186,7 @@ ddoup (void)
 }
 
 static void
-dostairs (char *dir)
+dostairs (const char *dir)
 {
 	if (u.ustuck ||
 			(*dir == 'd' && (u.ux != xdnstair || u.uy != ydnstair)) ||
@@ -222,7 +222,7 @@ dosavelev (void)
 }
 
 static void
-checklev (char *dir)			/* Michiel: Geen geknoei */
+checklev (const char *dir)			/* Michiel: Geen geknoei */
 {
 	if ((upxstairs[dlevel] != xupstair ||
 				upystairs[dlevel] != yupstair) && !wizard) {

@@ -4,13 +4,13 @@
 
 #define	SIZE(x)	(sizeof x)/(sizeof x[0])
 
-char    NOTHIN[]   = "Nothing Happens",
-        WCLEV[]    = "Welcome to level %d.",
-        STOPGLOW[] = "Your hands stop glowing blue.",
-        UMISS[]    = "You miss %s.";
+const char NOTHIN[]   = "Nothing Happens",
+           WCLEV[]    = "Welcome to level %d.",
+           STOPGLOW[] = "Your hands stop glowing blue.",
+           UMISS[]    = "You miss %s.";
 
 
-char   *traps[] = {
+const char *traps[] = {
 	" bear trap",
 	"n arrow trap",
 	" dart trap",
@@ -26,7 +26,7 @@ char   *traps[] = {
 #include "hack.armors.h"
 #include "hack.weapons.h"
 
-char   *pottyp[] = {
+const char *pottyp[] = {
 	"restore strength",
 	"booze",
 	"invisibility",
@@ -46,7 +46,7 @@ char   *pottyp[] = {
 
 
 
-char   *potcol[] = {
+const char *potcol[] = {
 	"ebony",
 	"magenta",
 	"clear",
@@ -72,7 +72,7 @@ char   *potcall[SIZE (pottyp)];
 
  /* SCROLLS */
 
-char   *scrtyp[] = {
+const char *scrtyp[] = {
 	"enchant armor",
 	"losing",
 	"curse levels",
@@ -91,7 +91,7 @@ char   *scrtyp[] = {
 };
 
 
-char   *scrnam[] = {
+const char *scrnam[] = {
 	"VELOX NEB",
 	"FOOBIE BLETCH",
 	"TEMOV",
@@ -114,7 +114,7 @@ char   *scrcall[SIZE (scrtyp)];
 
  /* WANDS */
 
-char   *wantyp[] = {
+const char *wantyp[] = {
 	"light",
 	"secret door + trap detection",
 	"create monster",
@@ -136,7 +136,7 @@ char   *wantyp[] = {
 };
 
 
-char   *wannam[] = {
+const char *wannam[] = {
 	"oak",
 	"ebony",
 	"runed",
@@ -161,7 +161,7 @@ char   *wandcall[SIZE (wantyp)];
 
  /* RINGS */
 
-char   *ringtyp[] = {
+const char *ringtyp[] = {
 	"adornment",
 	"teleportation",
 	"regeneration",
@@ -181,7 +181,7 @@ char   *ringtyp[] = {
 };
 
 
-char   *rinnam[] = {
+const char *rinnam[] = {
 	"blackened",
  /* "ivory", */
 	"granite",

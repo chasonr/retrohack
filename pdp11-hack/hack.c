@@ -149,7 +149,7 @@ unCoff (int unc, int mode)
 }
 
 int
-hitu (int mlev, int dam, char *name)
+hitu (int mlev, int dam, const char *name)
 {
 	mlev += (u.uac - 1);
 	if (multi < 0)
@@ -417,7 +417,7 @@ losestr (int num)
 }
 
 void
-losehp (int n, char *knam)
+losehp (int n, const char *knam)
 {
 	u.uhp -= n;
 	flags.dhp = 1;
@@ -426,7 +426,7 @@ losehp (int n, char *knam)
 }
 
 char   *
-setan (char *str)		/* a3 */
+setan (const char *str)		/* a3 */
 {
 	static char     buffer[BUFSZ];
 

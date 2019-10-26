@@ -18,7 +18,7 @@ char    WELDED[] = "The %s is welded into your hand!";
 
 static void nothin (OBJECT obj);
 static void dropit (OBJECT obj);
-static int getinventory (char *string);
+static int getinventory (const char *string);
 
 /* Routines to do various user commands */
 
@@ -663,7 +663,7 @@ uwepcursed (void)			/* a3,drop or throw uwep */
 }
 
 static int
-getinventory (char *string)
+getinventory (const char *string)
 {
 	register        OBJECT otmp;
 

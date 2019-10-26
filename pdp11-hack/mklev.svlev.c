@@ -2,7 +2,7 @@
  * Mklev.savelev.c
  */
 
-static void bwrite (int fd, void *loc, int num);
+static void bwrite (int fd, const void *loc, int num);
 
 static void
 savelev (void)
@@ -57,7 +57,7 @@ savelev (void)
 }
 
 static void
-bwrite (int fd, void *loc, int num)
+bwrite (int fd, const void *loc, int num)
 {
 	if (write (fd, loc, num) != num)
 		panic ("Cannot write %d bytes to file #%d", num, fd);
