@@ -10,7 +10,7 @@ const char NOTHIN[]   = "Nothing Happens",
            UMISS[]    = "You miss %s.";
 
 
-const char *traps[] = {
+const char * const traps[] = {
 	" bear trap",
 	"n arrow trap",
 	" dart trap",
@@ -26,7 +26,7 @@ const char *traps[] = {
 #include "hack.armors.h"
 #include "hack.weapons.h"
 
-const char *pottyp[] = {
+const char * const pottyp[] = {
 	"restore strength",
 	"booze",
 	"invisibility",
@@ -72,7 +72,7 @@ char   *potcall[SIZE (pottyp)];
 
  /* SCROLLS */
 
-const char *scrtyp[] = {
+const char * const scrtyp[] = {
 	"enchant armor",
 	"losing",
 	"curse levels",
@@ -114,7 +114,7 @@ char   *scrcall[SIZE (scrtyp)];
 
  /* WANDS */
 
-const char *wantyp[] = {
+const char * const wantyp[] = {
 	"light",
 	"secret door + trap detection",
 	"create monster",
@@ -161,7 +161,7 @@ char   *wandcall[SIZE (wantyp)];
 
  /* RINGS */
 
-const char *ringtyp[] = {
+const char * const ringtyp[] = {
 	"adornment",
 	"teleportation",
 	"regeneration",

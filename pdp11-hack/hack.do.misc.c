@@ -36,7 +36,7 @@ static void dostairs (const char *dir);
 void
 rhack (char *cmd)
 {
-	register        FUNCTIONS * tlist = list;
+	register FUNCTIONS const *tlist = list;
 
 	if (!cmd) {
 		pline ("Rhack: 0");

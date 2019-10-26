@@ -13,8 +13,8 @@ signed char seelx, seehx, seely, seehy;/* Corners of lit room */
 
 /* Contains move commands */
 
-static char    sdir[] = "hjklyubn";
-static short   xdir[8] = {
+static const char sdir[] = "hjklyubn";
+static const short xdir[8] = {
 	-1, 0, 0, 1, -1, 1, -1, 1
 }      ,
         ydir[8] = {

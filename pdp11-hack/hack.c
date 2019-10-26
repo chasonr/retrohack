@@ -467,7 +467,7 @@ weight (OBJECT obj)
 	}
 }
 
-static char mlarge[] = "bCDdegIlmnoPSsTUwY',&";
+static const char mlarge[] = "bCDdegIlmnoPSsTUwY',&";
 
 int
 hmon (MONSTER monst, OBJECT obj)

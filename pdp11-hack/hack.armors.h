@@ -2,7 +2,7 @@
  * Hack.armors.h
  */
 
-struct armor armors[] = {
+struct armor const armors[] = {
 	{ "plate mail",	 	    5,	5, 3, 2 },
 	{ "splint mail",	   10,	5, 4, 1 },
 	{ "banded mail",	   10,	5, 4, 0 },

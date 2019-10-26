@@ -144,7 +144,7 @@ struct food {
 	signed char prob, delay;
 	int     nutrition;
 };
-typedef struct food    *FOOD;
+typedef struct food const *FOOD;
 
 
 
@@ -152,7 +152,7 @@ struct armor {
 	const char *armnam;
 	signed char prob, delay, a_ac, a_can;
 };
-typedef struct armor   *ARMOR;
+typedef struct armor const *ARMOR;
 
 
 
@@ -162,7 +162,7 @@ struct weapon {
 	const char *wepnam;
 	signed char prob, wsdam, wldam;
 };
-typedef struct weapon  *WEAPON;
+typedef struct weapon const *WEAPON;
 
 
 
@@ -420,7 +420,7 @@ extern void doread (void);
 extern void gemsdrop (void);
 extern void litroom (void);
 extern int uwepcursed (void);
-extern char WELDED[];
+extern const char WELDED[];
 
 /*### hack.do_wear.c ###*/
 extern void armwear (void);
@@ -511,10 +511,6 @@ extern void mkobj (int let);
 extern void restnames (int fd);
 extern void savenames (int fd);
 extern void shuffle (void);
-extern struct armor     armors[];
-extern struct food      foods[];
-extern char oiden[];
-extern struct weapon    weapons[];
 
 /*### hack.mon.do.c ###*/
 extern void cmdel (MONSTER mtmp);
@@ -661,20 +657,30 @@ extern const char NOTHIN[];
 extern const char STOPGLOW[];
 extern const char UMISS[];
 extern const char WCLEV[];
-extern const char *traps[];
-extern const char *pottyp[];
+extern const char * const traps[];
+extern const char * const pottyp[];
 extern const char *potcol[];
 extern char *potcall[];
-extern const char *scrtyp[];
+extern const char * const scrtyp[];
 extern const char *scrnam[];
 extern char *scrcall[];
-extern const char *wantyp[];
+extern const char * const wantyp[];
 extern const char *wannam[];
 extern char *wandcall[];
-extern const char *ringtyp[];
+extern const char * const ringtyp[];
 extern const char *rinnam[];
 extern char *ringcall[];
+extern char oiden[];
 extern signed char oldux, olduy;
+
+/*### hack.armor.h ###*/
+extern struct armor const armors[];
+
+/*### hack.food.h ###*/
+extern struct food const foods[];
+
+/*### hack.weapon.h ###*/
+extern struct weapon const weapons[];
 
 #endif /* MKLEV */
 

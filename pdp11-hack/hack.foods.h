@@ -4,7 +4,7 @@
 
 /* Dog eats foods 0-4 but prefers 1 above 0, 2, 3, 4 */
 
-struct food foods[] = {
+struct food const foods[] = {
 	{ "food ration",  50, 5, 800 },
 	{ "tripe ration", 20, 1, 200 },
 	{ "pancake",  	   3, 1, 200 },

@@ -7,7 +7,7 @@
 #include <string.h>
 #include "hack.h"
 
-char    WELDED[] = "The %s is welded into your hand!";
+const char WELDED[] = "The %s is welded into your hand!";
 
 #define LETTER(ch)      ((ch >= '@' && ch <= 'Z' ) || \
 						       (ch >= 'a' && ch <= 'z'))

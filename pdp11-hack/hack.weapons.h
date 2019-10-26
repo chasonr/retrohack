@@ -7,7 +7,7 @@
  * weapons 0-2 are shot using 11-13
  */
 
-struct weapon weapons[] = {
+struct weapon const weapons[] = {
 	{ "arrow",		7, 6, 6 },
 	{ "sling bullet",	7, 4, 6 },
 	{ "crossbow bolt",	7, 4, 6 },

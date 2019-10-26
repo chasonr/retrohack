@@ -41,7 +41,7 @@ mkwep (void)
 	return (wp - weapons);
 }
 
-static char mkobjstr[] = "))[[!!!!????%%%%//=**";
+static const char mkobjstr[] = "))[[!!!!????%%%%//=**";
 
 void
 mkobj (int let)

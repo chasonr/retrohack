@@ -2,7 +2,7 @@
  * Hack.do.vars.h
  */
 
-static FUNCTIONS list[] = {
+static FUNCTIONS const list[] = {
 	{ '\020', doredraw }, 	 /* was  '\014' */
 	{ 'A', doreprint },	 /* Michiel: Repeat last message printed */
 #ifdef DEBUG
