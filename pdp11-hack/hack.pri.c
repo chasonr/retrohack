@@ -62,7 +62,7 @@ int a1, a2, a3, a4, a5, a6;
 {
 	home ();
 #ifdef NORMAL_IO
-	printf ("ERROR:  ", 10);
+	printf ("ERROR:  ");
 #else
 	WRITE ("ERROR:  ", 10);
 #endif /* NORMAL_IO */
@@ -377,7 +377,7 @@ int arg1, arg2, arg3, arg4;
 	flags.topl = 1;
 	home ();
 	cl_end ();
-	printf (pbuf);
+	printf ("%s", pbuf);
 	savx = strlen (pbuf);
 	curx = ++savx;
 }
@@ -500,7 +500,7 @@ bot () {
 	flags.dgold = 0;
 	flags.dhs = 0;
 	curs (1, 24);
-	printf ("Level %-4dGold %-7UHp%4d(%d)",
+	printf ("Level %-4dGold %-7ldHp%4d(%d)",
 			dlevel, u.ugold, u.uhp, u.uhpmax);
 	if (u.uhpmax < 10)
 		printf ("  ");
@@ -510,7 +510,7 @@ bot () {
 	prustr ();
 	printf ("  Exp%3d/", u.ulevel);
 	if (u.ulevel < 14)
-		printf ("%-11U", u.uexp);
+		printf ("%-11ld", u.uexp);
 	else
 		printf ("%-11s", "MAX++");
 	printf ("%s", hu_stat[u.uhs]);

@@ -191,7 +191,7 @@ normalplay:
 			flags.dgold = 0;
 			curs (16, 24);
 			curx = 21;
-			printf ("%-5U", u.ugold);
+			printf ("%-5ld", u.ugold);
 		}
 		if (flags.dhp) {
 			flags.dhp = 0;
@@ -229,7 +229,7 @@ normalplay:
 			flags.dexp = 0;
 			curs (60, 24);
 			if (u.ulevel < 14)
-				printf ("%-5U", u.uexp);
+				printf ("%-5ld", u.uexp);
 			else
 				printf ("MAX++");
 			curx = 65;
@@ -237,7 +237,7 @@ normalplay:
 		if (flags.dhs) {
 			flags.dhs = 0;
 			curs (71, 24);
-			printf (hu_stat[u.uhs]);
+			printf ("%s", hu_stat[u.uhs]);
 			curx = 79;
 		}
 		if (multi < 0) {

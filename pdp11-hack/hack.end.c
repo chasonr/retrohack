@@ -87,8 +87,8 @@ register int    status;
 	else
 		printf ("You %s on dungeon level %d,", statxx[status],
 				dlevel);
-	printf (" with %U points\n", u.urexp);
-	printf ("and %U pieces of gold, after %u moves.\n",
+	printf (" with %ld points\n", u.urexp);
+	printf ("and %ld pieces of gold, after %u moves.\n",
 			u.ugold, moves);
 	printf ("You were level %d with a maximum of %d hit points when you %s.\n\n", u.ulevel, u.uhpmax, statxx[status]);
 	topten ();
@@ -148,7 +148,7 @@ topten () {
 			write (rfile, t1, sizeof (struct recitem));
 		if (t1 >= &rec[TOPPRINT] || t1 -> points == 0)
 			continue;
-		printf ("%2d  %6D %8s ", tmp, t1 -> points,
+		printf ("%2d  %6ld %8s ", tmp, t1 -> points,
 				t1 -> str);
 		if (*t1 -> death == 'e')
 			printf ("escaped the dungeon [max level %d]", t1 -> maxlvl);

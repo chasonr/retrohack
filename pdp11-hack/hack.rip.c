@@ -39,7 +39,7 @@ outrip () {
 	cls ();
 	strcpy (buffer, plname);
 	center (6, buffer);
-	sprintf (buffer, "%D Au", u.ugold);
+	sprintf (buffer, "%ld Au", u.ugold);
 	center (7, buffer);
 	strcpy (buffer, killer);
 	center (9, buffer);

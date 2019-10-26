@@ -174,7 +174,7 @@ static void
 error (s)
 char *s;
 {
-	printf (s);
+	printf ("%s", s);
 	putchar ('\n');
 	fflush (stdout);
 	exit (1);
@@ -201,7 +201,7 @@ showrecord () {
 		error ("Cannot open %s", RECORD);
 	printf ("Number Points Name\n");
 	while (read (rfile, &record, sizeof (struct recitem)) > 0) {
-		printf ("%2d  %6D %8s ", ++place, record.points,
+		printf ("%2d  %6ld %8s ", ++place, record.points,
 			record.str);
 		killed = 0;
 		if (*record.death == 'e')
