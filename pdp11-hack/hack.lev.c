@@ -19,7 +19,10 @@ static struct permonst pm_ale = {
 	"giant eel", ';', 15, 6, -3, 3, 6, 0
 };
 
-getlev (fd) {
+int
+getlev (fd)
+int fd;
+{
 	register        MONSTER mtmp;
 	register        GOLD_TRAP gtmp;
 	register        OBJECT otmp;
@@ -157,10 +160,10 @@ getlev (fd) {
 
 void
 mread (fd, buffer, len)
-register        fd, len;
+register int    fd, len;
 register char  *buffer;
 {
-	register        rlen;
+	register int    rlen;
 
 	if ((rlen = read (fd, buffer, len)) != len)
 		panic (CORE, "Read %d instead of %d bytes from file #%d\n",
@@ -169,7 +172,7 @@ register char  *buffer;
 
 void
 mklev () {
-	register        fd;
+	register int    fd;
 	char    type[2];
 
 #ifndef DEBUG

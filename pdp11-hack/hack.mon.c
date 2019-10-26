@@ -11,16 +11,18 @@
 
 static int test();
 
+int
 dist (x, y)
-register        x, y;
+register int    x, y;
 {
 	x -= u.ux;
 	y -= u.uy;
 	return (x * x + y * y);
 }
 
+int
 r_free (x, y, mtmp)
-register        x, y;
+register int    x, y;
 register        MONSTER mtmp;
 {
 	if (mtmp -> ale)
@@ -37,7 +39,7 @@ void
 mnexto (mtmp)
 MONSTER mtmp;
 {
-	register        x, y, z;
+	register int    x, y, z;
 	struct {
 		char    zx, zy;
 	}       foo[15], *tfoo;
@@ -86,7 +88,7 @@ void
 rloc (mtmp)
 MONSTER mtmp;
 {
-	register        tx, ty;
+	register int    tx, ty;
 	register char   ch = mtmp -> data -> mlet;
 
 	if (ch == 'w' && mtmp -> mx)
@@ -117,7 +119,9 @@ MONSTER mtmp;
 }
 
 static int
-test (x, y) {
+test (x, y)
+int x, y;
+{
 	if (x <= 0 || x > 78 || y <= 0 || y > 20)
 		return 0;
 	if (m_at (x, y) || levl[x][y].typ < DOOR || levl[x][y].typ >= 7)
@@ -159,7 +163,7 @@ steal (mtmp)
 MONSTER mtmp;
 {
 	register        OBJECT otmp, ot1;
-	register        tmp;
+	register int    tmp;
 
 	for (otmp = invent, tmp = 0; otmp -> nobj; otmp = otmp -> nobj, tmp++);
 
@@ -250,7 +254,7 @@ relobj (mtmp)
 register        MONSTER mtmp;
 {
 	register        GOLD_TRAP gtmp;
-	register        tmp = 0;
+	register int    tmp = 0;
 	OBJECT otmp, otmp2;
 
 	if (mtmp -> mstole) {	/* Michiel drop stolen obj or gold */
@@ -306,7 +310,7 @@ void
 killed (mtmp)
 register        MONSTER mtmp;
 {
-	register        tmp;
+	register int    tmp;
 
 	unstuck (mtmp);
 	levlsym (mtmp -> mx, mtmp -> my, mtmp -> data -> mlet);
@@ -361,7 +365,10 @@ register        MONSTER mtmp;
 #define NOTEST	6
 
 /*VARARGS*/
+int
 psee (mode, x, y, str, name, arg)/* Str bevat %s */
+int mode;
+int x, y;
 register char  *str, *name, *arg;
 {
 	char   *a1, *a2;
@@ -428,7 +435,7 @@ newcham (mtmp, mdat)
 register        MONSTER mtmp;
 register        MONSTDATA mdat;
 {
-	register        mhp, hpn, hpd;
+	register int    mhp, hpn, hpd;
 
 	if (mdat == mtmp -> data)
 		return;		/* Still the same monster */
@@ -461,6 +468,7 @@ register        MONSTDATA mdat;
 	pmon (mtmp);
 }
 
+int
 makemon (ptr)
 register        MONSTDATA ptr;
 {
@@ -520,6 +528,7 @@ register        MONSTDATA ptr;
 	return 0;
 }
 
+int
 somegold () {
 	return ((u.ugold < 100L) ? u.ugold :
 			(u.ugold > 10000L) ? rnd (10000) : rnd ((int) u.ugold));
@@ -528,7 +537,7 @@ somegold () {
 void
 mkmonat (ptr, x, y)
 register        MONSTDATA ptr;
-register        x, y;
+register int    x, y;
 {
 	if (makemon (ptr))
 		return;

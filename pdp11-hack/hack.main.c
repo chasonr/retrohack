@@ -42,7 +42,9 @@ unsigned        moves = 1;
 int     multi = 0;
 static int hackpid, uid;
 
+int
 main (argc, argv)
+int argc;
 char   *argv[];
 {
 	int     fd;
@@ -272,7 +274,7 @@ normalplay:
 
 void
 glo (n)
-register        n;		/* Construct the string `hackpid.n' */
+register int    n;		/* Construct the string `hackpid.n' */
 {
 /*
 	register char *tf = lock;

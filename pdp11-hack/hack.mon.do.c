@@ -51,7 +51,7 @@ register        MONSTER mtmp;
 static void
 youswld (mtmp, dam, die)
 register        MONSTER mtmp;
-register        dam, die;
+register int    dam, die;
 {
 	pseebl ("%s digests you!", killer = mtmp -> data -> mname);
 	if (dam > 0) {
@@ -66,10 +66,10 @@ register        dam, die;
 
 static void
 x2hitu (mlev, x, name)
-register        mlev, x;
+register int    mlev, x;
 register char  *name;		/* a3 */
 {
-	register        i;
+	register int    i;
 
 	for (i = 0; i < 2; i++)
 		hitu (mlev, (x < 0) ? d (2, x) : (x == 0) ? d (3, 4) :
@@ -81,7 +81,7 @@ dochug (mtmp)
 register        MONSTER mtmp;
 {
 	register        MONSTDATA mdat;
-	register        tmp = 0, ctmp;
+	register int    tmp = 0, ctmp;
 
 	if (mtmp -> mhp <= 0 && !mtmp -> mtame)
 		return 1;	/* Killed by dog or ? */
@@ -470,9 +470,10 @@ register        MONSTER mtmp;
 static int
 m_move (mtmp, after)
 register        MONSTER mtmp;
+int after;
 {
 	register        MONSTER mtmp2;
-	register        nix, niy, omx, omy, appr, nearer, cnt, zx, zy;
+	register int    nix, niy, omx, omy, appr, nearer, cnt, zx, zy;
 	char    ddx, ddy, mmoved = 0;
 
 /* My dog gets a special treatment */

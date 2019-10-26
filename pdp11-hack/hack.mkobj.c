@@ -12,7 +12,7 @@ static void restcalls();
 static int
 mkfood () {
 	register        FOOD fp;
-	register        i = rn2 (100);
+	register int    i = rn2 (100);
 
 	fp = &foods[0];
 	while ((i -= fp -> prob) >= 0)
@@ -23,7 +23,7 @@ mkfood () {
 static int
 mkarm () {
 	register        ARMOR ap;
-	register        i = rn2 (100);
+	register int    i = rn2 (100);
 
 	ap = &armors[0];
 	while ((i -= ap -> prob) >= 0)
@@ -34,7 +34,7 @@ mkarm () {
 static int
 mkwep () {
 	register        WEAPON wp;
-	register        i = rn2 (100);
+	register int    i = rn2 (100);
 
 	wp = &weapons[0];
 	while ((i -= wp -> prob) >= 0)
@@ -46,7 +46,7 @@ static char mkobjstr[] = "))[[!!!!????%%%%//=**";
 
 void
 mkobj (let)
-register        let;
+register int    let;
 {
 	register        OBJECT otmp;
 
@@ -140,7 +140,7 @@ register        let;
 static void
 shufl (base, num)
 register char  *base[];
-register        num;
+register int    num;
 {
 	char  **tmp, *tmp1;
 	int     curnum;
@@ -163,7 +163,7 @@ shuffle () {
 
 void
 savenames (fd)
-register        fd;
+register int    fd;
 {
 	bwrite (fd, oiden, sizeof oiden);
 	bwrite (fd, potcol, sizeof potcol);
@@ -174,7 +174,7 @@ register        fd;
 
 void
 restnames (fd)
-register        fd;
+register int    fd;
 {
 	mread (fd, oiden, sizeof oiden);
 	mread (fd, potcol, sizeof potcol);
@@ -186,7 +186,7 @@ register        fd;
 /* Restore the names we have given to things */
 void
 callsrestore (fd)
-register        fd;
+register int    fd;
 {
 	restcalls (fd, potcall, SIZE (pottyp));
 	restcalls (fd, wandcall, SIZE (wantyp));
@@ -197,7 +197,7 @@ register        fd;
 /* Save things we have given names to */
 void
 callssave (fd)
-register        fd;
+register int    fd;
 {
 	savecalls (fd, potcall, SIZE (pottyp));
 	savecalls (fd, wandcall, SIZE (wantyp));
@@ -210,7 +210,7 @@ savecalls (fd, strings, max)
 char   *strings[];
 register int    max, fd;
 {
-	register        teller;
+	register int    teller;
 
 	for (teller = 0; teller < max; ++teller) {
 		if (strings[teller])
@@ -226,7 +226,7 @@ restcalls (fd, strings, max)
 register int    fd, max;
 char   *strings[];
 {
-	register        teller;
+	register int    teller;
 	char   *str;
 	int     cnt;
 	char    buffer[BUFSZ];

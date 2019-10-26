@@ -65,7 +65,9 @@ static char wizard, dx, dy, nxcor, x, y;
 #define RUIN	5
 #define MAZE	6
 
+int
 main (argc, argv)
+int argc;
 char   *argv[];
 {
 	char    lowy, lowx;
@@ -332,6 +334,7 @@ register int   *xdir, *ydir, dir;
 	}
 }
 
+int
 okay (xx, yy, dir)
 int     xx, yy;
 register int    dir;

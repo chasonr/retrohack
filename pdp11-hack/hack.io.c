@@ -50,7 +50,7 @@ getret () {
 
 void
 hackmode (x)
-register        x;
+register int    x;
 {
 	struct termios ttyp;
 	static struct termios tty_save;

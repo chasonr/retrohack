@@ -3,12 +3,14 @@
  */
 
 void
-savelev (fd) {
+savelev (fd)
+int fd;
+{
 	register        MONSTER mtmp, mtmp2;
 	register        GOLD_TRAP gtmp, gtmp2;
 	register        OBJECT otmp, otmp2;
 	register        WORMSEGMENT wtmp, wtmp2;
-	register        tmp;
+	register int    tmp;
 	int     minusone = -1;
 
 	if (fd < 0)
@@ -76,7 +78,7 @@ savelev (fd) {
 
 void
 bwrite (fd, loc, num)
-register        fd, num;
+register int    fd, num;
 register char  *loc;
 {
 	if (write (fd, loc, num) != num)

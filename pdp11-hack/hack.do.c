@@ -24,7 +24,7 @@ static int getinventory();
 
 static void
 doglow (num)
-register        num;
+register int    num;
 {
 	pline ("Your %s glows %s for a %s.", (flags.dac) ?
 		armors[uarm -> otyp].armnam : weapons[uwep -> otyp].wepnam,
@@ -344,7 +344,7 @@ doread () {
 
 void
 litroom () {
-	register        zx, zy;
+	register int    zx, zy;
 
 	if (!xdnstair || !dlevel) {
 		pline (NOTHIN);
@@ -397,7 +397,7 @@ void
 dodrink () {
 	register        OBJECT otmp, objs;
 	register        MONSTER mtmp;
-	register        num;
+	register int    num;
 
 	if (!(otmp = getobj ("!", "drink"))) {
 		nomove ();
@@ -625,7 +625,7 @@ dodrop () {
 void
 gemsdrop () {
 	register        OBJECT obj;
-	register        counting = 0;
+	register int    counting = 0;
 
 	for (obj = invent; obj;) {
 		if (obj -> olet == '*') {
@@ -646,6 +646,7 @@ gemsdrop () {
 				counting == 1 ? "" : "s");
 }
 
+int
 uwepcursed () {			/* a3,drop or throw uwep */
 	if (uwep -> cursed) {
 		multi = 0;	/* Dowield() */

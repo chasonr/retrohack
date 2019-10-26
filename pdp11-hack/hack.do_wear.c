@@ -161,9 +161,9 @@ R:
 void
 doring (obj, eff)
 register        OBJECT obj;
-register        eff;
+register int    eff;
 {
-	register        tmp;
+	register int    tmp;
 
 	if (!obj)
 		return;

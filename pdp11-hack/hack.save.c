@@ -19,7 +19,7 @@
 
 void
 save () {
-	register        fd, ofd, tmp;
+	register int    fd, ofd, tmp;
 	register        OBJECT otmp, otmp2;
 	MONSTER mtmp;
 	int     version = VERSION;
@@ -121,10 +121,11 @@ save () {
 	exit (0);
 }
 
+int
 dorecover (fd)
-register        fd;
+register int    fd;
 {
-	register        nfd, tmp;
+	register int    nfd, tmp;
 	register        OBJECT otmp, olast;
 	MONSTER mtmp;
 	int     version;

@@ -7,6 +7,7 @@
 #define SUNDAY 0
 #define SATURDAY 6
 
+int
 kantoor () {
 	struct tm      *s;
 	long    clock;

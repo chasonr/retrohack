@@ -12,10 +12,11 @@ unsigned        wgrowtime[32];
 
 static void remseg();
 
+int
 getwn (mtmp)
 MONSTER mtmp;
 {
-	register        tmp;
+	register int    tmp;
 
 	for (tmp = 1; tmp < 32; tmp++)
 		if (!wsegs[tmp]) {
@@ -30,7 +31,7 @@ initworm (mtmp)
 MONSTER mtmp;
 {
 	register        WORMSEGMENT wtmp;
-	register        tmp = mtmp -> wormno;
+	register int    tmp = mtmp -> wormno;
 
 	if (!tmp)
 		return;
@@ -46,7 +47,7 @@ worm_move (mtmp)
 MONSTER mtmp;
 {
 	register        WORMSEGMENT wtmp, whd;
-	register        tmp = mtmp -> wormno;
+	register int    tmp = mtmp -> wormno;
 
 	wtmp = newseg ();
 	wtmp -> wx = mtmp -> mx;
@@ -74,7 +75,7 @@ void
 worm_nomove (mtmp)
 register        MONSTER mtmp;
 {
-	register        tmp;
+	register int    tmp;
 	register        WORMSEGMENT wtmp;
 
 	tmp = mtmp -> wormno;
@@ -90,7 +91,7 @@ void
 wormdead (mtmp)
 register        MONSTER mtmp;
 {
-	register        tmp = mtmp -> wormno;
+	register int    tmp = mtmp -> wormno;
 	register        WORMSEGMENT wtmp, wtmp2;
 
 	if (!tmp)
@@ -106,7 +107,7 @@ void
 wormhit (mtmp)
 register        MONSTER mtmp;
 {
-	register        tmp = mtmp -> wormno;
+	register int    tmp = mtmp -> wormno;
 	register        MONSTDATA mdat = mtmp -> data;
 	register        WORMSEGMENT wtmp;
 
@@ -118,7 +119,7 @@ register        MONSTER mtmp;
 
 void
 wormsee (tmp)
-register        tmp;
+register int    tmp;
 {
 	register        WORMSEGMENT wtmp;
 
@@ -135,7 +136,7 @@ register unsigned       weptyp;
 {
 	register        WORMSEGMENT wtmp, wtmp2;
 	register        MONSTER mtmp2;
-	register        tmp, tmp2;
+	register int    tmp, tmp2;
 
 	if (mtmp -> mx == x && mtmp -> my == y)
 		return;		/* Hit headon */

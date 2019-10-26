@@ -97,9 +97,9 @@ doeat () {
 
 void
 lesshungry (num)		/* Eat stg or drink fruit juice */
-register        num;
+register int    num;
 {
-	register        newhunger;
+	register int    newhunger;
 
 	newhunger = u.uhunger + num;
 	if (u.uhunger < 151 && newhunger > 150) {

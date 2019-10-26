@@ -10,7 +10,7 @@
 static int
 mkfood () {
 	register        FOOD fp;
-	register        i = rn2 (100);
+	register int    i = rn2 (100);
 
 	fp = &foods[0];
 	while ((i -= fp -> prob) >= 0)
@@ -21,7 +21,7 @@ mkfood () {
 static int
 mkarm () {
 	register        ARMOR ap;
-	register        i = rn2 (100);
+	register int    i = rn2 (100);
 
 	ap = &armors[0];
 	while ((i -= ap -> prob) >= 0)
@@ -32,7 +32,7 @@ mkarm () {
 static int
 mkwep () {
 	register        WEAPON wp;
-	register        i = rn2 (100);
+	register int    i = rn2 (100);
 	wp = &weapons[0];
 	while ((i -= wp -> prob) >= 0)
 		wp++;
@@ -43,7 +43,7 @@ static char mkobjstr[] = "))[[!!!!????%%%%//=**";
 
 void
 mkobj (let)
-register        let;
+register int    let;
 {
 	register        OBJECT otmp;
 

@@ -211,7 +211,7 @@ register char  *dir;
 
 void
 dosavelev () {
-	register        fd;
+	register int    fd;
 
 	glo (dlevel);
 	fd = creat (lock, 0644);
@@ -232,7 +232,7 @@ register char  *dir;
 
 void
 dodown () {
-	register        fd;
+	register int    fd;
 
 	glo (++dlevel);
 	if ((fd = open (lock, 0)) < 0)
@@ -254,7 +254,7 @@ dodown () {
 
 void
 doup () {
-	register        fd;
+	register int    fd;
 
 	if (dlevel == 1)
 		done (ESCAPED);
@@ -326,7 +326,7 @@ static void
 dothrow () {
 	register        OBJECT obj;
 	register        MONSTER monst;
-	register        tmp;
+	register int    tmp;
 	char    x, y;
 
 	obj = getobj ("#%)", "throw");
@@ -437,6 +437,7 @@ register        OBJECT obj;
 	return (fobj);
 }
 
+int
 getdir () {
 	pline ("What direction?");
 	flush ();

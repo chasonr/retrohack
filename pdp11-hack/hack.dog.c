@@ -79,8 +79,10 @@ int     checkdist;
 #define GDIST(x, y) ((x - gx)*(x - gx) + (y - gy)*(y - gy) )
 #define DDIST(x, y) ((x - omx)*(x - omx) + (y - omy)*(y - omy) )
 
+int
 dog_move (mtmp, after)
 register        MONSTER mtmp;
+int after;
 {
 	register        MONSTER mtmp2;
 	register struct edog   *edog = EDOG (mtmp);
@@ -304,6 +306,7 @@ newdogpos:
 	return MOVE;
 }
 
+int
 hitmm (magr, mdef)
 register        MONSTER magr, mdef;
 {
@@ -355,6 +358,7 @@ register        MONSTER magr, mdef;
 }
 
 /* Return roomnumber or -1 */
+int
 inroom (x, y)
 char    x, y;
 {
@@ -373,6 +377,7 @@ char    x, y;
 #define NOTTAME 0
 #define TAME    1
 
+int
 tamedog (mtmp, obj)
 register        MONSTER mtmp;
 register        OBJECT obj;

@@ -172,6 +172,7 @@ register int    num, mazeflag;
 void
 mkgold (num, goldx, goldy)
 register int    num;
+int goldx, goldy;
 {
 	register        GOLD_TRAP gtmp;
 
@@ -183,8 +184,10 @@ register int    num;
 }
 
 /*VARARGS*/
+int
 panic (str, arg1, arg2)
 register char  *str;
+int arg1, arg2;
 {
 	fprintf (stderr, "\nMKLEV ERROR: ");
 	fprintf (stderr, str, arg1, arg2);
@@ -327,7 +330,9 @@ mkyard () {
 #define MON	0
 
 static int
-mymakemon (monx, mony) {
+mymakemon (monx, mony)
+int monx, mony;
+{
 	register        MONSTER mtmp;
 	register int    tryct = 0;
 	register int    tmp = 0;

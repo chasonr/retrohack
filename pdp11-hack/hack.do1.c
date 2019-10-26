@@ -39,7 +39,7 @@ dozap () {
 	register        OBJECT obj;
 	register        MONSTER mtmp;
 	char    zx, zy;
-	register        num;
+	register int    num;
 
 	if (!(obj = getobj ("/", "zap"))) {
 		nomove ();
@@ -321,7 +321,11 @@ findit ()
 }
 
 /* Sets dx,dy to the final position of the weapon thrown */
-MONSTER bhit (ddx, ddy, range) {
+MONSTER
+bhit (ddx, ddy, range)
+int ddx, ddy;
+int range;
+{
 	register        MONSTER mtmp;
 
 	dx = u.ux;
@@ -344,12 +348,14 @@ MONSTER bhit (ddx, ddy, range) {
 
 void
 buzz (type, sx, sy, ddx, ddy)
-register        sx, sy;
+int type;
+register int    sx, sy;
+int ddx, ddy;
 {
 	PART * lev;
 	register char   range, let;
 	register        MONSTER mtmp;
-	register        wandeftype = type - 11;
+	register int    wandeftype = type - 11;
 
 	if (u.uswallow) {
 		pline ("The %s rips into the %s.",
@@ -442,7 +448,7 @@ register        sx, sy;
 static void
 zhit (mtmp, type)
 register        MONSTER mtmp;
-register        type;
+register int    type;
 {
 	if (mtmp == shopkeeper)
 		setangry ();
@@ -483,7 +489,7 @@ register        type;
 
 void
 dowhatis () {
-	register        fd;
+	register int    fd;
 	register char  *str;
 
 

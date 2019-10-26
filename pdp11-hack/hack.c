@@ -28,9 +28,10 @@ register char  *str;
 
 /* (a3) mix van setsee() en seeon() */
 void
-setCon (setc) {			/* setc: 1-setsee, 0-seeon (we just went to a
-				   new level) */
-	register        x, y;
+setCon (setc)
+int setc; 	/* setc: 1-setsee, 0-seeon (we just went to a new level) */
+{
+	register int    x, y;
 	register        MONSTER mtmp;
 	int     lx, hx, ly, hy;
 
@@ -100,7 +101,10 @@ setCon (setc) {			/* setc: 1-setsee, 0-seeon (we just went to a
 }
 
 void
-unCoff (unc, mode) {
+unCoff (unc, mode)
+int unc;
+int mode;
+{
  /* 
   * (a3) mix van unsee() en seeoff()
   * unc: 1-unsee, 0-seeoff
@@ -108,7 +112,7 @@ unCoff (unc, mode) {
   * 0-leave them (blindness (Usually))
   */
 
-	register        x, y;
+	register int    x, y;
 	register        PART * lev;
 	int     lx, hx, ly, hy;
 
@@ -148,8 +152,9 @@ unCoff (unc, mode) {
 	seehx = 0;
 }
 
+int
 hitu (mlev, dam, name)
-register        mlev, dam;
+register int    mlev, dam;
 register char  *name;
 {
 	mlev += (u.uac - 1);
@@ -168,6 +173,7 @@ register char  *name;
 	return (HITYOU);
 }
 
+int
 cansee (x, y)
 char    x, y;
 {
@@ -183,7 +189,7 @@ char    x, y;
 
 long
         pow2 (num)
-register        num;		/* Returns 2^num */
+register int    num;		/* Returns 2^num */
 {
 	return (1 << num);
 }
@@ -368,6 +374,7 @@ register char  *buffer;
 		strcat (buffer, " (unpaid)");
 }
 
+int
 abon () {
 	if (u.ustr == 3)
 		return - 3;
@@ -405,7 +412,7 @@ dbon () {
 
 void
 losestr (num)
-register        num;
+register int    num;
 {
 	u.ustr -= num;
 	while (u.ustr < 3) {
@@ -419,7 +426,7 @@ register        num;
 
 void
 losehp (n, knam)
-register        n;
+register int    n;
 char   *knam;
 {
 	u.uhp -= n;
@@ -438,6 +445,7 @@ register char  *str;		/* a3 */
 	return buffer;
 }
 
+int
 weight (obj)
 register        OBJECT obj;
 {
@@ -473,11 +481,12 @@ register        OBJECT obj;
 
 static char mlarge[] = "bCDdegIlmnoPSsTUwY',&";
 
+int
 hmon (monst, obj)
 register        MONSTER monst;
 register        OBJECT obj;
 {
-	register        tmp;
+	register int    tmp;
 
 	if (!obj || obj == uwep && (obj -> otyp >= W_USE_AMMO ||
 				obj -> otyp <= W_AMMUNITION))
@@ -508,6 +517,7 @@ register        OBJECT obj;
 	return alive (monst);
 }
 
+int
 alive (monst)
 register        MONSTER monst;
 {

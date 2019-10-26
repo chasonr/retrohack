@@ -109,7 +109,7 @@ topten () {
 		int     level, maxlvl, hp, maxhp;
 		char    str[NAMESIZE + 1], death[DEATHSIZE + 1];
 	}               rec[TOPLIST + 1], *t1;
-	register        flg;
+	register int    flg;
 
 	for (t1 = rec; t1 < &rec[TOPLIST]; t1++)
 		if (read (rfile, t1, sizeof (struct recitem)) <= 0)
@@ -198,7 +198,7 @@ register int    a;
 
 void
 clearlocks () {
-	register        x;
+	register int    x;
 
 	signal (SIGINT, SIG_IGN);
 	for (x = 1; x <= MAXLEVEL; x++) {
@@ -212,6 +212,7 @@ clearlocks () {
 #endif DEBUG
 }
 
+int
 hangup () {
 	save ();
 	clearlocks ();

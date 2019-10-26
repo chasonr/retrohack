@@ -26,6 +26,7 @@ static short   xdir[8] = {
 	0, 1, -1, 0, -1, -1, 1, 1
 };
 
+int
 movecm (cmd)
 register char  *cmd;
 {
@@ -471,7 +472,7 @@ M:
 /* Stop running if we see something interesting */
 void
 lookaround () {
-	register        x, y, corrct = 0;
+	register int    x, y, corrct = 0;
 	register        MONSTER mtmp;
 
 	if (u.ublind || flags.run < 2)
@@ -522,7 +523,7 @@ lookaround () {
 
 void
 nomul (nval)
-register        nval;
+register int    nval;
 {
 	if (multi < 0)
 		return;
@@ -536,7 +537,7 @@ register        nval;
 char   *
         parse () {
 	static char     in_line[80];
-	register        foo;
+	register int    foo;
 
 	oldux = 0;
 	olduy = 0;

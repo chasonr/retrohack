@@ -112,7 +112,7 @@ register        GOLD_TRAP trap;
 }
 
 MONSTER m_at (x, y)
-register        x, y;
+register int    x, y;
 {
 	register        MONSTER mtmp;
 	register        WORMSEGMENT wtmp;
@@ -130,7 +130,7 @@ register        x, y;
 }
 
 OBJECT o_at (x, y)
-register        x, y;
+register int    x, y;
 {
 	register        OBJECT otmp;
 
@@ -141,7 +141,7 @@ register        x, y;
 }
 
 GOLD_TRAP g_at (x, y, ptr)
-register        x, y;
+register int    x, y;
 register        GOLD_TRAP ptr;
 {
 	while (ptr) {
@@ -158,7 +158,7 @@ register char  *let, *word;
 	register        OBJECT otmp;
 	register char   ilet, ilet1, ilet2;
 	char    buffer[BUFSZ], allowall = 0;
-	register        foo = 0, foo2;
+	register int    foo = 0, foo2;
 
 	if (*let == '#') {
 		let++;
@@ -246,6 +246,7 @@ static void
 prname (obj, let, onelin)
 register        OBJECT obj;
 register char   let;
+int onelin;
 {
 	char    li[BUFSZ];
 

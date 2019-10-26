@@ -54,8 +54,11 @@ startup () {
 }
 
 /*VARARGS*/
+int
 panic (coredump, str, a1, a2, a3, a4, a5, a6)
+int coredump;
 register char  *str;
+int a1, a2, a3, a4, a5, a6;
 {
 	home ();
 #ifdef NORMAL_IO
@@ -75,7 +78,7 @@ register char  *str;
 
 void
 seeatl (x, y, c)
-register        x, y, c;
+register int    x, y, c;
 {
 	if (cansee (x, y))
 		atl (x, y, c);
@@ -102,7 +105,8 @@ home () {
 
 void
 atl (x, y, ch)
-register        x, y;
+register int    x, y;
+int ch;
 {
 	register        PART * crm = &levl[x][y];
 
@@ -117,7 +121,7 @@ register        x, y;
 
 void
 on (x, y)
-register        x, y;
+register int    x, y;
 {
 	if (flags.dscr) {
 		if (x < scrlx)
@@ -138,7 +142,7 @@ register        x, y;
 
 void
 at (x, y, ch)
-register        x, y;
+register int    x, y;
 register char   ch;
 {
 	if (!ch || x < 0 || x > 79 || y < 0 || y > 21)
@@ -162,7 +166,9 @@ pru () {
 }
 
 void
-prl (x, y) {
+prl (x, y)
+int x, y;
+{
 	register        PART * room;
 	register        MONSTER mtmp;
 
@@ -181,7 +187,7 @@ prl (x, y) {
 
 void
 newunseen (x, y)
-register        x, y;
+register int    x, y;
 {
 	if (!levl[x][y].seen) {
 		levl[x][y].new = 1;
@@ -191,7 +197,7 @@ register        x, y;
 
 char
         news0 (x, y)
-register        x, y;
+register int    x, y;
 {
 	register        OBJECT otmp;
 	register        GOLD_TRAP gtmp;
@@ -260,14 +266,14 @@ register        x, y;
 
 void
 newsym (x, y)
-register        x, y;
+register int    x, y;
 {
 	atl (x, y, news0 (x, y));
 }
 
 void
 levlsym (x, y, c)
-register        x, y, c;
+register int    x, y, c;
 {
 	if (levl[x][y].scrsym == c)
 		newsym (x, y);
@@ -275,7 +281,7 @@ register        x, y, c;
 
 static void
 nosee (x, y)
-register        x, y;
+register int    x, y;
 {
 	register        PART * room;
 
@@ -293,9 +299,9 @@ register        x, y;
 
 void
 prl1 (x, y)
-register        x, y;
+register int    x, y;
 {
-	register        count;
+	register int    count;
 
 	if (dx) {
 		if (dy) {
@@ -316,9 +322,9 @@ register        x, y;
 
 void
 nose1 (x, y)
-register        x, y;
+register int    x, y;
 {
-	register        count;
+	register int    count;
 
 	if (dx)
 		if (dy) {
@@ -346,6 +352,7 @@ doreprint () {
 void
 pline (line, arg1, arg2, arg3, arg4)
 register char  *line;
+int arg1, arg2, arg3, arg4;
 {
 	char    pbuf[BUFSZ];
 	static char     prevbuf[BUFSZ];
@@ -415,7 +422,7 @@ docrt () {
 
 void
 nscr () {
-	register        umv;
+	register int    umv;
 
 	umv = ((ou.x < 0 && !u.uinvis) || (ou.x >= 0 &&
 				(u.uinvis || ou.x != u.ux || ou.y != u.uy)));
@@ -425,9 +432,12 @@ nscr () {
 }
 
 static void
-donscrt (mode, umv) {		/* mode: 0- docrt(), 1- nscr()  */
+donscrt (mode, umv)
+int mode;		/* mode: 0- docrt(), 1- nscr()  */
+int umv;
+{
 	register        PART * room;
-	register        x, y, ly, hy, lx, hx;
+	register int    x, y, ly, hy, lx, hx;
 
 	if (u.uinvis) {
 		if (mode)
@@ -509,7 +519,7 @@ bot () {
 
 void
 curs (x, y)
-register        x, y;
+register int    x, y;
 {
 	if (y == cury && x == curx)
 		return;		/* Do nothing, gracefully */

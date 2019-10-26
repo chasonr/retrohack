@@ -41,7 +41,7 @@ main (argc, argv)
 int     argc;
 char  **argv;
 {
-	register        fd;
+	register int    fd;
 	register        MONSTER mtmp = (MONSTER) mbuf;
 	char    buffer[100];
 	struct stole    stmp;
@@ -140,8 +140,12 @@ char  **argv;
 }
 
 static void
-mread (fd, buf, n) {
-	register        nn;
+mread (fd, buf, n)
+int fd;
+char *buf;
+int n;
+{
+	register int    nn;
 
 	if ((nn = read (fd, buf, n)) != n) {
 		printf ("error: read %d instead of %d bytes\n", nn, n);
@@ -151,7 +155,7 @@ mread (fd, buf, n) {
 
 static void
 show () {
-	register        i, j;
+	register int    i, j;
 
 	for (j = 0; j < 22; j++)
 		for (i = 0; i < 80; i++)
@@ -167,7 +171,9 @@ char    ch;
 }
 
 static void
-error (s) {
+error (s)
+char *s;
+{
 	printf (s);
 	putchar ('\n');
 	fflush (stdout);
@@ -187,9 +193,9 @@ static struct recitem {
 
 static void
 showrecord () {
-	register        killed;
-	register        place = 0;
-	register        rfile;
+	register int    killed;
+	register int    place = 0;
+	register int    rfile;
 
 	if ((rfile = open (RECORD, 0)) < 0)
 		error ("Cannot open %s", RECORD);

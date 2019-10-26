@@ -59,7 +59,7 @@ shkdead () {
 
 static void
 setpaid () {
-	register        tmp;
+	register int    tmp;
 	register        OBJECT obj;
 
 	for (obj = invent; obj; obj = obj -> nobj)
@@ -72,21 +72,23 @@ setpaid () {
 
 static void
 addupbill () {			/* Delivers result in total */
-	register        ct = billct;
+	register int    ct = billct;
 
 	total = 0;
 	while (ct--)
 		total += bill[ct].price;
 }
 
+int
 inshproom (x, y)
-register        x, y;		/* a3 */
+register int    x, y;		/* a3 */
 {
 	return (inroom (x, y) == shoproom);
 }
 
+int
 inshop () {
-	register        tmp = inroom (u.ux, u.uy);
+	register int    tmp = inroom (u.ux, u.uy);
 
 	if (tmp < 0 || rooms[tmp].rtype < 8) {
 		u.uinshop = 0;
@@ -114,10 +116,11 @@ inshop () {
 }
 
 /* Called by useup and dothrow only */
+int
 onbill (obj)
 register        OBJECT obj;
 {
-	register        tmp;
+	register int    tmp;
 
 	for (tmp = 0; tmp < billct; tmp++)
 		if (bill[tmp].op == obj) {
@@ -249,7 +252,7 @@ void
 subfrombill (obj)
 register        OBJECT obj;
 {
-	register        tmp;
+	register int    tmp;
 	register        OBJECT otmp;
 
 	if (!inshop ())
@@ -324,7 +327,7 @@ static int
 getprice (obj)
 register        OBJECT obj;
 {
-	register        tmp, ac;
+	register int    tmp, ac;
 
 	switch (obj -> olet) {
 		case '"': 
@@ -366,7 +369,7 @@ register        OBJECT obj;
 
 static int
 realhunger () {			/* not completely foolproof (??) */
-	register        tmp = u.uhunger;
+	register int    tmp = u.uhunger;
 	register        OBJECT otmp = invent;
 
 	while (otmp) {
@@ -380,7 +383,7 @@ realhunger () {			/* not completely foolproof (??) */
 static void
 shopinit () {
 	register        MKROOM * sroom = &rooms[shoproom];
-	register        i, j, x, y;
+	register int    i, j, x, y;
 
 	shlevel = dlevel;
 	shd = doors[sroom -> fdoor];
@@ -438,6 +441,7 @@ setangry () {
 	}
 }
 
+int
 shk_move () {
 	register        MONSTER mtmp;
 	char    gx, gy, omx, omy, cnt, appr,
