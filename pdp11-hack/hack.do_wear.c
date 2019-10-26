@@ -8,19 +8,19 @@
 #define CURSED		1
 #define NOTCURSED	0
 
-static void dorr();
-static int cursed();
+static void dorr (OBJECT * ring);
+static int cursed (OBJECT otmp);
 
 static void
-off_msg (otmp)
-register        OBJECT otmp;
+off_msg (OBJECT otmp)
 {
 	doname (otmp, buf);
 	pline ("You were wearing %s.", buf);
 }
 
 void
-doremarm () {
+doremarm (void)
+{
 	register        OBJECT oldarm = uarm;
 
 	nomove ();
@@ -40,7 +40,8 @@ doremarm () {
 }
 
 void
-doremring () {
+doremring (void)
+{
 
 	nomove ();
 	if (!uleft && !uright) {
@@ -73,8 +74,7 @@ doremring () {
 }
 
 static void
-dorr (ring)
-register        OBJECT * ring;
+dorr (OBJECT * ring)
 {
 	register        OBJECT otmp = *ring;
 
@@ -86,8 +86,7 @@ register        OBJECT * ring;
 }
 
 static int
-cursed (otmp)
-register        OBJECT otmp;
+cursed (OBJECT otmp)
 {
 	if (otmp -> cursed) {
 		pline ("You can't. It appears to be cursed.");
@@ -97,7 +96,8 @@ register        OBJECT otmp;
 }
 
 void
-armwear () {
+armwear (void)
+{
 	register        OBJECT otmp;
 
 	otmp = getobj ("[", "wear");
@@ -122,7 +122,8 @@ armwear () {
 }
 
 void
-dowearring () {
+dowearring (void)
+{
 	register        OBJECT otmp;
 
 	otmp = getobj ("=", "wear");
@@ -159,9 +160,7 @@ R:
 }
 
 void
-doring (obj, eff)
-register        OBJECT obj;
-register int    eff;
+doring (OBJECT obj, int eff)
 {
 	register int    tmp;
 

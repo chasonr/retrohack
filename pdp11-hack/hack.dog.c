@@ -9,12 +9,13 @@
 #define UNDEF   127		/* Some large number */
 #define EDOG(mp)        ( (struct edog *)(&(mp->mextra[0])) )
 
-static char SADFEEL[] = "You have a sad feeling for a moment, then it passes";
+static const char SADFEEL[] = "You have a sad feeling for a moment, then it passes";
 
-static void initedog();
+static void initedog (MONSTER mtmp);
 
 void
-makedog () {
+makedog (void)
+{
 	if (makemon (&li_dog))
 		return;		/* Dogs were genocided */
 	mnexto (fmon);
@@ -22,8 +23,7 @@ makedog () {
 }
 
 static void
-initedog (mtmp)
-register        MONSTER mtmp;
+initedog (MONSTER mtmp)
 {
 	mtmp -> mtame = 1;
 	EDOG (mtmp) -> hungrytime = 1000 + moves;
@@ -39,7 +39,8 @@ register        MONSTER mtmp;
 MONSTER mydogs = 0;
 
 void
-losedogs () {
+losedogs (void)
+{
 	register        MONSTER mtmp;
 
 	while ((mtmp = mydogs) != NULL) {
@@ -51,8 +52,7 @@ losedogs () {
 }
 
 void
-keepdogs (checkdist)
-int     checkdist;
+keepdogs (int checkdist)
 {
 	register        MONSTER mtmp;
 	register        PART * dr;
@@ -80,9 +80,7 @@ int     checkdist;
 #define DDIST(x, y) ((x - omx)*(x - omx) + (y - omy)*(y - omy) )
 
 int
-dog_move (mtmp, after)
-register        MONSTER mtmp;
-int after;
+dog_move (MONSTER mtmp, int after)
 {
 	register        MONSTER mtmp2;
 	register struct edog   *edog = EDOG (mtmp);
@@ -102,11 +100,11 @@ int after;
 		if (mtmp -> mhp > mtmp -> orig_hp)
 			mtmp -> mhp = mtmp -> orig_hp;
 		psee (0, omx, omy, "%s is confused from hunger",
-				mtmp -> data -> mname);
+				mtmp -> data -> mname, NULL);
 	}
 	else if (moves > edog -> hungrytime + 750 || mtmp -> mhp <= 0) {
 		if (!psee (0, omx, omy, "%s dies from hunger",
-					mtmp -> data -> mname))
+					mtmp -> data -> mname, NULL))
 			pline (SADFEEL);
 		levlsym (omx, omy, mtmp -> data -> mlet);
 		delmon (mtmp);
@@ -307,8 +305,7 @@ newdogpos:
 }
 
 int
-hitmm (magr, mdef)
-register        MONSTER magr, mdef;
+hitmm (MONSTER magr, MONSTER mdef)
 {
 	register        MONSTDATA pa = magr -> data;
 	register        MONSTDATA pd = mdef -> data;
@@ -359,8 +356,7 @@ register        MONSTER magr, mdef;
 
 /* Return roomnumber or -1 */
 int
-inroom (x, y)
-signed char x, y;
+inroom (signed char x, signed char y)
 {
 	register        MKROOM * croom = &rooms[0];
 
@@ -378,9 +374,7 @@ signed char x, y;
 #define TAME    1
 
 int
-tamedog (mtmp, obj)
-register        MONSTER mtmp;
-register        OBJECT obj;
+tamedog (MONSTER mtmp, OBJECT obj)
 {
 	register        MONSTER mtmp2;
 

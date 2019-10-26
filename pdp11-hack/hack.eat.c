@@ -17,7 +17,8 @@ char   *hu_stat[4] = {
 };
 
 void
-doeat () {
+doeat (void)
+{
 	register        OBJECT otmp;
 	register        FOOD ftmp;
 
@@ -96,8 +97,7 @@ doeat () {
 }
 
 void
-lesshungry (num)		/* Eat stg or drink fruit juice */
-register int    num;
+lesshungry (int num)		/* Eat stg or drink fruit juice */
 {
 	register int    newhunger;
 
@@ -125,7 +125,8 @@ Ldohs:
 }
 
 void
-gethungry () {			/* Called in main */
+gethungry (void)			/* Called in main */
+{
 	--u.uhunger;
 	if ((u.uregen || u.ufeed) && moves % 2)
 		u.uhunger--;

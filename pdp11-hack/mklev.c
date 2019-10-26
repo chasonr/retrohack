@@ -13,12 +13,11 @@
 
 static char *tfile, *tspe, **args, nul[20];
 
-static void mkpos();
-static void dodoor();
-static void newloc();
-static void makecor();
-static void bwrite();
-static int maker();
+static void mkpos (void);
+static void dodoor (int doorx, int doory, MKROOM *aroom);
+static void newloc (void);
+static void makecor (int nx, int ny);
+static int maker (signed char lowx, signed char hix, signed char lowy, signed char hiy);
 
 #include "mklev.svlev.c"
 
@@ -54,7 +53,7 @@ COORDINATES doors[DOORMAX];
 
 static int doorindex = 0;
 int nroom;
-static int comp ();
+static int comp (const void *xcoord_, const void *ycoord_);
 
 char   *geno;
 signed char dlevel, goldseen,
@@ -67,9 +66,7 @@ static signed char wizard, dx, dy, nxcor, x, y;
 #define MAZE	6
 
 int
-main (argc, argv)
-int argc;
-char   *argv[];
+main (int argc, char *argv[])
 {
 	signed char lowy, lowx;
 	register unsigned       tryct;
@@ -193,16 +190,18 @@ jumpout:
 }
 
 static int
-comp (xcoord, ycoord)
-register        MKROOM * xcoord, *ycoord;
+comp (const void *xcoord_, const void *ycoord_)
 {
+	const MKROOM *xcoord = (const MKROOM *)xcoord_;
+	const MKROOM *ycoord = (const MKROOM *)ycoord_;
 	if (xcoord -> lx < ycoord -> lx)
 		return - 1;
 	return (xcoord -> lx > ycoord -> lx);
 }
 
 static void
-mkpos () {
+mkpos (void)
+{
 	if (troom -> hx < 0 || croom -> hx < 0)
 		return;
 	if (troom -> lx > croom -> hx) {
@@ -250,9 +249,7 @@ mkpos () {
 }
 
 static void
-dodoor (doorx, doory, aroom)
-register int    doorx, doory;
-register        MKROOM * aroom;
+dodoor (int doorx, int doory, MKROOM *aroom)
 {
 	register        MKROOM * broom;
 	register int    tmp;
@@ -290,7 +287,8 @@ register        MKROOM * aroom;
 }
 
 static void
-newloc () {
+newloc (void)
+{
 	register int    tryct = 0;
 
 	++croom;
@@ -316,8 +314,7 @@ newloc () {
 }
 
 void
-move (xdir, ydir, dir)
-register int   *xdir, *ydir, dir;
+move (int *xdir, int *ydir, int dir)
 {
 	switch (dir) {
 		case 0: 
@@ -336,9 +333,7 @@ register int   *xdir, *ydir, dir;
 }
 
 int
-okay (xx, yy, dir)
-int     xx, yy;
-register int    dir;
+okay (int xx, int yy, int dir)
 {
 	move (&xx, &yy, dir);
 	move (&xx, &yy, dir);
@@ -348,8 +343,7 @@ register int    dir;
 }
 
 static int
-maker (lowx, hix, lowy, hiy)
-signed char lowx, hix, lowy, hiy;
+maker (signed char lowx, signed char hix, signed char lowy, signed char hiy)
 {
 	register        PART * ltmp, *lmax;
 	register int    tmpx;
@@ -409,8 +403,7 @@ signed char lowx, hix, lowy, hiy;
 }
 
 static void
-makecor (nx, ny)
-register int    nx, ny;
+makecor (int nx, int ny)
 {
 	register        PART * crm;
 	register int    dix, diy;
@@ -428,7 +421,7 @@ register int    nx, ny;
 		}
 		printf ("something went wrong. we try again...\n");
 		execl ("./mklev", args[0], tfile, tspe, args[3],
-				args[4], 0);
+				args[4], (char *)NULL);
 		panic ("cannot execute ./mklev\n");
 	}
 	if (dy && dix > diy) {
@@ -473,8 +466,8 @@ register int    nx, ny;
 	}
 }
 
-MONSTER m_at (monx, mony)
-register int    monx, mony;
+MONSTER
+m_at (int monx, int mony)
 {
 	register        MONSTER mtmp;
 
@@ -484,8 +477,8 @@ register int    monx, mony;
 	return (NOT_HERE);
 }
 
-OBJECT o_at (objx, objy)
-register int    objx, objy;
+OBJECT
+o_at (int objx, int objy)
 {
 	register        OBJECT obj;
 
@@ -495,9 +488,8 @@ register int    objx, objy;
 	return (NOT_HERE);
 }
 
-GOLD_TRAP g_at (gtx, gty, ptr)
-register int    gtx, gty;
-register        GOLD_TRAP ptr;
+GOLD_TRAP
+g_at (int gtx, int gty, GOLD_TRAP ptr)
 {
 	while (ptr) {
 		if (ptr -> gx == gtx && ptr -> gy == gty)

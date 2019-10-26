@@ -9,11 +9,10 @@
 #include <string.h>
 #include "hack.h"
 
-static int test();
+static int test (int x, int y);
 
 int
-dist (x, y)
-register int    x, y;
+dist (int x, int y)
 {
 	x -= u.ux;
 	y -= u.uy;
@@ -21,9 +20,7 @@ register int    x, y;
 }
 
 int
-r_free (x, y, mtmp)
-register int    x, y;
-register        MONSTER mtmp;
+r_free (int x, int y, MONSTER mtmp)
 {
 	if (mtmp -> ale)
 		return (levl[x][y].typ == POOL);
@@ -36,8 +33,7 @@ register        MONSTER mtmp;
 
 /* Puts m next to u, or anywhere if there isn't room there */
 void
-mnexto (mtmp)
-MONSTER mtmp;
+mnexto (MONSTER mtmp)
 {
 	register int    x, y, z;
 	struct {
@@ -85,8 +81,7 @@ foofull:
 }
 
 void
-rloc (mtmp)
-MONSTER mtmp;
+rloc (MONSTER mtmp)
 {
 	register int    tx, ty;
 	register char   ch = mtmp -> data -> mlet;
@@ -119,8 +114,7 @@ MONSTER mtmp;
 }
 
 static int
-test (x, y)
-int x, y;
+test (int x, int y)
 {
 	if (x <= 0 || x > 78 || y <= 0 || y > 20)
 		return 0;
@@ -130,8 +124,7 @@ int x, y;
 }
 
 void
-poisoned (string, pname)
-register char  *string, *pname;
+poisoned (char *string, char *pname)
 {
 	pseebl ("%s was poisoned!", string);
 	if (u.upres) {
@@ -159,8 +152,7 @@ register char  *string, *pname;
 }
 
 void
-steal (mtmp)
-MONSTER mtmp;
+steal (MONSTER mtmp)
 {
 	register        OBJECT otmp, ot1;
 	register int    tmp;
@@ -200,9 +192,7 @@ MONSTER mtmp;
 }
 
 void
-stlobj (mtmp, otmp)
-register        MONSTER mtmp;
-register        OBJECT otmp;
+stlobj (MONSTER mtmp, OBJECT otmp)
 {
 	otmp -> nobj = 0;	/* Michiel: dog and two objects? */
 	if (mtmp -> mstole) {
@@ -218,8 +208,7 @@ register        OBJECT otmp;
 }
 
 void
-delmon (mtmp)
-register        MONSTER mtmp;
+delmon (MONSTER mtmp)
 {
 	unstuck (mtmp);		/* a3 */
 	relmon (mtmp);
@@ -235,8 +224,7 @@ register        MONSTER mtmp;
 }
 
 void
-relmon (mtmp)
-register        MONSTER mtmp;
+relmon (MONSTER mtmp)
 {
 	register        MONSTER mtmp2;
 
@@ -250,8 +238,7 @@ register        MONSTER mtmp;
 
 /* Release the objects the killed animal has stolen */
 void
-relobj (mtmp)
-register        MONSTER mtmp;
+relobj (MONSTER mtmp)
 {
 	register        GOLD_TRAP gtmp;
 	register int    tmp = 0;
@@ -292,8 +279,7 @@ register        MONSTER mtmp;
 
 /* a3 */
 void
-unstuck (mtmp)
-register        MONSTER mtmp;
+unstuck (MONSTER mtmp)
 {
 	if (mtmp == u.ustuck) {
 		if (u.uswallow) {
@@ -307,8 +293,7 @@ register        MONSTER mtmp;
 }
 
 void
-killed (mtmp)
-register        MONSTER mtmp;
+killed (MONSTER mtmp)
 {
 	register int    tmp;
 
@@ -318,7 +303,7 @@ register        MONSTER mtmp;
 		mtmp -> data = (PM_CHAM);
 	pseebl ("You destroy %s!", mtmp -> data -> mname);
 	if (!u.ublind && u.umconf) {
-		pline (STOPGLOW);
+		pline ("%s", STOPGLOW);
 		u.umconf = 0;
 	}
 	tmp = mtmp -> data -> mhd;
@@ -366,10 +351,7 @@ register        MONSTER mtmp;
 
 /*VARARGS*/
 int
-psee (mode, x, y, str, name, arg)/* Str bevat %s */
-int mode;
-int x, y;
-register char  *str, *name, *arg;
+psee (int mode, int x, int y, char *str, char *name, char *arg)/* Str bevat %s */
 {
 	char   *a1, *a2;
 
@@ -399,23 +381,21 @@ register char  *str, *name, *arg;
 	return 1;
 }
 
-/*VARARGS*/
 void
-p2xthe (str, name, arg)
-register char  *str, *name, *arg;
+p2xthe (char *str, char *name)
 {
-	psee (NOTEST, 0, 0, str, name, arg);
+	psee (NOTEST, 0, 0, str, name, NULL);
 }
 
 void
-pseebl (str, name)
-register char  *str, *name;
+pseebl (char *str, char *name)
 {
 	psee (TBLIND, 0, 0, str, name, NULL);
 }
 
 void
-rescham () {			/* Force all chameleons to become normal */
+rescham (void)			/* Force all chameleons to become normal */
+{
 	register        MONSTER mtmp;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp -> nmon)
@@ -431,9 +411,7 @@ rescham () {			/* Force all chameleons to become normal */
 
 /* Make a chameleon look like a new monster */
 void
-newcham (mtmp, mdat)
-register        MONSTER mtmp;
-register        MONSTDATA mdat;
+newcham (MONSTER mtmp, MONSTDATA mdat)
 {
 	register int    mhp, hpn, hpd;
 
@@ -469,8 +447,7 @@ register        MONSTDATA mdat;
 }
 
 int
-makemon (ptr)
-register        MONSTDATA ptr;
+makemon (MONSTDATA ptr)
 {
 	register        MONSTER mtmp;
 
@@ -529,15 +506,14 @@ register        MONSTDATA ptr;
 }
 
 int
-somegold () {
+somegold (void)
+{
 	return ((u.ugold < 100L) ? u.ugold :
 			(u.ugold > 10000L) ? rnd (10000) : rnd ((int) u.ugold));
 }
 
 void
-mkmonat (ptr, x, y)
-register        MONSTDATA ptr;
-register int    x, y;
+mkmonat (MONSTDATA ptr, int x, int y)
 {
 	if (makemon (ptr))
 		return;

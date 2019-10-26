@@ -3,8 +3,7 @@
  */
 
 void
-savelev (fd)
-int fd;
+savelev (int fd)
 {
 	register        MONSTER mtmp, mtmp2;
 	register        GOLD_TRAP gtmp, gtmp2;
@@ -77,9 +76,7 @@ int fd;
 }
 
 void
-bwrite (fd, loc, num)
-register int    fd, num;
-register char  *loc;
+bwrite (int fd, void *loc, int num)
 {
 	if (write (fd, loc, num) != num)
 		panic (CORE, "Cannot write %d bytes to file #%d", num,

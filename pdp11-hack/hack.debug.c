@@ -8,7 +8,9 @@
 #include "hack.h"
 
 #ifdef DEBUG
-debug () {
+void
+debug (void)
+{
 	nomove ();
 	pline( "You're in the debug function!" );
 }

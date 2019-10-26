@@ -2,6 +2,7 @@
  * Showlevel.c
  */
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,18 +29,16 @@ static char mmon[8][8] = {
 static char stairs[4], mbuf[1000], obuf[BUFSIZ];
 
 static unsigned omoves;
-static void mread();
-static void show();
-static void pch();
-static void showrecord();
-static void delrecord();
-static void doname();
-static void getret();
+static void mread (int fd, void *buf, int n);
+static void show (void);
+static void pch (char ch);
+static void showrecord (void);
+static void delrecord (void);
+static void doname (char let, char *buf);
+static void getret (void);
 
 int
-main (argc, argv)
-int     argc;
-char  **argv;
+main (int argc, char **argv)
 {
 	register int    fd;
 	register        MONSTER mtmp = (MONSTER) mbuf;
@@ -140,10 +139,7 @@ char  **argv;
 }
 
 static void
-mread (fd, buf, n)
-int fd;
-char *buf;
-int n;
+mread (int fd, void *buf, int n)
 {
 	register int    nn;
 
@@ -154,7 +150,8 @@ int n;
 }
 
 static void
-show () {
+show (void)
+{
 	register int    i, j;
 
 	for (j = 0; j < 22; j++)
@@ -164,23 +161,25 @@ show () {
 }
 
 static void
-pch (ch)
-char    ch;
+pch (char ch)
 {
 	putchar (ch ? ch : '_');
 }
 
+__attribute__((format(printf, 1, 2)))
 static void
-error (s)
-char *s;
+error (const char *s, ...)
 {
-	printf ("%s", s);
+	va_list args;
+	va_start (args, s);
+	vprintf (s, args);
+	va_end (args);
 	putchar ('\n');
 	fflush (stdout);
 	exit (1);
 }
 
-static char *itoa ();
+static char *itoa (int a);
 
 #define	NAMESIZE	 8
 #define	DEATHSIZE	40
@@ -192,7 +191,8 @@ static struct recitem {
 }               record;
 
 static void
-showrecord () {
+showrecord (void)
+{
 	register int    killed;
 	register int    place = 0;
 	register int    rfile;
@@ -244,7 +244,8 @@ showrecord () {
 static int deleted[45];
 
 static void
-delrecord () {
+delrecord (void)
+{
 	register int    fd, fd2;
 	int     count = 0;
 
@@ -276,8 +277,7 @@ delrecord () {
 }
 
 static char   *
-itoa (a)
-register int    a;
+itoa (int a)
 {
 	static char     buf[8];
 
@@ -286,9 +286,7 @@ register int    a;
 }
 
 static void
-doname (let, buf)
-register char   let;
-register char  *buf;
+doname (char let, char *buf)
 {
 	switch (let) {
 
@@ -334,7 +332,8 @@ register char  *buf;
 }
 
 static void
-getret () {
+getret (void)
+{
 	printf ("AHit j<return>k to continue");
 	fflush (stdout);
 	while (getchar () != '\n');

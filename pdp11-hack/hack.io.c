@@ -10,8 +10,7 @@
 static short ospeed;			/* Used by tputs */
 
 void
-getlin (str)
-register char  *str;
+getlin (char *str)
 {
 	register char  *ostr = str;
 
@@ -39,7 +38,8 @@ register char  *str;
 }
 
 void
-getret () {
+getret (void)
+{
 	printf ("\nHit space to continue: ");
 	flush ();
 	while (getchar () != ' ');
@@ -49,8 +49,7 @@ getret () {
  */
 
 void
-hackmode (x)
-register int    x;
+hackmode (int x)
 {
 	struct termios ttyp;
 	static struct termios tty_save;
@@ -74,7 +73,8 @@ register int    x;
 }
 
 void
-more () {
+more (void)
+{
 	printf (" --More--");
 	flush ();
 	while (getchar () != ' ');
@@ -82,7 +82,9 @@ more () {
 }
 
 #ifndef NORMAL_IO
-getchar () {
+int
+getchar (void)
+{
 	char    c;
 
 	read (0, &c, 1);

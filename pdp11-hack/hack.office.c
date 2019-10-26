@@ -8,7 +8,8 @@
 #define SATURDAY 6
 
 int
-kantoor () {
+kantoor (void)
+{
 	struct tm      *s;
 	long    clock;
 

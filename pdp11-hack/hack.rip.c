@@ -7,7 +7,7 @@
 #include <time.h>
 #include "hack.h"
 
-static void center();
+static void center (int line, char *text);
 
 static char    *rip[] = {
 	"                       ----------",
@@ -27,12 +27,12 @@ static char    *rip[] = {
 };
 
 void
-outrip () {
+outrip (void)
+{
 	register char **dp = rip;
 	register struct tm     *lt;
 	long    date;
 	char    buffer[BUFSZ];
-	struct tm      *localtime ();
 
 	time (&date);
 	lt = localtime (&date);
@@ -52,9 +52,7 @@ outrip () {
 }
 
 static void
-center (line, text)
-register int    line;
-register char  *text;
+center (int line, char *text)
 {
 	register char  *ip, *op;
 

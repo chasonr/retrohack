@@ -45,20 +45,22 @@ COORDINATES shk, shd;
 
 #define SHOP_NAME               shopnam[rooms[shoproom].rtype - 8]
 
-static void shopinit();
-static void setpaid();
-static int getprice();
-static int realhunger();
+static void shopinit (void);
+static void setpaid (void);
+static int getprice (OBJECT obj);
+static int realhunger (void);
 
 void
-shkdead () {
+shkdead (void)
+{
 	shopkeeper = 0;
 	rooms[shoproom].rtype = 0;
 	setpaid ();
 }
 
 static void
-setpaid () {
+setpaid (void)
+{
 	register int    tmp;
 	register        OBJECT obj;
 
@@ -71,7 +73,8 @@ setpaid () {
 }
 
 static void
-addupbill () {			/* Delivers result in total */
+addupbill (void)			/* Delivers result in total */
+{
 	register int    ct = billct;
 
 	total = 0;
@@ -80,14 +83,14 @@ addupbill () {			/* Delivers result in total */
 }
 
 int
-inshproom (x, y)
-register int    x, y;		/* a3 */
+inshproom (int x, int y)		/* a3 */
 {
 	return (inroom (x, y) == shoproom);
 }
 
 int
-inshop () {
+inshop (void)
+{
 	register int    tmp = inroom (u.ux, u.uy);
 
 	if (tmp < 0 || rooms[tmp].rtype < 8) {
@@ -95,7 +98,7 @@ inshop () {
 		if (billct) {
 			pline ("Somehow you escaped the shop without paying!");
 			addupbill ();
-			pline ("You stole for a total worth of %U zorkmids.", total);
+			pline ("You stole for a total worth of %ld zorkmids.", total);
 			robbed += total;
 			setpaid ();
 		}
@@ -117,8 +120,7 @@ inshop () {
 
 /* Called by useup and dothrow only */
 int
-onbill (obj)
-register        OBJECT obj;
+onbill (OBJECT obj)
 {
 	register int    tmp;
 
@@ -132,7 +134,8 @@ register        OBJECT obj;
 }
 
 void
-dopay () {
+dopay (void)
+{
 	register unsigned       tmp;
 	char    buffer[BUFSZ];
 
@@ -212,9 +215,10 @@ dopay () {
 	shopkeeper -> angry = 0;
 }
 
+/* Called after dying (or quitting) with nonempty bill */
 void
-paybill () {			/* Called after dying (or quitting) with
-				   nonempty bill */
+paybill (void)
+{
 	if (shopkeeper) {
 		addupbill ();
 		if (total > u.ugold) {
@@ -224,7 +228,7 @@ paybill () {			/* Called after dying (or quitting) with
 		}
 		else {
 			u.ugold -= total;
-			pline ("The shopkeeper comes and takes the %D zorkmids you owed him.",
+			pline ("The shopkeeper comes and takes the %ld zorkmids you owed him.",
 					total);
 		}
 	}
@@ -232,8 +236,7 @@ paybill () {			/* Called after dying (or quitting) with
 }
 
 void
-addtobill (obj)
-register        OBJECT obj;
+addtobill (OBJECT obj)
 {
 	if (!inshop ())
 		return;
@@ -249,8 +252,7 @@ register        OBJECT obj;
 }
 
 void
-subfrombill (obj)
-register        OBJECT obj;
+subfrombill (OBJECT obj)
 {
 	register int    tmp;
 	register        OBJECT otmp;
@@ -297,7 +299,8 @@ register        OBJECT obj;
 }
 
 void
-doinvbill () {
+doinvbill (void)
+{
 	register unsigned       tmp, cnt = 0;
 
 	for (tmp = 0; tmp < billct; tmp++)
@@ -315,7 +318,7 @@ doinvbill () {
 			sprintf (&buf[cnt], " %5d zorkmids",
 					bill[tmp].price);
 			if (flags.oneline)
-				pline (buf);
+				pline ("%s", buf);
 			else
 				printf ("%s\n", buf);
 			if (!cnt % 20)
@@ -324,8 +327,7 @@ doinvbill () {
 }
 
 static int
-getprice (obj)
-register        OBJECT obj;
+getprice (OBJECT obj)
 {
 	register int    tmp, ac;
 
@@ -368,7 +370,8 @@ register        OBJECT obj;
 }
 
 static int
-realhunger () {			/* not completely foolproof (??) */
+realhunger (void)			/* not completely foolproof (??) */
+{
 	register int    tmp = u.uhunger;
 	register        OBJECT otmp = invent;
 
@@ -381,7 +384,8 @@ realhunger () {			/* not completely foolproof (??) */
 }
 
 static void
-shopinit () {
+shopinit (void)
+{
 	register        MKROOM * sroom = &rooms[shoproom];
 	register int    i, j, x, y;
 
@@ -434,7 +438,8 @@ shopinit () {
 }
 
 void
-setangry () {
+setangry (void)
+{
 	if (shopkeeper -> data -> mlet == '@' && !shopkeeper -> angry) {
 		pline ("The shopkeeper gets angry.");
 		++shopkeeper -> angry;
@@ -442,7 +447,8 @@ setangry () {
 }
 
 int
-shk_move () {
+shk_move (void)
+{
 	register        MONSTER mtmp;
 	signed char gx, gy, omx, omy, cnt, appr,
 	            nix, niy, ddx, ddy, zx, zy, num;

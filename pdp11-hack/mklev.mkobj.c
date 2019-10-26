@@ -8,7 +8,8 @@
 #include "hack.vars.h"
 
 static int
-mkfood () {
+mkfood (void)
+{
 	register        FOOD fp;
 	register int    i = rn2 (100);
 
@@ -19,7 +20,8 @@ mkfood () {
 }
 
 static int
-mkarm () {
+mkarm (void)
+{
 	register        ARMOR ap;
 	register int    i = rn2 (100);
 
@@ -30,7 +32,8 @@ mkarm () {
 }
 
 static int
-mkwep () {
+mkwep (void)
+{
 	register        WEAPON wp;
 	register int    i = rn2 (100);
 	wp = &weapons[0];
@@ -42,8 +45,7 @@ mkwep () {
 static char mkobjstr[] = "))[[!!!!????%%%%//=**";
 
 void
-mkobj (let)
-register int    let;
+mkobj (int let)
 {
 	register        OBJECT otmp;
 

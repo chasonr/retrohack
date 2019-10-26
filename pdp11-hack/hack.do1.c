@@ -22,10 +22,10 @@ static char *wandeffect[] = {
 
 char    vaultflag[MAXLEVEL];
 
-static int findit();
-static void zhit();
-static void show();
-static void vaultinit();
+static int findit (void);
+static void zhit (MONSTER mtmp, int type);
+static void show (OBJECT otmp);
+static void vaultinit (void);
 
 
 
@@ -35,7 +35,8 @@ static void vaultinit();
 
 
 void
-dozap () {
+dozap (void)
+{
 	register        OBJECT obj;
 	register        MONSTER mtmp;
 	signed char     zx, zy;
@@ -46,7 +47,7 @@ dozap () {
 		return;
 	}
 	if (!obj -> spe) {
-		pline (NOTHIN);
+		pline ("%s", NOTHIN);
 		return;
 	}
 	obj -> spe--;
@@ -57,7 +58,7 @@ dozap () {
 				if (dlevel)
 					litroom ();
 				else
-					pline (NOTHIN);
+					pline ("%s", NOTHIN);
 				break;
 
 			case Z_DETEC: 
@@ -248,25 +249,21 @@ dozap () {
 }
 
 void
-hit (str, mtmp)
-register char  *str;
-register        MONSTER mtmp;
+hit (char *str, MONSTER mtmp)
 {
 	psee (THEIT2, mtmp -> mx, mtmp -> my, "%s hits %s", str,
 			mtmp -> data -> mname);
 }
 
 void
-miss (str, mtmp)
-register char  *str;
-register        MONSTER mtmp;
+miss (char *str, MONSTER mtmp)
 {
 	psee (THEIT2, mtmp -> mx, mtmp -> my, "%s misses %s", str,
 			mtmp -> data -> mname);
 }
 
 static int
-findit ()
+findit (void)
 {
 	signed char num, lx, hx, ly, hy;
 	register signed char zx, zy;
@@ -322,9 +319,7 @@ findit ()
 
 /* Sets dx,dy to the final position of the weapon thrown */
 MONSTER
-bhit (ddx, ddy, range)
-int ddx, ddy;
-int range;
+bhit (int ddx, int ddy, int range)
 {
 	register        MONSTER mtmp;
 
@@ -347,10 +342,7 @@ int range;
 }
 
 void
-buzz (type, sx, sy, ddx, ddy)
-int type;
-register int    sx, sy;
-int ddx, ddy;
+buzz (int type, int sx, int sy, int ddx, int ddy)
 {
 	PART * lev;
 	register signed char range;
@@ -447,9 +439,7 @@ int ddx, ddy;
 }
 
 static void
-zhit (mtmp, type)
-register        MONSTER mtmp;
-register int    type;
+zhit (MONSTER mtmp, int type)
 {
 	if (mtmp == shopkeeper)
 		setangry ();
@@ -489,7 +479,8 @@ register int    type;
 }
 
 void
-dowhatis () {
+dowhatis (void)
+{
 	register int    fd;
 	register char  *str;
 
@@ -509,7 +500,7 @@ dowhatis () {
 	else {
 		lseek (fd, (long) (*str * 51), 0);
 		if (read (fd, buf, 51) > 0 && *buf != '\\')
-			pline (buf);
+			pline ("%s", buf);
 		else
 			pline ("Unknown symbol.");
 		close (fd);
@@ -517,7 +508,8 @@ dowhatis () {
 }
 
 void
-doshow () {			/* Michiel: Show everything you're wearing */
+doshow (void)			/* Michiel: Show everything you're wearing */
+{
 	nomove ();
 	show (uarm2);
 	show (uarm);
@@ -527,15 +519,15 @@ doshow () {			/* Michiel: Show everything you're wearing */
 }
 
 static void
-show (otmp)
-register        OBJECT otmp;
+show (OBJECT otmp)
 {
 	if (otmp)
 		prinv (otmp);
 }
 
 void
-dosearch () {
+dosearch (void)
+{
 	register signed char x, y;
 	register        GOLD_TRAP tgen;
 
@@ -574,7 +566,8 @@ dosearch () {
 }
 
 void
-doset () {
+doset (void)
+{
 	pline ("Give one inventory per line? ");
 	flush ();
 	flags.oneline = (getchar () == 'y');
@@ -594,7 +587,8 @@ static struct permonst treasurer = {
 };
 
 static void
-vaultinit () {
+vaultinit (void)
+{
 	GOLD_TRAP gtmp;
 
 	if (vaultflag[dlevel])

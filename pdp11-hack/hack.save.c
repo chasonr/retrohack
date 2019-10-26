@@ -18,7 +18,8 @@
 #include "hack.dog.h"
 
 void
-save () {
+save (void)
+{
 	register int    fd, ofd, tmp;
 	register        OBJECT otmp, otmp2;
 	MONSTER mtmp;
@@ -122,8 +123,7 @@ save () {
 }
 
 int
-dorecover (fd)
-register int    fd;
+dorecover (int fd)
 {
 	register int    nfd, tmp;
 	register        OBJECT otmp, olast = NULL;

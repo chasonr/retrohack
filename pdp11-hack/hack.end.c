@@ -20,10 +20,11 @@ static char *statxx[] = {
 	"escaped"
 };
 
-static void topten();
+static void topten (void);
 
 void
-done1 () {
+done1 (int sig)
+{
 	register char   c;
 
 	nomove ();
@@ -33,12 +34,17 @@ done1 () {
 	if ((c = getchar ()) == 'y')
 		done (QUIT);
 	else if (c == 'S')
-		hangup ();
+		hangup (sig);
 }
 
 void
-done (status)
-register int    status;
+do_quit (void)
+{
+	done1 (0);
+}
+
+void
+done (int status)
 {
 	if (wizard && status != QUIT && status != ESCAPED) {
 		u.ustr = (u.ustrmax += 2);
@@ -102,7 +108,8 @@ register int    status;
 #define	TOPLIST		25	/* Length of 'top ten' list */
 
 static void
-topten () {
+topten (void)
+{
 	int     tmp;
 	struct recitem {
 		long    points;
@@ -187,8 +194,7 @@ topten () {
 }
 
 char   *
-        itoa (a)
-register int    a;
+itoa (int a)
 {
 	static char     buffer[8];
 
@@ -197,7 +203,8 @@ register int    a;
 }
 
 void
-clearlocks () {
+clearlocks (void)
+{
 	register int    x;
 
 	signal (SIGINT, SIG_IGN);
@@ -213,7 +220,8 @@ clearlocks () {
 }
 
 void
-hangup () {
+hangup (int sig)
+{
 	save ();
 	clearlocks ();
 	exit (1);

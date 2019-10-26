@@ -45,12 +45,9 @@ int     multi = 0;
 static int hackpid, uid;
 
 int
-main (argc, argv)
-int argc;
-char   *argv[];
+main (int argc, char *argv[])
 {
 	int     fd;
-	char *getlogin();
 	register char  *yourname = getlogin ();
 
 	uid = getuid ();
@@ -244,7 +241,7 @@ normalplay:
 		}
 		if (multi < 0) {
 			if (!++multi) {
-				pline (nomvmsg ? nomvmsg :
+				pline ("%s", nomvmsg ? nomvmsg :
 						"You can move again.");
 				nomvmsg = 0;
 			}
@@ -275,8 +272,7 @@ normalplay:
 }
 
 void
-glo (n)
-register int    n;		/* Construct the string `hackpid.n' */
+glo (int n)		/* Construct the string `hackpid.n' */
 {
 /*
 	register char *tf = lock;
@@ -290,6 +286,7 @@ register int    n;		/* Construct the string `hackpid.n' */
 }
 
 void
-impossible () {
+impossible (void)
+{
 	pline ("Program in disorder - perhaps you'd better Quit");
 }

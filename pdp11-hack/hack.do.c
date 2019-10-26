@@ -16,15 +16,14 @@ char    WELDED[] = "The %s is welded into your hand!";
 
 #define SIZE( x ) 	sizeof( x )/sizeof( x[0] )
 
-static void nothin();
-static void dropit();
-static int getinventory();
+static void nothin (OBJECT obj);
+static void dropit (OBJECT obj);
+static int getinventory (char *string);
 
 /* Routines to do various user commands */
 
 static void
-doglow (num)
-register int    num;
+doglow (int num)
 {
 	pline ("Your %s glows %s for a %s.", (flags.dac) ?
 		armors[uarm -> otyp].armnam : weapons[uwep -> otyp].wepnam,
@@ -35,7 +34,8 @@ register int    num;
 }
 
 void
-doread () {
+doread (void)
+{
 	register        OBJECT otmp;
 	register        MONSTER mtmp, mtmp2;
 	register        GOLD_TRAP gtmp;
@@ -343,11 +343,12 @@ doread () {
 }
 
 void
-litroom () {
+litroom (void)
+{
 	register int    zx, zy;
 
 	if (!xdnstair || !dlevel) {
-		pline (NOTHIN);
+		pline ("%s", NOTHIN);
 		return;
 	}
 	if (levl[u.ux][u.uy].typ == CORR) {
@@ -395,7 +396,8 @@ litroom () {
 }
 
 void
-dodrink () {
+dodrink (void)
+{
 	register        OBJECT otmp, objs;
 	register        MONSTER mtmp;
 	register int    num;
@@ -562,8 +564,7 @@ dodrink () {
 }
 
 static void
-nothin (obj)
-register        OBJECT obj;
+nothin (OBJECT obj)
 {
 	pline ("You have a strange feeling for a moment, then it passes.");
 	if (obj -> olet == '?') {
@@ -578,7 +579,8 @@ register        OBJECT obj;
 }
 
 void
-dodrop () {
+dodrop (void)
+{
 	register        OBJECT obj, otmp;
 	register int    num;
 
@@ -624,7 +626,8 @@ dodrop () {
 }
 
 void
-gemsdrop () {
+gemsdrop (void)
+{
 	register        OBJECT obj;
 	register int    counting = 0;
 
@@ -648,7 +651,8 @@ gemsdrop () {
 }
 
 int
-uwepcursed () {			/* a3,drop or throw uwep */
+uwepcursed (void)			/* a3,drop or throw uwep */
+{
 	if (uwep -> cursed) {
 		multi = 0;	/* Dowield() */
 		pline (WELDED, weapons[uwep -> otyp].wepnam);
@@ -659,8 +663,7 @@ uwepcursed () {			/* a3,drop or throw uwep */
 }
 
 static int
-getinventory (string)
-char   *string;
+getinventory (char *string)
 {
 	register        OBJECT otmp;
 
@@ -670,8 +673,7 @@ char   *string;
 }
 
 static void
-dropit (obj)
-register        OBJECT obj;
+dropit (OBJECT obj)
 {
 	register        OBJECT otmp;
 

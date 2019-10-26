@@ -20,6 +20,11 @@
 #include "envir.h"
 #include "hack.name.h"
 
+/* use GCC attributes if we have them */
+#ifndef __GNUC__
+# define __attribute__(x)
+#endif
+
 #define BUFSZ   256
 
 
@@ -93,7 +98,7 @@
 
 typedef struct func_tab {
 	char    f_char;
-	void    (*f_funct) ();
+	void    (*f_funct) (void);
 } FUNCTIONS;
 
 
@@ -310,32 +315,32 @@ union PTRS {
 	char   *Val;
 };
 
-extern  union PTRS * alloc ();
+extern  union PTRS * alloc (int num);
 
 #ifdef MKLEV
 
 /*### mklev.make.c ###*/
-extern void makemaz();
-extern void makemon();
-extern void mkgold();
-extern void mk_knox();
-extern void mkshop();
-extern void mkswamp();
-extern void mktrap();
-extern void mkyard();
-extern void mkzoo();
-extern int panic();
+extern void makemaz (void);
+extern void makemon (int sl, int monx, int mony);
+extern void mkgold (int num, int goldx, int goldy);
+extern void mk_knox (void);
+extern void mkshop (void);
+extern void mkswamp (void);
+extern void mktrap (int num, int mazeflag);
+extern void mkyard (void);
+extern void mkzoo (void);
+__attribute__((format(printf, 1, 2)))
+extern int panic (const char *str, ...);
 
 /*### mklev.mkobj.c ###*/
-extern void mkobj();
+extern void mkobj (int let);
 
 /*### mklev.c ###*/
-extern GOLD_TRAP g_at ();
-extern int main();
-extern MONSTER m_at();
-extern void move();
-extern OBJECT o_at();
-extern int okay();
+extern GOLD_TRAP g_at (int gtx, int gty, GOLD_TRAP ptr);
+extern MONSTER m_at (int monx, int mony);
+extern void move (int *xdir, int *ydir, int dir);
+extern OBJECT o_at (int objx, int objy);
+extern int okay (int xx, int yy, int dir);
 extern char mmon[8][8];
 extern PART levl[80][22];
 extern MONSTER fmon;
@@ -351,93 +356,99 @@ extern signed char dlevel, goldseen,
 
 #else /* MKLEV */
 /*### hack.bones.c ###*/
-extern int getbones();
-extern void savebones();
+extern int getbones (void);
+extern void savebones (void);
 extern struct permonst pm_ghost;
 
 /*### hack.debug.c ###*/
+#ifdef DEBUG
+void debug (void);
+#endif
 
 /*### hack.do1.c ###*/
-extern MONSTER bhit();
-extern void buzz();
-extern void dosearch();
-extern void doset();
-extern void doshow();
-extern void dowhatis();
-extern void dozap();
-extern void hit();
-extern void miss();
+extern MONSTER bhit (int ddx, int ddy, int range);
+extern void buzz (int type, int sx, int sy, int ddx, int ddy);
+extern void dosearch (void);
+extern void doset (void);
+extern void doshow (void);
+extern void dowhatis (void);
+extern void dozap (void);
+extern void hit (char *str, MONSTER mtmp);
+extern void miss (char *str, MONSTER mtmp);
 extern MONSTER vaultkeeper;
 extern char vaultflag[MAXLEVEL];
 
 /*### hack.dog.c ###*/
-extern int dog_move();
-extern int hitmm();
-extern int inroom();
-extern void keepdogs();
-extern void losedogs();
-extern void makedog();
-extern int tamedog();
+extern int dog_move (MONSTER mtmp, int after);
+extern int hitmm (MONSTER magr, MONSTER mdef);
+extern int inroom (signed char x, signed char y);
+extern void keepdogs (int checkdist);
+extern void losedogs (void);
+extern void makedog (void);
+extern int tamedog (MONSTER mtmp, OBJECT obj);
 extern MONSTER mydogs;
 
 /*### hack.do.misc.c ###*/
-extern void docall();
-extern void docurse();
-extern void dodown();
-extern void dosavelev();
-extern void doup();
-extern int getdir();
-extern void hackexec();
-extern void rhack();
+extern void docall (OBJECT obj);
+extern void docurse (void);
+extern void dodown (void);
+extern void dosavelev (void);
+extern void doup (void);
+extern int getdir (void);
+extern void hackexec (int num, const char *file, const char *arg1,
+                      const char *arg2, const char *arg3, const char *arg4,
+                      const char *arg5, const char *arg6);
+extern void rhack (char *cmd);
 extern char upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
 
 /*### hack.do.c ###*/
-extern void dodrink();
-extern void dodrop();
-extern void doread();
-extern void gemsdrop();
-extern void litroom();
-extern int uwepcursed();
+extern void dodrink (void);
+extern void dodrop (void);
+extern void doread (void);
+extern void gemsdrop (void);
+extern void litroom (void);
+extern int uwepcursed (void);
 extern char WELDED[];
 
 /*### hack.do_wear.c ###*/
-extern void armwear();
-extern void doremarm();
-extern void doremring();
-extern void doring();
-extern void dowearring();
+extern void armwear (void);
+extern void doremarm (void);
+extern void doremring (void);
+extern void doring (OBJECT obj, int eff);
+extern void dowearring (void);
 
 /*### hack.eat.c ###*/
-extern void doeat();
-extern void gethungry();
-extern void lesshungry();
+extern void doeat (void);
+extern void gethungry (void);
+extern void lesshungry (int num);
 extern unsigned starved;
 extern char *hu_stat[4];
 
 /*### hack.end.c ###*/
-extern void clearlocks();
-extern void done();
-extern void done1();
+extern void clearlocks (void);
+extern void done (int status);
+extern void done1 (int sig);
+extern void do_quit (void);
 #ifndef hangup
-extern void hangup();
+extern void hangup (int sig);
 #endif
-extern char *itoa();
+extern char *itoa (int a);
 extern signed char maxdlevel;
 
 /*### hack.invent.c ###*/
-extern OBJECT addinv();
-extern void ddoinv();
-extern void delobj();
-extern void deltrap();
-extern void doinv();
-extern void freeobj();
-extern GOLD_TRAP g_at ();
-extern OBJECT getobj();
-extern MONSTER m_at();
-extern OBJECT o_at();
-extern void ofree();
-extern void prinv();
-extern void useup();
+extern OBJECT addinv (OBJECT obj);
+extern void ddoinv (void);
+extern void delobj (OBJECT obj);
+extern void deltrap (GOLD_TRAP trap);
+extern void doinv (char *str, int opt);
+extern void freeobj (OBJECT obj);
+extern GOLD_TRAP g_at (int x, int y, GOLD_TRAP ptr);
+extern OBJECT getobj (char *let, char *word);
+extern MONSTER m_at (int x, int y);
+extern OBJECT o_at (int x, int y);
+extern void ofree (OBJECT obj);
+extern void prinv (OBJECT obj);
+extern void useup (OBJECT obj);
 
 /*### hack.invinit.c ###*/
 extern struct obj mace0;
@@ -445,21 +456,19 @@ extern struct obj uarm0;
 extern struct obj *yourinvent0;
 
 /*### hack.io.c ###*/
-extern void getlin();
-extern void getret();
-extern void hackmode();
-extern void more();
+extern void getlin (char *str);
+extern void getret (void);
+extern void hackmode (int x);
+extern void more (void);
 
 /*### hack.lev.c ###*/
-extern void bwrite();
-extern int getlev();
-extern void mklev();
-extern void mread();
-extern void savelev();
+extern int getlev (int fd);
+extern void mklev (void);
+extern void mread (int fd, void *buffer, int len);
 
 /*### hack.main.c ###*/
-extern void glo();
-extern void impossible();
+extern void glo (int n);
+extern void impossible (void);
 extern int rfile;
 extern COORDINATES doors[DOORMAX];
 extern PART levl[80][22];
@@ -485,12 +494,12 @@ extern unsigned moves;
 extern int multi;
 
 /*### hack.mkobj.c ###*/
-extern void callsrestore();
-extern void callssave();
-extern void mkobj();
-extern void restnames();
-extern void savenames();
-extern void shuffle();
+extern void callsrestore (int fd);
+extern void callssave (int fd);
+extern void mkobj (int let);
+extern void restnames (int fd);
+extern void savenames (int fd);
+extern void shuffle (void);
 extern struct armor     armors[];
 extern struct food      foods[];
 extern char oiden[];
@@ -511,30 +520,30 @@ extern char *wantyp[];
 extern struct weapon    weapons[];
 
 /*### hack.mon.do.c ###*/
-extern void cmdel();
-extern void movemon();
+extern void cmdel (MONSTER mtmp);
+extern void movemon (void);
 
 /*### hack.mon.c ###*/
-extern void delmon();
-extern int dist();
-extern void killed();
-extern int makemon();
-extern void mkmonat();
-extern void mnexto();
-extern void newcham();
-extern void p2xthe();
-extern void poisoned();
-extern int psee();
-extern void pseebl();
-extern void relmon();
-extern void relobj();
-extern void rescham();
-extern int r_free();
-extern void rloc();
-extern int somegold();
-extern void steal();
-extern void stlobj();
-extern void unstuck();
+extern void delmon (MONSTER mtmp);
+extern int dist (int x, int y);
+extern void killed (MONSTER mtmp);
+extern int makemon (MONSTDATA ptr);
+extern void mkmonat (MONSTDATA ptr, int x, int y);
+extern void mnexto (MONSTER mtmp);
+extern void newcham (MONSTER mtmp, MONSTDATA mdat);
+extern void p2xthe (char *str, char *name);
+extern void poisoned (char *string, char *pname);
+extern int psee (int mode, int x, int y, char *str, char *name, char *arg);
+extern void pseebl (char *str, char *name);
+extern void relmon (MONSTER mtmp);
+extern void relobj (MONSTER mtmp);
+extern void rescham (void);
+extern int r_free (int x, int y, MONSTER mtmp);
+extern void rloc (MONSTER mtmp);
+extern int somegold (void);
+extern void steal (MONSTER mtmp);
+extern void stlobj (MONSTER mtmp, OBJECT otmp);
+extern void unstuck (MONSTER mtmp);
 
 /*### hack.monst.c ###*/
 extern struct permonst li_dog;
@@ -547,83 +556,89 @@ extern struct permonst mon[8][7];
 #define PM_CHAM        &mon[6][6]
 
 /*### hack.move.c ###*/
-extern void domove();
-extern void lookaround();
-extern int movecm();
-extern void nomove();
-extern void nomul();
-extern char *parse();
+extern void domove (void);
+extern void lookaround (void);
+extern int movecm (char *cmd);
+extern void nomove (void);
+extern void nomul (int);
+extern char *parse (void);
 /* Corners of lit room; l for Low, h for High */
 extern signed char seehx, seelx, seehy, seely;
 
 /*### hack.c ###*/
-extern int abon();
-extern int alive();
-extern int cansee();
-extern void doname();
-extern int hitu();
-extern int hmon();
-extern void land();
-extern void losehp();
-extern void losestr();
-extern char *lowc();
-extern long pow2();
-extern char *setan();
-extern void setCon();
-extern void tele();
-extern void unCoff();
-extern int weight();
+extern int abon (void);
+extern int alive (MONSTER monst);
+extern int cansee (signed char x, signed char y);
+extern void doname (OBJECT obj, char *buffer);
+extern int hitu (int mlev, int dam, char *name);
+extern int hmon (MONSTER monst, OBJECT obj);
+extern void land (void);
+extern void losehp (int n, char *knam);
+extern void losestr (int num);
+extern char *lowc (char *str);
+extern long pow2 (int num);
+extern char *setan (char *str);
+extern void setCon (int setc);
+extern void tele (void);
+extern void unCoff (int unc, int mode);
+extern int weight (OBJECT obj);
 
 /*### hack.office.c ###*/
-extern int kantoor();
+extern int kantoor (void);
 
 /*### hack.pri.c ###*/
-extern void at();
-extern void atl();
-extern void bot();
-extern void cl_end();
-extern void cls();
-extern void curs();
-extern void docrt();
-extern void doreprint();
-extern void home();
-extern void levlsym();
-extern char news0();
-extern void newsym();
-extern void newunseen();
-extern void nose1();
-extern void nscr();
-extern void on();
-extern int panic();
-extern void pline();
-extern void pmon();
-extern void prl();
-extern void prl1();
-extern void prme();
-extern void pru();
-extern void prustr();
-extern void seeatl();
-extern void startup();
+extern void at (int x, int y, char ch);
+extern void atl (int x, int y, int ch);
+extern void bot (void);
+extern void cl_end (void);
+extern void cls (void);
+extern void curs (int x, int y);
+extern void docrt (void);
+extern void doreprint (void);
+extern void home (void);
+extern void levlsym (int x, int y, int c);
+extern char news0 (int x, int y);
+extern void newsym (int x, int y);
+extern void newunseen (int x, int y);
+extern void nose1 (int x, int y);
+extern void nscr (void);
+extern void on (int x, int y);
+__attribute__((format(printf, 2, 3)))
+extern int panic (int coredump, const char *str, ...);
+__attribute__((format(printf, 1, 2)))
+extern void pline (const char *line, ...);
+extern void pmon (MONSTER mtmp);
+extern void prl (int x, int y);
+extern void prl1 (int x, int y);
+extern void prme (void);
+extern void pru (void);
+extern void prustr (void);
+extern void seeatl (int x, int y, int c);
+extern void startup (void);
 
 /*### hack.rip.c ###*/
-extern void outrip();
+extern void outrip (void);
 
 /*### hack.save.c ###*/
-extern int dorecover();
-extern void save();
+extern int dorecover (int fd);
+extern void save (void);
+
+/*### hack.savelev.c ###*/
+extern void bwrite (int fd, void *loc, int num);
+extern void savelev (int fd);
 
 /*### hack.shk.c ###*/
-extern void addtobill();
-extern void doinvbill();
-extern void dopay();
-extern int inshop();
-extern int inshproom();
-extern int onbill();
-extern void paybill();
-extern void setangry();
-extern void shkdead();
-extern int shk_move();
-extern void subfrombill();
+extern void addtobill (OBJECT obj);
+extern void doinvbill (void);
+extern void dopay (void);
+extern int inshop (void);
+extern int inshproom (int x, int y);
+extern int onbill (OBJECT obj);
+extern void paybill (void);
+extern void setangry (void);
+extern void shkdead (void);
+extern int shk_move (void);
+extern void subfrombill (OBJECT obj);
 extern MONSTER shopkeeper;
 extern long robbed;
 extern signed char billct, shlevel;
@@ -632,14 +647,14 @@ extern COORDINATES shd, shk;
 /*### hack.str.c ###*/
 
 /*### hack.worm.c ###*/
-extern void cutworm();
-extern int getwn();
-extern void initworm();
-extern void wormdead();
-extern void wormhit();
-extern void worm_move();
-extern void worm_nomove();
-extern void wormsee();
+extern void cutworm (MONSTER mtmp, char x, char y, unsigned weptyp);
+extern int getwn (MONSTER mtmp);
+extern void initworm (MONSTER mtmp);
+extern void wormdead (MONSTER mtmp);
+extern void wormhit (MONSTER mtmp);
+extern void worm_move (MONSTER mtmp);
+extern void worm_nomove (MONSTER mtmp);
+extern void wormsee (int tmp);
 extern WORMSEGMENT wsegs[32], wheads[32];
 extern unsigned wgrowtime[32];
 
@@ -651,9 +666,9 @@ extern char WCLEV[];
 #endif /* MKLEV */
 
 /*### rnd.c ###*/
-extern int d();
-extern int rn1();
-extern int rn2();
-extern int rnd();
+extern int d (int n, int x);
+extern int rn1 (int x, int y);
+extern int rn2 (int x);
+extern int rnd (int x);
 
 #endif /* SHOW */

@@ -7,29 +7,25 @@
 #define RND(x)	((rand() >> 3) % x)
 
 int
-rn1 (x, y)
-register int    x, y;
+rn1 (int x, int y)
 {
 	return (RND (x) + y);
 }
 
 int
-rn2 (x)
-register int    x;
+rn2 (int x)
 {
 	return (RND (x));
 }
 
 int
-rnd (x)
-register int    x;
+rnd (int x)
 {
 	return (RND (x) + 1);
 }
 
 int
-d (n, x)
-register int    n, x;
+d (int n, int x)
 {
 	register int    tmp = n;
 

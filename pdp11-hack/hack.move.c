@@ -27,8 +27,7 @@ static short   xdir[8] = {
 };
 
 int
-movecm (cmd)
-register char  *cmd;
+movecm (char *cmd)
 {
 	register char  *dp;
 
@@ -41,7 +40,8 @@ register char  *cmd;
 
 
 void
-domove () {
+domove (void)
+{
 	char    nx, ny, tmpx = '\0', tmpy = '\0', let;
 	register        MONSTER mtmp;
 	register        PART * tmpr = NULL, *ust = NULL;
@@ -149,7 +149,7 @@ M:
 				pseebl ("You hit %s!", mdat -> mname);
 				if (u.umconf && !u.uswallow) {/* a3 */
 					if (!u.ublind) {
-						pline (STOPGLOW);
+						pline ("%s", STOPGLOW);
 						pseebl ("The %s appears confused.", mdat -> mname);
 					}
 					mtmp -> mconf = 1;
@@ -471,7 +471,8 @@ M:
 
 /* Stop running if we see something interesting */
 void
-lookaround () {
+lookaround (void)
+{
 	register int    x, y, corrct = 0;
 	register        MONSTER mtmp;
 
@@ -522,8 +523,7 @@ lookaround () {
 }
 
 void
-nomul (nval)
-register int    nval;
+nomul (int nval)
 {
 	if (multi < 0)
 		return;
@@ -535,7 +535,8 @@ register int    nval;
 }
 
 char   *
-        parse () {
+parse (void)
+{
 	static char     in_line[80];
 	register int    foo;
 
@@ -568,7 +569,8 @@ char   *
 }
 
 void
-nomove () {
+nomove (void)
+{
 	multi = 0;
 	flags.move = 0;
 }

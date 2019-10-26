@@ -6,11 +6,12 @@
 #include "hack.h"
 #include "hack.vars.h"
 
-static void savecalls();
-static void restcalls();
+static void savecalls (int fd, char *strings[], int max);
+static void restcalls (int fd, char *strings[], int max);
 
 static int
-mkfood () {
+mkfood (void)
+{
 	register        FOOD fp;
 	register int    i = rn2 (100);
 
@@ -21,7 +22,8 @@ mkfood () {
 }
 
 static int
-mkarm () {
+mkarm (void)
+{
 	register        ARMOR ap;
 	register int    i = rn2 (100);
 
@@ -32,7 +34,8 @@ mkarm () {
 }
 
 static int
-mkwep () {
+mkwep (void)
+{
 	register        WEAPON wp;
 	register int    i = rn2 (100);
 
@@ -45,8 +48,7 @@ mkwep () {
 static char mkobjstr[] = "))[[!!!!????%%%%//=**";
 
 void
-mkobj (let)
-register int    let;
+mkobj (int let)
 {
 	register        OBJECT otmp;
 
@@ -138,9 +140,7 @@ register int    let;
 }
 
 static void
-shufl (base, num)
-register char  *base[];
-register int    num;
+shufl (char *base[], int num)
 {
 	char  **tmp, *tmp1;
 	int     curnum;
@@ -154,7 +154,8 @@ register int    num;
 }
 
 void
-shuffle () {
+shuffle (void)
+{
 	shufl (wannam, SIZE (wantyp));
 	shufl (potcol, SIZE (potcol));
 	shufl (rinnam, SIZE (ringtyp));
@@ -162,8 +163,7 @@ shuffle () {
 }
 
 void
-savenames (fd)
-register int    fd;
+savenames (int fd)
 {
 	bwrite (fd, oiden, sizeof oiden);
 	bwrite (fd, potcol, sizeof potcol);
@@ -173,8 +173,7 @@ register int    fd;
 }
 
 void
-restnames (fd)
-register int    fd;
+restnames (int fd)
 {
 	mread (fd, oiden, sizeof oiden);
 	mread (fd, potcol, sizeof potcol);
@@ -185,8 +184,7 @@ register int    fd;
 
 /* Restore the names we have given to things */
 void
-callsrestore (fd)
-register int    fd;
+callsrestore (int fd)
 {
 	restcalls (fd, potcall, SIZE (pottyp));
 	restcalls (fd, wandcall, SIZE (wantyp));
@@ -196,8 +194,7 @@ register int    fd;
 
 /* Save things we have given names to */
 void
-callssave (fd)
-register int    fd;
+callssave (int fd)
 {
 	savecalls (fd, potcall, SIZE (pottyp));
 	savecalls (fd, wandcall, SIZE (wantyp));
@@ -206,9 +203,7 @@ register int    fd;
 }
 
 static void
-savecalls (fd, strings, max)
-char   *strings[];
-register int    max, fd;
+savecalls (int fd, char *strings[], int max)
 {
 	register int    teller;
 
@@ -222,9 +217,7 @@ register int    max, fd;
 }
 
 static void
-restcalls (fd, strings, max)
-register int    fd, max;
-char   *strings[];
+restcalls (int fd, char *strings[], int max)
 {
 	register int    teller;
 	char   *str;

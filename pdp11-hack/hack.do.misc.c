@@ -13,31 +13,28 @@
 #include <sys/wait.h>
 #include "hack.h"
 
-static void doredraw();
-static void dohelp();
-static void dosh();
-static void dowield();
-static void ddodown();
-static void ddoup();
-static void m_call();
-static void donull();
-static void dothrow();
+static void doredraw (void);
+static void dohelp (void);
+static void dosh (void);
+static void dowield (void);
+static void ddodown (void);
+static void ddoup (void);
+static void m_call (void);
+static void donull (void);
+static void dothrow (void);
 
 #include "hack.do.vars.h"
 
  /* (MT) has 'do' structures and lists */
 
-static OBJECT loseone ();
-
-void    done1 ();
+static OBJECT loseone (OBJECT obj);
 
 char    upxstairs[MAXLEVEL], upystairs[MAXLEVEL];
 
-static void dostairs();
+static void dostairs (char *dir);
 
 void
-rhack (cmd)
-register char  *cmd;
+rhack (char *cmd)
 {
 	register        FUNCTIONS * tlist = list;
 
@@ -87,7 +84,8 @@ register char  *cmd;
 }
 
 static void
-doredraw () {
+doredraw (void)
+{
 	docrt ();
 	nomove ();
 }
@@ -98,10 +96,9 @@ doredraw () {
  */
 /*VARARGS*/
 void
-hackexec (num, file, arg1, arg2, arg3, arg4, arg5, arg6)
-register int    num;
-register char  *file, *arg1;
-char   *arg2, *arg3, *arg4, *arg5, *arg6;
+hackexec (int num, const char *file, const char *arg1, const char *arg2,
+          const char *arg3, const char *arg4, const char *arg5,
+          const char *arg6)
 {
 	nomove ();
 	switch (fork ()) {
@@ -122,7 +119,7 @@ char   *arg2, *arg3, *arg4, *arg5, *arg6;
 			}
 			else
 				signal (SIGINT, SIG_IGN);
-			execl (file, file, arg1, arg2, arg3, arg4, arg5, arg6);
+			execl (file, file, arg1, arg2, arg3, arg4, arg5, arg6, NULL);
 			panic (NOCORE, "%s: cannot execute.", file);
 			break;
 		default: 
@@ -140,22 +137,25 @@ char   *arg2, *arg3, *arg4, *arg5, *arg6;
 }
 
 static void
-dohelp () {
-	hackexec (1, MORE, HELP, NULL);
+dohelp (void)
+{
+	hackexec (1, MORE, HELP, NULL, NULL, NULL, NULL, NULL);
 }
 
 static void
-dosh () {
+dosh (void)
+{
 	register char  *str;
 
 	if ((str = getenv ("SHELL")) != NULL)
-		hackexec (2, str, NULL);
+		hackexec (2, str, NULL, NULL, NULL, NULL, NULL, NULL);
 	else
-		hackexec (2, "/bin/sh", "-i", NULL);
+		hackexec (2, "/bin/sh", "-i", NULL, NULL, NULL, NULL, NULL);
 }
 
 static void
-dowield () {
+dowield (void)
+{
 	register        OBJECT wep;
 
 	multi = 0;
@@ -174,18 +174,19 @@ dowield () {
 }
 
 static void
-ddodown () {
+ddodown (void)
+{
 	dostairs ("down");
 }
 
 static void
-ddoup () {
+ddoup (void)
+{
 	dostairs ("up");
 }
 
 static void
-dostairs (dir)
-register char  *dir;
+dostairs (char *dir)
 {
 	if (u.ustuck ||
 			(*dir == 'd' && (u.ux != xdnstair || u.uy != ydnstair)) ||
@@ -210,7 +211,8 @@ register char  *dir;
 }
 
 void
-dosavelev () {
+dosavelev (void)
+{
 	register int    fd;
 
 	glo (dlevel);
@@ -220,8 +222,7 @@ dosavelev () {
 }
 
 static void
-checklev (dir)			/* Michiel: Geen geknoei */
-register char  *dir;
+checklev (char *dir)			/* Michiel: Geen geknoei */
 {
 	if ((upxstairs[dlevel] != xupstair ||
 				upystairs[dlevel] != yupstair) && !wizard) {
@@ -231,7 +232,8 @@ register char  *dir;
 }
 
 void
-dodown () {
+dodown (void)
+{
 	register int    fd;
 
 	glo (++dlevel);
@@ -253,7 +255,8 @@ dodown () {
 }
 
 void
-doup () {
+doup (void)
+{
 	register int    fd;
 
 	if (dlevel == 1)
@@ -269,7 +272,8 @@ doup () {
 }
 
 static void
-m_call () {
+m_call (void)
+{
 	register        OBJECT obj;
 
 	obj = getobj ("?!=/", "call");
@@ -279,8 +283,7 @@ m_call () {
 }
 
 void
-docall (obj)
-register        OBJECT obj;
+docall (OBJECT obj)
 {
 	register char  *str, **str1 = NULL;
 
@@ -317,13 +320,13 @@ register        OBJECT obj;
 }
 
 static void
-donull () {
+donull (void)
+{
 }
 
-MONSTER bhit ();
-
 static void
-dothrow () {
+dothrow (void)
+{
 	register        OBJECT obj;
 	register        MONSTER monst;
 	register int    tmp;
@@ -409,8 +412,7 @@ dothrow () {
 /* Create a new object (at fobj) of multiplicity 1
 				  remove obj from invent if necessary */
 static OBJECT
-loseone (obj)
-register        OBJECT obj;
+loseone (OBJECT obj)
 {
 	register        OBJECT otmp;
 
@@ -438,7 +440,8 @@ register        OBJECT obj;
 }
 
 int
-getdir () {
+getdir (void)
+{
 	pline ("What direction?");
 	flush ();
 	*buf = getchar ();
@@ -447,7 +450,8 @@ getdir () {
 }
 
 void
-docurse () {
+docurse (void)
+{
 	register        MONSTER mtmp;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp -> nmon) {

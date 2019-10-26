@@ -8,11 +8,12 @@
 #include <string.h>
 #include "hack.h"
 
-static int dochug();
-static int m_move();
+static int dochug (MONSTER mtmp);
+static int m_move (MONSTER mtmp, int after);
 
 void
-movemon () {
+movemon (void)
+{
 	register        MONSTER mtmp, mtmp2;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
@@ -34,8 +35,7 @@ movemon () {
 }
 
 static void
-justswld (mtmp)
-register        MONSTER mtmp;
+justswld (MONSTER mtmp)
 {
 	newsym (mtmp -> mx, mtmp -> my);
 	mtmp -> mx = u.ux;
@@ -49,9 +49,7 @@ register        MONSTER mtmp;
 }
 
 static void
-youswld (mtmp, dam, die)
-register        MONSTER mtmp;
-register int    dam, die;
+youswld (MONSTER mtmp, int dam, int die)
 {
 	pseebl ("%s digests you!", killer = mtmp -> data -> mname);
 	if (dam > 0) {
@@ -65,9 +63,7 @@ register int    dam, die;
 }
 
 static void
-x2hitu (mlev, x, name)
-register int    mlev, x;
-register char  *name;		/* a3 */
+x2hitu (int mlev, int x, char *name)		/* a3 */
 {
 	register int    i;
 
@@ -77,8 +73,7 @@ register char  *name;		/* a3 */
 }
 
 static int
-dochug (mtmp)
-register        MONSTER mtmp;
+dochug (MONSTER mtmp)
 {
 	register        MONSTDATA mdat;
 	register int    tmp = 0, ctmp;
@@ -429,8 +424,7 @@ register        MONSTER mtmp;
 }
 
 void
-cmdel (mtmp)
-register        MONSTER mtmp;
+cmdel (MONSTER mtmp)
 {
 	register char   mx = mtmp -> mx, my = mtmp -> my;
 
@@ -440,8 +434,7 @@ register        MONSTER mtmp;
 }
 
 static void
-inrange (mtmp)
-register        MONSTER mtmp;
+inrange (MONSTER mtmp)
 {
 	int     zx, zy;
 	register char   tx = u.ux - mtmp -> mx, ty = u.uy - mtmp -> my;
@@ -468,9 +461,7 @@ register        MONSTER mtmp;
 }
 
 static int
-m_move (mtmp, after)
-register        MONSTER mtmp;
-int after;
+m_move (MONSTER mtmp, int after)
 {
 	register        MONSTER mtmp2;
 	register int    nix, niy, omx, omy, appr, nearer, cnt, zx, zy;

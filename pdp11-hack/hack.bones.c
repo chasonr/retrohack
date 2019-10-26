@@ -25,7 +25,8 @@ static char bones[] = "bones_xx";
 
 /* Save bones and possessions of a deceased adventurer */
 void
-savebones () {
+savebones (void)
+{
 	register int    fd;
 	register        OBJECT otmp;
 	register        GOLD_TRAP gtmp;
@@ -84,7 +85,8 @@ savebones () {
 }
 
 int
-getbones () {
+getbones (void)
+{
 	register int    fd, x, y;
 
 	sprintf (&bones[6], "%d", dlevel);

@@ -10,10 +10,10 @@
 #define NOT_AT	0
 #define NO_OBJ	0
 
-static void prname();
+static void prname (OBJECT obj, char let, int onelin);
 
-OBJECT addinv (obj)
-register        OBJECT obj;
+OBJECT
+addinv (OBJECT obj)
 {
 	register        OBJECT otmp;
 
@@ -41,8 +41,7 @@ register        OBJECT obj;
 }
 
 void
-useup (obj)
-register        OBJECT obj;
+useup (OBJECT obj)
 {
 	register        OBJECT otmp;
 
@@ -62,16 +61,14 @@ register        OBJECT obj;
 }
 
 void
-delobj (obj)
-register        OBJECT obj;
+delobj (OBJECT obj)
 {
 	freeobj (obj);
 	ofree (obj);
 }
 
 void
-ofree (obj)
-register        OBJECT obj;
+ofree (OBJECT obj)
 {
 	if (obj > yourinvent0)
 		free (obj);
@@ -80,8 +77,7 @@ register        OBJECT obj;
 /*  Unlink obj from chain starting with fobj  */
 
 void
-freeobj (obj)
-register        OBJECT obj;
+freeobj (OBJECT obj)
 {
 	register        OBJECT otmp;
 
@@ -96,8 +92,7 @@ register        OBJECT obj;
 }
 
 void
-deltrap (trap)
-register        GOLD_TRAP trap;
+deltrap (GOLD_TRAP trap)
 {
 	register        GOLD_TRAP gtmp;
 
@@ -111,8 +106,8 @@ register        GOLD_TRAP trap;
 	free (trap);
 }
 
-MONSTER m_at (x, y)
-register int    x, y;
+MONSTER
+m_at (int x, int y)
 {
 	register        MONSTER mtmp;
 	register        WORMSEGMENT wtmp;
@@ -129,8 +124,8 @@ register int    x, y;
 	return (NOT_AT);
 }
 
-OBJECT o_at (x, y)
-register int    x, y;
+OBJECT
+o_at (int x, int y)
 {
 	register        OBJECT otmp;
 
@@ -140,9 +135,8 @@ register int    x, y;
 	return (NOT_AT);
 }
 
-GOLD_TRAP g_at (x, y, ptr)
-register int    x, y;
-register        GOLD_TRAP ptr;
+GOLD_TRAP
+g_at (int x, int y, GOLD_TRAP ptr)
 {
 	while (ptr) {
 		if (ptr -> gx == x && ptr -> gy == y)
@@ -152,8 +146,8 @@ register        GOLD_TRAP ptr;
 	return (NOT_AT);
 }
 
-OBJECT getobj (let, word)
-register char  *let, *word;
+OBJECT
+getobj (char *let, char *word)
 {
 	register        OBJECT otmp;
 	register char   ilet, ilet1, ilet2;
@@ -231,8 +225,7 @@ register char  *let, *word;
 }
 
 void
-prinv (obj)
-register        OBJECT obj;
+prinv (OBJECT obj)
 {
 	register        OBJECT otmp;
 	register char   ilet = 'a';
@@ -244,23 +237,21 @@ register        OBJECT obj;
 }
 
 static void
-prname (obj, let, onelin)
-register        OBJECT obj;
-register char   let;
-int onelin;
+prname (OBJECT obj, char let, int onelin)
 {
 	char    li[BUFSZ];
 
 	doname (obj, buf);
 	sprintf (li, "%c - %s.", let, buf);
 	if (onelin)
-		pline (li);
+		pline ("%s", li);
 	else
 		printf ("%s\n", li);
 }
 
 void
-ddoinv () {
+ddoinv (void)
+{
 	nomove ();
 	if (!invent)
 		pline ("You are empty handed.");
@@ -274,9 +265,7 @@ ddoinv () {
  */
 
 void
-doinv (str, opt)
-register char  *str;
-int     opt;
+doinv (char *str, int opt)
 {
 	register        OBJECT otmp;
 	register char   ilet = 'a';

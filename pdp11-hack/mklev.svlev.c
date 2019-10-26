@@ -2,8 +2,11 @@
  * Mklev.savelev.c
  */
 
+static void bwrite (int fd, void *loc, int num);
+
 static void
-savelev () {
+savelev (void)
+{
 	register int    fd;
 	register        MONSTER mtmp, mtmp2;
 	register        GOLD_TRAP gtmp, gtmp2;
@@ -53,11 +56,8 @@ savelev () {
 	fobj = OBJ_NULL;
 }
 
-/*NOSTRICT*/
 static void
-bwrite (fd, loc, num)
-register int    fd, num;
-register char  *loc;
+bwrite (int fd, void *loc, int num)
 {
 	if (write (fd, loc, num) != num)
 		panic ("Cannot write %d bytes to file #%d", num, fd);

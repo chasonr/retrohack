@@ -20,8 +20,7 @@ static struct permonst pm_ale = {
 };
 
 int
-getlev (fd)
-int fd;
+getlev (int fd)
 {
 	register        MONSTER mtmp;
 	register        GOLD_TRAP gtmp;
@@ -159,9 +158,7 @@ int fd;
 }
 
 void
-mread (fd, buffer, len)
-register int    fd, len;
-register char  *buffer;
+mread (int fd, void *buffer, int len)
 {
 	register int    rlen;
 
@@ -171,7 +168,8 @@ register char  *buffer;
 }
 
 void
-mklev () {
+mklev (void)
+{
 	register int    fd;
 	char    type[2];
 

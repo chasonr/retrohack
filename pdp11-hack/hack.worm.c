@@ -10,11 +10,10 @@ WORMSEGMENT wsegs[32], wheads[32];
 
 unsigned        wgrowtime[32];
 
-static void remseg();
+static void remseg (WORMSEGMENT wtmp);
 
 int
-getwn (mtmp)
-MONSTER mtmp;
+getwn (MONSTER mtmp)
 {
 	register int    tmp;
 
@@ -27,8 +26,7 @@ MONSTER mtmp;
 }
 
 void
-initworm (mtmp)
-MONSTER mtmp;
+initworm (MONSTER mtmp)
 {
 	register        WORMSEGMENT wtmp;
 	register int    tmp = mtmp -> wormno;
@@ -43,8 +41,7 @@ MONSTER mtmp;
 }
 
 void
-worm_move (mtmp)
-MONSTER mtmp;
+worm_move (MONSTER mtmp)
 {
 	register        WORMSEGMENT wtmp, whd;
 	register int    tmp = mtmp -> wormno;
@@ -72,8 +69,7 @@ MONSTER mtmp;
 }
 
 void
-worm_nomove (mtmp)
-register        MONSTER mtmp;
+worm_nomove (MONSTER mtmp)
 {
 	register int    tmp;
 	register        WORMSEGMENT wtmp;
@@ -88,8 +84,7 @@ register        MONSTER mtmp;
 }
 
 void
-wormdead (mtmp)
-register        MONSTER mtmp;
+wormdead (MONSTER mtmp)
 {
 	register int    tmp = mtmp -> wormno;
 	register        WORMSEGMENT wtmp, wtmp2;
@@ -104,8 +99,7 @@ register        MONSTER mtmp;
 }
 
 void
-wormhit (mtmp)
-register        MONSTER mtmp;
+wormhit (MONSTER mtmp)
 {
 	register int    tmp = mtmp -> wormno;
 	register        MONSTDATA mdat = mtmp -> data;
@@ -118,8 +112,7 @@ register        MONSTER mtmp;
 }
 
 void
-wormsee (tmp)
-register int    tmp;
+wormsee (int tmp)
 {
 	register        WORMSEGMENT wtmp;
 
@@ -129,10 +122,7 @@ register int    tmp;
 }
 
 void
-cutworm (mtmp, x, y, weptyp)
-register        MONSTER mtmp;
-register char   x, y;
-register unsigned       weptyp;
+cutworm (MONSTER mtmp, char x, char y, unsigned weptyp)
 {
 	register        WORMSEGMENT wtmp, wtmp2;
 	register        MONSTER mtmp2;
@@ -204,8 +194,7 @@ register unsigned       weptyp;
 }
 
 static void
-remseg (wtmp)
-register        WORMSEGMENT wtmp;
+remseg (WORMSEGMENT wtmp)
 {
 	levlsym (wtmp -> wx, wtmp -> wy, '~');
 	free (wtmp);

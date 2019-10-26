@@ -2,6 +2,7 @@
  * Mklev.make.c
  */
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,16 +23,17 @@
 #define somex() rn1( croom->hx - croom->lx + 1, croom->lx )
 #define somey() rn1( croom->hy - croom->ly + 1, croom->ly )
 
-static void delmon();
-static void delgen();
-static int ch_dnstairs();
-static int ch_doors();
-static int ch_upstairs();
-static int mymakemon();
-static int putyard();
+static void delmon (MONSTER mtmp);
+static void delgen (GOLD_TRAP gtmp, GOLD_TRAP key);
+static int ch_dnstairs (MKROOM *mroom);
+static int ch_doors (int zx, int zy);
+static int ch_upstairs (MKROOM *mroom);
+static int mymakemon (int monx, int mony);
+static int putyard (MONSTER mtmp);
 
 void
-makemaz () {
+makemaz (void)
+{
 
 /* This is all Kenny's fault.  He seems to have his x and y reversed */
 
@@ -99,8 +101,7 @@ makemaz () {
 
 /* Make a trap somewhere (in croom if mazeflag=0) */
 void
-mktrap (num, mazeflag)
-register int    num, mazeflag;
+mktrap (int num, int mazeflag)
 {
 	register        GOLD_TRAP gtmp;
 	register int    nopierc;
@@ -170,9 +171,7 @@ register int    num, mazeflag;
 }
 
 void
-mkgold (num, goldx, goldy)
-register int    num;
-int goldx, goldy;
+mkgold (int num, int goldx, int goldy)
 {
 	register        GOLD_TRAP gtmp;
 
@@ -183,20 +182,19 @@ int goldx, goldy;
 	fgold = gtmp;
 }
 
-/*VARARGS*/
 int
-panic (str, arg1, arg2)
-register char  *str;
-int arg1, arg2;
+panic (const char *str, ...)
 {
+	va_list args;
 	fprintf (stderr, "\nMKLEV ERROR: ");
-	fprintf (stderr, str, arg1, arg2);
+	va_start (args, str);
+	vfprintf (stderr, str, args);
+	va_end (args);
 	abort ();
 }
 
 void
-makemon (sl, monx, mony)
-register int    sl, monx, mony;
+makemon (int sl, int monx, int mony)
 {
 	register        MONSTER mtmp;
 	register int    tryct = 0;
@@ -241,7 +239,8 @@ static char shprobs[] = {
 };				/* Their probabilities */
 
 void
-mkshop () {
+mkshop (void)
+{
 	register        MKROOM * sroom;
 	register int    sh, sx, sy, i;
 	register signed char let;
@@ -274,7 +273,8 @@ mkshop () {
 }
 
 void
-mkzoo () {
+mkzoo (void)
+{
 	register        MKROOM * zroom;
 	register int    zx, zy;
 
@@ -297,7 +297,8 @@ mkzoo () {
 
 
 void
-mkyard () {
+mkyard (void)
+{
 	register        MKROOM * yroom;
 	register int    yx, yy;
 
@@ -330,8 +331,7 @@ mkyard () {
 #define MON	0
 
 static int
-mymakemon (monx, mony)
-int monx, mony;
+mymakemon (int monx, int mony)
 {
 	register        MONSTER mtmp;
 	register int    tryct = 0;
@@ -366,8 +366,7 @@ int monx, mony;
 }
 
 static int
-putyard (mtmp)
-MONSTER mtmp;
+putyard (MONSTER mtmp)
 {
 	switch (rn2 (5)) {
 		case 0: 
@@ -402,7 +401,8 @@ MONSTER mtmp;
 }
 
 void
-mkswamp () {
+mkswamp (void)
+{
 	register        MKROOM * zroom;
 	register int    zx, zy;
 	register int    first = 0;
@@ -437,8 +437,7 @@ mkswamp () {
 }
 
 static int
-ch_doors (zx, zy)
-register int    zx, zy;
+ch_doors (int zx, int zy)
 {
 	register int    xx, yy;
 	register int    status = 1;
@@ -457,7 +456,8 @@ register int    zx, zy;
 }
 
 void
-mk_knox () {
+mk_knox (void)
+{
 	register        MKROOM * kroom;
 	register int    kx, ky;
 	register int    tmp = 10000;
@@ -504,24 +504,21 @@ mk_knox () {
 }
 
 static int
-ch_upstairs (mroom)
-register        MKROOM * mroom;
+ch_upstairs (MKROOM *mroom)
 {
 	return (mroom -> lx <= xupstair && xupstair <= mroom -> hx &&
 			mroom -> ly <= yupstair && yupstair <= mroom -> hy);
 }
 
 static int
-ch_dnstairs (mroom)
-register        MKROOM * mroom;
+ch_dnstairs (MKROOM *mroom)
 {
 	return (mroom -> lx <= xdnstair && xdnstair <= mroom -> hx &&
 			mroom -> ly <= ydnstair && ydnstair <= mroom -> hy);
 }
 
 static void
-delmon (mtmp)
-register        MONSTER mtmp;
+delmon (MONSTER mtmp)
 {
 	register        MONSTER mtmp2;
 
@@ -535,8 +532,7 @@ register        MONSTER mtmp;
 }
 
 static void
-delgen (gtmp, key)
-register        GOLD_TRAP gtmp, key;
+delgen (GOLD_TRAP gtmp, GOLD_TRAP key)
 {
 	register        GOLD_TRAP gtmp2;
 

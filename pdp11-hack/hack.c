@@ -15,8 +15,7 @@
 
 
 char   *
-        lowc (str)
-register char  *str;
+lowc (char *str)
 {
 	if (*str >= 'A' && *str <= 'Z')
 		*buf = *str + 'a' - 'A';
@@ -28,8 +27,7 @@ register char  *str;
 
 /* (a3) mix van setsee() en seeon() */
 void
-setCon (setc)
-int setc; 	/* setc: 1-setsee, 0-seeon (we just went to a new level) */
+setCon (int setc) 	/* setc: 1-setsee, 0-seeon (we just went to a new level) */
 {
 	register int    x, y;
 	register        MONSTER mtmp;
@@ -101,9 +99,7 @@ int setc; 	/* setc: 1-setsee, 0-seeon (we just went to a new level) */
 }
 
 void
-unCoff (unc, mode)
-int unc;
-int mode;
+unCoff (int unc, int mode)
 {
  /* 
   * (a3) mix van unsee() en seeoff()
@@ -153,9 +149,7 @@ int mode;
 }
 
 int
-hitu (mlev, dam, name)
-register int    mlev, dam;
-register char  *name;
+hitu (int mlev, int dam, char *name)
 {
 	mlev += (u.uac - 1);
 	if (multi < 0)
@@ -174,8 +168,7 @@ register char  *name;
 }
 
 int
-cansee (x, y)
-signed char x, y;
+cansee (signed char x, signed char y)
 {
 	if (u.ublind || u.uswallow)
 		return (CANNOTSEE);
@@ -188,14 +181,14 @@ signed char x, y;
 }
 
 long
-        pow2 (num)
-register int    num;		/* Returns 2^num */
+pow2 (int num)		/* Returns 2^num */
 {
 	return (1 << num);
 }
 
 void
-land () {			/* a3 */
+land (void)			/* a3 */
+{
 	do {
 		u.ux = rn2 (80);
 		u.uy = rn2 (22);
@@ -203,7 +196,8 @@ land () {			/* a3 */
 }
 
 void
-tele () {
+tele (void)
+{
 	unCoff (UNC, 0);	/* Dat was een 1 (a3) */
 	unstuck (u.ustuck);	/* a3 */
 	u.utrap = 0;
@@ -216,8 +210,7 @@ tele () {
 }
 
 static char   *
-sitoa (a)
-register int    a;
+sitoa (int a)
 {
 	static char     buffer[8];
 
@@ -226,9 +219,7 @@ register int    a;
 }
 
 void
-doname (obj, buffer)
-register        OBJECT obj;
-register char  *buffer;
+doname (OBJECT obj, char *buffer)
 {
 	switch (obj -> olet) {
 
@@ -375,7 +366,8 @@ register char  *buffer;
 }
 
 int
-abon () {
+abon (void)
+{
 	if (u.ustr == 3)
 		return - 3;
 	if (u.ustr < 6)
@@ -392,7 +384,8 @@ abon () {
 }
 
 static int
-dbon () {
+dbon (void)
+{
 	if (u.ustr < 6)
 		return - 1;
 	if (u.ustr < 16)
@@ -411,8 +404,7 @@ dbon () {
 }
 
 void
-losestr (num)
-register int    num;
+losestr (int num)
 {
 	u.ustr -= num;
 	while (u.ustr < 3) {
@@ -425,9 +417,7 @@ register int    num;
 }
 
 void
-losehp (n, knam)
-register int    n;
-char   *knam;
+losehp (int n, char *knam)
 {
 	u.uhp -= n;
 	flags.dhp = 1;
@@ -436,8 +426,7 @@ char   *knam;
 }
 
 char   *
-        setan (str)
-register char  *str;		/* a3 */
+setan (char *str)		/* a3 */
 {
 	static char     buffer[BUFSZ];
 
@@ -446,8 +435,7 @@ register char  *str;		/* a3 */
 }
 
 int
-weight (obj)
-register        OBJECT obj;
+weight (OBJECT obj)
 {
 	switch (obj -> olet) {
 		case '"': 
@@ -482,9 +470,7 @@ register        OBJECT obj;
 static char mlarge[] = "bCDdegIlmnoPSsTUwY',&";
 
 int
-hmon (monst, obj)
-register        MONSTER monst;
-register        OBJECT obj;
+hmon (MONSTER monst, OBJECT obj)
 {
 	register int    tmp;
 
@@ -518,8 +504,7 @@ register        OBJECT obj;
 }
 
 int
-alive (monst)
-register        MONSTER monst;
+alive (MONSTER monst)
 {
 	if (monst -> mhp > 0)
 		return (MONALIVE);

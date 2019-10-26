@@ -2,6 +2,7 @@
  * Hack.pri.c
  */
 
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,7 +15,7 @@ static char scrlx, scrhx, scrly, scrhy;
 static char xcurses[200];		/* Contain's curser stuff */
 static char *HO, *CL, *CE, *CM, *UP, *BC;
 static char PC;
-static int putch ();
+static int putch (int c);
 
 static COORDINATES ou = {
 	-1, 0
@@ -23,10 +24,11 @@ static COORDINATES ou = {
 #ifdef NORMAL_IO
 static char obuf[BUFSIZ];
 #endif /* NORMAL_IO */
-static void donscrt();
+static void donscrt (int mode, int umv);
 
 void
-startup () {
+startup (void)
+{
 	char   *bp = malloc (1024);
 	char   *atcurs = xcurses;
 
@@ -53,20 +55,20 @@ startup () {
 #endif /* NORMAL_IO */
 }
 
-/*VARARGS*/
 int
-panic (coredump, str, a1, a2, a3, a4, a5, a6)
-int coredump;
-register char  *str;
-int a1, a2, a3, a4, a5, a6;
+panic (int coredump, const char *str, ...)
 {
+	va_list args;
+
 	home ();
 #ifdef NORMAL_IO
 	printf ("ERROR:  ");
 #else
 	WRITE ("ERROR:  ", 10);
 #endif /* NORMAL_IO */
-	printf (str, a1, a2, a3, a4, a5, a6);
+	va_start (args, str);
+	vprintf (str, args);
+	va_end (args);
 	hackmode (OFF);
 	if (!unlink (SAVEFILE))
 		printf ("Savefile removed.\n");
@@ -77,15 +79,15 @@ int a1, a2, a3, a4, a5, a6;
 }
 
 void
-seeatl (x, y, c)
-register int    x, y, c;
+seeatl (int x, int y, int c)
 {
 	if (cansee (x, y))
 		atl (x, y, c);
 }
 
 void
-cls () {
+cls (void)
+{
 	tputs (CL, 0, putch);
 	curx = 1;
 	cury = 1;
@@ -94,7 +96,8 @@ cls () {
 }
 
 void
-home () {
+home (void)
+{
 	if (HO)
 		tputs (HO, 0, putch);
 	else
@@ -104,9 +107,7 @@ home () {
 }
 
 void
-atl (x, y, ch)
-register int    x, y;
-int ch;
+atl (int x, int y, int ch)
 {
 	register        PART * crm = &levl[x][y];
 
@@ -120,8 +121,7 @@ int ch;
 }
 
 void
-on (x, y)
-register int    x, y;
+on (int x, int y)
 {
 	if (flags.dscr) {
 		if (x < scrlx)
@@ -141,9 +141,7 @@ register int    x, y;
 }
 
 void
-at (x, y, ch)
-register int    x, y;
-register char   ch;
+at (int x, int y, char ch)
 {
 	if (!ch || x < 0 || x > 79 || y < 0 || y > 21)
 		panic (CORE, "at(%d %d,%d) at %d %d", x, y, ch,
@@ -155,19 +153,20 @@ register char   ch;
 }
 
 void
-prme () {
+prme (void)
+{
 	if (!u.uinvis)
 		at (u.ux, u.uy, '@');
 }
 
 void
-pru () {
+pru (void)
+{
 	prl (u.ux, u.uy);
 }
 
 void
-prl (x, y)
-int x, y;
+prl (int x, int y)
 {
 	register        PART * room;
 	register        MONSTER mtmp;
@@ -186,8 +185,7 @@ int x, y;
 }
 
 void
-newunseen (x, y)
-register int    x, y;
+newunseen (int x, int y)
 {
 	if (!levl[x][y].seen) {
 		levl[x][y].new = 1;
@@ -196,8 +194,7 @@ register int    x, y;
 }
 
 char
-        news0 (x, y)
-register int    x, y;
+news0 (int x, int y)
 {
 	register        OBJECT otmp;
 	register        GOLD_TRAP gtmp;
@@ -265,23 +262,20 @@ register int    x, y;
 }
 
 void
-newsym (x, y)
-register int    x, y;
+newsym (int x, int y)
 {
 	atl (x, y, news0 (x, y));
 }
 
 void
-levlsym (x, y, c)
-register int    x, y, c;
+levlsym (int x, int y, int c)
 {
 	if (levl[x][y].scrsym == c)
 		newsym (x, y);
 }
 
 static void
-nosee (x, y)
-register int    x, y;
+nosee (int x, int y)
 {
 	register        PART * room;
 
@@ -298,8 +292,7 @@ register int    x, y;
 }
 
 void
-prl1 (x, y)
-register int    x, y;
+prl1 (int x, int y)
 {
 	register int    count;
 
@@ -321,8 +314,7 @@ register int    x, y;
 }
 
 void
-nose1 (x, y)
-register int    x, y;
+nose1 (int x, int y)
 {
 	register int    count;
 
@@ -343,16 +335,14 @@ register int    x, y;
 }
 
 void
-doreprint () {
+doreprint (void)
+{
 	nomove ();
 	pline ("\200");		/* Michiel: Code for repeating last message */
 }
 
-/* VARARGS1 */
 void
-pline (line, arg1, arg2, arg3, arg4)
-register char  *line;
-int arg1, arg2, arg3, arg4;
+pline (const char *line, ...)
 {
 	char    pbuf[BUFSZ];
 	static char     prevbuf[BUFSZ];
@@ -362,8 +352,12 @@ int arg1, arg2, arg3, arg4;
 	else {
 		if (!strchr (line, '%'))
 			strcpy (pbuf, line);
-		else
-			sprintf (pbuf, line, arg1, arg2, arg3, arg4);
+		else {
+			va_list args;
+			va_start (args, line);
+			vsprintf (pbuf, line, args);
+			va_end (args);
+		}
 		if (multi && !strcmp (pbuf, prevbuf))
 			return;
 		strcpy (prevbuf, pbuf);
@@ -383,7 +377,8 @@ int arg1, arg2, arg3, arg4;
 }
 
 void
-prustr () {
+prustr (void)
+{
 	if (u.ustr > 18) {
 		if (u.ustr > 117)
 			printf ("18/00");
@@ -396,15 +391,15 @@ prustr () {
 }
 
 void
-pmon (mtmp)
-register        MONSTER mtmp;
+pmon (MONSTER mtmp)
 {
 	if (!mtmp -> invis || u.ucinvis)
 		seeatl (mtmp -> mx, mtmp -> my, mtmp -> data -> mlet);
 }
 
 void
-docrt () {
+docrt (void)
+{
 	cls ();
 	if (u.uswallow) {
 		curs (u.ux - 1, u.uy - 1);
@@ -421,7 +416,8 @@ docrt () {
 }
 
 void
-nscr () {
+nscr (void)
+{
 	register int    umv;
 
 	umv = ((ou.x < 0 && !u.uinvis) || (ou.x >= 0 &&
@@ -432,9 +428,7 @@ nscr () {
 }
 
 static void
-donscrt (mode, umv)
-int mode;		/* mode: 0- docrt(), 1- nscr()  */
-int umv;
+donscrt (int mode, int umv)		/* mode: 0- docrt(), 1- nscr()  */
 {
 	register        PART * room;
 	register int    x, y, ly, hy, lx, hx;
@@ -491,7 +485,8 @@ int umv;
 }
 
 void
-bot () {
+bot (void)
+{
 	flags.botl = 0;
 	flags.dhp = 0;
 	flags.dhpmax = 0;
@@ -518,8 +513,7 @@ bot () {
 }
 
 void
-curs (x, y)
-register int    x, y;
+curs (int x, int y)
 {
 	if (y == cury && x == curx)
 		return;		/* Do nothing, gracefully */
@@ -530,7 +524,8 @@ register int    x, y;
 }
 
 void
-cl_end () {
+cl_end (void)
+{
 	if (CE)
 		tputs (CE, 0, putch);
 	else {
@@ -540,13 +535,13 @@ cl_end () {
 }
 
 static int
-putch (c)
-char    c;
+putch (int c)
 {
 #ifdef NORMAL_IO
 	putchar (c);
 #else
-	WRITE (&c, 1);
+    char ch = (char) c;
+	WRITE (&ch, 1);
 #endif /* NORMAL_IO */
 	return 0;
 }

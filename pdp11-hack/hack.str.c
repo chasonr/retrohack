@@ -94,8 +94,7 @@ register int *argptr;
 }
 
 char *
-litoa( l_arg )
-long l_arg;
+litoa(long l_arg)
 {
 	static char string[20];
 	register int i = 0;
@@ -129,7 +128,7 @@ register length;
 	arcount += length;
 }
 
-flush()
+flush(void)
 {
 	write( 1, output_buffer, arcount );
 	arcount = 0;

@@ -15,8 +15,7 @@
 static union PTRS ptrs;
 
 union PTRS *
-alloc (num)
-register int    num;
+alloc (int num)
 {
 	register char  *val;
 
