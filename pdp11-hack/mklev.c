@@ -7,7 +7,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define NORMAL_IO
 #define MKLEV
 #include "hack.h"
 
@@ -32,12 +31,6 @@ char    mmon[8][8] = {
 	"De'n,P&"
 };
 
-#define MAZX ((rnd(37) << 1) + 1)
-#define MAZY ((rnd(8) << 1) + 1)
-
-#define somex() rn1( croom->hx - croom->lx + 1, croom->lx )
-#define somey() rn1( croom->hy - croom->ly + 1, croom->ly )
-
 #define NOT_HERE	0
 
 PART levl[80][22];
@@ -61,9 +54,6 @@ signed char dlevel, goldseen,
             tx, ty;
 static signed char wizard, dx, dy, nxcor, x, y;
  /* For corridors and other things... */
-
-#define RUIN	5
-#define MAZE	6
 
 int
 main (int argc, char *argv[])
@@ -126,19 +116,19 @@ jumpout:
 
 /* Put a sleeping monster inside */
 		if (!rn2 (3))
-			makemon (1, somex (), somey ());
+			makemon (1, somex (croom), somey (croom));
 
 /* Put traps and mimics inside */
 		goldseen = 0;
 		while (!rn2 (8 - (dlevel / 6)))
 			mktrap (0, 0);
 		if (!goldseen && !rn2 (3))
-			mkgold (0, somex (), somey ());
+			mkgold (0, somex (croom), somey (croom));
 		tryct = 0;
 		if (!rn2 (3))
 			do {
 				mkobj (0);
-				levl[fobj -> ox = somex ()][fobj -> oy = somey ()].scrsym = fobj -> olet;
+				levl[fobj -> ox = somex (croom)][fobj -> oy = somey (croom)].scrsym = fobj -> olet;
 				if (tryct++ > 100) {
 					printf ("tryct overflow4\n");
 					break;
@@ -150,8 +140,8 @@ jumpout:
 		if (++tryct > 1000)
 			panic ("Cannot make dnstairs\n");
 		croom = &rooms[rn2 (nroom)];
-		xdnstair = somex ();
-		ydnstair = somey ();
+		xdnstair = somex (croom);
+		ydnstair = somey (croom);
 	} while ((*tspe == 'n' &&
 				(xdnstair % 2 == 0 || ydnstair % 2 == 0)) ||
 			g_at (xdnstair, ydnstair, ftrap));
@@ -161,8 +151,8 @@ jumpout:
 		if (++tryct > 2000)
 			panic ("Cannot make upstairs\n");
 		croom = &rooms[rn2 (nroom)];
-		xupstair = somex ();
-		yupstair = somey ();
+		xupstair = somex (croom);
+		yupstair = somey (croom);
 	} while (croom == troom || m_at (xupstair, yupstair) ||
 			o_at (xupstair, yupstair) ||
 			g_at (xupstair, yupstair, ftrap));

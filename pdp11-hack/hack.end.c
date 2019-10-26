@@ -104,8 +104,6 @@ done (int status)
 	exit (0);
 }
 
-#define	NAMESIZE	 8
-#define	DEATHSIZE	40
 #define TOPPRINT	15	/* Aantal scores dat wordt afgedrukt */
 #define	TOPLIST		25	/* Length of 'top ten' list */
 
@@ -116,7 +114,7 @@ topten (void)
 	struct recitem {
 		long    points;
 		int     level, maxlvl, hp, maxhp;
-		char    str[NAMESIZE + 1], death[DEATHSIZE + 1];
+		char    str[PLNAMESIZE + 1], death[DEATHSIZE + 1];
 	}               rec[TOPLIST + 1], *t1;
 	register int    flg;
 
@@ -143,8 +141,8 @@ topten (void)
 		rec[tmp].maxlvl = maxdlevel;
 		rec[tmp].hp = u.uhp;
 		rec[tmp].maxhp = u.uhpmax;
-		strncpy (rec[tmp].str, plname, NAMESIZE);
-		rec[tmp].str[NAMESIZE] = 0;
+		strncpy (rec[tmp].str, plname, PLNAMESIZE);
+		rec[tmp].str[PLNAMESIZE] = 0;
 		strncpy (rec[tmp].death, killer, DEATHSIZE);
 		rec[tmp].death[DEATHSIZE] = 0;
 		flg++;

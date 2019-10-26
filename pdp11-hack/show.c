@@ -9,7 +9,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define NORMAL_IO
 #define SHOW
 #include "hack.h"
 
@@ -181,13 +180,10 @@ error (const char *s, ...)
 
 static char *itoa (int a);
 
-#define	NAMESIZE	 8
-#define	DEATHSIZE	40
-
 static struct recitem {
 	long    points;
 	int     level, maxlvl, hp, maxhp;
-	char    str[NAMESIZE + 1], death[DEATHSIZE + 1];
+	char    str[PLNAMESIZE + 1], death[DEATHSIZE + 1];
 }               record;
 
 static void

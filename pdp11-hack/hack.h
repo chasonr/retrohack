@@ -94,7 +94,16 @@
 #define HIT     1
 #define KILL    2
 
+#define CURSED		1
+#define NOTCURSED       0
 
+#define ZOO		1
+#define GRAVEYARD	2
+#define SWAMP		3
+#define FORT_KNOX	4
+
+#define	PLNAMESIZE	 8
+#define	DEATHSIZE	40
 
 typedef struct func_tab {
 	char    f_char;
@@ -318,6 +327,9 @@ union PTRS {
 extern  union PTRS * alloc (int num);
 
 #ifdef MKLEV
+
+#define somex(croom) rn1( croom->hx - croom->lx + 1, croom->lx )
+#define somey(croom) rn1( croom->hy - croom->ly + 1, croom->ly )
 
 /*### mklev.make.c ###*/
 extern void makemaz (void);

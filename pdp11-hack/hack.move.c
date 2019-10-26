@@ -10,11 +10,6 @@
 signed char seelx, seehx, seely, seehy;/* Corners of lit room */
  /* l for Low, h for High */
 
-#define ZOO		1
-#define GRAVEYARD	2
-#define SWAMP		3
-#define FORT_KNOX	4
-
 
 /* Contains move commands */
 

@@ -5,9 +5,6 @@
 #include <stdio.h>
 #include "hack.h"
 
-#define CURSED		1
-#define NOTCURSED	0
-
 static void dorr (OBJECT * ring);
 static int cursed (OBJECT otmp);
 

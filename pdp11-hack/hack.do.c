@@ -11,10 +11,6 @@ char    WELDED[] = "The %s is welded into your hand!";
 
 #define LETTER(ch)      ((ch >= '@' && ch <= 'Z' ) || \
 						       (ch >= 'a' && ch <= 'z'))
-#define CURSED		1
-#define NOTCURSED       0
-
-#define SIZE( x ) 	sizeof( x )/sizeof( x[0] )
 
 static void nothin (OBJECT obj);
 static void dropit (OBJECT obj);

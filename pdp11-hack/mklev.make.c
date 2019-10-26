@@ -7,21 +7,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ZOO		1
-#define GRAVEYARD	2
-#define SWAMP		3
-#define FORT_KNOX	4
-#define MAZE		6
-
-#define NORMAL_IO
 #define MKLEV
 #include "hack.h"
 
 #define MAZX ((rnd(37) << 1) + 1)
 #define MAZY ((rnd(8) << 1) + 1)
-
-#define somex() rn1( croom->hx - croom->lx + 1, croom->lx )
-#define somey() rn1( croom->hy - croom->ly + 1, croom->ly )
 
 static void delmon (MONSTER mtmp);
 static void delgen (GOLD_TRAP gtmp, GOLD_TRAP key);
@@ -129,8 +119,8 @@ mktrap (int num, int mazeflag)
 			gtmp -> gy = MAZY;
 		}
 		else if (!fakedoor) {
-			gtmp -> gx = somex ();
-			gtmp -> gy = somey ();
+			gtmp -> gx = somex (croom);
+			gtmp -> gy = somey (croom);
 		}
 		else {
 			if (rn2 (2)) {
@@ -138,14 +128,14 @@ mktrap (int num, int mazeflag)
 					gtmp -> gx = croom -> hx + 1;
 				else
 					gtmp -> gx = croom -> lx - 1;
-				gtmp -> gy = somey ();
+				gtmp -> gy = somey (croom);
 			}
 			else {
 				if (rn2 (2))
 					gtmp -> gy = croom -> hy + 1;
 				else
 					gtmp -> gy = croom -> ly - 1;
-				gtmp -> gx = somex ();
+				gtmp -> gx = somex (croom);
 			}
 		}
 	} while (g_at (gtmp -> gx, gtmp -> gy, (fakegold) ? fgold : ftrap));
