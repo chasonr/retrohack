@@ -626,7 +626,8 @@ extern int shk_move (void);
 extern void subfrombill (OBJECT obj);
 extern MONSTER shopkeeper;
 extern long robbed;
-extern signed char billct, shlevel;
+extern int billct;
+extern signed char shlevel;
 extern COORDINATES shd, shk;
 
 /*### hack.str.c ###*/

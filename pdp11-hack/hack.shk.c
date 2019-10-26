@@ -32,7 +32,8 @@ static long total;
  * shlevel  = last level we initialized shopkeeper
  */
 
-signed char billct = 0, shlevel;
+int billct = 0;
+signed char shlevel;
 static signed char shoproom;
 static const char * const shopnam[] = {
 	"engagement ring", "walking cane", "antique weapon",
