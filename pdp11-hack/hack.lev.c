@@ -28,7 +28,7 @@ int fd;
 	register        OBJECT otmp;
 	register        WORMSEGMENT wtmp;
 	int     tmp, xl;
-	unsigned        tmoves, omoves;
+	unsigned        tmoves = 0, omoves;
 	STOLE stmp;
 
 	if (fd < 0 || read (fd, levl, sizeof (levl)) != sizeof (levl))

@@ -282,7 +282,7 @@ void
 docall (obj)
 register        OBJECT obj;
 {
-	register char  *str, **str1;
+	register char  *str, **str1 = NULL;
 
 	pline ("Call it:");
 	getlin (buf);

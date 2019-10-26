@@ -126,7 +126,7 @@ dorecover (fd)
 register int    fd;
 {
 	register int    nfd, tmp;
-	register        OBJECT otmp, olast;
+	register        OBJECT otmp, olast = NULL;
 	MONSTER mtmp;
 	int     version;
 

@@ -42,10 +42,10 @@ register char  *cmd;
 
 void
 domove () {
-	char    nx, ny, tmpx, tmpy, let;
+	char    nx, ny, tmpx = '\0', tmpy = '\0', let;
 	register        MONSTER mtmp;
-	register        PART * tmpr, *ust;
-	GOLD_TRAP gold, trap, gtm1;
+	register        PART * tmpr = NULL, *ust = NULL;
+	GOLD_TRAP gold, trap = NULL, gtm1;
 	OBJECT otmp, obj;
 
 	if (u.uswallow) {
