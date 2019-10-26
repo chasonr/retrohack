@@ -414,7 +414,9 @@ extern char *hu_stat[4];
 extern void clearlocks();
 extern void done();
 extern void done1();
+#ifndef hangup
 extern int hangup();
+#endif
 extern char *itoa();
 extern char maxdlevel;
 
