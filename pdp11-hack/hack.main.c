@@ -84,7 +84,7 @@ char   *argv[];
 		}
 		flush ();
 	}
-#endif WIZARD
+#endif /* WIZARD */
 
 	if (chdir (PLAYGROUND) < 0)
 		panic (NOCORE, "Cannot chdir to %s!", PLAYGROUND);

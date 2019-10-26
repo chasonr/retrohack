@@ -22,7 +22,7 @@ static COORDINATES ou = {
 
 #ifdef NORMAL_IO
 static char obuf[BUFSIZ];
-#endif NORMAL_IO
+#endif /* NORMAL_IO */
 static void donscrt();
 
 void
@@ -50,7 +50,7 @@ startup () {
 	free (bp);
 #ifdef NORMAL_IO
 	setbuf (stdout, obuf);
-#endif NORMAL_IO
+#endif /* NORMAL_IO */
 }
 
 /*VARARGS*/
@@ -65,7 +65,7 @@ int a1, a2, a3, a4, a5, a6;
 	printf ("ERROR:  ", 10);
 #else
 	WRITE ("ERROR:  ", 10);
-#endif NORMAL_IO
+#endif /* NORMAL_IO */
 	printf (str, a1, a2, a3, a4, a5, a6);
 	hackmode (OFF);
 	if (!unlink (SAVEFILE))
@@ -547,5 +547,5 @@ char    c;
 	putchar (c);
 #else
 	WRITE (&c, 1);
-#endif NORMAL_IO
+#endif /* NORMAL_IO */
 }

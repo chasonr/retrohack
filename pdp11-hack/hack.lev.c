@@ -180,7 +180,7 @@ mklev () {
 		sleep (2);
 		goto Z;
 	}
-#endif DEBUG
+#endif /* DEBUG */
 	if (flags.next) {
 		flags.next = 0;
 		type[0] = 'b';

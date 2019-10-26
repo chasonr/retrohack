@@ -15,7 +15,7 @@
 #define NULL	0
 #define STDOUT  0		/* Defines print in I/O packet */
 
-#endif NORMAL_IO
+#endif /* NORMAL_IO */
 
 #include "envir.h"
 #include "hack.name.h"
@@ -652,4 +652,4 @@ extern int rn1();
 extern int rn2();
 extern int rnd();
 
-#endif SHOW
+#endif /* SHOW */

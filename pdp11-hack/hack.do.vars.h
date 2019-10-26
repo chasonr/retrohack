@@ -12,14 +12,14 @@ void	dodrop(),    dodrink(),    doread(),
 
 #ifdef DEBUG
 int debug();
-#endif DEBUG
+#endif /* DEBUG */
 
 static FUNCTIONS list[] = {
 	'\020', doredraw, 	 /* was  '\014' */
 	'A', doreprint,	 /* Michiel: Repeat last message printed */
 #ifdef DEBUG
 	'D', debug,
-#endif DEBUG
+#endif /* DEBUG */
 	'P', dowearring,
 	'Q', done1,
 	'R', doremring,

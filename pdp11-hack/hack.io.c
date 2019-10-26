@@ -88,4 +88,4 @@ getchar () {
 	read (0, &c, 1);
 	return (c);
 }
-#endif NORMAL_IO
+#endif /* NORMAL_IO */

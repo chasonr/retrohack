@@ -150,4 +150,4 @@ sprintf( buffer, fmt, args )
 {
 	strprint( buffer, fmt, &args );
 }
-#endif NORMAL_IO
+#endif /* NORMAL_IO */

@@ -12,4 +12,4 @@ debug () {
 	nomove ();
 	pline( "You're in the debug function!" );
 }
-#endif DEBUG
+#endif /* DEBUG */

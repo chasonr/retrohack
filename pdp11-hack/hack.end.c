@@ -59,7 +59,7 @@ register int    status;
 	if (status < QUIT) {	/* Not when quit or escaped */
 #ifndef DEBUG
 		savebones ();
-#endif DEBUG
+#endif /* DEBUG */
 		outrip ();
 	}
 	hackmode (OFF);
@@ -209,7 +209,7 @@ clearlocks () {
 #ifdef DEBUG
 	glo (0);
 	unlink (lock);
-#endif DEBUG
+#endif /* DEBUG */
 }
 
 int
