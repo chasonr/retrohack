@@ -148,7 +148,7 @@ static void
 dosh () {
 	register char  *str;
 
-	if (str = getenv ("SHELL"))
+	if ((str = getenv ("SHELL")) != NULL)
 		hackexec (2, str, NULL);
 	else
 		hackexec (2, "/bin/sh", "-i", NULL);

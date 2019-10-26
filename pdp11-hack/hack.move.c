@@ -71,7 +71,7 @@ domove () {
 	tmpy = u.uy;
 	nx = u.ux + dx;
 	ny = u.uy + dy;
-	if (trap = g_at (nx, ny, ftrap)) {
+	if ((trap = g_at (nx, ny, ftrap)) != NULL) {
 		if (trap -> gflag == MIMIC) {
 			nomul (0);
 			pline ("The door is actually a mimic.");
@@ -101,7 +101,7 @@ domove () {
 		return;
 	}
 M: 
-	if (mtmp = m_at (nx, ny)) {
+	if ((mtmp = m_at (nx, ny)) != NULL) {
 /* Attack monster */
 		char    tmp;
 		register        MONSTDATA mdat = mtmp -> data;
@@ -272,7 +272,7 @@ M:
 		newunseen (tmpx, tmpy);
 	if (!multi)
 		pru ();
-	while (gold = g_at (u.ux, u.uy, fgold)) {
+	while ((gold = g_at (u.ux, u.uy, fgold)) != NULL) {
 		if (!gold -> gflag) {
 			pline ("The chest was a mimic!");
 			if (!makemon (PM_MIMIC)) {
@@ -305,7 +305,7 @@ M:
 		if (u.uinvis)
 			newsym (u.ux, u.uy);
 	}
-	while (obj = o_at (u.ux, u.uy)) {
+	while ((obj = o_at (u.ux, u.uy)) != NULL) {
 		for (otmp = invent, let = 0; otmp; otmp = otmp -> nobj)
 			let += weight (otmp);
 		let += weight (obj);
@@ -484,7 +484,7 @@ lookaround () {
 /* Note: we cannot call r_free: perhaps a M is hidden in the wall */
 			if (!levl[x][y].typ)
 				continue;
-			if (mtmp = m_at (x, y))
+			if ((mtmp = m_at (x, y)) != NULL)
 				if (!mtmp -> mtame || (x == u.ux + dx &&
 							y == u.uy + dy)) {
 					nomul (0);

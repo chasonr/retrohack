@@ -262,10 +262,10 @@ mkshop () {
 	sh = sroom -> fdoor;
 	for (sx = sroom -> lx; sx <= sroom -> hx; sx++)
 		for (sy = sroom -> ly; sy <= sroom -> hy; sy++) {
-			if (sx == sroom -> lx && doors[sh].x == sx - 1 ||
-					sx == sroom -> hx && doors[sh].x == sx + 1 ||
-					sy == sroom -> ly && doors[sh].y == sy - 1 ||
-					sy == sroom -> hy && doors[sh].y == sy + 1)
+			if ((sx == sroom -> lx && doors[sh].x == sx - 1) ||
+					(sx == sroom -> hx && doors[sh].x == sx + 1) ||
+					(sy == sroom -> ly && doors[sh].y == sy - 1) ||
+					(sy == sroom -> hy && doors[sh].y == sy + 1))
 				continue;
 			mkobj (let);
 			levl[fobj -> ox = sx][fobj -> oy = sy].scrsym =

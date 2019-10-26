@@ -209,7 +209,7 @@ register int    x, y;
 		tmp = otmp -> olet;
 	else if (!u.ublind && g_at (x, y, fgold))
 		tmp = '$';
-	else if (gtmp = g_at (x, y, ftrap)) {
+	else if ((gtmp = g_at (x, y, ftrap)) != NULL) {
 		if (gtmp -> gflag == MIMIC)
 			tmp = '+';
 		else if (gtmp -> gflag & SEEN)

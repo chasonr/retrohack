@@ -42,7 +42,7 @@ void
 losedogs () {
 	register        MONSTER mtmp;
 
-	while (mtmp = mydogs) {
+	while ((mtmp = mydogs) != NULL) {
 		mydogs = mtmp -> nmon;
 		mtmp -> nmon = fmon;
 		fmon = mtmp;
@@ -130,7 +130,7 @@ int after;
 			}
 	}
 	else {
-		if (obj = o_at (omx, omy))
+		if ((obj = o_at (omx, omy)) != NULL)
 			if (rn2 (20) < edog -> apport + 3)
 				if (rn2 (udist) || !rn2 (edog -> apport)) {
 					edog -> carry = 1;
@@ -228,7 +228,7 @@ int after;
 				continue;
 			zx = omx + ddx;
 			zy = omy + ddy;
-			if (mtmp2 = m_at (zx, zy)) {
+			if ((mtmp2 = m_at (zx, zy)) != NULL) {
 				if (mtmp2 -> data -> mhd >= mtmp -> data -> mhd + 2)
 					continue;
 				if (mtmp2 -> mtame)
@@ -285,9 +285,9 @@ int after;
 
 				nearer = GDIST (zx, zy) - GDIST (nix, niy);
 				nearer *= appr;
-				if (!nearer && !rn2 (++cnt) || nearer < 0
-						|| nearer > 0 && (omx == nix && omy ==
-							niy && !rn2 (3) || !rn2 (12))) {
+				if ((!nearer && !rn2 (++cnt)) || nearer < 0
+						|| (nearer > 0 && ((omx == nix && omy ==
+							niy && !rn2 (3)) || !rn2 (12)))) {
 					nix = zx;
 					niy = zy;
 					if (nearer < 0)

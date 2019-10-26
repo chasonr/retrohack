@@ -83,7 +83,7 @@ dozap () {
 		return;
 	}
 	if (obj -> otyp <= Z_TELEPORT) {
-		if (mtmp = bhit (dx, dy, rn1 (8, 6))) {
+		if ((mtmp = bhit (dx, dy, rn1 (8, 6))) != NULL) {
 			switch (obj -> otyp) {
 
 				case Z_EXHAUST: 
@@ -236,7 +236,7 @@ dozap () {
 		}
 		while (--range) {
 			newsym (zx, zy);
-			if (mtmp = m_at (zx, zy))
+			if ((mtmp = m_at (zx, zy)) != NULL)
 				pmon (mtmp);
 			zx -= dx;
 			zy -= dy;
@@ -286,7 +286,7 @@ findit ()
 				atl (zx, zy, '+');
 				num++;
 			}
-			else if (gtmp = g_at (zx, zy, ftrap)) {
+			else if ((gtmp = g_at (zx, zy, ftrap)) != NULL) {
 				if (gtmp -> gflag == PIERC) {
 					mkmonat (PM_PIERC, zx, zy);
 					num++;
@@ -298,7 +298,7 @@ findit ()
 					mkmonat (PM_MIMIC, zx, zy);
 					num++;
 				}
-				else if (!gtmp -> gflag & SEEN) {
+				else if (!(gtmp -> gflag & SEEN)) {
 					gtmp -> gflag |= SEEN;
 					atl (zx, zy, '^');
 					num++;
@@ -335,7 +335,7 @@ int range;
 	while (range-- > 0) {
 		dx += ddx;
 		dy += ddy;
-		if (mtmp = m_at (dx, dy))
+		if ((mtmp = m_at (dx, dy)) != NULL)
 			return (mtmp);
 		if (levl[dx][dy].typ < CORR) {
 			dx -= ddx;
@@ -382,7 +382,7 @@ int ddx, ddy;
 			on (sx, sy);
 			lev -> new = 1;
 		}
-		if (mtmp = m_at (sx, sy)) {
+		if ((mtmp = m_at (sx, sy)) != NULL) {
 			if (mtmp == vaultkeeper)
 				mtmp -> angry = 1;
 			if (rnd (20) < 18 + mtmp -> data -> ac) {

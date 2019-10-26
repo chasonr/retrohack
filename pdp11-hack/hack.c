@@ -74,7 +74,7 @@ int setc; 	/* setc: 1-setsee, 0-seeon (we just went to a new level) */
 						!levl[x][y].typ)
 					continue;
 				levl[x][y].seen = 1;
-				if (mtmp = m_at (x, y))
+				if ((mtmp = m_at (x, y)) != NULL)
 					pmon (mtmp);
 			}
 		}
@@ -488,8 +488,8 @@ register        OBJECT obj;
 {
 	register int    tmp;
 
-	if (!obj || obj == uwep && (obj -> otyp >= W_USE_AMMO ||
-				obj -> otyp <= W_AMMUNITION))
+	if (!obj || (obj == uwep && (obj -> otyp >= W_USE_AMMO ||
+				obj -> otyp <= W_AMMUNITION)))
 		tmp = rnd (2);
 	else {
 		if (strchr (mlarge, monst -> data -> mlet)) {

@@ -278,8 +278,8 @@ register        OBJECT obj;
 /* I dropped something of my own, wanting to sell it */
 	if (shopkeeper -> msleep || shopkeeper -> mfroz ||
 			!inshproom (shopkeeper -> mx, shopkeeper -> my) ||
-			robbed || u.ux == shk.x && u.uy == shk.y ||
-			u.ux == shd.x && u.uy == shd.y)
+			robbed || (u.ux == shk.x && u.uy == shk.y) ||
+			(u.ux == shd.x && u.uy == shd.y))
 		return;
 	tmp = getprice (obj);
 	if (shopkeeper -> angry) {
@@ -486,12 +486,12 @@ shk_move () {
 			zx = omx + ddx;
 			zy = omy + ddy;
 			num = levl[zx][zy].typ;/* a3 */
-			if ((ddx || ddy) && (num == ROOM || !inshproom (omx, omy)
-						&& (num == CORR || num == DOOR)) &&
+			if ((ddx || ddy) && (num == ROOM || (!inshproom (omx, omy)
+						&& (num == CORR || num == DOOR))) &&
 					(shopkeeper -> mconf ||
 						((zx != u.ux || zy != u.uy) && !m_at (zx, zy))) &&
-					(!appr && !rn2 (++cnt) || appr && GDIST (zx, zy) <
-						GDIST (nix, niy))) {
+					((!appr && !rn2 (++cnt)) || (appr && GDIST (zx, zy) <
+						GDIST (nix, niy)))) {
 				nix = zx;
 				niy = zy;
 			}

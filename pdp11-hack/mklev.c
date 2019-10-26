@@ -182,7 +182,7 @@ jumpout:
 		mkshop ();
 	if (dlevel > 7 && !rn2 (6))
 		mkzoo ();
-	else if (dlevel > 11 && !rn2 (6) || wizard)
+	else if ((dlevel > 11 && !rn2 (6)) || wizard)
 		mkyard ();
 	else if ((dlevel > 18 && !rn2 (6)))
 		mkswamp ();

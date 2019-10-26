@@ -178,7 +178,7 @@ register char  *let, *word;
 		foo = foo2 = 1;
 		ilet2 = buffer[0];
 		ilet1 = buffer[1];
-		while (ilet = buffer[++foo2] = buffer[++foo]) {
+		while ((ilet = buffer[++foo2] = buffer[++foo]) != '\0') {
 			if (ilet == ilet1 + 1) {
 				if (ilet1 == ilet2 + 1)
 					buffer[foo2 - 1] = ilet1 = '-';
