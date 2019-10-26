@@ -175,7 +175,7 @@ register char  *name;
 
 int
 cansee (x, y)
-char    x, y;
+signed char x, y;
 {
 	if (u.ublind || u.uswallow)
 		return (CANNOTSEE);

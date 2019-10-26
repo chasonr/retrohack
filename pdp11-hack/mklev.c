@@ -56,10 +56,11 @@ static int doorindex = 0;
 int nroom;
 static int comp ();
 
-char    dlevel, *geno, goldseen,
-        xdnstair, xupstair, ydnstair, yupstair,
-        tx, ty;
-static char wizard, dx, dy, nxcor, x, y;
+char   *geno;
+signed char dlevel, goldseen,
+            xdnstair, xupstair, ydnstair, yupstair,
+            tx, ty;
+static signed char wizard, dx, dy, nxcor, x, y;
  /* For corridors and other things... */
 
 #define RUIN	5
@@ -70,7 +71,7 @@ main (argc, argv)
 int argc;
 char   *argv[];
 {
-	char    lowy, lowx;
+	signed char lowy, lowx;
 	register unsigned       tryct;
 
 	if (argc < 6)
@@ -85,7 +86,7 @@ char   *argv[];
 	wizard = (*argv[5] == 'w');
 	srand (getpid ());
 /* for( lowy=2;lowy<19;lowy++) for( lowx=2;lowx<77;lowx++ )
-	 				levl[lowx][lowy].typ = 0; * /
+	 				levl[lowx][lowy].typ = 0; */
 
 /*
  * a: normal;
@@ -348,7 +349,7 @@ register int    dir;
 
 static int
 maker (lowx, hix, lowy, hiy)
-char    lowx, hix, lowy, hiy;
+signed char lowx, hix, lowy, hiy;
 {
 	register        PART * ltmp, *lmax;
 	register int    tmpx;

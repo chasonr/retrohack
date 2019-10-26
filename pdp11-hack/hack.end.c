@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include "hack.h"
 
-char    maxdlevel = 0;
+signed char maxdlevel = 0;
 
 static char *statxx[] = {
 	"choked",
@@ -212,7 +212,7 @@ clearlocks () {
 #endif /* DEBUG */
 }
 
-int
+void
 hangup () {
 	save ();
 	clearlocks ();

@@ -32,8 +32,8 @@ static long total;
  * shlevel  = last level we initialized shopkeeper
  */
 
-char    billct = 0, shlevel;
-static char shoproom;
+signed char billct = 0, shlevel;
+static signed char shoproom;
 static char *shopnam[] = {
 	"engagement ring", "walking cane", "antique weapon",
 	"delicatessen", "second hand book", "liquor",
@@ -444,8 +444,8 @@ setangry () {
 int
 shk_move () {
 	register        MONSTER mtmp;
-	char    gx, gy, omx, omy, cnt, appr,
-	        nix, niy, ddx, ddy, zx, zy, num;
+	signed char gx, gy, omx, omy, cnt, appr,
+	            nix, niy, ddx, ddy, zx, zy, num;
 
 	omx = shopkeeper -> mx;
 	omy = shopkeeper -> my;

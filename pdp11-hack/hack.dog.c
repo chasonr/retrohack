@@ -89,8 +89,8 @@ int after;
 	int     nix, niy, omx, omy, appr, nearer, cnt, udist, zx, zy;
 	register        OBJECT obj;
 	register        GOLD_TRAP trap;
-	char    ddx, ddy, dogroom, uroom,
-	        gx = 0, gy = 0, gtyp;/* Current goal */
+	signed char ddx, ddy, dogroom, uroom,
+	            gx = 0, gy = 0, gtyp;/* Current goal */
 
 	if (moves <= edog -> eattime)
 		return NOMOVE;	/* Dog is still eating */
@@ -313,7 +313,7 @@ register        MONSTER magr, mdef;
 	register        MONSTDATA pa = magr -> data;
 	register        MONSTDATA pd = mdef -> data;
 	int     hit;
-	char    tmp, vis;
+	signed char    tmp, vis;
 
 	if (strchr ("Eay", magr -> data -> mlet))
 		return NOMOVE;
@@ -360,7 +360,7 @@ register        MONSTER magr, mdef;
 /* Return roomnumber or -1 */
 int
 inroom (x, y)
-char    x, y;
+signed char x, y;
 {
 	register        MKROOM * croom = &rooms[0];
 

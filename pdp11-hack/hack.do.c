@@ -355,11 +355,12 @@ litroom () {
 			pline ("The corridor lights up around you, then fades.");
 		return;
 	}
-	else if (!u.ublind)
+	else if (!u.ublind) {
 		if (levl[u.ux][u.uy].lit)
 			pline ("The room lights up around you.");
 		else
 			pline ("The room is lit.");
+	}
 	if (levl[u.ux][u.uy].lit)
 		return;
 	if (levl[u.ux][u.uy].typ == DOOR) {

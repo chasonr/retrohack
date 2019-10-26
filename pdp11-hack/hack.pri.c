@@ -14,7 +14,7 @@ static char scrlx, scrhx, scrly, scrhy;
 static char xcurses[200];		/* Contain's curser stuff */
 static char *HO, *CL, *CE, *CM, *UP, *BC;
 static char PC;
-static void putch ();
+static int putch ();
 
 static COORDINATES ou = {
 	-1, 0
@@ -539,7 +539,7 @@ cl_end () {
 	}
 }
 
-static void
+static int
 putch (c)
 char    c;
 {
@@ -548,4 +548,5 @@ char    c;
 #else
 	WRITE (&c, 1);
 #endif /* NORMAL_IO */
+	return 0;
 }

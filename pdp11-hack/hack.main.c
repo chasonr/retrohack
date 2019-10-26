@@ -30,12 +30,14 @@ uarm2 = 0, uright = 0, uleft = 0;
 
 char    nul[20];		/* Contains zeros */
 /* Lock contains 'pid'.dlevel */
-char    plname[10], lock[16], wizard,
-        curx, cury, savx,
-        xupstair, yupstair, xdnstair, ydnstair,
-       *save_cm = 0, *killer, *nomvmsg, dlevel = 0,
-        dx, dy, buf[BUFSZ], genocided[60],
+char    plname[10], lock[16],
+       *save_cm = 0, *killer, *nomvmsg,
+        buf[BUFSZ], genocided[60],
         SAVEFILE[37] = SAVEDIR;
+signed char wizard, curx, cury, savx,
+            xupstair, yupstair, xdnstair, ydnstair,
+            dlevel = 0,
+            dx, dy;
 
 unsigned        moves = 1;
 

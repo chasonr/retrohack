@@ -201,11 +201,12 @@ register char  *let, *word;
 		flags.topl = 0;
 		flush ();
 		ilet = getchar ();
-		if (ilet == '\33' || ilet == ' ' || ilet == '\n')
+		if (ilet == '\33' || ilet == ' ' || ilet == '\n') {
 			if (strcmp (word, "identify"))
 				return (NO_OBJ);
 			else
 				continue;/* sukkel */
+		}
 		if (ilet == '?')
 			doinv (foo ? let : 0, 0);
 		else {

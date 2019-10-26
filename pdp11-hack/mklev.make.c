@@ -244,7 +244,7 @@ void
 mkshop () {
 	register        MKROOM * sroom;
 	register int    sh, sx, sy, i;
-	register char   let;
+	register signed char let;
 
 	for (sroom = &rooms[0];; sroom++) {
 		if (sroom -> hx < 0)

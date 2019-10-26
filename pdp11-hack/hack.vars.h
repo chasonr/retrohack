@@ -202,4 +202,5 @@ char   *rinnam[] = {
 	"wired"
 };
 
-char   *ringcall[SIZE (ringtyp)], oiden[40], oldux, olduy;
+char   *ringcall[SIZE (ringtyp)], oiden[40];
+signed char oldux, olduy;

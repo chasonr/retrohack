@@ -38,7 +38,7 @@ void
 dozap () {
 	register        OBJECT obj;
 	register        MONSTER mtmp;
-	char    zx, zy;
+	signed char     zx, zy;
 	register int    num;
 
 	if (!(obj = getobj ("/", "zap"))) {
@@ -268,8 +268,8 @@ register        MONSTER mtmp;
 static int
 findit ()
 {
-	char    num, lx, hx, ly, hy;
-	register char   zx, zy;
+	signed char num, lx, hx, ly, hy;
+	register signed char zx, zy;
 	register        GOLD_TRAP gtmp, gt1;
 
 	for (lx = u.ux; levl[lx - 1][u.uy].typ % CORR; lx--);/* typ!=0 */
@@ -353,7 +353,8 @@ register int    sx, sy;
 int ddx, ddy;
 {
 	PART * lev;
-	register char   range, let;
+	register signed char range;
+    register char   let;
 	register        MONSTER mtmp;
 	register int    wandeftype = type - 11;
 
@@ -535,7 +536,7 @@ register        OBJECT otmp;
 
 void
 dosearch () {
-	register char   x, y;
+	register signed char x, y;
 	register        GOLD_TRAP tgen;
 
 	for (x = u.ux - 1; x < u.ux + 2; x++)

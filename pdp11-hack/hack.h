@@ -111,7 +111,7 @@ typedef struct rm       PART;
 
 
 struct mkroom {
-	char    lx, hx, ly, hy, rtype, rlit, doorct, fdoor;
+	signed char lx, hx, ly, hy, rtype, rlit, doorct, fdoor;
 };
 typedef struct mkroom   MKROOM;
 
@@ -119,14 +119,15 @@ typedef struct mkroom   MKROOM;
 
 #define DOORMAX 100
 struct coord {
-	char    x, y;
+	signed char x, y;
 };
 typedef struct coord    COORDINATES;
 
 
 
 struct food {
-	char   *foodnam, prob, delay;
+	char   *foodnam;
+	signed char prob, delay;
 	int     nutrition;
 };
 typedef struct food    *FOOD;
@@ -134,7 +135,8 @@ typedef struct food    *FOOD;
 
 
 struct armor {
-	char   *armnam, prob, delay, a_ac, a_can;
+	char   *armnam;
+	signed char prob, delay, a_ac, a_can;
 };
 typedef struct armor   *ARMOR;
 
@@ -143,7 +145,8 @@ typedef struct armor   *ARMOR;
 
 
 struct weapon {
-	char   *wepnam, prob, wsdam, wldam;
+	char   *wepnam;
+	signed char prob, wsdam, wldam;
 };
 typedef struct weapon  *WEAPON;
 
@@ -151,7 +154,8 @@ typedef struct weapon  *WEAPON;
 
 
 struct permonst {
-	char   *mname, mlet, mhd, mmove, ac, damn, damd;
+	char   *mname;
+	signed char mlet, mhd, mmove, ac, damn, damd;
 	unsigned        pxlth;
 };
 typedef struct permonst *MONSTDATA;
@@ -159,7 +163,7 @@ typedef struct permonst *MONSTDATA;
 
 struct obj {
 	struct obj     *nobj;
-	char    otyp;
+	signed char otyp;
 	int     spe;
 	unsigned        ox:	7;
 	unsigned        oy:	5;
@@ -184,7 +188,7 @@ struct monst {
 	struct monst   *nmon;
 	MONSTDATA	data;
 	STOLE		mstole;
-	char    mx, my;
+	signed char mx, my;
 	int     mhp, orig_hp;
 	unsigned        invis:	1;
 	unsigned        cham:	1;
@@ -206,7 +210,7 @@ typedef struct monst   *MONSTER;
 
 struct wseg {
 	struct wseg    *nseg;
-	char    wx, wy;
+	signed char wx, wy;
 };
 
 typedef struct wseg    *WORMSEGMENT;
@@ -216,7 +220,7 @@ typedef struct wseg    *WORMSEGMENT;
 
 struct gen {
 	struct gen     *ngen;
-	char    	gx, gy;
+	signed char    	gx, gy;
 	unsigned        gflag;
 };
 typedef struct gen     *GOLD_TRAP;
@@ -244,7 +248,7 @@ struct flag {
 typedef struct flag     FLAG;
 
 struct you {
-	char    ux, uy, ustr, ustrmax, udaminc, uac;
+	signed char ux, uy, ustr, ustrmax, udaminc, uac;
 	int     uhunger;
 	unsigned        ufast:		7;
 	unsigned        uconfused:	6;
@@ -341,9 +345,9 @@ extern MKROOM rooms[15], *croom;
 extern COORDINATES doors[DOORMAX];
 extern int nroom;
 extern char *geno;
-extern char dlevel, goldseen,
-            xdnstair, ydnstair, xupstair, yupstair,
-            tx, ty;
+extern signed char dlevel, goldseen,
+                   xdnstair, ydnstair, xupstair, yupstair,
+                   tx, ty;
 
 #else /* MKLEV */
 /*### hack.bones.c ###*/
@@ -415,10 +419,10 @@ extern void clearlocks();
 extern void done();
 extern void done1();
 #ifndef hangup
-extern int hangup();
+extern void hangup();
 #endif
 extern char *itoa();
-extern char maxdlevel;
+extern signed char maxdlevel;
 
 /*### hack.invent.c ###*/
 extern OBJECT addinv();
@@ -473,10 +477,10 @@ extern char plname[10], lock[],
             buf[],
             genocided[60],
             SAVEFILE[37];
-extern char wizard, curx, cury, savx,
-            xdnstair, ydnstair, xupstair, yupstair,
-            dlevel,
-            dx, dy;
+extern signed char wizard, curx, cury, savx,
+                   xdnstair, ydnstair, xupstair, yupstair,
+                   dlevel,
+                   dx, dy;
 extern unsigned moves;
 extern int multi;
 
@@ -490,7 +494,7 @@ extern void shuffle();
 extern struct armor     armors[];
 extern struct food      foods[];
 extern char oiden[];
-extern char oldux, olduy;
+extern signed char oldux, olduy;
 extern char *potcall[];
 extern char *potcol[];
 extern char *pottyp[];
@@ -550,7 +554,7 @@ extern void nomove();
 extern void nomul();
 extern char *parse();
 /* Corners of lit room; l for Low, h for High */
-extern char seehx, seelx, seehy, seely;
+extern signed char seehx, seelx, seehy, seely;
 
 /*### hack.c ###*/
 extern int abon();
@@ -622,7 +626,7 @@ extern int shk_move();
 extern void subfrombill();
 extern MONSTER shopkeeper;
 extern long robbed;
-extern char billct, shlevel;
+extern signed char billct, shlevel;
 extern COORDINATES shd, shk;
 
 /*### hack.str.c ###*/

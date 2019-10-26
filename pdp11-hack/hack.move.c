@@ -7,7 +7,7 @@
 #include <string.h>
 #include "hack.h"
 
-char    seelx, seehx, seely, seehy;/* Corners of lit room */
+signed char seelx, seehx, seely, seehy;/* Corners of lit room */
  /* l for Low, h for High */
 
 #define ZOO		1
