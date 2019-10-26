@@ -4,6 +4,7 @@
 
 /* Contains monster control routines */
 
+#include <stdlib.h>
 #include <string.h>
 #include "hack.h"
 
