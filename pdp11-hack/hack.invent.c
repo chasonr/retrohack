@@ -154,7 +154,7 @@ getobj (const char *let, const char *word)
 	char    buffer[BUFSZ], allowall = 0;
 	register int    foo = 0, foo2;
 
-	if (*let == '#') {
+	if (let != NULL && *let == '#') {
 		let++;
 		allowall++;
 	}
