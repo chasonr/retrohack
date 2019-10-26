@@ -45,6 +45,8 @@ unsigned        moves = 1;
 int     multi = 0;
 static int hackpid, uid;
 
+static void init_inventory(void);
+
 int
 main (int argc, char *argv[])
 {
@@ -111,9 +113,7 @@ main (int argc, char *argv[])
 	else {
 normalplay: 
 		shuffle ();
-		invent = yourinvent0;
-		uwep = &mace0;
-		uarm = &uarm0;
+        init_inventory();
 		u.uac = 6;	/* 10 - uarm->spe */
 		u.ulevel = 1;
 		u.uhunger = 900;
@@ -270,6 +270,33 @@ normalplay:
 				rhack (parse ());
 		}
 	}
+}
+
+static void
+init_inventory(void)
+{
+    OBJECT obj;
+    OBJECT last_obj;
+    OBJECT new_obj;
+
+    last_obj = NULL;
+    invent = NULL;
+    for (obj = yourinvent0; obj != NULL; obj = obj->nobj) {
+        new_obj = newobj();
+        *new_obj = *obj;
+        new_obj->nobj = NULL;
+        if (last_obj == NULL) {
+            invent = new_obj;
+        } else {
+            last_obj->nobj = new_obj;
+        }
+        last_obj = new_obj;
+        if (obj == &mace0) {
+            uwep = new_obj;
+        } else if (obj == &uarm0) {
+            uarm = new_obj;
+        }
+    }
 }
 
 void
